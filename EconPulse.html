@@ -130,6 +130,23 @@
   .chip.high { background: rgba(239,68,68,0.15); color: #fecaca; border-color: rgba(239,68,68,0.28); }
   .chip.medium { background: rgba(6,182,212,0.12); color: #a5f3fc; border-color: rgba(6,182,212,0.28); }
   .chip.released { opacity: 0.92; }
+
+  .chip.auto {
+    background: rgba(124,58,237,0.12);
+    color: #ddd6fe;
+    border: 1px dashed rgba(167,139,250,0.55);
+  }
+  .tag.auto {
+    background: rgba(124,58,237,0.16);
+    color: #c4b5fd;
+    border: 1px dashed rgba(167,139,250,0.45);
+  }
+  .arow.auto { border-left: 3px dashed rgba(167,139,250,0.55); padding-left: 8px; }
+  .layer-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .day.has-auto:not(.hot) {
+    background: linear-gradient(180deg, rgba(124,58,237,0.08), rgba(14,18,32,0.75) 46%);
+  }
+
   .more { font-size: 10px; color: var(--muted); padding-left: 4px; }
   .agenda { display: flex; flex-direction: column; gap: 10px; }
   .aday {
@@ -383,7 +400,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Sat 12 Sep 2026</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Sun 21 Sep 2026 · events + bot automations</p>
   </div>
   <div class="nextup" id="nextup"></div>
 </header>
@@ -399,6 +416,11 @@
     <button type="button" data-view="week">Week</button>
     <button type="button" data-view="agenda">Agenda</button>
     <button type="button" data-view="inflation">G20 Inflation</button>
+  </div>
+  <div class="filters cal-only layer-filters">
+    <button type="button" class="active" data-layer="both">Both</button>
+    <button type="button" data-layer="events">Events</button>
+    <button type="button" data-layer="autos">Automations</button>
   </div>
   <div class="filters cal-only">
     <button type="button" class="active" data-imp="all">All</button>
@@ -429,11 +451,11 @@
   <span class="lg" data-cat="speech"></span>
   <span class="lg" data-cat="trade"></span>
   <span class="lg" data-cat="policy"></span>
-  <span>High = red chip · Medium = cyan chip</span>
+  <span>High = red · Medium = cyan · Automation = dashed violet</span>
 </div>
 <script>
 
-const TODAY = new Date(2026, 8, 12); // Sat 12 Sep 2026
+const TODAY = new Date(2026, 8, 21); // Sun 21 Sep 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -532,6 +554,180 @@ const EVENTS = [
 
 
 
+
+/* Extensible bot-automation registry. MasterKi / other bots can append entries.
+   kind: "watch" | "scan" | "session" | "brief"
+   expand: how instances appear on the calendar (not every 5m tick).
+*/
+const AUTOMATIONS = [
+  {
+    id: "ep-print-watch",
+    bot: "EconPulse",
+    title: "T-15 / T-5 print watch",
+    kind: "watch",
+    cadence: "Every 5m · weekdays ET",
+    schedule: "CRON_TZ=America/New_York */5 * * * 1-5",
+    expand: "weekday",
+    time: "7:00am",
+    tz: "ET",
+    note: "Arms weekday print watch: T-15 and T-5 chat alerts, then official numbers at release. Silent when nothing is due.",
+    lastRun: "",
+    nextHint: "Next high-impact print window"
+  },
+  {
+    id: "ep-preopen",
+    bot: "EconPulse",
+    title: "Weekday pre-open brief",
+    kind: "brief",
+    cadence: "Weekdays 7:00am ET",
+    schedule: "CRON_TZ=America/New_York 0 7 * * 1-5",
+    expand: "weekday",
+    time: "7:00am",
+    tz: "ET",
+    note: "Pre-open list of today's high-impact prints with ET + HKT clocks.",
+    lastRun: "",
+    nextHint: "Next weekday 7:00am ET"
+  },
+  {
+    id: "ep-postprint",
+    bot: "EconPulse",
+    title: "Post-print recap",
+    kind: "brief",
+    cadence: "Weekdays 8:50am ET",
+    schedule: "CRON_TZ=America/New_York 50 8 * * 1-5",
+    expand: "weekday",
+    time: "8:50am",
+    tz: "ET",
+    note: "Recaps 8:30am ET high-impact US prints. Silent if nothing printed.",
+    lastRun: "",
+    nextHint: "Next weekday 8:50am ET"
+  },
+  {
+    id: "mw-30m",
+    bot: "MarketWatch",
+    title: "Market scan (30m)",
+    kind: "scan",
+    cadence: "About every 30m in session hours",
+    schedule: "session cadence · register exact cron via MasterKi",
+    expand: "weekday",
+    time: "9:00am",
+    tz: "ET",
+    note: "Standing MarketWatch scan marker. Exact cron owned by MarketWatch; shown once per weekday as armed cadence.",
+    lastRun: "",
+    nextHint: "~30m during US session"
+  },
+  {
+    id: "mw-asia-open",
+    bot: "MarketWatch",
+    title: "Asia session open scan",
+    kind: "session",
+    cadence: "Weekdays ~7:00pm ET (Asia open)",
+    schedule: "session open",
+    expand: "weekday",
+    time: "7:00pm",
+    tz: "ET",
+    note: "MarketWatch session-open marker for Asia cash.",
+    lastRun: "",
+    nextHint: "Next weekday Asia open"
+  },
+  {
+    id: "mw-london-open",
+    bot: "MarketWatch",
+    title: "London session open scan",
+    kind: "session",
+    cadence: "Weekdays ~3:00am ET",
+    schedule: "session open",
+    expand: "weekday",
+    time: "3:00am",
+    tz: "ET",
+    note: "MarketWatch session-open marker for London cash.",
+    lastRun: "",
+    nextHint: "Next weekday London open"
+  },
+  {
+    id: "mw-ny-open",
+    bot: "MarketWatch",
+    title: "NY session open scan",
+    kind: "session",
+    cadence: "Weekdays 9:30am ET",
+    schedule: "session open",
+    expand: "weekday",
+    time: "9:30am",
+    tz: "ET",
+    note: "MarketWatch session-open marker for US cash open.",
+    lastRun: "",
+    nextHint: "Next weekday 9:30am ET"
+  }
+];
+
+function registerAutomation(entry) {
+  if (!entry || !entry.id) return;
+  const i = AUTOMATIONS.findIndex(a => a.id === entry.id);
+  if (i >= 0) AUTOMATIONS[i] = { ...AUTOMATIONS[i], ...entry };
+  else AUTOMATIONS.push(entry);
+}
+
+function expandAutomations(fromIso, toIso) {
+  const out = [];
+  const start = parse(fromIso);
+  const end = parse(toIso);
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const dow = d.getDay(); // 0 Sun
+    const dateStr = iso(d);
+    AUTOMATIONS.forEach(a => {
+      if (a.expand === "weekday" && (dow === 0 || dow === 6)) return;
+      if (a.expand === "daily") { /* all days */ }
+      else if (a.expand !== "weekday" && a.expand !== "once") return;
+      if (a.expand === "once" && a.date !== dateStr) return;
+      out.push({
+        id: a.id + "-" + dateStr,
+        autoId: a.id,
+        kind: "auto",
+        date: dateStr,
+        time: a.time || "",
+        tz: a.tz || "ET",
+        country: "BOT",
+        inst: a.bot,
+        title: a.title,
+        impact: "auto",
+        status: "scheduled",
+        cat: "policy",
+        actual: "n/a",
+        actualShort: "",
+        previous: a.lastRun || "n/a",
+        consensus: a.cadence || "n/a",
+        vs: a.nextHint || "",
+        note: (a.note || "") + (a.schedule ? " · " + a.schedule : ""),
+        source: "",
+        cadence: a.cadence,
+        bot: a.bot,
+        autoKind: a.kind
+      });
+    });
+  }
+  return out;
+}
+
+function calendarHorizon() {
+  // month grid span + a bit of agenda forward
+  const first = new Date(cursor.getFullYear(), cursor.getMonth(), 1);
+  const start = new Date(first);
+  start.setDate(1 - first.getDay());
+  const end = new Date(start);
+  end.setDate(start.getDate() + 41);
+  const agendaEnd = new Date(TODAY);
+  agendaEnd.setDate(agendaEnd.getDate() + 21);
+  if (agendaEnd > end) end.setTime(agendaEnd.getTime());
+  return { from: iso(start), to: iso(end) };
+}
+
+function allItems() {
+  const h = calendarHorizon();
+  const autos = expandAutomations(h.from, h.to);
+  return EVENTS.concat(autos);
+}
+
+
 const FLAGS = {
   US: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#b22234"/><rect y="1.2" width="16" height="1.2" fill="#fff"/><rect y="3.6" width="16" height="1.2" fill="#fff"/><rect y="6" width="16" height="1.2" fill="#fff"/><rect y="8.4" width="16" height="1.2" fill="#fff"/><rect width="7.2" height="6" fill="#3c3b6e"/></svg>',
   CA: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#fff"/><rect width="4" height="11" fill="#d52b1e"/><rect x="12" width="4" height="11" fill="#d52b1e"/><path d="M8 2.2l.55 1.7h1.8l-1.45 1.05.55 1.7L8 5.6l-1.45 1.05.55-1.7L5.65 3.9h1.8z" fill="#d52b1e"/></svg>',
@@ -557,6 +753,7 @@ const FLAGS = {
   SG: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="5.5" fill="#ed2939"/><rect y="5.5" width="16" height="5.5" fill="#fff"/><circle cx="4.2" cy="2.8" r="1.5" fill="#fff"/></svg>',
   SA: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="11" fill="#006c35"/><rect x="3" y="7.6" width="10" height=".7" fill="#fff"/></svg>',
   CN: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="11" fill="#de2910"/><path d="M3.2 2.1l.6 1.7h1.8L4.4 4.9l.6 1.7L3.2 5.5 1.4 6.6l.6-1.7L.6 3.8h1.8z" fill="#ffde00"/></svg>',
+  BOT: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#0e1220"/><text x="8" y="8" text-anchor="middle" font-size="5.2" font-family="Inter,Arial" fill="#c4b5fd" font-weight="700">AUTO</text></svg>',
   G20: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#0e1220"/><text x="8" y="8" text-anchor="middle" font-size="6.2" font-family="Inter,Arial" fill="#a78bfa" font-weight="700">G20</text></svg>'
 };
 function flag(code) {
@@ -1130,9 +1327,10 @@ function bootView() {
 let view = bootView();
 let catFilter = "all";
 let impact = "all";
+let layer = "both"; // both | events | autos
 let cursor = new Date(2026, 8, 1);
-let selectedDate = "2026-09-16";
-let selectedId = "fomc";
+let selectedDate = "2026-09-22";
+let selectedId = "ep-print-watch-2026-09-22";
 
 const pad = n => String(n).padStart(2,"0");
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -1141,9 +1339,14 @@ const sameDay = (a,b) => a.getFullYear()===b.getFullYear() && a.getMonth()===b.g
 const monthName = d => d.toLocaleString("en-US", { month:"long", year:"numeric" });
 
 function visible(ev) {
-  if (impact === "high" && ev.impact !== "high") return false;
-  if (impact === "medium" && ev.impact !== "medium") return false;
-  if (catFilter !== "all" && ev.cat !== catFilter) return false;
+  const isAuto = ev.kind === "auto" || ev.impact === "auto";
+  if (layer === "events" && isAuto) return false;
+  if (layer === "autos" && !isAuto) return false;
+  if (!isAuto) {
+    if (impact === "high" && ev.impact !== "high") return false;
+    if (impact === "medium" && ev.impact !== "medium") return false;
+    if (catFilter !== "all" && ev.cat !== catFilter) return false;
+  }
   return true;
 }
 
@@ -1160,11 +1363,11 @@ function byWhen(a, b) {
   return (a.title || "").localeCompare(b.title || "");
 }
 function eventsOn(dateStr) {
-  return EVENTS.filter(e => e.date === dateStr && visible(e)).sort(byWhen);
+  return allItems().filter(e => e.date === dateStr && visible(e)).sort(byWhen);
 }
 
 function nextUpcoming() {
-  return EVENTS.filter(e => e.status !== "released" && parse(e.date) >= TODAY)
+  return allItems().filter(e => e.kind !== "auto" && e.status !== "released" && parse(e.date) >= TODAY)
     .sort(byWhen)[0];
 }
 
@@ -1243,7 +1446,7 @@ function closeSheet() {
 }
 
 function pick(id) {
-  const ev = EVENTS.find(e => e.id === id);
+  const ev = allItems().find(e => e.id === id) || EVENTS.find(e => e.id === id);
   if (ev) showDetail(ev);
 }
 
@@ -1268,10 +1471,11 @@ function renderMonth() {
     const id = iso(d);
     const evs = eventsOn(id);
     const out = d.getMonth() !== cursor.getMonth();
-    const hot = evs.some(e => e.impact==="high" && e.status!=="released");
-    const cls = ["day", out?"out":"", sameDay(d,TODAY)?"today":"", id===selectedDate?"selected":"", hot?"hot":""].filter(Boolean).join(" ");
+    const hot = evs.some(e => e.impact==="high" && e.status!=="released" && e.kind!=="auto");
+    const hasAuto = evs.some(e => e.kind==="auto");
+    const cls = ["day", out?"out":"", sameDay(d,TODAY)?"today":"", id===selectedDate?"selected":"", hot?"hot":"", hasAuto?"has-auto":""].filter(Boolean).join(" ");
     const chips = evs.slice(0,3).map(e =>
-      `<div class="chip ${e.impact} ${e.status}" data-eid="${e.id}" onclick="event.stopPropagation();pick('${e.id}')">${flag(e.country)}${ico(e.cat)}<span class="lab">${chipLabel(e)}</span></div>`
+      `<div class="chip ${e.impact} ${e.status||""}" data-eid="${e.id}" onclick="event.stopPropagation();pick('${e.id}')">${flag(e.country)}${ico(e.cat)}<span class="lab">${chipLabel(e)}</span></div>`
     ).join("");
     const extra = evs.length>3 ? `<div class="more">+${evs.length-3} more</div>` : "";
     return `<div class="${cls}" onclick="selectDay('${id}')">
@@ -1293,9 +1497,9 @@ function renderWeek() {
     html += `<div class="aday"><h3>${d.toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}${sameDay(d,TODAY)?" · today":""}</h3>`;
     if (!evs.length) html += `<p class="empty" style="padding:4px 0">No events</p>`;
     evs.forEach(e => {
-      html += `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
-        ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
-        <span>${evTitle(e)}</span></div>`;
+      html += `<div class="arow ${e.kind==="auto"?"auto":""}" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+        ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.kind==="auto"?"auto":e.impact}</span>
+        <span>${evTitle(e)}${e.kind==="auto" && e.cadence ? ` <span style="color:var(--muted)">· ${e.cadence}</span>` : ""}</span></div>`;
     });
     html += `</div>`;
   }
@@ -1306,15 +1510,15 @@ function renderAgenda() {
   document.getElementById("dow").innerHTML = "";
   const board = document.getElementById("board");
   board.className = "agenda";
-  const upcoming = EVENTS.filter(e => visible(e) && parse(e.date) >= TODAY);
+  const upcoming = allItems().filter(e => visible(e) && parse(e.date) >= TODAY);
   const groups = {};
   upcoming.sort(byWhen).forEach(e => { (groups[e.date] ||= []).push(e); });
   board.innerHTML = Object.keys(groups).map(date => {
     const d = parse(date);
     const rows = groups[date].map(e =>
-      `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
-       ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
-       <span>${evTitle(e)} <span style="color:var(--muted)">· ${e.inst}</span></span></div>`
+      `<div class="arow ${e.kind==="auto"?"auto":""}" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+       ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.kind==="auto"?"auto":e.impact}</span>
+       <span>${evTitle(e)} <span style="color:var(--muted)">· ${e.inst}${e.kind==="auto" && e.cadence ? " · "+e.cadence : ""}</span></span></div>`
     ).join("");
     return `<div class="aday"><h3>${d.toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}</h3>${rows}</div>`;
   }).join("") || `<p class="empty">Nothing ahead in this filter.</p>`;
@@ -1355,6 +1559,12 @@ document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => {
 document.querySelectorAll("[data-imp]").forEach(b => b.onclick = () => {
   impact = b.dataset.imp;
   document.querySelectorAll("[data-imp]").forEach(x => x.classList.toggle("active", x===b));
+  render();
+  if (selectedId) pick(selectedId);
+});
+document.querySelectorAll("[data-layer]").forEach(b => b.onclick = () => {
+  layer = b.dataset.layer;
+  document.querySelectorAll("[data-layer]").forEach(x => x.classList.toggle("active", x===b));
   render();
   if (selectedId) pick(selectedId);
 });
@@ -1487,7 +1697,8 @@ document.querySelectorAll("[data-view]").forEach(x => x.classList.toggle("active
 renderNext();
 render();
 if (!(isPhone() && !location.hash.startsWith("#ev="))) {
-  pick(location.hash.startsWith("#ev=") ? location.hash.slice(4) : "fomc");
+  const bootId = location.hash.startsWith("#ev=") ? location.hash.slice(4) : (nextUpcoming()?.id || selectedId);
+  if (bootId) pick(bootId);
 }
 
 </script>
