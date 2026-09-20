@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>香港銀行業量子準備度報告｜學習摘要</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #1e40af;
+      --accent-light: #3b82f6;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #059669;
+      --warning: #d97706;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      padding: 1.1rem 1.25rem 1rem;
+      text-align: center;
+    }
+    header h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.2rem; letter-spacing: -0.01em; }
+    header p { opacity: 0.85; font-size: 0.82rem; max-width: 640px; margin: 0 auto; }
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      margin-top: 0.45rem;
+    }
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.15rem;
+      padding: 0.7rem 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav .nav-inner::-webkit-scrollbar { display: none; }
+    nav a {
+      color: #1e3a8a;
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.15s;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+    nav a:hover {
+      background: #1e40af;
+      color: white;
+      border-color: #1e40af;
+    }
+    nav a.active {
+      background: #1e40af;
+      color: white;
+      border-color: #1e40af;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    section { margin-bottom: 3.2rem; scroll-margin-top: 70px; }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+    }
+    h3 { font-size: 1.15rem; font-weight: 650; color: var(--primary); margin: 1.6rem 0 0.7rem; }
+    p { margin-bottom: 0.85rem; }
+    ul, ol { margin: 0.6rem 0 1rem 1.35rem; }
+    li { margin-bottom: 0.35rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.35rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .card.highlight { border-left: 4px solid var(--accent); }
+    .card.case { border-left: 4px solid var(--success); }
+    .card-title { font-weight: 650; font-size: 1.05rem; margin-bottom: 0.45rem; color: var(--primary); }
+    .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.55rem; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.4rem;
+      font-size: 0.9rem;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    th { background: #1e3a8a; color: white; text-align: left; padding: 0.7rem 1rem; font-weight: 600; }
+    td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.18rem 0.5rem;
+      border-radius: 6px;
+      margin-right: 0.3rem;
+    }
+    .tag.green { background: #ecfdf5; color: var(--success); }
+    .callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+    .callout strong { color: var(--warning); }
+    .score-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.15rem 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.55rem;
+    }
+    .score-name { font-weight: 650; font-size: 1rem; }
+    .score-value { font-weight: 700; font-size: 1.25rem; color: var(--accent); }
+    .score-bar {
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    }
+    .score-fill.low { background: linear-gradient(90deg, #f97316, #dc2626); }
+    .sub-scores {
+      margin-top: 0.9rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+    }
+    .sub-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.45rem;
+      font-size: 0.9rem;
+    }
+    .sub-label { width: 190px; flex-shrink: 0; color: var(--muted); }
+    .sub-bar-wrap { flex: 1; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .sub-fill { height: 100%; border-radius: 999px; background: #60a5fa; }
+    .sub-num { width: 42px; text-align: right; font-weight: 600; color: var(--primary); font-size: 0.88rem; }
+    .chart-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.35rem;
+      margin: 1.1rem 0;
+    }
+    .chart-title { font-weight: 650; font-size: 1rem; margin-bottom: 0.35rem; color: var(--primary); }
+    .chart-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    .bar-chart { display: flex; flex-direction: column; gap: 0.55rem; }
+    .bar-item { display: flex; align-items: center; gap: 0.7rem; }
+    .bar-label { width: 150px; font-size: 0.88rem; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 22px; background: #f1f5f9; border-radius: 6px; overflow: hidden; }
+    .bar-value {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #1e40af);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding-left: 0.5rem;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      min-width: 2.5rem;
+    }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 1rem 0 1.5rem;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .report-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #1e3a8a; }
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+    .btn-secondary:hover { background: #eff6ff; }
+    .pdf-viewer {
+      width: 100%;
+      height: 70vh;
+      min-height: 480px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #f8fafc;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.35rem; }
+      main { padding: 1.5rem 1rem 3rem; }
+      .sub-label { width: 130px; font-size: 0.82rem; }
+      .bar-label { width: 120px; }
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 720px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+    .cards-grid .card {
+      margin-bottom: 0;
+      height: 100%;
+    }
+    .scores-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 720px) {
+      .scores-grid { grid-template-columns: 1fr; }
+    }
+    .scores-grid .score-block {
+      margin-bottom: 0;
+      height: 100%;
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>香港銀行業量子準備度報告</h1>
+  <p>HKMA 《Quantum Preparedness of Hong Kong’s Banking Sector》學習摘要</p>
+  <div class="badge">2026年7月 · 內部學習用 · 含原報告與影片</div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#overview">總覽</a>
+    <a href="#section01">量子計算</a>
+    <a href="#cases">案例</a>
+    <a href="#section02">後量子密碼</a>
+    <a href="#section03">香港現況</a>
+    <a href="#index">準備度指數</a>
+    <a href="#challenges">挑戰與支援</a>
+    <a href="#section04">未來方向</a>
+    <a href="#actions">行動建議</a>
+    <a href="#video">官方影片</a>
+    <a href="#report">原報告</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="overview">
+    <h2>報告總覽</h2>
+    <div class="grid-2">
+      <div class="card highlight">
+        <div class="card-title">核心訊息</div>
+        <p>量子計算對金融業具有雙面影響：一方面可在投資組合優化、風險建模、欺詐偵測、產品定價等領域帶來更高精準度與運算效率；另一方面，當 Cryptographically Relevant Quantum Computer（CRQC）出現時，現有非對稱密碼（如 RSA、ECC）將可能被破解，直接威脅銀行系統、支付網絡與金融市場基建的安全與信任。</p>
+        <p>雖然 CRQC 尚未出現，但「Harvest Now, Decrypt Later」（現在收集、日後解密）風險已存在——攻擊者可先攔截加密數據，待未來量子能力成熟後再解密。加上密碼遷移涉及大量系統、供應商與互通性，是一項需要多年持續投入的複雜工程，因此必須及早、有序準備。</p>
+      </div>
+      <div class="card highlight">
+        <div class="card-title">HKMA 立場</div>
+        <p>HKMA 鼓勵業界<strong>及早開始、有序行動、建立能力</strong>。量子準備並非純粹技術升級，而是企業級轉型，需要：</p>
+        <ul>
+          <li>董事會與高層把量子風險納入企業風險治理</li>
+          <li>跨部門協作（IT、資安、風險、採購、合規）</li>
+          <li>與供應商、金融基建及學術機構協調</li>
+          <li>持續建立內部專才與密碼敏捷性</li>
+        </ul>
+        <p>HKMA 將透過監管指引、培訓、PQC 工具包及業界交流平台，支援銀行業穩步過渡至量子安全環境，在守護金融穩定的同時支持負責任創新。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="section01">
+    <h2>01 Quantum Computing 量子計算</h2>
+    <h3>1.1 量子計算簡介</h3>
+    <div class="card">
+      <p>經典電腦使用「比特」（0 或 1），運算是確定性的。</p>
+      <p>量子電腦使用「量子比特」（qubit），具備兩大核心特性：</p>
+      <ul>
+        <li><strong>疊加（Superposition）</strong>：可同時代表多種狀態的組合，直到被測量。</li>
+        <li><strong>糾纏（Entanglement）</strong>：多個 qubit 可互相關聯，提高正確解出現的機率。</li>
+      </ul>
+      <p>量子計算本質是<strong>機率性</strong>的。對特定複雜問題，足夠大規模的量子電腦 理論上可超越經典電腦。</p>
+    </div>
+
+    <h3>1.2 金融服務潛在應用場景</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>應用領域</th>
+          <th>量子演算法方向</th>
+          <th>說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Portfolio & Asset Optimisation</td>
+          <td>Optimisation + Machine Learning</td>
+          <td>資產配置、風險報酬優化</td>
+        </tr>
+        <tr>
+          <td>Fraud Detection</td>
+          <td>Machine Learning (QML)</td>
+          <td>識別複雜交易模式、反洗錢</td>
+        </tr>
+        <tr>
+          <td>Sales / Pricing Optimisation</td>
+          <td>Machine Learning + Simulation</td>
+          <td>預測資產價格、交易策略優化</td>
+        </tr>
+        <tr>
+          <td>Risk Management</td>
+          <td>Optimisation + Simulation + ML</td>
+          <td>交易清算、結算風險、排程優化</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-card">
+      <div class="chart-title">量子技術路線圖（Qubit 數量演進）</div>
+      <div class="chart-desc">報告展示主要量子公司的物理 qubit 數量演進與未來預測（對數刻度）。過去十年 qubit 數量穩步上升，未來 10 年預計可達數十萬級。</div>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <div class="bar-label">現況（約 2025）</div>
+          <div class="bar-track"><div class="bar-value" style="width:18%">~100–1000</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">近中期預測</div>
+          <div class="bar-track"><div class="bar-value" style="width:45%">數千–數萬</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">2030s 目標</div>
+          <div class="bar-track"><div class="bar-value" style="width:85%">數十萬+</div></div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-top:0.8rem;">來源：IBM、IonQ、Quantinuum、Google 等公開路線圖（KPMG 分析）。重點在於錯誤校正與可擴展性的進展。</p>
+    </div>
+
+    <div class="callout">
+      <strong>重要提醒：</strong>目前所有金融應用仍屬探索／試點階段，尚未有大規模生產部署。多數實驗採用「量子 + 經典混合」模式。
+    </div>
+  </section>
+
+  <section id="cases">
+    <h2>Case Studies（報告中全部案例）</h2>
+    <p style="margin-bottom: 1.1rem; color: var(--muted);">以下為報告 01 章節中明確提及的所有金融業量子計算案例。</p>
+
+    
+    <div class="cards-grid">
+<div class="card case">
+      <div class="card-title">1. Citi Innovation Labs × Classiq（2024）</div>
+      <div class="meta"><span class="tag green">Portfolio Optimisation</span><span class="tag">QAOA</span></div>
+      <p><strong>目的：</strong>測試量子計算在投資組合優化的可行性。</p>
+      <p><strong>方法：</strong>使用 6 隻股票的歷史數據，以 QAOA 進行風險報酬優化，並透過可調校的「penalty factor」強制預算約束。</p>
+      <p><strong>結果：</strong>結果對 penalty 參數高度敏感；較小 penalty 值可產生較佳解。目前尚未展現量子優勢，但確立了未來硬體成熟後所需的調校紀律。</p>
+    </div>
+
+    <div class="card case">
+      <div class="card-title">2. 華夏銀行（Huaxia Bank）× SpinQ</div>
+      <div class="meta"><span class="tag green">Asset Optimisation</span><span class="tag">QNN</span></div>
+      <p><strong>目的：</strong>優化 ATM 佈局與撤除使用率低的機器。</p>
+      <p><strong>方法：</strong>從 2,243 台 ATM 提取故障率、使用趨勢、補鈔時間等數據，使用 variational quantum embedding 後以 QNN 在 SpinQ 核磁共振量子電腦上運行。</p>
+      <p><strong>結果：</strong>相較經典演算法，展現更高準確率、更高精準度及更短計算時間。</p>
+    </div>
+
+    <div class="card case">
+      <div class="card-title">3. 平安保險（Ping An Insurance）× Origin Quantum</div>
+      <div class="meta"><span class="tag green">Fraud Detection</span><span class="tag">QML / QNN</span></div>
+      <p><strong>目的：</strong>開發量子機器學習演算法以識別金融欺詐。</p>
+      <p><strong>方法：</strong>開發 QNN 來偵測複雜交易模式，特別是涉及洗錢的行為。</p>
+      <p><strong>目標：</strong>提升金融服務對欺詐的響應速度。</p>
+    </div>
+
+    <div class="card case">
+      <div class="card-title">4. HSBC × IBM（2025）</div>
+      <div class="meta"><span class="tag green">Algorithmic Trading</span><span class="tag">Quantum Data Embedding</span></div>
+      <p><strong>目的：</strong>提升歐洲公司債券市場「贏得客戶詢價」的預測能力。</p>
+      <p><strong>方法：</strong>使用 quantum data embedding 訓練經典機器學習模型，再計算每筆客戶詢價的勝出機率。</p>
+      <p><strong>結果：</strong>預測準確率提升 <strong>34%</strong>。HSBC 稱為「全球首個已知的量子賦能演算法交易」示範。</p>
+    </div>
+
+    <div class="card case">
+      <div class="card-title">5. Barclays</div>
+      <div class="meta"><span class="tag green">Risk Management</span><span class="tag">QAOA / Transaction Settlement</span></div>
+      <p><strong>目的：</strong>交易清算優化，確保證券交易的完整性與及時性。</p>
+      <p><strong>方法：</strong>概念驗證（PoC）測試量子演算法（如 QAOA）在加入法律約束與選擇權限制後，能否比經典啟發式方法更快找到更優解。</p>
+      <p><strong>結果：</strong>顯示未來大規模量子電腦有潛力提供比現有啟發式方法更快的解決方案。</p>
+    </div>
+    </div>
+  </section>
+
+  <section id="section02">
+    <h2>02 Post-Quantum Cryptography 後量子密碼學</h2>
+    <div class="card highlight">
+      <p>銀行依賴對稱密碼、非對稱密碼與雜湊函數來實現機密性、完整性、身份驗證與不可否認性。Shor’s algorithm 可在足夠強大的量子電腦上破解現有主流非對稱密碼（如 RSA、ECC）。</p>
+      <p><strong>HNDL 風險已存在：</strong>攻擊者現在可攔截加密數據，待未來 CRQC 成熟後再解密。</p>
+    </div>
+    <h3>主要解決方案</h3>
+    <ul>
+      <li><strong>Post-Quantum Cryptography (PQC)</strong>：基於被認為對量子電腦仍困難的數學問題所設計的新一代演算法（NIST 已開始標準化）。</li>
+      <li><strong>Cryptographic Agility（密碼敏捷性）</strong>：系統能快速切換或升級密碼演算法的能力，是長期必須建立的核心能力。</li>
+      <li><strong>Hybrid 模式</strong>：過渡期間可同時使用傳統與後量子演算法，降低風險與營運中斷。</li>
+      <li><strong>Quantum Key Distribution (QKD)</strong>：利用量子物理特性分發密鑰，目前多屬概念驗證階段。</li>
+    </ul>
+    <div class="chart-card">
+      <div class="chart-title">Mosca’s Theorem 與 CRQC 時間線</div>
+      <div class="chart-desc">Mosca’s Theorem 提醒：若「現有數據需要保密的年數 X」+「遷移到 PQC 所需年數 Y」> 「CRQC 出現所需年數 Z」，則已處於風險中。專家對 CRQC 出現時間仍有分歧，但多數認為需及早準備。</div>
+    </div>
+  </section>
+
+  <section id="section03">
+    <h2>03 Current Hong Kong Landscape 香港現況</h2>
+    <h3>3.1 量子計算認知與參與</h3>
+    <div class="chart-card">
+      <div class="chart-title">行業量子計算參與度</div>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <div class="bar-label">至少基本認知</div>
+          <div class="bar-track"><div class="bar-value" style="width:68%">68%</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">董事會層討論</div>
+          <div class="bar-track"><div class="bar-value" style="width:50%">50%</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">已開展相關計劃</div>
+          <div class="bar-track"><div class="bar-value" style="width:32%">32%</div></div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; color:var(--muted); margin-top:0.8rem;">多數機構有基本認知，但深度參與與正式治理仍有限。約 32% 表示未有任何討論。</p>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">量子計算採用最常被提及的障礙</div>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <div class="bar-label">技術成熟度與不確定性</div>
+          <div class="bar-track"><div class="bar-value" style="width:73%">73%</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">難以找到商業可行用例</div>
+          <div class="bar-track"><div class="bar-value" style="width:53%">53%</div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">內部專才不足</div>
+          <div class="bar-track"><div class="bar-value" style="width:47%">47%</div></div>
+        </div>
+      </div>
+
+    <h3>3.1.2 目前探索中的應用方向</h3>
+    <p style="color:var(--muted); margin-bottom:1rem;">少數已開展計劃的機構，主要在以下領域進行初步探索（屬早期階段，不代表業界普及程度）：</p>
+    <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-title">Risk Modelling 風險建模</div>
+      <p style="font-size:0.9rem;"><span class="tag">QRNG</span><span class="tag">Quantum Monte Carlo</span></p>
+      <p>部分機構開始探索以量子演算法提升風險評估準確度。亦有初步研究量子蒙地卡羅模擬應用於信用風險計算，以及使用量子隨機數產生器（QRNG）改善蒙地卡羅模擬的隨機性品質，從而提升財務預測準確度。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Portfolio Optimisation 投資組合優化</div>
+      <p style="font-size:0.9rem;"><span class="tag">QAOA</span></p>
+      <p>部分機構正探索量子優化演算法，以改進資產配置與投資組合構建策略。目前多集中於文獻研究與技術追蹤，並與外部供應商合作。亦有機構表示有興趣針對經典方法難以處理的複雜風險報酬權衡與限制條件進行 PoC。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Fraud Detection and Cybersecurity 欺詐偵測與網絡安全</div>
+      <p style="font-size:0.9rem;"><span class="tag">QML</span></p>
+      <p>部分機構研究量子機器學習（QML）模型，以提升欺詐偵測系統的準確度與效率。探索範圍亦延伸至保險等特定行業，並強調在高交易量環境下採用量子—經典混合模型。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pricing and Derivatives Modelling 定價與衍生工具建模</div>
+      <p style="font-size:0.9rem;"><span class="tag">Quantum Monte Carlo</span><span class="tag">Amplitude Estimation</span></p>
+      <p>有機構以簡化例子在量子硬體上測試量子蒙地卡羅演算法作衍生工具定價。另有探索以量子計算優化金融衍生工具定價模型，以及使用低深度量子振幅估計算法應用於衍生工具定價。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">QKD 量子密鑰分發</div>
+      <p style="font-size:0.9rem;"><span class="tag">QKD</span></p>
+      <p>部分機構已測試 QKD，用於數據中心之間的安全傳輸，以及在外匯交易等高風險金融交易中保護密碼密鑰交換。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Cryptography / PQC 密碼學與後量子準備</div>
+      <p style="font-size:0.9rem;"><span class="tag">PQC</span><span class="tag">CBOM</span></p>
+      <p>部分機構正進行 PoC，開發 Cryptographic Bill of Materials（CBOM）工具，並評估業界 PQC 方案的互通性。亦有內部分析評估現有密碼能力，為未來金鑰長度與演算法決策提供依據，反映業界已開始主動準備量子安全挑戰。</p>
+    </div>
+
+    </div>
+  </section>
+
+  <section id="index">
+    <h2>3.2 PQC Readiness 準備度指數與子指數</h2>
+    <p style="margin-bottom:1rem;">報告以 0–10 分制評估香港銀行業 PQC 準備度。整體分數偏低，顯示仍處於早期階段。</p>
+
+    <div class="score-block" style="border: 2px solid var(--accent);">
+      <div class="score-header">
+        <div class="score-name">整體 PQC Readiness Score</div>
+        <div class="score-value">2.3 / 10</div>
+      </div>
+      <div class="score-bar"><div class="score-fill low" style="width:23%"></div></div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.85rem;">
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.9rem; padding:0.35rem 0.75rem; border-radius:8px;">零售銀行 2.6/10</span>
+        <span style="background:#f1f5f9; color:#475569; font-weight:700; font-size:0.9rem; padding:0.35rem 0.75rem; border-radius:8px;">非零售銀行 2.2/10</span>
+      </div>
+    </div>
+
+    <div class="scores-grid">
+<div class="score-block">
+      <div class="score-header">
+        <div class="score-name">Awareness 指數（認知）</div>
+        <div class="score-value">2.4 / 10</div>
+      </div>
+      <div class="score-bar"><div class="score-fill low" style="width:24%"></div></div>
+      <div class="sub-scores">
+        <div class="sub-row">
+          <div class="sub-label">Governance</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:28%"></div></div>
+          <div class="sub-num">2.8</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Funding</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:20%"></div></div>
+          <div class="sub-num">2.0</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Training & Education</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:19%"></div></div>
+          <div class="sub-num">1.9</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; align-items:center;">
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">零售銀行 2.7</span>
+        <span style="background:#f1f5f9; color:#475569; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">非零售銀行 2.4</span>
+        <span style="font-size:0.85rem; color:var(--muted);">專責治理仍不普遍（約 18% 有正式委員會）</span>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-header">
+        <div class="score-name">Planning 指數（規劃）</div>
+        <div class="score-value">2.5 / 10</div>
+      </div>
+      <div class="score-bar"><div class="score-fill low" style="width:25%"></div></div>
+      <div class="sub-scores">
+        <div class="sub-row">
+          <div class="sub-label">Risk & Vulnerability Mgmt</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:19%"></div></div>
+          <div class="sub-num">1.9</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Compliance</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:24%"></div></div>
+          <div class="sub-num">2.4</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Strategy & Planning</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:23%"></div></div>
+          <div class="sub-num">2.3</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Inventory</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:27%"></div></div>
+          <div class="sub-num">2.7</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Policies & Procedures</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:30%"></div></div>
+          <div class="sub-num">3.0</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; align-items:center;">
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">零售銀行 2.8</span>
+        <span style="background:#f1f5f9; color:#475569; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">非零售銀行 2.4</span>
+        <span style="font-size:0.85rem; color:var(--muted);">Policies 最高，Risk 管理最低</span>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-header">
+        <div class="score-name">Pilots 指數（試點）</div>
+        <div class="score-value">1.8 / 10</div>
+      </div>
+      <div class="score-bar"><div class="score-fill low" style="width:18%"></div></div>
+      <div class="sub-scores">
+        <div class="sub-row">
+          <div class="sub-label">Cryptography Migration Testing</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:18%"></div></div>
+          <div class="sub-num">1.8</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; align-items:center;">
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">零售銀行 2.0</span>
+        <span style="background:#f1f5f9; color:#475569; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">非零售銀行 1.8</span>
+        <span style="font-size:0.85rem; color:var(--muted);">整體最低維度 · 系統性測試仍少</span>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-header">
+        <div class="score-name">Practical Preparedness 指數（實務準備）</div>
+        <div class="score-value">2.3 / 10</div>
+      </div>
+      <div class="score-bar"><div class="score-fill low" style="width:23%"></div></div>
+      <div class="sub-scores">
+        <div class="sub-row">
+          <div class="sub-label">Monitoring</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:19%"></div></div>
+          <div class="sub-num">1.9</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">PQC Controls & Assurance</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:25%"></div></div>
+          <div class="sub-num">2.5</div>
+        </div>
+        <div class="sub-row">
+          <div class="sub-label">Migration Readiness</div>
+          <div class="sub-bar-wrap"><div class="sub-fill" style="width:23%"></div></div>
+          <div class="sub-num">2.3</div>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; align-items:center;">
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">零售銀行 3.0</span>
+        <span style="background:#f1f5f9; color:#475569; font-weight:700; font-size:0.85rem; padding:0.3rem 0.65rem; border-radius:8px;">非零售銀行 2.1</span>
+        <span style="font-size:0.85rem; color:var(--muted);">零售銀行明顯領先</span>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="callout">
+      <strong>解讀：</strong>所有主要指數均低於 3 分（滿分 10），顯示香港銀行業整體仍處於「認知建立」與「初步規劃」階段。試點（Pilots）是最弱的一環。零售銀行整體表現略優於非零售銀行。
+    </div>
+  </section>
+
+
+  <section id="challenges">
+    <h2>採用挑戰與所需支援</h2>
+
+    <h3>PQC 採用主要挑戰</h3>
+    <p style="color:var(--muted); margin-bottom:0.75rem;">以下為調查中機構將各挑戰列入「前三最關注」的比例：</p>
+
+    <div class="chart-card">
+      <div class="chart-title">風險評估 Risk Assessment</div>
+      <div class="bar-chart">
+        <div class="bar-item"><div class="bar-label">缺乏方法論與框架</div><div class="bar-track"><div class="bar-value" style="width:73%">73%</div></div></div>
+        <div class="bar-item"><div class="bar-label">依賴外部持份者</div><div class="bar-track"><div class="bar-value" style="width:52%">52%</div></div></div>
+        <div class="bar-item"><div class="bar-label">威脅環境持續變化</div><div class="bar-track"><div class="bar-value" style="width:47%">47%</div></div></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">密碼資產盤點 Cryptographic Inventory</div>
+      <div class="bar-chart">
+        <div class="bar-item"><div class="bar-label">IT 環境技術複雜</div><div class="bar-track"><div class="bar-value" style="width:79%">79%</div></div></div>
+        <div class="bar-item"><div class="bar-label">應用系統規模與數量</div><div class="bar-track"><div class="bar-value" style="width:71%">71%</div></div></div>
+        <div class="bar-item"><div class="bar-label">外部依賴</div><div class="bar-track"><div class="bar-value" style="width:60%">60%</div></div></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">路線圖制定 Roadmap Development</div>
+      <div class="bar-chart">
+        <div class="bar-item"><div class="bar-label">遺留系統與技術債</div><div class="bar-track"><div class="bar-value" style="width:71%">71%</div></div></div>
+        <div class="bar-item"><div class="bar-label">策略不確定性</div><div class="bar-track"><div class="bar-value" style="width:67%">67%</div></div></div>
+        <div class="bar-item"><div class="bar-label">企業架構對齊</div><div class="bar-track"><div class="bar-value" style="width:49%">49%</div></div></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">供應商與業界協作 Vendor & Industry Engagement</div>
+      <div class="bar-chart">
+        <div class="bar-item"><div class="bar-label">依賴關鍵第三方</div><div class="bar-track"><div class="bar-value" style="width:87%">87%</div></div></div>
+        <div class="bar-item"><div class="bar-label">供應商準備度與路線圖</div><div class="bar-track"><div class="bar-value" style="width:85%">85%</div></div></div>
+        <div class="bar-item"><div class="bar-label">協作生態系不清晰</div><div class="bar-track"><div class="bar-value" style="width:60%">60%</div></div></div>
+      </div>
+    </div>
+
+    <h3>機構認為最有價值的支援形式</h3>
+    <div class="chart-card">
+      <div class="bar-chart">
+        <div class="bar-item"><div class="bar-label" style="width:200px;">清晰監管期望與時間表</div><div class="bar-track"><div class="bar-value" style="width:87%">87%</div></div></div>
+        <div class="bar-item"><div class="bar-label" style="width:200px;">實務指引與白皮書</div><div class="bar-track"><div class="bar-value" style="width:77%">77%</div></div></div>
+        <div class="bar-item"><div class="bar-label" style="width:200px;">業界論壇與最佳實踐分享</div><div class="bar-track"><div class="bar-value" style="width:48%">48%</div></div></div>
+      </div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:0.7rem;">數據為將該項列入前三優先支援的機構比例。</p>
+    </div>
+  </section>
+
+  <section id="section04">
+    <h2>未來方向</h2>
+    <div class="card highlight">
+      <p>遷移是多年度、高度複雜的企業級工程。延遲會導致人才競爭加劇、遺留系統問題更難處理、時間更緊迫、成本更高。建議按四個階段推進（非嚴格線性，可並行）：</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-title">1. Awareness 認知</div>
+        <ul style="font-size:0.9rem;">
+          <li>向董事會與高層簡報量子威脅</li>
+          <li>指定跨職能問責負責人，成立工作小組，並配置常設預算</li>
+          <li>按角色安排培訓，建立人員準備度</li>
+          <li>持續監察標準與監管期望變化</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Planning 規劃</div>
+        <ul style="font-size:0.9rem;">
+          <li>完成 IT 環境的密碼資產盤點</li>
+          <li>以業務語言評估量子風險暴露</li>
+          <li>按數據敏感度與系統關鍵性分類</li>
+          <li>訂立遷移優先次序：政策與各系統路徑</li>
+          <li>與供應商接洽，取得並記錄其遷移路線圖</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Pilot 試點</div>
+        <ul style="font-size:0.9rem;">
+          <li>先在非關鍵系統進行受控概念驗證</li>
+          <li>測試效能、互通性與回退機制</li>
+          <li>在實務中驗證密碼敏捷性</li>
+          <li>累積技能，並將經驗回饋至整體計劃</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Practical Preparedness 實務準備</div>
+        <ul style="font-size:0.9rem;">
+          <li>按優先次序進行規模化遷移</li>
+          <li>按合約追蹤供應商交付進度</li>
+          <li>將量子風險納入韌性框架</li>
+          <li>把密碼敏捷性建立為長期常態能力</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="actions">
+    <h2>即時可採取的行動建議</h2>
+    <p style="color:var(--muted); margin-bottom:1rem;">以下按職能整理報告的策略建議，方便各部門對應執行：</p>
+
+    <div class="card">
+      <div class="card-title">1. 將量子風險視為企業風險</div>
+      <p class="meta"><span class="tag">負責：董事會與高層管理</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>把量子相關風險納入現有風險偏好與治理框架</li>
+        <li>爭取跨預算周期、跨領導任期的多年期撥款</li>
+        <li>要求定期匯報：盤點完成度、遷移路徑、供應商準備度</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2. 建立密碼敏捷性（Cryptographic Agility）</div>
+      <p class="meta"><span class="tag">負責：科技領導層</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>在架構標準中強制密碼敏捷性，禁止硬編碼密碼算法</li>
+        <li>現代化基礎能力：傳輸安全、金鑰管理、憑證生命週期管理</li>
+        <li>為可能加快的遷移時間表預留方案，包括臨時防護、優先系統與升級觸發條件</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3. 識別並優先處理密碼暴露</div>
+      <p class="meta"><span class="tag">負責：資安職能</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>主導密碼資產盤點（CBOM）與風險導向優先排序</li>
+        <li>將 HNDL 納入威脅模型</li>
+        <li>採用經認證、符合標準的實作，避免自行研發密碼</li>
+        <li>負責驗證：互通性、回退與降級偵測測試</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">4. 要求供應商負責</div>
+      <p class="meta"><span class="tag">負責：科技與採購</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>要求關鍵供應商提供後量子路線圖</li>
+        <li>將量子準備條款列為科技採購標準條件</li>
+        <li>把密碼透明度作為供應商甄選準則</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">5. 準備業務、客戶與對手方</div>
+      <p class="meta"><span class="tag">負責：業務線</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>評估受影響產品、服務與合約義務，以及故障對客戶的影響</li>
+        <li>準備面向客戶的基建：渠道、支付與結算系統、客戶認證機制</li>
+        <li>與對手方協調切換安排</li>
+        <li>規劃如何向外部持份者溝通機構的遷移方法</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">6. 善用並強化現有框架</div>
+      <p class="meta"><span class="tag">負責：風險與合規</span></p>
+      <ul style="font-size:0.9rem;">
+        <li>把量子風險納入現有韌性、第三方風險、變更治理框架</li>
+        <li>持續監察所有營運司法管轄區的監管動態</li>
+        <li>以最嚴格適用時間表作為集團計劃基準</li>
+        <li>保持遷移可審計：記錄優先排序、剩餘風險、供應商依賴</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section id="video">
+    <h2>HKMA 官方量子介紹影片</h2>
+    <div class="report-actions">
+      <a class="btn btn-primary" href="https://youtu.be/qm4Cf1bF0V0" target="_blank" rel="noopener noreferrer">
+        ▶ 開啟 HKMA 官方量子介紹影片
+      </a>
+    </div>
+  </section>
+
+  <section id="report">
+    <h2>正式報告原文</h2>
+    <div class="report-actions">
+      <a class="btn btn-primary" href="https://www.hkma.gov.hk/media/eng/doc/key-information/press-release/2026/20260727e3a1.pdf" target="_blank">
+        正式報告原文
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>資料來源：HKMA《Quantum Preparedness of Hong Kong’s Banking Sector》（2026年7月）</p>
+  <p style="margin-top: 0.4rem;">本頁面為內部學習摘要，僅供團隊參考使用 · 含官方影片與完整報告</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+</script>
+
+</body>
+</html>

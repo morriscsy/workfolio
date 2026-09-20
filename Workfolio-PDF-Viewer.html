@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Workfolio · Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root { --bg:#070a12; --line:#243152; --text:#E8EEF9; --muted:#94A3B8; --cyan:#22D3EE; }
+  * { box-sizing:border-box; }
+  html, body { height:100%; margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; }
+  .bar {
+    height:52px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:0 14px; border-bottom:1px solid var(--line); background:rgba(7,10,18,.92);
+  }
+  .bar a { color:var(--cyan); text-decoration:none; font-weight:700; font-size:.85rem; }
+  .title { font-size:.9rem; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .muted { color:var(--muted); font-size:.78rem; font-weight:500; }
+  iframe { border:0; width:100%; height:calc(100% - 52px); background:#111; }
+  .err { padding:24px; color:#fca5a5; }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <div style="min-width:0">
+      <div class="title" id="title">Opening document…</div>
+      <div class="muted">In-browser preview · Workfolio</div>
+    </div>
+    <div style="display:flex;gap:12px;flex-shrink:0">
+      <a id="back" href="javascript:history.back()">← Back</a>
+      <a id="openTab" href="#" target="_blank" rel="noopener">Open source</a>
+    </div>
+  </div>
+  <iframe id="frame" title="Document preview" allow="fullscreen"></iframe>
+  <script>
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const file = params.get('file');
+    const name = params.get('name') || 'Document';
+    const title = document.getElementById('title');
+    const frame = document.getElementById('frame');
+    const openTab = document.getElementById('openTab');
+    title.textContent = name;
+    if (!file) {
+      document.body.insertAdjacentHTML('beforeend', '<p class="err">Missing file parameter.</p>');
+      return;
+    }
+    openTab.href = file;
+    // Prefer PDF.js viewer for inline browsing (avoids forced downloads from raw hosts)
+    const viewer = 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + encodeURIComponent(file);
+    frame.src = viewer;
+  })();
+  </script>
+</body>
+</html>

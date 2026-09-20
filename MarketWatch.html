@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketWatch — Live Candles</title>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <style>
+    :root {
+      --bg: #0b0e11;
+      --panel: #12161c;
+      --panel2: #161b22;
+      --border: #1e2630;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #3d9cf0;
+      --green: #3dd68c;
+      --red: #f07178;
+      --hover: #1c2330;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+    }
+    .app {
+      display: grid;
+      grid-template-rows: 48px 40px 1fr;
+      height: 100vh;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+    .brand .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+    .brand span.sub { color: var(--muted); font-weight: 500; font-size: 13px; }
+    .tf-bar {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .tf-btn, .sym-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .tf-btn:hover, .sym-btn:hover { background: var(--hover); color: var(--text); }
+    .tf-btn.active, .sym-btn.active {
+      background: #1a2a3d;
+      color: var(--accent);
+      border-color: #2a3f57;
+    }
+    #ticker {
+      border-bottom: 1px solid var(--border);
+      background: var(--panel2);
+      overflow: hidden;
+    }
+    .main {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 0;
+    }
+    aside {
+      border-right: 1px solid var(--border);
+      background: var(--panel);
+      overflow-y: auto;
+      padding: 10px 8px;
+    }
+    .section-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 8px 6px;
+    }
+    .sym-btn {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+      padding: 9px 10px;
+    }
+    .sym-btn .name { font-size: 13px; color: inherit; }
+    .sym-btn .meta { font-size: 11px; color: var(--muted); font-weight: 500; }
+    #chart {
+      min-height: 0;
+      height: 100%;
+      background: var(--bg);
+    }
+    .status {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 800px) {
+      .main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      aside {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        gap: 4px;
+        padding: 8px;
+      }
+      .section-label { display: none; }
+      .sym-btn { width: auto; white-space: nowrap; }
+      .sym-btn .meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="dot" title="Live via TradingView"></div>
+        MarketWatch
+        <span class="sub" id="activeLabel">ES · 15m</span>
+      </div>
+      <div class="tf-bar" id="tfBar"></div>
+      <div class="status">TradingView live · delayed/real-time per exchange</div>
+    </header>
+    <div id="ticker"></div>
+    <div class="main">
+      <aside id="sidebar"></aside>
+      <div id="chart"></div>
+    </div>
+  </div>
+
+  <script>
+    const WATCHLIST = [
+      { group: "Index futures", items: [
+        // Free TradingView widgets block many CME futures — chart the cash index proxies (same tape shape).
+        { id: "ES", label: "ES", meta: "S&P · SPX", tv: "TVC:SPX" },
+        { id: "NQ", label: "NQ", meta: "Nasdaq · NDX", tv: "TVC:NDX" },
+        { id: "YM", label: "YM", meta: "Dow · DJI", tv: "TVC:DJI" },
+      ]},
+      { group: "FX majors", items: [
+        { id: "EURUSD", label: "EURUSD", meta: "Euro", tv: "FX:EURUSD" },
+        { id: "USDJPY", label: "USDJPY", meta: "Yen", tv: "FX:USDJPY" },
+        { id: "GBPUSD", label: "GBPUSD", meta: "Cable", tv: "FX:GBPUSD" },
+        { id: "AUDUSD", label: "AUDUSD", meta: "Aussie", tv: "FX:AUDUSD" },
+        { id: "USDCAD", label: "USDCAD", meta: "Loonie", tv: "FX:USDCAD" },
+        { id: "USDCHF", label: "USDCHF", meta: "Swissy", tv: "FX:USDCHF" },
+      ]},
+      { group: "Commodities", items: [
+        { id: "GOLD", label: "Gold", meta: "XAU", tv: "TVC:GOLD" },
+        { id: "WTI", label: "WTI", meta: "Crude", tv: "TVC:USOIL" },
+        { id: "BRENT", label: "Brent", meta: "UK Oil", tv: "TVC:UKOIL" },
+      ]},
+      { group: "Crypto", items: [
+        { id: "BTC", label: "BTC", meta: "Bitcoin", tv: "BINANCE:BTCUSDT" },
+        { id: "ETH", label: "ETH", meta: "Ethereum", tv: "BINANCE:ETHUSDT" },
+        { id: "SOL", label: "SOL", meta: "Solana", tv: "BINANCE:SOLUSDT" },
+        { id: "XRP", label: "XRP", meta: "Ripple", tv: "BINANCE:XRPUSDT" },
+        { id: "BNB", label: "BNB", meta: "BNB", tv: "BINANCE:BNBUSDT" },
+      ]},
+      { group: "Vol", items: [
+        { id: "VIX", label: "VIX", meta: "Fear index", tv: "TVC:VIX" },
+      ]},
+    ];
+
+    const TIMEFRAMES = [
+      { id: "1", label: "1m" },
+      { id: "5", label: "5m" },
+      { id: "15", label: "15m" },
+      { id: "60", label: "1H" },
+      { id: "240", label: "4H" },
+      { id: "D", label: "D" },
+    ];
+
+    let active = WATCHLIST[0].items[0];
+    let interval = "15";
+    let widget = null;
+
+    function allSymbols() {
+      return WATCHLIST.flatMap(g => g.items);
+    }
+
+    function renderSidebar() {
+      const el = document.getElementById("sidebar");
+      el.innerHTML = "";
+      WATCHLIST.forEach(group => {
+        const lab = document.createElement("div");
+        lab.className = "section-label";
+        lab.textContent = group.group;
+        el.appendChild(lab);
+        group.items.forEach(item => {
+          const btn = document.createElement("button");
+          btn.className = "sym-btn" + (item.id === active.id ? " active" : "");
+          btn.innerHTML = `<span class="name">${item.label}</span><span class="meta">${item.meta}</span>`;
+          btn.onclick = () => {
+            active = item;
+            renderSidebar();
+            updateLabel();
+            mountChart();
+          };
+          el.appendChild(btn);
+        });
+      });
+    }
+
+    function renderTf() {
+      const el = document.getElementById("tfBar");
+      el.innerHTML = "";
+      TIMEFRAMES.forEach(tf => {
+        const btn = document.createElement("button");
+        btn.className = "tf-btn" + (tf.id === interval ? " active" : "");
+        btn.textContent = tf.label;
+        btn.onclick = () => {
+          interval = tf.id;
+          renderTf();
+          updateLabel();
+          mountChart();
+        };
+        el.appendChild(btn);
+      });
+    }
+
+    function updateLabel() {
+      const tf = TIMEFRAMES.find(t => t.id === interval)?.label || interval;
+      document.getElementById("activeLabel").textContent = `${active.label} · ${tf}`;
+    }
+
+    function mountChart() {
+      const container = document.getElementById("chart");
+      container.innerHTML = "";
+      const host = document.createElement("div");
+      host.id = "tv_chart";
+      host.style.height = "100%";
+      host.style.width = "100%";
+      container.appendChild(host);
+
+      widget = new TradingView.widget({
+        autosize: true,
+        symbol: active.tv,
+        interval: interval,
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#12161c",
+        enable_publishing: false,
+        hide_top_toolbar: false,
+        hide_legend: false,
+        save_image: false,
+        calendar: false,
+        withdateranges: true,
+        allow_symbol_change: true,
+        details: true,
+        hotlist: false,
+        container_id: "tv_chart",
+        studies: ["Volume@tv-basicstudies"],
+      });
+    }
+
+    function mountTicker() {
+      const el = document.getElementById("ticker");
+      el.innerHTML = "";
+      const wrap = document.createElement("div");
+      wrap.className = "tradingview-widget-container";
+      wrap.style.height = "100%";
+      const widgetDiv = document.createElement("div");
+      widgetDiv.className = "tradingview-widget-container__widget";
+      wrap.appendChild(widgetDiv);
+      el.appendChild(wrap);
+
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        symbols: allSymbols().map(s => ({
+          proName: s.tv,
+          title: s.label,
+        })),
+        showSymbolLogo: true,
+        isTransparent: true,
+        displayMode: "adaptive",
+        colorTheme: "dark",
+        locale: "en",
+      });
+      wrap.appendChild(script);
+    }
+
+    renderSidebar();
+    renderTf();
+    updateLabel();
+    mountTicker();
+    mountChart();
+  </script>
+</body>
+</html>
