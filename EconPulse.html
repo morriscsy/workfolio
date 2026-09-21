@@ -435,7 +435,7 @@
 </div>
 <script>
 
-const TODAY = new Date(2026, 8, 21); // Sun 21 Sep 2026
+const TODAY = new Date(2026, 8, 21); // Mon 21 Sep 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -452,9 +452,9 @@ const EVENTS = [
   { id:"ca-cpi", date:"2026-09-14", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada CPI (Aug)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a — pull StatCan at 8:30", consensus:"n/a", vs:"",
     note:"Typical StatsCan 8:30am ET. High for CAD. Confirm on StatCan day-of.", source:"https://www.statcan.gc.ca" },
-  { id:"fomc-d1", date:"2026-09-15", time:"", tz:"ET", country:"US", inst:"Fed", title:"FOMC meeting day 1", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"No statement today. Blackout through 17 Sep. Decision tomorrow 2:00pm.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
+  { id:"fomc-d1", date:"2026-09-15", time:"", tz:"ET", country:"US", inst:"Fed", title:"FOMC meeting day 1", impact:"medium", status:"released",
+    actual:"Meeting day 1 (no statement)", actualShort:"Day 1", previous:"n/a", consensus:"n/a", vs:"",
+    note:"No statement. Decision + SEP released Wed 16 Sep 2:00pm ET.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
   { id:"uk-cpi", date:"2026-09-16", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK CPI (Aug)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a — pull ONS at 07:00 BST", consensus:"n/a", vs:"",
     note:"07:00 BST typical. High for GBP into BoE Thursday.", source:"https://www.ons.gov.uk" },
@@ -464,15 +464,15 @@ const EVENTS = [
   { id:"mxpx", date:"2026-09-16", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Import & export prices (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Same 8:30 window as retail sales.", source:"https://www.bls.gov/schedule/2026/09_sched.htm" },
-  { id:"fomc", date:"2026-09-16", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision + SEP / dots", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"held through summer 2026 (see statement day-of)", consensus:"n/a — check CME FedWatch live, do not invent", vs:"",
-    note:"SEP/dot plot meeting. Presser 2:30pm. Into this: Aug CPI +0.4%/3.4%, core +0.3% hot; NFP +162k.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
-  { id:"powell", date:"2026-09-16", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Powell press conference", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Watch after the dots. Often moves the tape more than the statement.", source:"https://www.federalreserve.gov/newsevents/2026-september.htm" },
-  { id:"boe", date:"2026-09-17", time:"~7:00am", tz:"ET", country:"UK", inst:"BoE", title:"BoE Bank Rate + MPC minutes", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Bank Rate 3.75% (BoE site)", consensus:"n/a", vs:"",
-    note:"Official MPC date. 12:00 BST typical = 7:00am ET.", source:"https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates" },
+  { id:"fomc", date:"2026-09-16", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision + SEP / dots", impact:"high", status:"released",
+    actual:"+25bp to 3.75–4.00% FF range (12–0)", actualShort:"+25bp · 3.75–4%", previous:"3.50–3.75%", consensus:"n/a", vs:"+25bp hike (unanimous)",
+    note:"Official FOMC 16 Sep 2026. IORB 3.90%, primary credit 4.00% eff. 17 Sep. SEP released with statement.", source:"https://www.federalreserve.gov/monetarypolicy/files/monetary20260916a1.pdf" },
+  { id:"powell", date:"2026-09-16", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Chair Warsh press conference", impact:"high", status:"released",
+    actual:"Presser after +25bp hike", actualShort:"Warsh PC", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Official Fed press conference 16 Sep. Chair stressed quicker return to 2% inflation; declined to pre-commit path.", source:"https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm" },
+  { id:"boe", date:"2026-09-17", time:"~7:00am", tz:"ET", country:"UK", inst:"BoE", title:"BoE Bank Rate + MPC minutes", impact:"high", status:"released",
+    actual:"Hold 3.75% (6–3; 3 for +25bp)", actualShort:"Hold 3.75%", previous:"3.75%", consensus:"hold (Reuters poll)", vs:"hold as expected; hawkish minority",
+    note:"Official BoE MPS/minutes ending 16 Sep, released 17 Sep. Inflation risks tilted further upside; Bailey flagged possible hike if energy shock persists.", source:"https://www.bankofengland.co.uk/-/media/boe/files/monetary-policy-summary-and-minutes/2026/monetary-policy-summary-and-minutes-september-2026.pdf" },
   { id:"starts", date:"2026-09-17", time:"8:30am", tz:"ET", country:"US", inst:"Census–HUD", title:"Housing starts & permits (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Jul starts 1,239k SAAR; permits 1,443k", consensus:"n/a", vs:"",
     note:"Official Census new residential construction window.", source:"https://www.census.gov/construction/nrc/" },
@@ -482,15 +482,27 @@ const EVENTS = [
   { id:"ez-cpi", date:"2026-09-17", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone CPI / HICP (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Listed on secondary calendars. Confirm Eurostat timing.", source:"https://ec.europa.eu/eurostat" },
-  { id:"boj", date:"2026-09-17", time:"~10:45pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ rate decision + statement", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"MPM 17–18 Sep. Time officially undecided; typically late Thu ET.", source:"https://www.boj.or.jp/en/about/calendar/" },
+  { id:"boj", date:"2026-09-17", time:"~10:45pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ rate decision + statement", impact:"high", status:"released",
+    actual:"+25bp to 1.25% (7–2)", actualShort:"+25bp · 1.25%", previous:"1.00%", consensus:"+25bp (Bloomberg survey)", vs:"+25bp hike",
+    note:"BoJ MPM ended 18 Sep JST / late 17 Sep ET. Policy rate to 1.25%; Asada and Sato dissented. Fastest hike cadence since 1990s cycle.", source:"https://www.boj.or.jp/en/" },
   { id:"ip", date:"2026-09-18", time:"9:15am", tz:"ET", country:"US", inst:"Fed", title:"Industrial production (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Capacity utilization same release.", source:"https://www.federalreserve.gov/newsevents/2026-september.htm" },
   { id:"bowman", date:"2026-09-18", time:"9:30am", tz:"ET", country:"US", inst:"Fed", title:"Bowman speech (London)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Vice Chair for Supervision. Post-FOMC.", source:"https://www.federalreserve.gov/newsevents/2026-september.htm" },
+  { id:"ez-flash-pmi-sep", date:"2026-09-23", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone flash PMI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"S&P Global flash EZ PMI ~08:00 UTC. First activity print after Fed hike week.", source:"https://www.pmi.spglobal.com/Public/Release/ReleaseDates" },
+  { id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"S&P Global flash US PMI 13:45 UTC / 9:45am ET. Top US print this week into post-FOMC tape.", source:"https://www.pmi.spglobal.com/Public/Release/ReleaseDates" },
+  { id:"au-emp-sep", date:"2026-09-23", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia employment + unemployment (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"ABS labour force typically ~11:30 AEST (= 9:30pm ET prior day). Confirm ABS day-of.", source:"https://www.abs.gov.au" },
+  { id:"durables-aug", date:"2026-09-25", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Durable goods orders (Aug)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Census advance report on durable goods. Medium; watch with UMich revised Fri.", source:"https://www.census.gov/economic-indicators/" },
   { id:"snb", date:"2026-09-24", time:"3:30am", tz:"ET", country:"CH", inst:"SNB", title:"SNB monetary policy decision", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"09:30 CEST. News conference 4:00am ET.", source:"https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/decisions" },
@@ -525,7 +537,7 @@ const EVENTS = [
     actual:"n/a", actualShort:"", previous:"Asheville 31 Aug–1 Sep", consensus:"n/a", vs:"",
     note:"Finance ministers and central bank governors.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
   { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep 16 decision (fill after Wednesday)", consensus:"n/a", vs:"",
+    actual:"n/a", actualShort:"", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"n/a", vs:"",
     note:"No SEP this meeting. Presser typically 2:30pm.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
   { id:"ecb-oct", date:"2026-10-29", time:"", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
@@ -1219,7 +1231,7 @@ let view = bootView();
 let catFilter = "all";
 let impact = "all";
 let cursor = new Date(2026, 8, 1);
-let selectedDate = "2026-09-24";
+let selectedDate = "2026-09-21";
 let selectedId = "snb";
 
 const pad = n => String(n).padStart(2,"0");
