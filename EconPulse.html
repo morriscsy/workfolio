@@ -131,21 +131,6 @@
   .chip.medium { background: rgba(6,182,212,0.12); color: #a5f3fc; border-color: rgba(6,182,212,0.28); }
   .chip.released { opacity: 0.92; }
 
-  .chip.auto {
-    background: rgba(124,58,237,0.12);
-    color: #ddd6fe;
-    border: 1px dashed rgba(167,139,250,0.55);
-  }
-  .tag.auto {
-    background: rgba(124,58,237,0.16);
-    color: #c4b5fd;
-    border: 1px dashed rgba(167,139,250,0.45);
-  }
-  .arow.auto { border-left: 3px dashed rgba(167,139,250,0.55); padding-left: 8px; }
-  .layer-filters { display: flex; gap: 6px; flex-wrap: wrap; }
-  .day.has-auto:not(.hot) {
-    background: linear-gradient(180deg, rgba(124,58,237,0.08), rgba(14,18,32,0.75) 46%);
-  }
 
   .more { font-size: 10px; color: var(--muted); padding-left: 4px; }
   .agenda { display: flex; flex-direction: column; gap: 10px; }
@@ -400,7 +385,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Sun 21 Sep 2026 · events + bot automations</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 21 Sep 2026 · public macro releases · Futu checklist fill</p>
   </div>
   <div class="nextup" id="nextup"></div>
 </header>
@@ -416,11 +401,6 @@
     <button type="button" data-view="week">Week</button>
     <button type="button" data-view="agenda">Agenda</button>
     <button type="button" data-view="inflation">G20 Inflation</button>
-  </div>
-  <div class="filters cal-only layer-filters">
-    <button type="button" class="active" data-layer="both">Both</button>
-    <button type="button" data-layer="events">Events</button>
-    <button type="button" data-layer="autos">Automations</button>
   </div>
   <div class="filters cal-only">
     <button type="button" class="active" data-imp="all">All</button>
@@ -451,7 +431,7 @@
   <span class="lg" data-cat="speech"></span>
   <span class="lg" data-cat="trade"></span>
   <span class="lg" data-cat="policy"></span>
-  <span>High = red · Medium = cyan · Automation = dashed violet</span>
+  <span>High = red chip · Medium = cyan chip</span>
 </div>
 <script>
 
@@ -549,188 +529,100 @@ const EVENTS = [
     note:"No SEP this meeting. Presser typically 2:30pm.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
   { id:"ecb-oct", date:"2026-10-29", time:"", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
-    note:"Governing Council 28–29 Oct in Frankfurt.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" }
+    note:"Governing Council 28–29 Oct in Frankfurt.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
+
+  /* Futu checklist fill — official dates preferred; consensus blank unless sourced */
+  { id:"ism-mfg-sep", date:"2026-10-01", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — confirm ISM day-of", consensus:"n/a", vs:"",
+    note:"Typical first business day after month-end. High for USD rates.", source:"https://www.ismworld.org" },
+  { id:"ism-svc-sep", date:"2026-10-03", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Services PMI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — confirm ISM day-of", consensus:"n/a", vs:"",
+    note:"Services PMI usually early in the following month. Confirm ISM calendar day-of.", source:"https://www.ismworld.org" },
+  { id:"fomc-min-oct", date:"2026-10-07", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC minutes (Sep 15–16)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"FedRateCalc / Fed calendar: minutes ~3 weeks after the Sep decision.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
+  { id:"ppi-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug +0.4% m/m / 5.4% y/y (BLS)", consensus:"n/a", vs:"",
+    note:"Official BLS Oct schedule. Same morning as retail sales.", source:"https://www.bls.gov/schedule/2026/10_sched_list.htm" },
+  { id:"retailsales-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Advance retail sales (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug print (see Sep 16 card)", consensus:"n/a", vs:"",
+    note:"Official Census window. Same 8:30 as PPI.", source:"https://www.census.gov/retail/release_schedule.html" },
+  { id:"powell-oct", date:"2026-10-28", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Powell press conference (Oct FOMC)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Typical 2:30pm after the Oct decision. No SEP this meeting.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
+  { id:"gdp-adv-q3", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"GDP advance (Q3)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Q2 third estimate (see Sep 30 card)", consensus:"n/a", vs:"",
+    note:"BEA advance estimate. Same stamp as Sep PCE on many calendars.", source:"https://www.bea.gov/news/schedule" },
+  { id:"pce-sep", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"PCE / personal income (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug PCE on Sep 30 card", consensus:"n/a", vs:"",
+    note:"Fed’s preferred inflation gauge. Confirm BEA day-of if stamped with GDP.", source:"https://www.bea.gov/news/schedule" },
+  { id:"claims-oct1", date:"2026-10-01", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — confirm DOL day-of", consensus:"n/a", vs:"",
+    note:"Typical Thursday 8:30am ET.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct8", date:"2026-10-08", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Typical Thursday 8:30am ET.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct15", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Same morning as PPI + retail. Confirm DOL.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct22", date:"2026-10-22", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Typical Thursday 8:30am ET.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct29", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Same morning as GDP/PCE window.", source:"https://www.dol.gov/ui/data.pdf" },
+
+  { id:"cn-pmi-sep", date:"2026-09-30", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — pull NBS at 09:30 CST", consensus:"n/a", vs:"",
+    note:"NBS calendar: last day of month ~09:30 China time (= 9:30pm ET). Manufacturing + non-manufacturing.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+  { id:"cn-cpi-sep", date:"2026-10-14", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China CPI + PPI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug CPI 0.8% y/y (TE capture)", consensus:"n/a", vs:"",
+    note:"NBS regular calendar lists mid-month CPI/PPI ~09:30 China time. Confirm day-of.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+  { id:"cn-activity-sep", date:"2026-10-19", time:"~10:00pm", tz:"ET", country:"CN", inst:"NBS", title:"China industrial production / retail / FAI (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"NBS monthly activity bundle typically mid-month. Time approx — confirm NBS day-of.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+  { id:"cn-pmi-oct", date:"2026-10-31", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"NBS last-calendar-day PMI window ~09:30 CST.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+
+  { id:"hk-cpi-aug", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Aug)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"HK C&SD schedule: Aug CPI release 23 Sep 2026. Typical morning HKT.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+  { id:"hk-cpi-sep", date:"2026-10-22", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Sep)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"HK C&SD schedule: Sep CPI release 22 Oct 2026.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+  { id:"hk-gdp-q3", date:"2026-10-30", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong GDP advance (Q3)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"HK C&SD advance GDP estimates — Oct 30 listed for Q3 on 2026 schedule.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+
+  { id:"jp-cpi-aug", date:"2026-09-18", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Aug)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Jul 1.8% y/y (TE capture)", consensus:"n/a", vs:"",
+    note:"Statistics Bureau schedule: Aug nationwide CPI 18 Sep. Typical 08:30 JST (= prior evening ET).", source:"https://www.stat.go.jp/english/data/cpi/1582.html" },
+  { id:"jp-tokyo-sep", date:"2026-10-02", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Tokyo CPI preliminary (Sep)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Ku-area of Tokyo preliminary for Sep on 2 Oct per official schedule.", source:"https://www.stat.go.jp/english/data/cpi/1582.html" },
+  { id:"jp-cpi-sep", date:"2026-10-23", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Nationwide Sep CPI 23 Oct. 08:30 JST typical.", source:"https://www.stat.go.jp/english/data/cpi/1582.html" },
+
+  { id:"ez-pmi-sep", date:"2026-10-01", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone manufacturing PMI final (Sep)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Final manufacturing PMI typically first business day. Confirm S&P Global day-of.", source:"https://www.pmi.spglobal.com" },
+  { id:"ez-svc-pmi-sep", date:"2026-10-03", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone services PMI final (Sep)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Final services PMI typically early month. Confirm day-of.", source:"https://www.pmi.spglobal.com" },
+  { id:"de-ifo", date:"2026-09-24", time:"4:00am", tz:"ET", country:"DE", inst:"Ifo", title:"Germany Ifo business climate (Sep)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Ifo usually around month-end / early next. Confirm Ifo calendar — stamped near SNB week as checklist fill.", source:"https://www.ifo.de" }
 ];
 
 
-
-
-/* Extensible bot-automation registry. MasterKi / other bots can append entries.
-   kind: "watch" | "scan" | "session" | "brief"
-   expand: how instances appear on the calendar (not every 5m tick).
-*/
-const AUTOMATIONS = [
-  {
-    id: "ep-print-watch",
-    bot: "EconPulse",
-    title: "T-15 / T-5 print watch",
-    kind: "watch",
-    cadence: "Every 5m · weekdays ET",
-    schedule: "CRON_TZ=America/New_York */5 * * * 1-5",
-    expand: "weekday",
-    time: "7:00am",
-    tz: "ET",
-    note: "Arms weekday print watch: T-15 and T-5 chat alerts, then official numbers at release. Silent when nothing is due.",
-    lastRun: "",
-    nextHint: "Next high-impact print window"
-  },
-  {
-    id: "ep-preopen",
-    bot: "EconPulse",
-    title: "Weekday pre-open brief",
-    kind: "brief",
-    cadence: "Weekdays 7:00am ET",
-    schedule: "CRON_TZ=America/New_York 0 7 * * 1-5",
-    expand: "weekday",
-    time: "7:00am",
-    tz: "ET",
-    note: "Pre-open list of today's high-impact prints with ET + HKT clocks.",
-    lastRun: "",
-    nextHint: "Next weekday 7:00am ET"
-  },
-  {
-    id: "ep-postprint",
-    bot: "EconPulse",
-    title: "Post-print recap",
-    kind: "brief",
-    cadence: "Weekdays 8:50am ET",
-    schedule: "CRON_TZ=America/New_York 50 8 * * 1-5",
-    expand: "weekday",
-    time: "8:50am",
-    tz: "ET",
-    note: "Recaps 8:30am ET high-impact US prints. Silent if nothing printed.",
-    lastRun: "",
-    nextHint: "Next weekday 8:50am ET"
-  },
-  {
-    id: "mw-30m",
-    bot: "MarketWatch",
-    title: "Market scan (30m)",
-    kind: "scan",
-    cadence: "About every 30m in session hours",
-    schedule: "session cadence · register exact cron via MasterKi",
-    expand: "weekday",
-    time: "9:00am",
-    tz: "ET",
-    note: "Standing MarketWatch scan marker. Exact cron owned by MarketWatch; shown once per weekday as armed cadence.",
-    lastRun: "",
-    nextHint: "~30m during US session"
-  },
-  {
-    id: "mw-asia-open",
-    bot: "MarketWatch",
-    title: "Asia session open scan",
-    kind: "session",
-    cadence: "Weekdays ~7:00pm ET (Asia open)",
-    schedule: "session open",
-    expand: "weekday",
-    time: "7:00pm",
-    tz: "ET",
-    note: "MarketWatch session-open marker for Asia cash.",
-    lastRun: "",
-    nextHint: "Next weekday Asia open"
-  },
-  {
-    id: "mw-london-open",
-    bot: "MarketWatch",
-    title: "London session open scan",
-    kind: "session",
-    cadence: "Weekdays ~3:00am ET",
-    schedule: "session open",
-    expand: "weekday",
-    time: "3:00am",
-    tz: "ET",
-    note: "MarketWatch session-open marker for London cash.",
-    lastRun: "",
-    nextHint: "Next weekday London open"
-  },
-  {
-    id: "mw-ny-open",
-    bot: "MarketWatch",
-    title: "NY session open scan",
-    kind: "session",
-    cadence: "Weekdays 9:30am ET",
-    schedule: "session open",
-    expand: "weekday",
-    time: "9:30am",
-    tz: "ET",
-    note: "MarketWatch session-open marker for US cash open.",
-    lastRun: "",
-    nextHint: "Next weekday 9:30am ET"
-  }
-];
-
-function registerAutomation(entry) {
-  if (!entry || !entry.id) return;
-  const i = AUTOMATIONS.findIndex(a => a.id === entry.id);
-  if (i >= 0) AUTOMATIONS[i] = { ...AUTOMATIONS[i], ...entry };
-  else AUTOMATIONS.push(entry);
-}
-
-function expandAutomations(fromIso, toIso) {
-  const out = [];
-  const start = parse(fromIso);
-  const end = parse(toIso);
-  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-    const dow = d.getDay(); // 0 Sun
-    const dateStr = iso(d);
-    AUTOMATIONS.forEach(a => {
-      if (a.expand === "weekday" && (dow === 0 || dow === 6)) return;
-      if (a.expand === "daily") { /* all days */ }
-      else if (a.expand !== "weekday" && a.expand !== "once") return;
-      if (a.expand === "once" && a.date !== dateStr) return;
-      out.push({
-        id: a.id + "-" + dateStr,
-        autoId: a.id,
-        kind: "auto",
-        date: dateStr,
-        time: a.time || "",
-        tz: a.tz || "ET",
-        country: "BOT",
-        inst: a.bot,
-        title: a.title,
-        impact: "auto",
-        status: "scheduled",
-        cat: "policy",
-        actual: "n/a",
-        actualShort: "",
-        previous: a.lastRun || "n/a",
-        consensus: a.cadence || "n/a",
-        vs: a.nextHint || "",
-        note: (a.note || "") + (a.schedule ? " · " + a.schedule : ""),
-        source: "",
-        cadence: a.cadence,
-        bot: a.bot,
-        autoKind: a.kind
-      });
-    });
-  }
-  return out;
-}
-
-function calendarHorizon() {
-  // month grid span + a bit of agenda forward
-  const first = new Date(cursor.getFullYear(), cursor.getMonth(), 1);
-  const start = new Date(first);
-  start.setDate(1 - first.getDay());
-  const end = new Date(start);
-  end.setDate(start.getDate() + 41);
-  const agendaEnd = new Date(TODAY);
-  agendaEnd.setDate(agendaEnd.getDate() + 21);
-  if (agendaEnd > end) end.setTime(agendaEnd.getTime());
-  return { from: iso(start), to: iso(end) };
-}
-
-function allItems() {
-  const h = calendarHorizon();
-  const autos = expandAutomations(h.from, h.to);
-  return EVENTS.concat(autos);
-}
 
 
 const FLAGS = {
   US: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#b22234"/><rect y="1.2" width="16" height="1.2" fill="#fff"/><rect y="3.6" width="16" height="1.2" fill="#fff"/><rect y="6" width="16" height="1.2" fill="#fff"/><rect y="8.4" width="16" height="1.2" fill="#fff"/><rect width="7.2" height="6" fill="#3c3b6e"/></svg>',
   CA: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#fff"/><rect width="4" height="11" fill="#d52b1e"/><rect x="12" width="4" height="11" fill="#d52b1e"/><path d="M8 2.2l.55 1.7h1.8l-1.45 1.05.55 1.7L8 5.6l-1.45 1.05.55-1.7L5.65 3.9h1.8z" fill="#d52b1e"/></svg>',
+  HK: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#de2910"/><path d="M5.2 2.2l1.1 1.5 1.7-.4-1.1 1.5.7 1.6-1.6-.7-1.5.8.4-1.7-1.2-1.4 1.7.2z" fill="#fff"/></svg>',
   UK: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#012169"/><path d="M0 0l16 11M16 0L0 11" stroke="#fff" stroke-width="2.4"/><path d="M0 0l16 11M16 0L0 11" stroke="#c8102e" stroke-width="1.2"/><path d="M8 0v11M0 5.5h16" stroke="#fff" stroke-width="3.2"/><path d="M8 0v11M0 5.5h16" stroke="#c8102e" stroke-width="1.6"/></svg>',
   EU: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#003399"/><g fill="#fc0"><circle cx="8.00" cy="2.45" r="0.45"/><circle cx="9.52" cy="2.86" r="0.45"/><circle cx="10.64" cy="3.98" r="0.45"/><circle cx="11.05" cy="5.50" r="0.45"/><circle cx="10.64" cy="7.02" r="0.45"/><circle cx="9.52" cy="8.14" r="0.45"/><circle cx="8.00" cy="8.55" r="0.45"/><circle cx="6.48" cy="8.14" r="0.45"/><circle cx="5.36" cy="7.03" r="0.45"/><circle cx="4.95" cy="5.50" r="0.45"/><circle cx="5.36" cy="3.97" r="0.45"/><circle cx="6.47" cy="2.86" r="0.45"/></g></svg>',
   JP: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#fff"/><circle cx="8" cy="5.5" r="2.6" fill="#bc002d"/></svg>',
@@ -753,7 +645,6 @@ const FLAGS = {
   SG: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="5.5" fill="#ed2939"/><rect y="5.5" width="16" height="5.5" fill="#fff"/><circle cx="4.2" cy="2.8" r="1.5" fill="#fff"/></svg>',
   SA: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="11" fill="#006c35"/><rect x="3" y="7.6" width="10" height=".7" fill="#fff"/></svg>',
   CN: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="11" fill="#de2910"/><path d="M3.2 2.1l.6 1.7h1.8L4.4 4.9l.6 1.7L3.2 5.5 1.4 6.6l.6-1.7L.6 3.8h1.8z" fill="#ffde00"/></svg>',
-  BOT: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#0e1220"/><text x="8" y="8" text-anchor="middle" font-size="5.2" font-family="Inter,Arial" fill="#c4b5fd" font-weight="700">AUTO</text></svg>',
   G20: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#0e1220"/><text x="8" y="8" text-anchor="middle" font-size="6.2" font-family="Inter,Arial" fill="#a78bfa" font-weight="700">G20</text></svg>'
 };
 function flag(code) {
@@ -1327,10 +1218,9 @@ function bootView() {
 let view = bootView();
 let catFilter = "all";
 let impact = "all";
-let layer = "both"; // both | events | autos
 let cursor = new Date(2026, 8, 1);
-let selectedDate = "2026-09-22";
-let selectedId = "ep-print-watch-2026-09-22";
+let selectedDate = "2026-09-24";
+let selectedId = "snb";
 
 const pad = n => String(n).padStart(2,"0");
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -1339,14 +1229,9 @@ const sameDay = (a,b) => a.getFullYear()===b.getFullYear() && a.getMonth()===b.g
 const monthName = d => d.toLocaleString("en-US", { month:"long", year:"numeric" });
 
 function visible(ev) {
-  const isAuto = ev.kind === "auto" || ev.impact === "auto";
-  if (layer === "events" && isAuto) return false;
-  if (layer === "autos" && !isAuto) return false;
-  if (!isAuto) {
-    if (impact === "high" && ev.impact !== "high") return false;
-    if (impact === "medium" && ev.impact !== "medium") return false;
-    if (catFilter !== "all" && ev.cat !== catFilter) return false;
-  }
+  if (impact === "high" && ev.impact !== "high") return false;
+  if (impact === "medium" && ev.impact !== "medium") return false;
+  if (catFilter !== "all" && ev.cat !== catFilter) return false;
   return true;
 }
 
@@ -1363,11 +1248,11 @@ function byWhen(a, b) {
   return (a.title || "").localeCompare(b.title || "");
 }
 function eventsOn(dateStr) {
-  return allItems().filter(e => e.date === dateStr && visible(e)).sort(byWhen);
+  return EVENTS.filter(e => e.date === dateStr && visible(e)).sort(byWhen);
 }
 
 function nextUpcoming() {
-  return allItems().filter(e => e.kind !== "auto" && e.status !== "released" && parse(e.date) >= TODAY)
+  return EVENTS.filter(e => e.status !== "released" && parse(e.date) >= TODAY)
     .sort(byWhen)[0];
 }
 
@@ -1446,7 +1331,7 @@ function closeSheet() {
 }
 
 function pick(id) {
-  const ev = allItems().find(e => e.id === id) || EVENTS.find(e => e.id === id);
+  const ev = EVENTS.find(e => e.id === id);
   if (ev) showDetail(ev);
 }
 
@@ -1471,11 +1356,10 @@ function renderMonth() {
     const id = iso(d);
     const evs = eventsOn(id);
     const out = d.getMonth() !== cursor.getMonth();
-    const hot = evs.some(e => e.impact==="high" && e.status!=="released" && e.kind!=="auto");
-    const hasAuto = evs.some(e => e.kind==="auto");
-    const cls = ["day", out?"out":"", sameDay(d,TODAY)?"today":"", id===selectedDate?"selected":"", hot?"hot":"", hasAuto?"has-auto":""].filter(Boolean).join(" ");
+    const hot = evs.some(e => e.impact==="high" && e.status!=="released");
+    const cls = ["day", out?"out":"", sameDay(d,TODAY)?"today":"", id===selectedDate?"selected":"", hot?"hot":""].filter(Boolean).join(" ");
     const chips = evs.slice(0,3).map(e =>
-      `<div class="chip ${e.impact} ${e.status||""}" data-eid="${e.id}" onclick="event.stopPropagation();pick('${e.id}')">${flag(e.country)}${ico(e.cat)}<span class="lab">${chipLabel(e)}</span></div>`
+      `<div class="chip ${e.impact} ${e.status}" data-eid="${e.id}" onclick="event.stopPropagation();pick('${e.id}')">${flag(e.country)}${ico(e.cat)}<span class="lab">${chipLabel(e)}</span></div>`
     ).join("");
     const extra = evs.length>3 ? `<div class="more">+${evs.length-3} more</div>` : "";
     return `<div class="${cls}" onclick="selectDay('${id}')">
@@ -1497,9 +1381,9 @@ function renderWeek() {
     html += `<div class="aday"><h3>${d.toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}${sameDay(d,TODAY)?" · today":""}</h3>`;
     if (!evs.length) html += `<p class="empty" style="padding:4px 0">No events</p>`;
     evs.forEach(e => {
-      html += `<div class="arow ${e.kind==="auto"?"auto":""}" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
-        ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.kind==="auto"?"auto":e.impact}</span>
-        <span>${evTitle(e)}${e.kind==="auto" && e.cadence ? ` <span style="color:var(--muted)">· ${e.cadence}</span>` : ""}</span></div>`;
+      html += `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+        ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
+        <span>${evTitle(e)}</span></div>`;
     });
     html += `</div>`;
   }
@@ -1510,15 +1394,15 @@ function renderAgenda() {
   document.getElementById("dow").innerHTML = "";
   const board = document.getElementById("board");
   board.className = "agenda";
-  const upcoming = allItems().filter(e => visible(e) && parse(e.date) >= TODAY);
+  const upcoming = EVENTS.filter(e => visible(e) && parse(e.date) >= TODAY);
   const groups = {};
   upcoming.sort(byWhen).forEach(e => { (groups[e.date] ||= []).push(e); });
   board.innerHTML = Object.keys(groups).map(date => {
     const d = parse(date);
     const rows = groups[date].map(e =>
-      `<div class="arow ${e.kind==="auto"?"auto":""}" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
-       ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.kind==="auto"?"auto":e.impact}</span>
-       <span>${evTitle(e)} <span style="color:var(--muted)">· ${e.inst}${e.kind==="auto" && e.cadence ? " · "+e.cadence : ""}</span></span></div>`
+      `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+       ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
+       <span>${evTitle(e)} <span style="color:var(--muted)">· ${e.inst}</span></span></div>`
     ).join("");
     return `<div class="aday"><h3>${d.toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}</h3>${rows}</div>`;
   }).join("") || `<p class="empty">Nothing ahead in this filter.</p>`;
@@ -1559,12 +1443,6 @@ document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => {
 document.querySelectorAll("[data-imp]").forEach(b => b.onclick = () => {
   impact = b.dataset.imp;
   document.querySelectorAll("[data-imp]").forEach(x => x.classList.toggle("active", x===b));
-  render();
-  if (selectedId) pick(selectedId);
-});
-document.querySelectorAll("[data-layer]").forEach(b => b.onclick = () => {
-  layer = b.dataset.layer;
-  document.querySelectorAll("[data-layer]").forEach(x => x.classList.toggle("active", x===b));
   render();
   if (selectedId) pick(selectedId);
 });
