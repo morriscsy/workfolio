@@ -497,9 +497,9 @@ const EVENTS = [
     { id:"uk-flash-pmi-sep", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"UK", inst:"S&P Global", title:"UK flash PMI mfg + services (Sep)", impact:"high", status:"released",
     actual:"Composite 51.7; Services 51.7; Manufacturing PMI 52.0 (flash)", actualShort:"Comp 51.7 · Svc 51.7 · Mfg 52.0", previous:"Aug Comp 52.5; Svc 52.5; Mfg 51.7", consensus:"Comp ~52.0; Svc ~52.0; Mfg ~51.5 (InvestingLive)", vs:"soft miss on composite/services; mfg beat",
     note:"S&P Global flash UK PMI 23 Sep 2026. Growth slowed to a 3-month low (~0.1% q/q implied); price pressures intensified. Next same day: US flash PMI 9:45am ET.", source:"https://www.pmi.spglobal.com/Public/Release/ReleaseDates" },
-{ id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug final Comp 56.0; Svc 56.5; Mfg 53.9", consensus:"Mfg 53.5; Svc ~56.0 (FXStreet); Comp ~55.2 (market calendars)", vs:"",
-    note:"S&P Global flash US PMI 9:45am ET / 13:45 UTC Wed 23 Sep. Softening vs Aug highs still expected in expansion. Prior finals: TE Aug Comp 56.0 / Svc 56.5 / Mfg 53.9. Consensus: FXStreet Mfg 53.5 (from 53.9) and Svc ~56 (from 56.5); composite ~55.2 on market calendars / TE model.", source:"https://www.pmi.spglobal.com/Public/Release/ReleaseDates" },
+{ id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"released",
+    actual:"Composite 58.4; Services 58.7; Manufacturing PMI 57.0 (flash)", actualShort:"Comp 58.4 · Svc 58.7 · Mfg 57.0", previous:"Aug final Comp 56.0; Svc 56.5; Mfg 53.9", consensus:"Mfg 53.6; Svc 55.8 (Investing); Comp ~55.2 (TE/FXStreet pre-print)", vs:"big beat all three vs consensus and Aug finals",
+    note:"S&P Global flash US PMI 23 Sep 2026 13:45 UTC. TE + Investing.com: Comp 58.4 (from 56.0), Svc 58.7 (vs 55.8 fcast / 56.5 prior), Mfg 57.0 (vs 53.6 fcast / 53.9 prior). Broad acceleration vs Aug; opposite of soft consensus. Finals: mfg 1 Oct, svc/comp 3 Oct.", source:"https://tradingeconomics.com/united-states/composite-pmi" },
   { id:"au-emp-sep", date:"2026-09-23", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia employment + unemployment (Aug)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Jul emp −15.8k; UE 4.5%; part. 66.9% (ABS)", consensus:"Emp +20k; UE 4.5% (Trading Economics)", vs:"",
     note:"ABS Labour Force Aug 2026: 11:30 AEST Thu 24 Sep = 9:30pm ET Wed 23 Sep (01:30 GMT 24 Sep). Prior Jul: emp −15.8k, UE 4.5% (ABS). TE consensus emp +20k / UE 4.5% (CBA +15k preview).", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia" },
@@ -600,9 +600,9 @@ const EVENTS = [
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"NBS last-calendar-day PMI window ~09:30 CST.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
 
-  { id:"hk-cpi-aug", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Aug)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"HK C&SD schedule: Aug CPI release 23 Sep 2026. Typical morning HKT.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+  { id:"hk-cpi-aug", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Aug)", impact:"medium", status:"released",
+    actual:"Composite CPI +1.7% y/y (unch vs Jul); underlying +1.9% y/y; SA 3-mo avg +0.2% m/m", actualShort:"CPI 1.7% · und. 1.9%", previous:"Jul Composite +1.7% y/y; underlying +1.9% (C&SD)", consensus:"~1.7% (The Standard / market)", vs:"in line; y/y unchanged vs Jul",
+    note:"Official C&SD via HKSAR GIA 23 Sep 2026 (P2026092300316). Electricity/gas/water +11.5%, misc services +4.7%, transport +3.9%; basic food −0.2%. CPI(A/B/C) +1.2%/+1.8%/+1.9%. Fuel-related still hot; overall inflation moderate.", source:"https://www.info.gov.hk/gia/general/202609/23/P2026092300316.htm" },
   { id:"hk-cpi-sep", date:"2026-10-22", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"HK C&SD schedule: Sep CPI release 22 Oct 2026.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
@@ -841,6 +841,15 @@ const METRICS = {
   "cpi-sep": [
     { label:"CPI m/m", unit:"%", previous:0.4, sense:"hot" },
     { label:"Core CPI m/m", unit:"%", previous:0.3, sense:"hot" }
+  ],
+  "us-flash-pmi-sep": [
+    { label:"Composite", unit:"", actual:58.4, consensus:55.2, previous:56.0, sense:"higher-good" },
+    { label:"Services", unit:"", actual:58.7, consensus:55.8, previous:56.5, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", actual:57.0, consensus:53.6, previous:53.9, sense:"higher-good" }
+  ],
+  "hk-cpi-aug": [
+    { label:"Composite CPI y/y", unit:"%", actual:1.7, consensus:1.7, previous:1.7, sense:"hot" },
+    { label:"Underlying y/y", unit:"%", actual:1.9, previous:1.9, sense:"hot" }
   ]
 };
 EVENTS.forEach(e => { if (METRICS[e.id]) e.metrics = METRICS[e.id]; });
