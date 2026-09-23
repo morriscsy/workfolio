@@ -1059,6 +1059,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
+const INFLATION_UPDATED_AT = "2026-09-24T02:04:50+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.5, prev:33.8, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"ART",
@@ -1066,69 +1067,69 @@ const INFLATION = [
   { code:"TR", name:"Turkey", last:31.51, prev:31.75, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"TRT",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"TRT" },
-  { code:"RU", name:"Russia", last:6.3, prev:6.0, g20:true,
-    refPeriod:"Jul 2026", refDate:"", refTime:"", refTz:"MSK",
+  { code:"RU", name:"Russia", last:6.3, prev:6, g20:true,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"MSK",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"MSK" },
-  { code:"IN", name:"India", last:4.445, prev:4.338, g20:true,
-    refPeriod:"Jul 2026", refDate:"", refTime:"", refTz:"IST",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"IST" },
-  { code:"ES", name:"Spain", last:4.33, prev:3.6, g20:false,
+  { code:"IN", name:"India", last:4.82, prev:4.44, g20:true,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"IST",
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"IST" },
+  { code:"ZA", name:"South Africa", last:4.4, prev:4.3, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-19", refTime:"", refTz:"SAST",
+    nextPeriod:"Sep 2026", nextDate:"2026-09-23", nextTime:"", nextTz:"SAST" },
+  { code:"ES", name:"Spain", last:4.3, prev:3.6, g20:false,
     refPeriod:"Aug 2026", refDate:"2026-08-28", refTime:"", refTz:"CEST",
     nextPeriod:"Sep 2026", nextDate:"2026-09-15", nextTime:"", nextTz:"CEST" },
-  { code:"ZA", name:"South Africa", last:4.33, prev:5.0, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-19", refTime:"", refTz:"SAST",
-    nextPeriod:"Sep 2026", nextDate:"2026-09-23", nextTime:"", nextTz:"SAST" },
-  { code:"BR", name:"Brazil", last:4.222, prev:4.444, g20:true,
-    refPeriod:"Jul 2026", refDate:"", refTime:"", refTz:"BRT",
+  { code:"BR", name:"Brazil", last:4.22, prev:4.44, g20:true,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"BRT",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"BRT" },
-  { code:"AU", name:"Australia", last:3.55, prev:3.88, g20:true,
+  { code:"AU", name:"Australia", last:3.5, prev:3.8, g20:true,
     refPeriod:"Jul 2026", refDate:"2026-08-26", refTime:"11:30am", refTz:"AEST",
-    nextPeriod:"Aug 2026", nextDate:"2026-09-30", nextTime:"11:30am", nextTz:"AEST" },
+    nextPeriod:"Sep 2026", nextDate:"2026-09-30", nextTime:"11:30am", nextTz:"AEST" },
   { code:"US", name:"United States", last:3.4, prev:3.4, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-09-11", refTime:"8:30am", refTz:"ET",
-    nextPeriod:"Sep 2026", nextDate:"2026-10-14", nextTime:"8:30am", nextTz:"ET" },
+    nextPeriod:"Oct 2026", nextDate:"2026-10-14", nextTime:"8:30am", nextTz:"ET" },
   { code:"IT", name:"Italy", last:3.3, prev:2.9, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-09-01", refTime:"", refTz:"CEST",
     nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
-  { code:"EU", name:"Euro Area", last:3.33, prev:2.9, g20:true,
-    refPeriod:"Aug 2026 flash", refDate:"2026-09-01", refTime:"~11:00am", refTz:"CEST",
-    nextPeriod:"Aug 2026 final", nextDate:"2026-09-17", nextTime:"~11:00am", nextTz:"CEST" },
-  { code:"MX", name:"Mexico", last:3.26, prev:3.112, g20:true,
+  { code:"MX", name:"Mexico", last:3.26, prev:3.12, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-08-24", refTime:"", refTz:"CT",
-    nextPeriod:"Sep 2026", nextDate:"2026-09-24", nextTime:"", nextTz:"CT" },
-  { code:"ID", name:"Indonesia", last:3.119, prev:2.88, g20:true,
+    nextPeriod:"Oct 2026", nextDate:"2026-09-24", nextTime:"", nextTz:"CT" },
+  { code:"EU", name:"Euro Area", last:3.2, prev:2.9, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-09-01", refTime:"~11:00am", refTz:"CEST",
+    nextPeriod:"Oct 2026", nextDate:"2026-09-17", nextTime:"~11:00am", nextTz:"CEST" },
+  { code:"ID", name:"Indonesia", last:3.19, prev:2.88, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"WIB",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"WIB" },
-  { code:"KR", name:"South Korea", last:3.0, prev:2.8, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-04", refTime:"8:00am", refTz:"KST",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"KST" },
-  { code:"CA", name:"Canada", last:3.0, prev:2.8, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-17", refTime:"8:30am", refTz:"ET",
-    nextPeriod:"Aug 2026", nextDate:"2026-09-14", nextTime:"8:30am", nextTz:"ET" },
-  { code:"UK", name:"United Kingdom", last:2.9, prev:2.8, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-19", refTime:"7:00am", refTz:"UK",
-    nextPeriod:"Aug 2026", nextDate:"2026-09-16", nextTime:"7:00am", nextTz:"UK" },
-  { code:"DE", name:"Germany", last:2.9, prev:2.11, g20:true,
+  { code:"UK", name:"United Kingdom", last:3.1, prev:2.9, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-19", refTime:"7:00am", refTz:"UK",
+    nextPeriod:"Oct 2026", nextDate:"2026-09-16", nextTime:"7:00am", nextTz:"UK" },
+  { code:"KR", name:"South Korea", last:3.1, prev:2.8, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-04", refTime:"8:00am", refTz:"KST",
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"KST" },
+  { code:"CA", name:"Canada", last:3, prev:3, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-17", refTime:"8:30am", refTz:"ET",
+    nextPeriod:"Oct 2026", nextDate:"2026-09-14", nextTime:"8:30am", nextTz:"ET" },
+  { code:"DE", name:"Germany", last:2.9, prev:2.8, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-09-10", refTime:"8:00am", refTz:"CEST",
     nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
-  { code:"FR", name:"France", last:2.44, prev:2.11, g20:true,
-    refPeriod:"Aug 2026 flash", refDate:"2026-08-28", refTime:"8:45am", refTz:"CEST",
-    nextPeriod:"Aug 2026 final", nextDate:"2026-09-15", nextTime:"8:45am", nextTz:"CEST" },
-  { code:"SG", name:"Singapore", last:2.22, prev:1.9, g20:false,
-    refPeriod:"Jul 2026", refDate:"", refTime:"", refTz:"SGT",
+  { code:"FR", name:"France", last:2.4, prev:2.1, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-28", refTime:"8:45am", refTz:"CEST",
+    nextPeriod:"Sep 2026", nextDate:"2026-09-15", nextTime:"8:45am", nextTz:"CEST" },
+  { code:"SG", name:"Singapore", last:2.3, prev:2.2, g20:false,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"SGT",
     nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
-  { code:"JP", name:"Japan", last:1.8, prev:1.6, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-21", refTime:"", refTz:"JST",
-    nextPeriod:"Aug 2026", nextDate:"2026-09-18", nextTime:"", nextTz:"JST" },
+  { code:"JP", name:"Japan", last:1.9, prev:1.9, g20:true,
+    refPeriod:"Aug 2026", refDate:"2026-08-21", refTime:"", refTz:"JST",
+    nextPeriod:"Oct 2026", nextDate:"2026-09-18", nextTime:"", nextTz:"JST" },
   { code:"SA", name:"Saudi Arabia", last:1.8, prev:1.8, g20:true,
-    refPeriod:"Jul 2026", refDate:"", refTime:"", refTz:"AST",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"AST" },
-  { code:"CH", name:"Switzerland", last:0.88, prev:0.4, g20:false,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"AST",
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"AST" },
+  { code:"CH", name:"Switzerland", last:0.8, prev:0.4, g20:false,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"CETCH",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CETCH" },
-  { code:"CN", name:"China", last:0.8, prev:0.55, g20:true,
+  { code:"CN", name:"China", last:0.8, prev:0.5, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-09-09", refTime:"9:30am", refTz:"CST",
-    nextPeriod:"Sep 2026", nextDate:"2026-10-14", nextTime:"9:30am", nextTz:"CST" }
+    nextPeriod:"Oct 2026", nextDate:"2026-10-14", nextTime:"9:30am", nextTz:"CST" },
 ];
 let infSort = "te";
 let infG20only = false;
@@ -1139,7 +1140,7 @@ const WORLD = [{"iso3":"AFG","code":"","name":"Afghanistan","d":"M643.2,148.5L64
 function infRows() {
   let rows = INFLATION.filter(r => infG20only ? r.g20 : true);
   const chg = r => r.last - r.prev;
-  if (infSort === "te") return rows; // Trading Economics capture order
+  if (infSort === "te") return rows; // Trading Economics Last↓ country-list order
   if (infSort === "last") rows = [...rows].sort((a,b)=>b.last-a.last);
   else if (infSort === "chg") rows = [...rows].sort((a,b)=>chg(b)-chg(a));
   else if (infSort === "next") rows = [...rows].sort((a,b)=>(a.nextDate||a.nextPeriod).localeCompare(b.nextDate||b.nextPeriod) || b.last-a.last);
@@ -1174,7 +1175,7 @@ function pickInf(code) {
   if (!r) return;
   const d = r.last - r.prev;
   box.innerHTML = `
-    <div class="tag ${r.last>=5?"high":"medium"}">${r.g20?"G20":"screencap extra"}</div>
+    <div class="tag ${r.last>=5?"high":"medium"}">${r.g20?"G20":"TE list (non-G20)"}</div>
     <h3 style="margin-top:10px">${flag(r.code)} ${r.name}</h3>
     <div class="meta">Headline CPI / inflation rate · y/y</div>
     <div class="kv">
@@ -1184,7 +1185,7 @@ function pickInf(code) {
       <b>Reference</b><span>${r.refPeriod}<br>${whenHTML(r.refDate,r.refTime,r.refTz)}</span>
       <b>Next print</b><span>${r.nextPeriod}<br>${whenHTML(r.nextDate,r.nextTime,r.nextTz)}</span>
     </div>
-    <p>Figures from the Trading Economics country-list capture you sent (12 Sep 2026). Not re-scraped. US 3.4% matches the Aug CPI we already have from BLS.</p>
+    <p>Figures follow Trading Economics country-list order (Last ↓). Values refreshed via <code>scripts/refresh_inflation.py</code> (feed/API; last write 2026-09-24T02:04:50+08:00). US print cross-checked vs BLS when available.</p>
     <p style="color:var(--muted);font-size:12px">Argentina and Turkey are the red 10%+ countries. Everyone else uses the 0–7 band so the pack stays readable.</p>
   `;
 }
@@ -1213,7 +1214,7 @@ function renderInflation() {
   </tr>`).join("");
   board.innerHTML = `
     <div class="inf-head">
-      <p>Same TE order and map. Reference / Next now carry the official date and clock where the agency published one, shown in HKT plus local. date/time TBD means I could not verify a stamp. Cyan pulse = a dated print still in Sep 2026.</p>
+      <p>TE country-list order (Last ↓) and map. Reference / Next carry official date and clock where known, shown in HKT plus local. Cyan pulse = a dated print still in the current month. G20 filter keeps Spain/Singapore/Switzerland off when toggled.</p>
       <div class="filters">
         <button type="button" class="${!infG20only?"active":""}" onclick="infG20only=false;render()">TE list</button>
         <button type="button" class="${infG20only?"active":""}" onclick="infG20only=true;render()">G20 only</button>
