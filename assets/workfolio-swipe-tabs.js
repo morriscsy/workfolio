@@ -9,24 +9,23 @@
     { file: 'Workfolio-InsightLab.html', label: 'InsightLab', accent: '#34d399' },
   ];
 
-  const ARM_PX = 16;
-  const COMMIT_RATIO = 0.22; // of viewport width
-  const SETTLE_MS = 240;
-  const EXIT_MS = 260;
-  const ENTER_MS = 280;
+  const ARM_PX = 18;
+  const COMMIT_RATIO = 0.24;
+  const SETTLE_MS = 220;
+  const EXIT_MS = 240;
+  const ENTER_MS = 260;
   const STORAGE_KEY = 'wf-tab-swipe-lite';
   const MOBILE_QUERY = window.matchMedia(
     '(max-width: 900px), (pointer: coarse) and (max-width: 1100px)'
   );
 
-  let touch = null;
+  let gesture = null;
   let ui = null;
   let navigating = false;
-  let index = -1;
 
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mobile = () => MOBILE_QUERY.matches;
-  const page = () => document.querySelector('.wrap') || document.body;
+  const wrapEl = () => document.querySelector('.wrap') || document.body;
 
   const tabIndex = () => {
     const file = location.pathname.split('/').pop() || 'Workfolio.html';
@@ -50,98 +49,82 @@
     const style = document.createElement('style');
     style.id = 'wf-swipe-lite-css';
     style.textContent = `
-html.wf-swiping, html.wf-swiping body { overflow: hidden !important; touch-action: none; }
+html.wf-swiping, html.wf-swiping body {
+  overflow: hidden !important;
+  touch-action: pan-y;
+}
 
 .wf-swipe-veil {
   position: fixed; inset: 0; z-index: 99980; display: none;
-  background: rgba(2, 6, 23, .28);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .18s ease;
+  background: rgba(2, 6, 23, .18);
+  pointer-events: none; opacity: 0;
 }
 html.wf-swiping .wf-swipe-veil { display: block; opacity: 1; }
 
 .wf-swipe-rail {
-  position: fixed; left: 0; right: 0; bottom: max(14px, env(safe-area-inset-bottom));
-  z-index: 99990; display: none; justify-content: center; gap: 7px;
+  position: fixed; left: 0; right: 0;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 99990; display: none; justify-content: center; gap: 8px;
   pointer-events: none;
 }
 html.wf-swiping .wf-swipe-rail { display: flex; }
 .wf-swipe-dot {
   width: 6px; height: 6px; border-radius: 999px;
-  background: rgba(148,163,184,.45);
-  transition: transform .18s ease, background .18s ease, width .18s ease;
+  background: rgba(148,163,184,.4);
+  transform: scale(1);
+  opacity: .7;
 }
 .wf-swipe-dot.is-on {
-  width: 16px; background: var(--wf-accent, #38bdf8);
-  box-shadow: 0 0 10px color-mix(in srgb, var(--wf-accent,#38bdf8) 55%, transparent);
+  background: var(--wf-accent, #38bdf8);
+  opacity: 1;
+  transform: scale(1.35);
 }
 
 .wf-swipe-hint {
-  position: fixed; top: max(12px, env(safe-area-inset-top)); left: 50%;
-  transform: translateX(-50%) translateY(-6px);
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 99991; display: none; align-items: center; gap: 7px;
-  padding: 6px 11px; border-radius: 999px;
-  background: rgba(15, 23, 42, .72);
-  border: 1px solid rgba(148,163,184,.18);
+  padding: 5px 10px; border-radius: 999px;
+  background: rgba(15, 23, 42, .7);
+  border: 1px solid rgba(148,163,184,.16);
   color: #e2e8f0; font: 600 12px/1 system-ui, -apple-system, sans-serif;
-  letter-spacing: .02em; opacity: 0; pointer-events: none;
-  transition: opacity .16s ease, transform .16s ease;
+  pointer-events: none; opacity: 0;
 }
-html.wf-swiping .wf-swipe-hint { display: flex; opacity: 1; transform: translateX(-50%) translateY(0); }
+html.wf-swiping .wf-swipe-hint { display: flex; opacity: 1; }
 .wf-swipe-hint i {
-  width: 7px; height: 7px; border-radius: 999px; background: var(--wf-accent,#38bdf8);
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--wf-accent, #38bdf8);
 }
 
-/* Live page: gentle scale + slide only (no giant card / no blank fade) */
-html.wf-swiping .wrap,
-html.wf-swiping body > .wrap {
-  transform: translate3d(var(--wf-x, 0px), 0, 0) scale(var(--wf-s, .94));
-  transform-origin: center center;
-  border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+/* Translate only — no scale (scale caused the wiggle) */
+html.wf-swiping .wrap {
   will-change: transform;
-  transition: none;
+  transform: translate3d(var(--wf-x, 0px), 0, 0);
+  transition: none !important;
 }
 html.wf-swipe-settle .wrap {
-  transition: transform .24s cubic-bezier(.22,.7,.25,1), border-radius .24s ease, box-shadow .24s ease !important;
+  transition: transform .22s cubic-bezier(.25,.8,.25,1) !important;
 }
 html.wf-swipe-exit .wrap {
-  transition: transform .26s cubic-bezier(.22,.7,.25,1), opacity .2s ease !important;
+  transition: transform .24s cubic-bezier(.25,.8,.25,1) !important;
 }
-html.wf-swipe-exit-left .wrap { transform: translate3d(-34%,0,0) scale(.92); opacity: .96; }
-html.wf-swipe-exit-right .wrap { transform: translate3d(34%,0,0) scale(.92); opacity: .96; }
+html.wf-swipe-exit-left .wrap { transform: translate3d(-100%, 0, 0); }
+html.wf-swipe-exit-right .wrap { transform: translate3d(100%, 0, 0); }
 
 html.wf-swipe-enter .wrap {
-  transform: translate3d(var(--wf-enter-x, 24%), 0, 0) scale(.94);
-  opacity: .98;
-  border-radius: 18px;
+  transform: translate3d(var(--wf-enter-x, 100%), 0, 0);
 }
 html.wf-swipe-enter-active .wrap {
-  transition: transform .28s cubic-bezier(.22,.7,.25,1), opacity .2s ease, border-radius .28s ease !important;
-  transform: translate3d(0,0,0) scale(1);
-  opacity: 1;
-  border-radius: 0;
-}
-
-.wf-swipe-side {
-  position: fixed; top: 18%; bottom: 18%; width: 10px; z-index: 99985;
-  border-radius: 10px; opacity: 0; pointer-events: none;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--wf-side,#38bdf8) 55%, #0f172a), #0f172a);
-  box-shadow: 0 10px 28px rgba(0,0,0,.28);
-  transition: opacity .14s ease, transform .14s ease, width .14s ease;
-}
-.wf-swipe-side.is-left { left: 6px; transform: translateX(-4px); }
-.wf-swipe-side.is-right { right: 6px; transform: translateX(4px); }
-html.wf-swiping .wf-swipe-side.is-show {
-  opacity: .9; width: 12px; transform: translateX(0);
+  transition: transform .26s cubic-bezier(.25,.8,.25,1) !important;
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html.wf-swipe-settle .wrap,
   html.wf-swipe-exit .wrap,
-  html.wf-swipe-enter-active .wrap,
-  .wf-swipe-veil, .wf-swipe-hint, .wf-swipe-dot { transition: none !important; }
+  html.wf-swipe-enter-active .wrap { transition: none !important; }
 }
 `;
     document.head.appendChild(style);
@@ -157,12 +140,8 @@ html.wf-swiping .wf-swipe-side.is-show {
     const hint = document.createElement('div');
     hint.className = 'wf-swipe-hint';
     hint.innerHTML = '<i></i><span data-txt></span>';
-    const left = document.createElement('div');
-    left.className = 'wf-swipe-side is-left';
-    const right = document.createElement('div');
-    right.className = 'wf-swipe-side is-right';
-    document.documentElement.append(veil, rail, hint, left, right);
-    ui = { veil, rail, hint, left, right, txt: hint.querySelector('[data-txt]') };
+    document.documentElement.append(veil, rail, hint);
+    ui = { veil, rail, hint, txt: hint.querySelector('[data-txt]') };
     return ui;
   };
 
@@ -181,57 +160,37 @@ html.wf-swiping .wf-swipe-side.is-show {
     return false;
   };
 
-  const paint = (dx, liveIndex) => {
-    const root = document.documentElement;
-    const wrap = page();
-    const w = window.innerWidth || 1;
-    // Rubber-band at ends
-    let x = dx;
-    if ((liveIndex <= 0 && dx > 0) || (liveIndex >= TABS.length - 1 && dx < 0)) {
-      x = dx * 0.28;
-    }
-    const progress = Math.min(1, Math.abs(x) / (w * 0.55));
-    const scale = 1 - progress * 0.06; // 1 -> 0.94
-    wrap.style.setProperty('--wf-x', `${x}px`);
-    wrap.style.setProperty('--wf-s', String(scale));
+  const setX = (x) => {
+    wrapEl().style.setProperty('--wf-x', `${x}px`);
+  };
 
+  const updateChrome = (dx, index) => {
     const u = ensureUi();
-    const toward = x < 0 ? liveIndex + 1 : liveIndex - 1;
+    const toward = dx < -8 ? index + 1 : dx > 8 ? index - 1 : index;
     const clamped = Math.max(0, Math.min(TABS.length - 1, toward));
-    const tab = TABS[Math.abs(x) > 8 ? clamped : liveIndex];
-    root.style.setProperty('--wf-accent', tab.accent);
+    const tab = TABS[clamped];
+    document.documentElement.style.setProperty('--wf-accent', tab.accent);
     u.txt.textContent = tab.label;
     u.hint.style.setProperty('--wf-accent', tab.accent);
     u.rail.style.setProperty('--wf-accent', tab.accent);
     u.rail.querySelectorAll('.wf-swipe-dot').forEach((dot) => {
-      dot.classList.toggle('is-on', Number(dot.dataset.i) === (Math.abs(x) > 8 ? clamped : liveIndex));
+      dot.classList.toggle('is-on', Number(dot.dataset.i) === clamped);
     });
-
-    // Slim edge peeks instead of giant neighbor cards
-    const showLeft = liveIndex > 0 && x > 10;
-    const showRight = liveIndex < TABS.length - 1 && x < -10;
-    u.left.classList.toggle('is-show', showLeft);
-    u.right.classList.toggle('is-show', showRight);
-    if (showLeft) u.left.style.setProperty('--wf-side', TABS[liveIndex - 1].accent);
-    if (showRight) u.right.style.setProperty('--wf-side', TABS[liveIndex + 1].accent);
   };
 
-  const open = (i) => {
-    index = i;
+  const open = (index) => {
     ensureUi();
-    document.documentElement.classList.add('wf-swiping');
-    document.documentElement.classList.remove('wf-swipe-settle', 'wf-swipe-exit', 'wf-swipe-exit-left', 'wf-swipe-exit-right');
-    paint(0, i);
+    const root = document.documentElement;
+    root.classList.remove('wf-swipe-settle', 'wf-swipe-exit', 'wf-swipe-exit-left', 'wf-swipe-exit-right');
+    root.classList.add('wf-swiping');
+    setX(0);
+    updateChrome(0, index);
   };
 
   const clearInline = () => {
-    const wrap = page();
-    wrap.style.removeProperty('--wf-x');
-    wrap.style.removeProperty('--wf-s');
-    wrap.style.transform = '';
-    wrap.style.opacity = '';
-    wrap.style.borderRadius = '';
-    wrap.style.boxShadow = '';
+    const el = wrapEl();
+    el.style.removeProperty('--wf-x');
+    el.style.transform = '';
   };
 
   const closeUi = () => {
@@ -242,6 +201,13 @@ html.wf-swiping .wf-swipe-side.is-show {
     clearInline();
   };
 
+  const rubberX = (dx, index) => {
+    if ((index <= 0 && dx > 0) || (index >= TABS.length - 1 && dx < 0)) {
+      return dx * 0.22;
+    }
+    return dx;
+  };
+
   const go = (next, dir) => {
     if (navigating) return;
     navigating = true;
@@ -249,50 +215,45 @@ html.wf-swiping .wf-swipe-side.is-show {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ dir, t: Date.now() }));
     } catch (_) {}
 
-    // Prefetch hard nav target once more
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = TABS[next].file;
-    document.head.appendChild(link);
-
     if (reduced()) {
       location.href = TABS[next].file;
       return;
     }
 
     const root = document.documentElement;
+    // Clear CSS var so exit class transform wins cleanly (avoids fighting)
+    wrapEl().style.removeProperty('--wf-x');
+    root.classList.remove('wf-swiping');
     root.classList.add('wf-swipe-exit', dir > 0 ? 'wf-swipe-exit-left' : 'wf-swipe-exit-right');
-    // Keep opacity near 1 — blank frames feel like network failure
-    page().style.opacity = '0.97';
     window.setTimeout(() => {
       location.href = TABS[next].file;
     }, EXIT_MS);
   };
 
-  const cancel = () => {
+  const cancel = (index) => {
     if (reduced()) {
       closeUi();
       return;
     }
     const root = document.documentElement;
     root.classList.add('wf-swipe-settle');
-    paint(0, index);
-    window.setTimeout(() => {
-      closeUi();
-    }, SETTLE_MS);
+    setX(0);
+    updateChrome(0, index);
+    window.setTimeout(closeUi, SETTLE_MS);
   };
 
-  const endGesture = (dx, vx) => {
+  const endGesture = (dx, vx, index) => {
     const w = window.innerWidth || 1;
-    const commit = Math.abs(dx) > w * COMMIT_RATIO || (Math.abs(vx) > 0.7 && Math.abs(dx) > 28);
-    if (!commit) {
-      cancel();
+    const flicked = Math.abs(vx) > 0.75 && Math.abs(dx) > 24;
+    const dragged = Math.abs(dx) > w * COMMIT_RATIO;
+    if (!flicked && !dragged) {
+      cancel(index);
       return;
     }
     const dir = dx < 0 ? 1 : -1;
     const next = index + dir;
     if (next < 0 || next >= TABS.length) {
-      cancel();
+      cancel(index);
       return;
     }
     go(next, dir);
@@ -310,76 +271,77 @@ html.wf-swiping .wf-swipe-side.is-show {
     if (reduced()) return;
 
     const root = document.documentElement;
-    root.style.setProperty('--wf-enter-x', payload.dir > 0 ? '22%' : '-22%');
+    root.style.setProperty('--wf-enter-x', payload.dir > 0 ? '100%' : '-100%');
     root.classList.add('wf-swipe-enter');
-    void page().offsetWidth;
+    void wrapEl().offsetWidth;
     requestAnimationFrame(() => {
       root.classList.add('wf-swipe-enter-active');
       window.setTimeout(() => {
         root.classList.remove('wf-swipe-enter', 'wf-swipe-enter-active');
         root.style.removeProperty('--wf-enter-x');
         clearInline();
-      }, ENTER_MS + 40);
+      }, ENTER_MS + 30);
     });
   };
 
+  const velocity = (samples) => {
+    if (!samples || samples.length < 2) return 0;
+    const a = samples[0];
+    const b = samples[samples.length - 1];
+    return (b.x - a.x) / Math.max(1, b.t - a.t);
+  };
+
   const onStart = (e) => {
-    touch = null;
+    gesture = null;
     if (navigating || !mobile() || e.touches.length !== 1) return;
     if (ignored(e.target)) return;
-    const i = tabIndex();
-    if (i < 0) return;
+    const index = tabIndex();
+    if (index < 0) return;
     const t = e.touches[0];
-    touch = {
-      x0: t.clientX, y0: t.clientY, x: t.clientX,
-      decided: false, horizontal: false, index: i,
+    gesture = {
+      x0: t.clientX,
+      y0: t.clientY,
+      x: t.clientX,
+      index,
+      armed: false,
       samples: [],
     };
   };
 
   const onMove = (e) => {
-    if (!touch || navigating || !mobile()) return;
+    if (!gesture || navigating || !mobile()) return;
     if (e.touches.length !== 1) return;
     const t = e.touches[0];
-    const dx = t.clientX - touch.x0;
-    const dy = t.clientY - touch.y0;
+    const dx0 = t.clientX - gesture.x0;
+    const dy0 = t.clientY - gesture.y0;
 
-    if (!touch.decided) {
-      if (Math.abs(dx) < ARM_PX && Math.abs(dy) < ARM_PX) return;
-      touch.decided = true;
-      touch.horizontal = Math.abs(dx) > Math.abs(dy) * 1.2;
-      if (!touch.horizontal) {
-        touch = null;
+    if (!gesture.armed) {
+      if (Math.abs(dx0) < ARM_PX && Math.abs(dy0) < ARM_PX) return;
+      if (Math.abs(dx0) <= Math.abs(dy0) * 1.25) {
+        gesture = null;
         return;
       }
-      open(touch.index);
-      touch.x0 = t.clientX;
+      // Arm without resetting origin — avoids the jump/wiggle at start
+      gesture.armed = true;
+      open(gesture.index);
     }
 
-    const x = t.clientX - touch.x0;
-    touch.x = t.clientX;
-    touch.samples.push({ t: performance.now(), x: t.clientX });
-    if (touch.samples.length > 5) touch.samples.shift();
-    paint(x, touch.index);
-  };
-
-  const velocity = () => {
-    const s = (touch && touch.samples) || [];
-    if (s.length < 2) return 0;
-    const a = s[0];
-    const b = s[s.length - 1];
-    return (b.x - a.x) / Math.max(1, b.t - a.t);
+    const dx = rubberX(t.clientX - gesture.x0, gesture.index);
+    gesture.x = t.clientX;
+    gesture.samples.push({ t: performance.now(), x: t.clientX });
+    if (gesture.samples.length > 4) gesture.samples.shift();
+    setX(dx);
+    updateChrome(dx, gesture.index);
   };
 
   const onEnd = () => {
-    if (!touch || navigating) { touch = null; return; }
-    if (!touch.horizontal) { touch = null; return; }
-    const dx = touch.x - touch.x0;
-    const vx = velocity();
-    const i = touch.index;
-    touch = null;
-    index = i;
-    endGesture(dx, vx);
+    if (!gesture || navigating) { gesture = null; return; }
+    if (!gesture.armed) { gesture = null; return; }
+    const dx = rubberX(gesture.x - gesture.x0, gesture.index);
+    const vx = velocity(gesture.samples);
+    const index = gesture.index;
+    gesture = null;
+    endGesture(dx, vx, index);
   };
 
   injectCss();
@@ -390,7 +352,7 @@ html.wf-swiping .wf-swipe-side.is-show {
   document.addEventListener('touchmove', onMove, { passive: true });
   document.addEventListener('touchend', onEnd, { passive: true });
   document.addEventListener('touchcancel', () => {
-    if (touch && touch.horizontal) cancel();
-    touch = null;
+    if (gesture && gesture.armed) cancel(gesture.index);
+    gesture = null;
   }, { passive: true });
 })();
