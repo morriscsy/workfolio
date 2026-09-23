@@ -10,8 +10,8 @@
   ];
   const SWIPE_ARM = 14;
   const STORAGE_KEY = 'wf-tab-switcher';
-  const EXIT_MS = 400;
-  const ENTER_MS = 420;
+  const EXIT_MS = 420;
+  const ENTER_MS = 440;
   const MOBILE_QUERY = window.matchMedia(
     '(max-width: 900px), (pointer: coarse) and (max-width: 1100px)'
   );
@@ -20,7 +20,6 @@
   let switcher = null;
   let navigating = false;
   let activeIndex = -1;
-  let snapshotUrl = null;
 
   const prefersReducedMotion = () =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -38,11 +37,49 @@
     style.textContent = `
 html.wf-switcher-open, html.wf-switcher-open body { overflow: hidden !important; }
 html.wf-switcher-open body { touch-action: none; }
-html.wf-page-shrink body > *:not(.wf-switcher) { visibility: hidden !important; }
+
+/* Live page becomes the center app card */
+html.wf-switcher-open body.wf-live-card {
+  position: fixed !important;
+  left: 50% !important;
+  top: 52% !important;
+  width: min(84vw, 430px) !important;
+  height: min(76vh, 700px) !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 28px !important;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.62),
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 0 48px color-mix(in srgb, var(--wf-accent,#38bdf8) 30%, transparent) !important;
+  transform: translate3d(-50%, -50%, 0) scale(1) !important;
+  transform-origin: center center !important;
+  z-index: 100000 !important;
+  transition: none !important;
+  background: #020617 !important;
+}
+html.wf-switcher-open body.wf-live-card.is-live-drag {
+  /* transform set inline while dragging */
+}
+html.wf-switcher-open body.wf-live-card.is-expanding {
+  transition: transform ${EXIT_MS}ms cubic-bezier(.2,.85,.2,1),
+              width ${EXIT_MS}ms cubic-bezier(.2,.85,.2,1),
+              height ${EXIT_MS}ms cubic-bezier(.2,.85,.2,1),
+              top ${EXIT_MS}ms ease,
+              left ${EXIT_MS}ms ease,
+              border-radius ${EXIT_MS}ms ease,
+              box-shadow ${EXIT_MS}ms ease !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  transform: translate3d(-50%, -50%, 0) scale(1) !important;
+  box-shadow: none !important;
+}
 
 .wf-switcher {
   position: fixed; inset: 0; z-index: 99990; display: none;
-  align-items: center; justify-content: center;
   background:
     radial-gradient(120% 80% at 50% 18%, rgba(56,189,248,.14), transparent 55%),
     rgba(2, 6, 23, .78);
@@ -50,28 +87,27 @@ html.wf-page-shrink body > *:not(.wf-switcher) { visibility: hidden !important; 
   -webkit-backdrop-filter: blur(30px) saturate(1.25);
 }
 html.wf-switcher-open .wf-switcher,
-html.wf-switcher-enter .wf-switcher { display: flex; }
+html.wf-switcher-enter .wf-switcher { display: block; }
 
-.wf-switcher-stage { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.wf-switcher-stage { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 
 .wf-switcher-card {
   position: absolute; left: 50%; top: 52%;
   width: min(84vw, 430px); height: min(76vh, 700px);
   border-radius: 28px; overflow: hidden; background: #0b1220;
   border: 1px solid rgba(148,163,184,.2);
-  box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
+  box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
   transform: translate3d(-50%, -50%, 0) scale(.86);
   opacity: .4; will-change: transform, opacity;
-  transition: transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s ease, box-shadow .2s ease;
-  pointer-events: none;
+  transition: transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s ease;
 }
 .wf-switcher-card.is-live { transition: none; }
-.wf-switcher-card.is-center {
-  opacity: 1;
-  box-shadow:
-    0 40px 90px rgba(0,0,0,.62),
-    0 0 0 1px rgba(255,255,255,.06) inset,
-    0 0 48px color-mix(in srgb, var(--wf-accent,#38bdf8) 30%, transparent);
+.wf-switcher-card.is-current {
+  /* live body sits on top; keep this as invisible spacer twin */
+  opacity: 0 !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
 }
 .wf-switcher-card.is-expand {
   transition: transform ${EXIT_MS}ms cubic-bezier(.2,.85,.2,1),
@@ -79,17 +115,17 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
               height ${EXIT_MS}ms cubic-bezier(.2,.85,.2,1),
               border-radius ${EXIT_MS}ms ease,
               top ${EXIT_MS}ms ease,
-              opacity ${Math.round(EXIT_MS * 0.6)}ms ease !important;
+              opacity ${Math.round(EXIT_MS * 0.55)}ms ease !important;
   top: 50%; width: 100vw; height: 100vh; border-radius: 0; opacity: 1; z-index: 30 !important;
   transform: translate3d(-50%, -50%, 0) scale(1) !important;
 }
 
 .wf-switcher-label {
-  position: absolute; left: 50%; top: max(18px, calc(50% - min(38vh, 350px) - 34px));
+  position: absolute; left: 50%; top: max(16px, calc(50% - min(38vh, 350px) - 36px));
   transform: translateX(-50%); display: flex; align-items: center; gap: 8px;
   color: #f1f5f9; font: 650 13px/1 system-ui, -apple-system, sans-serif;
   letter-spacing: .02em; opacity: 0; transition: opacity .15s ease;
-  text-shadow: 0 2px 12px rgba(0,0,0,.5); pointer-events: none; z-index: 40;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5); pointer-events: none; z-index: 100001;
 }
 .wf-switcher-label.is-on { opacity: 1; }
 .wf-switcher-dot {
@@ -109,14 +145,10 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
   font: 800 clamp(22px, 7vw, 30px)/1.05 system-ui, -apple-system, sans-serif;
   color: rgba(248,250,252,.94); letter-spacing: -.02em;
 }
-.wf-switcher-shot {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: top center; display: block;
-  background: #020617;
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .wf-switcher-card, .wf-switcher-label { transition: none !important; }
+  .wf-switcher-card, .wf-switcher-label,
+  html.wf-switcher-open body.wf-live-card.is-expanding { transition: none !important; }
 }
 `;
     document.head.appendChild(style);
@@ -143,13 +175,7 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
     return isHorizontalScroller(target);
   };
 
-  const cardGap = () => Math.min(window.innerWidth * 0.68, 300);
-
-  const captureSnapshot = () => {
-    // Best-effort: draw a simple canvas poster of the current viewport colors + title.
-    // Full DOM screenshot needs html2canvas; keep lightweight branded live-looking card.
-    return null;
-  };
+  const cardGap = () => Math.min(window.innerWidth * 0.7, 310);
 
   const ensureSwitcher = () => {
     if (switcher) return switcher;
@@ -166,27 +192,10 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
     stage.innerHTML = '';
     TABS.forEach((tab, i) => {
       const card = document.createElement('article');
-      card.className = 'wf-switcher-card';
+      card.className = 'wf-switcher-card' + (i === centerIndex ? ' is-current' : '');
       card.dataset.index = String(i);
       card.style.setProperty('--wf-accent', tab.accent);
-
-      if (i === centerIndex && snapshotUrl) {
-        const img = document.createElement('img');
-        img.className = 'wf-switcher-shot';
-        img.alt = '';
-        img.src = snapshotUrl;
-        card.appendChild(img);
-        const veil = document.createElement('div');
-        veil.style.cssText = 'position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(2,6,23,.55));pointer-events:none;';
-        card.appendChild(veil);
-      } else {
-        const face = document.createElement('div');
-        face.className = 'wf-switcher-face';
-        face.dataset.label = tab.label;
-        card.appendChild(face);
-      }
-      // Always show label text on face for non-center; center gets live shot if available
-      if (i === centerIndex && !snapshotUrl) {
+      if (i !== centerIndex) {
         const face = document.createElement('div');
         face.className = 'wf-switcher-face';
         face.dataset.label = tab.label;
@@ -197,10 +206,27 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
     return root;
   };
 
+  const setLiveCardTransform = (deltaFromCenter, live) => {
+    const body = document.body;
+    const gap = cardGap();
+    const x = -deltaFromCenter * gap; // keep live card aligned with focus offset
+    // When browsing, live page represents activeIndex card only; hide when far
+    const abs = Math.abs(deltaFromCenter);
+    const scale = Math.max(0.7, 0.92 - abs * 0.09);
+    const y = abs * 10;
+    const opacity = Math.max(0.15, 1 - abs * 0.4);
+    body.classList.toggle('is-live-drag', !!live);
+    body.style.setProperty('--wf-accent', (TABS[activeIndex] || TABS[0]).accent);
+    body.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
+    body.style.opacity = String(opacity);
+    body.style.zIndex = String(100000 - Math.round(abs * 10));
+  };
+
   const paintStack = (focus, live) => {
     const root = ensureSwitcher();
     const gap = cardGap();
     const nearest = Math.max(0, Math.min(TABS.length - 1, Math.round(focus)));
+
     root.querySelectorAll('.wf-switcher-card').forEach((card) => {
       const i = Number(card.dataset.index);
       const delta = i - focus;
@@ -208,13 +234,15 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
       const x = delta * gap;
       const scale = Math.max(0.7, 0.92 - abs * 0.09);
       const y = abs * 10;
-      const opacity = Math.max(0.18, 1 - abs * 0.36);
-      card.classList.toggle('is-center', i === nearest);
+      const opacity = i === activeIndex ? 0 : Math.max(0.18, 1 - abs * 0.36);
       card.classList.toggle('is-live', !!live);
       card.style.zIndex = String(20 - Math.round(abs * 10));
       card.style.opacity = String(opacity);
       card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
     });
+
+    setLiveCardTransform(activeIndex - focus, live);
+
     const tab = TABS[nearest];
     const labelEl = root.querySelector('[data-label]');
     const labelText = root.querySelector('[data-label-text]');
@@ -225,54 +253,71 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
     }
   };
 
-  const takeDomSnapshot = () => new Promise((resolve) => {
-    // Use SVG foreignObject snapshot of body for the center card (same-origin).
-    try {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const clone = document.body.cloneNode(true);
-      clone.querySelectorAll('.wf-switcher, script, style#wf-switcher-css').forEach((n) => n.remove());
-      clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-      clone.style.cssText = `margin:0;width:${w}px;height:${h}px;overflow:hidden;background:#020617;`;
-      // Inline computed background from html
-      const bg = getComputedStyle(document.documentElement).backgroundColor || '#020617';
-      const wrapper = document.createElement('div');
-      wrapper.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-      wrapper.style.cssText = `width:${w}px;height:${h}px;overflow:hidden;background:${bg};`;
-      // Too heavy / broken styles without inlining — fall back
-      resolve(null);
-    } catch (_) {
-      resolve(null);
-    }
-  });
-
-  const openSwitcher = async (index) => {
+  const openSwitcher = (index) => {
     activeIndex = index;
-    snapshotUrl = null;
-    // Optional future: snapshotUrl = await html2canvas...
     buildCards(index);
-    document.documentElement.classList.add('wf-switcher-open', 'wf-page-shrink');
+    document.documentElement.classList.add('wf-switcher-open');
+    document.body.classList.add('wf-live-card');
+    document.body.style.setProperty('--wf-accent', TABS[index].accent);
+    // Move switcher under body? Body is the card; switcher must stay behind.
+    // Re-parent switcher to html so it isn't clipped inside the scaled body card.
+    if (switcher && switcher.parentElement !== document.documentElement) {
+      document.documentElement.appendChild(switcher);
+    }
     paintStack(index, true);
   };
 
-  const closeSwitcherHard = () => {
-    document.documentElement.classList.remove('wf-switcher-open', 'wf-page-shrink', 'wf-switcher-enter');
-    if (switcher) switcher.remove();
-    switcher = null;
-    if (snapshotUrl) {
-      try { URL.revokeObjectURL(snapshotUrl); } catch (_) {}
-      snapshotUrl = null;
-    }
+  const resetLiveBody = () => {
+    const body = document.body;
+    body.classList.remove('wf-live-card', 'is-live-drag', 'is-expanding');
+    body.style.transform = '';
+    body.style.opacity = '';
+    body.style.zIndex = '';
+    body.style.removeProperty('--wf-accent');
   };
 
-  const expandCard = (index, then) => {
-    const card = switcher && switcher.querySelector(`.wf-switcher-card[data-index="${index}"]`);
-    if (!card || prefersReducedMotion()) {
-      then();
+  const closeSwitcherHard = () => {
+    document.documentElement.classList.remove('wf-switcher-open', 'wf-switcher-enter');
+    resetLiveBody();
+    if (switcher) switcher.remove();
+    switcher = null;
+  };
+
+  const expandAndStay = () => {
+    if (prefersReducedMotion()) {
+      closeSwitcherHard();
       return;
     }
-    card.classList.add('is-expand', 'is-center');
-    window.setTimeout(then, EXIT_MS);
+    document.body.classList.add('is-expanding');
+    document.body.style.opacity = '1';
+    document.body.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+    window.setTimeout(closeSwitcherHard, EXIT_MS);
+  };
+
+  const expandAndGo = (index) => {
+    if (navigating) return;
+    navigating = true;
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ to: index, from: activeIndex, t: Date.now() }));
+    } catch (_) {}
+
+    const tab = TABS[index];
+    if (prefersReducedMotion()) {
+      window.location.href = tab.file;
+      return;
+    }
+
+    // Lift neighbor card and expand it; fade live page out
+    const card = switcher && switcher.querySelector(`.wf-switcher-card[data-index="${index}"]`);
+    document.body.style.opacity = '0';
+    if (card) {
+      card.classList.remove('is-current');
+      card.style.opacity = '1';
+      card.classList.add('is-expand');
+    }
+    window.setTimeout(() => {
+      window.location.href = tab.file;
+    }, EXIT_MS - 30);
   };
 
   const settleOrNavigate = (focus, velocityX) => {
@@ -295,18 +340,8 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
         requestAnimationFrame(step);
         return;
       }
-      if (target === activeIndex) {
-        expandCard(target, closeSwitcherHard);
-        return;
-      }
-      if (navigating) return;
-      navigating = true;
-      try {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ to: target, from: activeIndex, t: Date.now() }));
-      } catch (_) {}
-      expandCard(target, () => {
-        window.location.href = TABS[target].file;
-      });
+      if (target === activeIndex) expandAndStay();
+      else expandAndGo(target);
     };
     requestAnimationFrame(step);
   };
@@ -321,15 +356,16 @@ html.wf-switcher-enter .wf-switcher { display: flex; }
     } catch (_) { return; }
     if (!payload || Date.now() - (payload.t || 0) > 4000) return;
     if (prefersReducedMotion()) return;
+
     const idx = currentTabIndex();
     if (idx < 0) return;
+    activeIndex = idx;
     buildCards(idx);
-    document.documentElement.classList.add('wf-switcher-enter', 'wf-switcher-open', 'wf-page-shrink');
-    const card = switcher.querySelector(`.wf-switcher-card[data-index="${idx}"]`);
-    if (card) {
-      card.classList.add('is-expand', 'is-center');
-      card.style.opacity = '1';
-    }
+    if (switcher) document.documentElement.appendChild(switcher);
+    document.documentElement.classList.add('wf-switcher-enter', 'wf-switcher-open');
+    document.body.classList.add('wf-live-card', 'is-expanding');
+    document.body.style.setProperty('--wf-accent', TABS[idx].accent);
+    document.body.style.opacity = '1';
     paintStack(idx, false);
     window.setTimeout(closeSwitcherHard, ENTER_MS);
   };
