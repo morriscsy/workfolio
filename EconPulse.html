@@ -330,6 +330,7 @@
     .detail {
       position: fixed; left: 0; right: 0; bottom: 0;
       display: flex; flex-direction: column;
+      height: min(92dvh, 92vh);
       max-height: min(92dvh, 92vh);
       min-height: 0;
       overflow: hidden;
@@ -493,7 +494,7 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
-  <!-- ep-sheet:20260923b -->
+  <!-- ep-sheet:20260923c -->
   <aside class="detail" id="detail">
     <div class="sheet-head">
       <div class="sheet-handle" aria-hidden="true"></div>
@@ -1369,6 +1370,15 @@ function nextUpcoming() {
     .sort(byWhen)[0];
 }
 
+function resetSheetBodyScroll() {
+  const body = document.getElementById("sheetBody");
+  if (!body) return;
+  body.scrollTop = 0;
+  requestAnimationFrame(() => { body.scrollTop = 0; });
+  setTimeout(() => { body.scrollTop = 0; }, 50);
+  setTimeout(() => { body.scrollTop = 0; }, 250);
+}
+
 function renderNext() {
   const n = nextUpcoming();
   const el = document.getElementById("nextup");
@@ -1389,11 +1399,16 @@ function showDetail(ev, dateStr) {
     if (!list.length) {
       box.innerHTML = `<h3>${parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}</h3>
         <p class="empty">No events in this filter.</p>`;
+      resetSheetBodyScroll();
       return;
     }
     ev = list[0];
   }
-  if (!ev) { box.innerHTML = `<p class="empty">Tap an event.</p>`; return; }
+  if (!ev) {
+    box.innerHTML = `<p class="empty">Tap an event.</p>`;
+    resetSheetBodyScroll();
+    return;
+  }
   selectedId = ev.id;
   selectedDate = ev.date;
   const d = parse(ev.date);
@@ -1419,6 +1434,7 @@ function showDetail(ev, dateStr) {
        ${flag(x.country)}${ico(x.cat)}<span class="tag ${x.impact}">${x.impact}</span><span>${evTitle(x)}</span></div>`).join("")}
   `;
   openSheet();
+  resetSheetBodyScroll();
   render();
 }
 
@@ -1478,10 +1494,12 @@ function openSheet() {
     }
   }
   bindSheet();
+  resetSheetBodyScroll();
 }
 function closeSheet() {
   if (_sheetClosing) return;
   _sheetClosing = true;
+  resetSheetBodyScroll();
   const box = document.getElementById("detail");
   const dim = document.getElementById("sheetDim");
   if (box) {
