@@ -14,35 +14,25 @@
   50% { transform: scale(1.18); box-shadow: 0 0 18px rgba(124,92,255,.85), 0 0 22px rgba(34,211,238,.35); }
 }
 .brand-type {
-  display: inline-grid;
+  display: inline-block;
   vertical-align: bottom;
-  align-items: center;
-  justify-items: start;
-}
-.brand-type::after {
-  content: attr(data-text);
-  grid-area: 1 / 1;
-  white-space: nowrap;
-  visibility: hidden;
-  pointer-events: none;
 }
 .brand-type-text {
-  grid-area: 1 / 1;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 0;
   border-right: 2px solid var(--cyan);
-  width: 0;
-  padding-right: 3px;
   box-sizing: content-box;
-  /* 9 letters in "Workfolio"; caret fades once when typing ends (.12s + 1.2s = 1.32s) */
+  vertical-align: bottom;
   animation:
-    brandType 1.2s steps(9, end) .12s forwards,
-    brandCaretFade .28s ease 1.32s forwards;
+    brandType 1.15s steps(9, end) .1s forwards,
+    brandCaretFade .3s ease 1.25s forwards;
 }
 @keyframes brandType {
-  from { width: 0; }
-  to { width: calc(100% + 3px); }
+  from { max-width: 0; }
+  /* generous: wider than "Workfolio" at Inter 800 with letter-spacing */
+  to { max-width: 12ch; }
 }
 @keyframes brandCaretFade {
   from { border-right-color: var(--cyan); }
@@ -50,7 +40,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .brand-type-text {
-    width: calc(100% + 3px) !important;
+    max-width: none !important;
+    overflow: visible !important;
     animation: none !important;
     border-right-color: transparent !important;
   }
