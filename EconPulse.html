@@ -1185,7 +1185,7 @@ function pickInf(code) {
       <b>Reference</b><span>${r.refPeriod}<br>${whenHTML(r.refDate,r.refTime,r.refTz)}</span>
       <b>Next print</b><span>${r.nextPeriod}<br>${whenHTML(r.nextDate,r.nextTime,r.nextTz)}</span>
     </div>
-    <p>Figures follow Trading Economics country-list order (Last ↓). Values refreshed via <code>scripts/refresh_inflation.py</code> (feed/API; last write 2026-09-24T02:04:50+08:00). US print cross-checked vs BLS when available.</p>
+    <p>Figures refreshed from the Trading Economics country-list (https://tradingeconomics.com/country-list/inflation-rate) as of Thu 24 Sep 2026. Weekday actuals routines auto-check via <code>scripts/refresh_inflation.py</code>; prefer official agency prints when the calendar CPI conflicts.</p>
     <p style="color:var(--muted);font-size:12px">Argentina and Turkey are the red 10%+ countries. Everyone else uses the 0–7 band so the pack stays readable.</p>
   `;
 }
