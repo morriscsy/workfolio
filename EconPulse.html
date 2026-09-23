@@ -251,9 +251,14 @@
   #tipcard p { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
   #tipcard .kv { font-size: 12px; margin: 8px 0; }
 
-  .sheet-head, .sheet-close, .sheet-dim { display: none; }
-  .sheet-handle { display: none; }
+  .sheet-head, .sheet-foot, .sheet-close, .sheet-x, .sheet-dim, .sheet-handle { display: none; }
   .sheet-body { min-height: 0; }
+  html.sheet-open, html.sheet-open body {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+  html.sheet-open .sheet-body { touch-action: auto; }
   @media (max-width: 800px) {
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -316,12 +321,13 @@
     .detail {
       position: fixed; left: 0; right: 0; bottom: 0;
       display: flex; flex-direction: column;
-      max-height: min(88vh, 760px);
+      max-height: min(92dvh, 92vh);
       min-height: 0;
       overflow: hidden;
       border-radius: 18px 18px 0 0;
       z-index: 40;
       padding: 0;
+      padding-bottom: env(safe-area-inset-bottom);
       background: var(--panel-solid);
       transform: translateY(110%);
       transition: transform .22s ease;
@@ -331,40 +337,65 @@
     .sheet-head {
       display: block;
       flex: 0 0 auto;
-      position: sticky; top: 0;
+      position: relative;
       z-index: 2;
       background: var(--panel-solid);
-      padding: calc(8px + env(safe-area-inset-top, 0px)) 16px 10px;
+      padding: 8px 52px 8px 16px;
+      min-height: 44px;
       border-bottom: 1px solid rgba(124,58,237,0.18);
     }
     .sheet-handle {
       display: block;
       width: 40px; height: 4px; border-radius: 99px;
       background: rgba(167,139,250,0.45);
-      margin: 0 auto 10px;
+      margin: 0 auto;
+      box-sizing: content-box;
+      padding: 14px 48px;
+      background-clip: content-box;
+      touch-action: none;
     }
-    .sheet-close {
-      display: block; width: 100%;
-      min-height: 48px;
-      margin: 0;
-      border-radius: 12px;
-      font-size: 16px; font-weight: 700;
-      color: #f5f3ff;
-      background: linear-gradient(135deg, #7c3aed, #6d28d9);
-      border: 1px solid rgba(167,139,250,0.55);
-      box-shadow: 0 0 16px rgba(124,58,237,0.35);
+    .sheet-x {
+      display: flex; align-items: center; justify-content: center;
+      position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+      min-width: 44px; min-height: 44px; width: 44px; height: 44px;
+      padding: 0; margin: 0; border: none; border-radius: 12px;
+      background: transparent; color: var(--violet-soft);
+      font-size: 28px; line-height: 1; font-weight: 400;
+      -webkit-tap-highlight-color: transparent;
     }
-    .sheet-close:hover {
-      color: #fff;
-      border-color: rgba(196,181,253,0.7);
-    }
+    .sheet-x:hover { color: #fff; background: rgba(124,58,237,0.18); }
     .sheet-body {
       flex: 1 1 auto;
       min-height: 0;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
-      padding: 14px 16px calc(20px + env(safe-area-inset-bottom));
+      touch-action: auto;
+      padding: 14px 16px;
+    }
+    .sheet-foot {
+      display: block;
+      flex: 0 0 auto;
+      z-index: 2;
+      background: var(--panel-solid);
+      padding: 10px 16px 12px;
+      border-top: 1px solid rgba(124,58,237,0.18);
+    }
+    .sheet-close {
+      display: block; width: 100%;
+      min-height: 52px;
+      margin: 0;
+      border-radius: 12px;
+      font-size: 17px; font-weight: 700;
+      color: #f5f3ff;
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      border: 1px solid rgba(167,139,250,0.55);
+      box-shadow: 0 0 16px rgba(124,58,237,0.35);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sheet-close:hover {
+      color: #fff;
+      border-color: rgba(196,181,253,0.7);
     }
     #tipcard {
       left: 10px !important; right: 10px; width: auto; max-width: none;
@@ -452,13 +483,17 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
+  <!-- ep-sheet:20260923b -->
   <aside class="detail" id="detail">
     <div class="sheet-head">
       <div class="sheet-handle" aria-hidden="true"></div>
-      <button type="button" class="sheet-close" id="sheetClose">Done</button>
+      <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
     </div>
     <div class="sheet-body" id="sheetBody">
       <p class="empty">Tap an event.</p>
+    </div>
+    <div class="sheet-foot">
+      <button type="button" class="sheet-close" id="sheetClose">Done</button>
     </div>
   </aside>
   <div class="sheet-dim" id="sheetDim"></div>
@@ -1337,6 +1372,7 @@ function renderNext() {
 }
 
 function showDetail(ev, dateStr) {
+  if (_sheetClosing) return;
   const box = document.getElementById("sheetBody") || document.getElementById("detail");
   if (!ev && dateStr) {
     const list = eventsOn(dateStr);
@@ -1377,52 +1413,97 @@ function showDetail(ev, dateStr) {
 }
 
 let _sheetBound = false;
-let _bodyOverflowPrev = "";
+let _sheetScrollY = 0;
+let _sheetClosing = false;
 function bindSheet() {
   if (_sheetBound) return;
   _sheetBound = true;
   const close = document.getElementById("sheetClose");
+  const xBtn = document.getElementById("sheetX");
   const dim = document.getElementById("sheetDim");
-  const head = document.querySelector("#detail .sheet-head");
-  if (close) close.addEventListener("click", closeSheet);
-  if (dim) dim.addEventListener("click", closeSheet);
+  const handle = document.querySelector("#detail .sheet-handle");
+  const bindDismiss = (el) => {
+    if (!el) return;
+    const go = (e) => {
+      if (e.type === "touchend") e.preventDefault();
+      e.stopPropagation();
+      closeSheet();
+    };
+    el.addEventListener("click", go);
+    el.addEventListener("touchend", go, { passive: false });
+  };
+  bindDismiss(close);
+  bindDismiss(xBtn);
+  bindDismiss(dim);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && document.getElementById("detail")?.classList.contains("open")) closeSheet();
   });
-  // Light swipe-down on sheet head / handle to dismiss
+  // Swipe-down ONLY on .sheet-handle (not whole head / not Done)
   let startY = null;
-  const onStart = (e) => { startY = e.touches?.[0]?.clientY ?? null; };
-  const onMove = (e) => {
-    if (startY == null) return;
-    const y = e.touches?.[0]?.clientY;
-    if (y != null && y - startY > 80) { startY = null; closeSheet(); }
-  };
-  const onEnd = () => { startY = null; };
-  if (head) {
-    head.addEventListener("touchstart", onStart, { passive: true });
-    head.addEventListener("touchmove", onMove, { passive: true });
-    head.addEventListener("touchend", onEnd);
+  if (handle) {
+    handle.addEventListener("touchstart", (e) => {
+      startY = e.touches?.[0]?.clientY ?? null;
+    }, { passive: true });
+    handle.addEventListener("touchmove", (e) => {
+      if (startY == null) return;
+      const y = e.touches?.[0]?.clientY;
+      if (y != null && y - startY > 100) { startY = null; closeSheet(); }
+    }, { passive: true });
+    handle.addEventListener("touchend", () => { startY = null; });
   }
 }
 function openSheet() {
   const box = document.getElementById("detail");
   const dim = document.getElementById("sheetDim");
   if (isPhone()) {
+    const already = box.classList.contains("open");
     box.classList.add("open");
     if (dim) dim.classList.add("on");
-    _bodyOverflowPrev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    if (!already) {
+      _sheetScrollY = window.scrollY || window.pageYOffset || 0;
+      document.documentElement.classList.add("sheet-open");
+      document.body.style.top = (-_sheetScrollY) + "px";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    }
   }
   bindSheet();
 }
 function closeSheet() {
-  document.getElementById("detail").classList.remove("open");
+  if (_sheetClosing) return;
+  _sheetClosing = true;
+  const box = document.getElementById("detail");
   const dim = document.getElementById("sheetDim");
+  if (box) {
+    box.classList.remove("open");
+    box.style.pointerEvents = "none";
+  }
   if (dim) dim.classList.remove("on");
-  document.body.style.overflow = _bodyOverflowPrev || "";
+  document.documentElement.classList.remove("sheet-open");
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+  document.body.style.overflow = "";
+  window.scrollTo(0, _sheetScrollY || 0);
+  // Brief full-screen blocker kills click-through to agenda underneath
+  let blocker = document.getElementById("sheetClickBlock");
+  if (!blocker) {
+    blocker = document.createElement("div");
+    blocker.id = "sheetClickBlock";
+    blocker.setAttribute("aria-hidden", "true");
+    blocker.style.cssText = "position:fixed;inset:0;z-index:55;background:transparent;touch-action:none;";
+    document.body.appendChild(blocker);
+  }
+  blocker.style.display = "block";
+  setTimeout(() => {
+    if (box) box.style.pointerEvents = "";
+    blocker.style.display = "none";
+    _sheetClosing = false;
+  }, 400);
 }
 
 function pick(id) {
+  if (_sheetClosing) return;
   const ev = EVENTS.find(e => e.id === id);
   if (ev) showDetail(ev);
 }
@@ -1510,6 +1591,7 @@ function render() {
 }
 
 function selectDay(id) {
+  if (_sheetClosing) return;
   selectedDate = id;
   cursor = parse(id);
   const list = eventsOn(id);
