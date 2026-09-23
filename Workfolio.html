@@ -32,6 +32,7 @@
   white-space: nowrap;
   border-right: 2px solid var(--cyan);
   width: 0;
+  padding-right: 3px;
   box-sizing: content-box;
   /* 9 letters in "Workfolio"; caret fades once when typing ends (.12s + 1.2s = 1.32s) */
   animation:
@@ -40,7 +41,7 @@
 }
 @keyframes brandType {
   from { width: 0; }
-  to { width: 100%; }
+  to { width: calc(100% + 3px); }
 }
 @keyframes brandCaretFade {
   from { border-right-color: var(--cyan); }
@@ -48,7 +49,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .brand-type-text {
-    width: 100% !important;
+    width: calc(100% + 3px) !important;
     animation: none !important;
     border-right-color: transparent !important;
   }

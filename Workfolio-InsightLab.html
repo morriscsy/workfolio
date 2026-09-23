@@ -12,34 +12,46 @@
   50% { transform: scale(1.18); box-shadow: 0 0 18px rgba(124,92,255,.85), 0 0 22px rgba(34,211,238,.35); }
 }
 .brand-type {
+  display: inline-grid;
+  vertical-align: bottom;
+  align-items: center;
+  justify-items: start;
+}
+.brand-type::after {
+  content: attr(data-text);
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  visibility: hidden;
+  pointer-events: none;
+}
+.brand-type-text {
+  grid-area: 1 / 1;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid var(--cyan);
   width: 0;
-  vertical-align: bottom;
+  padding-right: 3px;
+  box-sizing: content-box;
+  /* 9 letters in "Workfolio"; caret fades once when typing ends (.12s + 1.2s = 1.32s) */
   animation:
-    brandType 1.35s steps(9, end) .15s forwards,
-    brandCaret 2.1s linear .15s forwards;
+    brandType 1.2s steps(9, end) .12s forwards,
+    brandCaretFade .28s ease 1.32s forwards;
 }
 @keyframes brandType {
   from { width: 0; }
-  to { width: 9ch; }
+  to { width: calc(100% + 3px); }
 }
-@keyframes brandCaret {
-  0%, 10% { border-right-color: var(--cyan); }
-  15% { border-right-color: transparent; }
-  20%, 30% { border-right-color: var(--cyan); }
-  35% { border-right-color: transparent; }
-  40%, 50% { border-right-color: var(--cyan); }
-  55% { border-right-color: transparent; }
-  60%, 70% { border-right-color: var(--cyan); }
-  75% { border-right-color: transparent; }
-  80% { border-right-color: var(--cyan); }
-  100% { border-right-color: transparent; }
+@keyframes brandCaretFade {
+  from { border-right-color: var(--cyan); }
+  to { border-right-color: transparent; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-type { width: 9ch !important; animation: none !important; border-right-color: transparent !important; }
+  .brand-type-text {
+    width: calc(100% + 3px) !important;
+    animation: none !important;
+    border-right-color: transparent !important;
+  }
 }
 
 :root {
@@ -388,7 +400,7 @@ img, svg { max-width: 100%; height: auto; }
 </head>
 <body>
 <nav class="nav"><div class="nav-inner">
-  <a class="brand" href="Workfolio.html"><span class="dot"></span><span class="brand-type" data-text="Workfolio">Workfolio</span></a>
+  <a class="brand" href="Workfolio.html"><span class="dot"></span><span class="brand-type" data-text="Workfolio"><span class="brand-type-text">Workfolio</span></span></a>
         <div class="nav-links"><span class="nav-pill" aria-hidden="true"></span>
         <a href="Workfolio.html">Home</a>
         <a href="Workfolio-Data.html">Analytica</a>
