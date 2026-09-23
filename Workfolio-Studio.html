@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<meta http-equiv="refresh" content="8; url=Workfolio-Finance.html"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Morris Chow — Studio</title>
+<title>Morris Chow — Studio (retired)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -68,7 +69,7 @@ a { color:var(--cyan); }
   max-width:1120px; margin:0 auto; padding:12px 22px;
   display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; justify-content:space-between;
 }
-.brand { font-weight:800; letter-spacing:-.02em; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:8px; font-size:1.15rem; }
+.brand { position:relative; z-index:2; flex:0 0 auto; font-weight:800; letter-spacing:-.02em; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:8px; }
 .brand .dot { width:11px; height:11px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--cyan)); box-shadow:0 0 12px rgba(124,92,255,.6); animation: brandDotPulse 2.4s ease-in-out infinite; }
 .nav-links {
   position: relative;
@@ -104,6 +105,21 @@ a { color:var(--cyan); }
 }
 .nav-links a:hover { color: #fff; }
 .nav-links a.active { color: #fff; }
+
+.nav-links { position:relative; z-index:1; margin-left:auto; }
+@media (max-width: 820px) {
+  .nav-inner { align-items:flex-start; }
+  .nav-links {
+    width:100%; flex:1 1 100%; margin-left:0; margin-top:4px;
+    justify-content:space-between; gap:4px; overflow:visible;
+  }
+  .nav-links a { flex:1 1 auto; text-align:center; justify-content:center; padding:9px 8px; font-size:.78rem; }
+}
+@media (max-width: 520px) {
+  .nav-links { gap:6px; padding:6px; border-radius:16px; }
+  .nav-links a { font-size:.72rem; padding:8px 6px; min-height:40px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav-pill, .nav-links a { transition: none; }
 }
@@ -223,9 +239,9 @@ body { overflow-x: clip; }
   display:grid; grid-template-columns:minmax(0,1.1fr) minmax(200px,.85fr);
   gap:16px 22px; align-items:center; position:relative; overflow:hidden;
 }
-.hero-copy { position:relative; z-index:2; min-width:0; }
+.hero-copy { position:relative; z-index:3; min-width:0; }
 .hero-stage {
-  position:relative; z-index:2; height:220px; min-height:200px;
+  position:relative; z-index:1; height:220px; min-height:200px;
   perspective:1000px; display:flex; align-items:center; justify-content:center;
 }
 .hero-3d {
@@ -376,14 +392,21 @@ img, svg { max-width: 100%; height: auto; }
 <body>
 <nav class="nav"><div class="nav-inner">
   <a class="brand" href="Workfolio.html"><span class="dot"></span><span class="brand-type" data-text="Workfolio">Workfolio</span></a>
-        <div class="nav-links"><span class="nav-pill" aria-hidden="true"></span>
-        <a href="Workfolio.html">Home</a>
-        <a href="Workfolio-Studio.html" class="active">Studio</a>
+                <div class="nav-links"><span class="nav-pill" aria-hidden="true"></span>
+        <a href="Workfolio.html" class="active">Home</a>
         <a href="Workfolio-Data.html">Data</a>
-        <a href="Workfolio-Finance.html">Finance</a>
-        <a href="Workfolio-UIUX.html">UI/UX</a>
-      </div>
-</div></nav>
+        <a href="Workfolio-Finance.html">StratBay</a>
+        <a href="Workfolio-UIUX.html">UICraft</a>
+        <a href="Workfolio-InsightLab.html">InsightLab</a>
+      </div></div></nav>
+<div class="wrap" id="studio-retired-banner" style="padding-top:18px">
+  <div style="border:1px solid #243152;border-radius:14px;padding:14px 16px;background:rgba(16,24,42,.9);margin-bottom:8px">
+    <strong>Studio is retired.</strong>
+    Builds live under <a href="Workfolio-Finance.html" style="color:#22D3EE;font-weight:700">StratBay</a>;
+    research notes (HKMA Quantum) moved to <a href="Workfolio-InsightLab.html" style="color:#22D3EE;font-weight:700">InsightLab</a>.
+  </div>
+</div>
+
 <div class="wrap">
 
 <header class="hero hero-split" id="hero">
@@ -495,12 +518,12 @@ img, svg { max-width: 100%; height: auto; }
     pill.setAttribute('aria-hidden', 'true');
     nav.prepend(pill);
   }
-  const colors = {
+    const colors = {
     home: 'linear-gradient(145deg, rgba(56,189,248,.5), rgba(37,99,235,.35))',
-    studio: 'linear-gradient(145deg, rgba(52,211,153,.45), rgba(16,185,129,.3))',
     data: 'linear-gradient(145deg, rgba(251,113,133,.45), rgba(244,63,94,.3))',
-    finance: 'linear-gradient(145deg, rgba(244,114,182,.45), rgba(219,39,119,.3))',
-    'ui/ux': 'linear-gradient(145deg, rgba(251,191,36,.5), rgba(245,158,11,.3))',
+    stratbay: 'linear-gradient(145deg, rgba(244,114,182,.45), rgba(219,39,119,.3))',
+    uicraft: 'linear-gradient(145deg, rgba(251,191,36,.5), rgba(245,158,11,.3))',
+    insightlab: 'linear-gradient(145deg, rgba(52,211,153,.45), rgba(16,185,129,.3))',
   };
   const key = (el) => (el?.textContent || '').trim().toLowerCase();
   const move = (el) => {
