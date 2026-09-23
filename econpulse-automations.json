@@ -1,29 +1,74 @@
 {
-  "updatedAt": "2026-09-23T22:30:00+08:00",
+  "updatedAt": "2026-09-23T22:38:43.208805+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
+  "batches": [
+    {
+      "id": "morning",
+      "label": "Morning batch · Weekdays ~08:40 HKT",
+      "order": 1
+    },
+    {
+      "id": "evening",
+      "label": "Evening batch · Weekdays ~20:45 HKT",
+      "order": 2
+    }
+  ],
   "automations": [
     {
       "id": "econpulse-actuals-morning-refresh",
       "name": "Actuals morning refresh",
       "description": "Weekday Asia/early Actuals backfill → Pages",
+      "batchId": "morning",
+      "batchLabel": "Morning batch · Weekdays ~08:40 HKT",
+      "batchOrder": 1,
+      "covers": [
+        "Asia CPI/labor (JP/CN/AU/HK)",
+        "Early UK/EZ PMI/CPI",
+        "Overnight US spillover due by ~08:40 HKT"
+      ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
       "lastRunAt": "2026-09-23T08:48:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Asia/early Actuals refresh completed; Pages updated.",
-      "nextRunAt": "2026-09-24T08:40:00+08:00"
+      "lastSummary": "Morning Asia/early Actuals refresh completed; no material fills this run.",
+      "nextRunAt": "2026-09-24T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
       "name": "Actuals evening refresh",
       "description": "Weekday after-US-morning Actuals → Pages",
+      "batchId": "evening",
+      "batchLabel": "Evening batch · Weekdays ~20:45 HKT",
+      "batchOrder": 2,
+      "covers": [
+        "US morning data window (BLS/Census/BEA/DOL/ISM/S&P Global)",
+        "Related prints due by ~20:45 HKT",
+        "Earlier blanks caught in the same pass"
+      ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
       "lastRunAt": "2026-09-23T21:12:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening US-morning Actuals refresh completed; Pages updated.",
-      "nextRunAt": "2026-09-24T20:45:00+08:00"
+      "lastSummary": "Evening US-morning Actuals refresh completed; Pages updated (US flash PMI Sep, HK CPI Aug).",
+      "nextRunAt": "2026-09-24T20:45:00+08:00",
+      "lastItems": [
+        {
+          "id": "us-flash-pmi-sep",
+          "title": "US flash PMI mfg + services (Sep)",
+          "actualShort": "Comp 58.4 · Svc 58.7 · Mfg 57.0",
+          "status": "released",
+          "when": "2026-09-23T21:45:00+08:00"
+        },
+        {
+          "id": "hk-cpi-aug",
+          "title": "Hong Kong CPI (Aug)",
+          "actualShort": "+1.7% y/y · und. +1.9%",
+          "status": "released",
+          "when": "2026-09-23T16:30:00+08:00"
+        }
+      ]
     }
   ]
 }
