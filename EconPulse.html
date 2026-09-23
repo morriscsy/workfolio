@@ -68,6 +68,14 @@
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
   .brand p { margin: 0; color: var(--muted); font-size: 12px; }
+  .hub-link {
+    display: inline-block; margin-top: 2px;
+    font-size: 11px; font-weight: 650; letter-spacing: 0.04em;
+    color: var(--cyan-soft); text-decoration: none;
+    border-bottom: 1px solid rgba(103,232,249,0.25);
+    padding-bottom: 1px; width: fit-content;
+  }
+  .hub-link:hover { color: #a5f3fc; border-bottom-color: rgba(165,243,252,0.55); }
   .nextup {
     background: rgba(8,11,20,0.7);
     border: 1px solid rgba(124,58,237,0.28);
@@ -276,6 +284,7 @@
     }
     .brand h1 { font-size: 20px; }
     .brand p { display: none; }
+    .hub-link { font-size: 11px; margin-top: 4px; }
     .nextup { min-width: 0; max-width: none; width: 100%; padding: 10px 12px; }
     .nextup .v { font-size: 14px; }
     .toolbar {
@@ -456,6 +465,7 @@
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
     <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 23 Sep 2026 · public macro releases · Futu checklist fill</p>
+    <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
   </div>
   <div class="nextup" id="nextup"></div>
 </header>

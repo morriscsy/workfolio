@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#080b14">
+<title>EconPulse Automations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg0: #080b14;
+    --bg1: #0d1225;
+    --panel: rgba(14,18,32,0.82);
+    --text: #e8eaf0;
+    --muted: #a0a8c0;
+    --dim: #6b7280;
+    --violet: #7c3aed;
+    --violet-soft: #a78bfa;
+    --cyan: #06b6d4;
+    --cyan-soft: #67e8f9;
+    --ok: #10b981;
+    --ok-soft: #34d399;
+    --fail: #ef4444;
+    --fail-soft: #f87171;
+    --skip: #f59e0b;
+    --skip-soft: #fbbf24;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; color: var(--text);
+    font: 14px/1.45 Inter, ui-sans-serif, system-ui, sans-serif; }
+  body {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    background: linear-gradient(135deg, #080b14 0%, #0d1225 50%, #080b14 100%);
+    position: relative; overflow-x: hidden;
+  }
+  body::before, body::after {
+    content: ""; position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    filter: blur(10px);
+  }
+  body::before {
+    width: 520px; height: 520px; top: -140px; left: -80px;
+    background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, transparent 70%);
+  }
+  body::after {
+    width: 480px; height: 480px; bottom: -120px; right: -60px;
+    background: radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto;
+    padding: 22px 18px 40px; width: 100%; }
+  header { margin-bottom: 18px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--violet-soft); font-weight: 600; margin-bottom: 6px;
+  }
+  h1 {
+    margin: 0 0 8px; font-size: 26px; font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(90deg, #e8eaf0 0%, #a78bfa 55%, #67e8f9 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .lede { margin: 0 0 14px; color: var(--muted); font-size: 13px; max-width: 52ch; }
+  .navrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+  a.cta, a.ghost {
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none; font-weight: 650; font-size: 13px;
+    border-radius: 10px; padding: 8px 14px;
+  }
+  a.cta {
+    color: #e9d5ff;
+    background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(6,182,212,0.28));
+    border: 1px solid rgba(124,58,237,0.5);
+    box-shadow: 0 0 14px rgba(124,58,237,0.22);
+  }
+  a.ghost {
+    color: var(--cyan-soft);
+    background: rgba(8,11,20,0.55);
+    border: 1px solid rgba(6,182,212,0.28);
+  }
+  a.ghost:hover { border-color: rgba(6,182,212,0.55); }
+  .meta {
+    font-size: 12px; color: var(--dim); margin: 10px 0 18px;
+  }
+  .meta strong { color: var(--muted); font-weight: 600; }
+  .err {
+    background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.35);
+    color: var(--fail-soft); border-radius: 12px; padding: 12px 14px;
+    font-size: 13px; margin-bottom: 16px;
+  }
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+  .card {
+    background: rgba(14,18,32,0.82);
+    border: 1px solid rgba(124,58,237,0.22);
+    border-radius: 16px; padding: 16px 16px 14px;
+    box-shadow: 0 0 22px rgba(124,58,237,0.10);
+  }
+  .card-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+  .name { margin: 0; font-size: 17px; font-weight: 750; letter-spacing: -0.02em; }
+  .desc { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+  .badge {
+    flex-shrink: 0; font-size: 11px; font-weight: 750; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 5px 9px; border-radius: 999px;
+    border: 1px solid transparent;
+  }
+  .badge.ok { color: var(--ok-soft); background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.35); }
+  .badge.fail { color: var(--fail-soft); background: rgba(239,68,68,0.14); border-color: rgba(239,68,68,0.35); }
+  .badge.skip { color: var(--skip-soft); background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.35); }
+  .badge.unk { color: var(--muted); background: rgba(160,168,192,0.1); border-color: rgba(160,168,192,0.25); }
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-top: 14px;
+  }
+  @media (max-width: 520px) {
+    h1 { font-size: 22px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+  .field .k {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--violet-soft); font-weight: 650; margin-bottom: 2px;
+  }
+  .field .v { font-size: 13px; font-weight: 600; color: var(--text); }
+  .field .s { font-size: 11.5px; color: var(--dim); margin-top: 2px; }
+  .summary {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid rgba(124,58,237,0.16);
+    font-size: 13px; color: var(--muted);
+  }
+  .summary strong { color: var(--text); font-weight: 650; }
+  footer {
+    margin-top: 22px; font-size: 11.5px; color: var(--dim); text-align: center;
+  }
+  footer a { color: var(--cyan-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">SuperGrok · HKT</div>
+      <h1>EconPulse Automations</h1>
+      <p class="lede">SuperGrok routines that keep the calendar Actuals fresh. The public calendar stays announcement-only — no AUTO event spam.</p>
+      <div class="navrow">
+        <a class="cta" href="EconPulse.html">Open calendar</a>
+        <a class="ghost" href="EconPulse.html">← Back to calendar</a>
+      </div>
+      <div class="meta" id="meta">Loading status…</div>
+    </header>
+    <div id="err" class="err" hidden></div>
+    <div class="cards" id="cards"></div>
+    <footer>
+      Status source: <a href="econpulse-automations.json">econpulse-automations.json</a>
+      · timezone Asia/Shanghai (HKT)
+    </footer>
+  </div>
+<script>
+(function () {
+  const TZ = 'Asia/Shanghai';
+  const cardsEl = document.getElementById('cards');
+  const metaEl = document.getElementById('meta');
+  const errEl = document.getElementById('err');
+
+  function fmtHKT(iso) {
+    if (!iso) return { abs: '—', rel: '' };
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return { abs: String(iso), rel: '' };
+    const abs = new Intl.DateTimeFormat('en-GB', {
+      timeZone: TZ, weekday: 'short', day: 'numeric', month: 'short',
+      year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(d) + ' HKT';
+    return { abs, rel: relative(d) };
+  }
+
+  function relative(d) {
+    const now = Date.now();
+    const diff = d.getTime() - now;
+    const past = diff < 0;
+    const sec = Math.round(Math.abs(diff) / 1000);
+    const min = Math.round(sec / 60);
+    const hr = Math.round(min / 60);
+    const day = Math.round(hr / 24);
+    let s;
+    if (sec < 60) s = 'just now';
+    else if (min < 60) s = min + 'm';
+    else if (hr < 48) s = hr + 'h';
+    else s = day + 'd';
+    if (s === 'just now') return s;
+    return past ? s + ' ago' : 'in ' + s;
+  }
+
+  function badge(status) {
+    const s = String(status || '').toLowerCase();
+    if (s === 'succeeded' || s === 'ok' || s === 'success') return { cls: 'ok', label: 'ok' };
+    if (s === 'failed' || s === 'fail' || s === 'error') return { cls: 'fail', label: 'fail' };
+    if (s === 'skipped' || s === 'skip' || s === 'quiet') return { cls: 'skip', label: 'skip' };
+    return { cls: 'unk', label: s || '—' };
+  }
+
+  function field(k, abs, rel) {
+    return '<div class="field"><div class="k">' + k + '</div>' +
+      '<div class="v">' + esc(abs) + '</div>' +
+      (rel ? '<div class="s">' + esc(rel) + '</div>' : '') + '</div>';
+  }
+
+  function esc(t) {
+    return String(t == null ? '' : t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function render(data, fetchedAt) {
+    const autos = (data && data.automations) || [];
+    const updated = fmtHKT(data && data.updatedAt);
+    const fetchFmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: TZ, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    }).format(fetchedAt);
+    metaEl.innerHTML = 'Fetched <strong>' + fetchFmt + ' HKT</strong>' +
+      (updated.abs !== '—' ? ' · JSON updated <strong>' + esc(updated.abs) + '</strong>'
+        + (updated.rel ? ' (' + esc(updated.rel) + ')' : '') : '');
+
+    if (!autos.length) {
+      cardsEl.innerHTML = '<div class="err">No automations listed in JSON.</div>';
+      return;
+    }
+
+    cardsEl.innerHTML = autos.map(function (a) {
+      const b = badge(a.lastStatus);
+      const last = fmtHKT(a.lastRunAt);
+      const next = fmtHKT(a.nextRunAt);
+      return '<article class="card">' +
+        '<div class="card-top">' +
+          '<div><h2 class="name">' + esc(a.name || a.id) + '</h2>' +
+            '<p class="desc">' + esc(a.description || '') + '</p></div>' +
+          '<span class="badge ' + b.cls + '">' + esc(b.label) + '</span>' +
+        '</div>' +
+        '<div class="grid">' +
+          field('Schedule', a.scheduleLabel || a.cron || '—', a.cron ? 'cron ' + a.cron : '') +
+          field('Last run', last.abs, last.rel) +
+          field('Next run', next.abs, next.rel) +
+          field('Status', String(a.lastStatus || '—'), '') +
+        '</div>' +
+        '<div class="summary"><strong>Last summary</strong> — ' +
+          esc(a.lastSummary || 'n/a') + '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function showErr(msg) {
+    errEl.hidden = false;
+    errEl.textContent = msg;
+    metaEl.textContent = 'Status unavailable';
+  }
+
+  const url = 'econpulse-automations.json?t=' + Date.now();
+  fetch(url, { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' fetching status JSON');
+      return r.json();
+    })
+    .then(function (data) { render(data, new Date()); })
+    .catch(function (e) {
+      showErr('Could not load econpulse-automations.json (' + (e && e.message ? e.message : e) + '). Hub will work once the status file is published.');
+      cardsEl.innerHTML = '';
+    });
+})();
+</script>
+</body>
+</html>
