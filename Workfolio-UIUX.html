@@ -185,8 +185,10 @@ h3 { margin:0; font-size:1.02rem; letter-spacing:-.01em; }
 .shot { aspect-ratio:16/9; background:#0b1220; border-bottom:1px solid var(--line); overflow:hidden; }
 .shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
 
+.shot { position: relative; }
 .deck-preview {
-  position: relative; width: 100%; height: 100%;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   background: #0b1220;
 }
 .deck-preview .deck-slide {
@@ -423,6 +425,7 @@ img, svg { max-width: 100%; height: auto; }
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
 }
 .ux-feature .shot img { width:100%; height:100%; object-fit:cover; display:block; min-height:280px; }
+.ux-feature .shot { position: relative; }
 .ux-feature .shot .deck-preview { min-height:280px; }
 .ux-card .shot .deck-preview { width:100%; height:100%; }
 .ux-feature .body {
@@ -445,7 +448,7 @@ img, svg { max-width: 100%; height: auto; }
 .ux-card:hover { transform: translateY(-3px); border-color: rgba(34,211,238,.35); box-shadow: 0 16px 40px rgba(34,211,238,.08); }
 .ux-card .shot {
   position:relative; aspect-ratio: 16/10; background:#020617;
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  overflow:hidden;
 }
 .ux-card .shot img, .ux-card .shot .gif {
   width:100%; height:100%; object-fit:cover; display:block; background:#0b1220;
@@ -514,7 +517,7 @@ img, svg { max-width: 100%; height: auto; }
   </div>
 
   <article class="ux-feature">
-    <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/lambokiwi/slide-01.jpg" alt="LamboKiwi portfolio" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+    <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/lambokiwi/slide-01.jpg" alt="LamboKiwi portfolio" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/lambokiwi/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="body">
       <div class="kind">Live Portfolio</div>
       <h3>Morris UX Portfolio</h3>
@@ -535,7 +538,7 @@ img, svg { max-width: 100%; height: auto; }
 
   <div class="ux-grid">
     <article class="ux-card">
-      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/techcase/slide-01.jpg" alt="TechCase" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/techcase/slide-01.jpg" alt="TechCase" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/techcase/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="body">
         <div class="kind">Case Study · E‑Commerce</div>
         <h3>TechCase</h3>
@@ -549,7 +552,7 @@ img, svg { max-width: 100%; height: auto; }
     </article>
 
     <article class="ux-card">
-      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/burgerholic/slide-01.jpg" alt="BurgerHolic" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/burgerholic/slide-01.jpg" alt="BurgerHolic" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/burgerholic/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="body">
         <div class="kind">Case Study · Food Ordering</div>
         <h3>BurgerHolic</h3>
@@ -563,7 +566,7 @@ img, svg { max-width: 100%; height: auto; }
     </article>
 
     <article class="ux-card">
-      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/covidcheck/slide-01.jpg" alt="CovidCheck" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/uicraft/cases/covidcheck/slide-01.jpg" alt="CovidCheck" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/uicraft/cases/covidcheck/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="body">
         <div class="kind">Case Study · Health / QR</div>
         <h3>CovidCheck</h3>
@@ -643,6 +646,6 @@ img, svg { max-width: 100%; height: auto; }
 </script>
 <!-- wf-swipe:20260923 -->
 <script src="assets/workfolio-swipe-tabs.js?v=7"></script>
-<script src="assets/workfolio-deck-preview.js"></script>
+<script src="assets/workfolio-deck-preview.js?v=2"></script>
 </body>
 </html>

@@ -183,8 +183,10 @@ h3 { margin:0; font-size:1.02rem; letter-spacing:-.01em; }
 .shot { aspect-ratio:16/9; background:#0b1220; border-bottom:1px solid var(--line); overflow:hidden; }
 .shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
 
+.shot { position: relative; }
 .deck-preview {
-  position: relative; width: 100%; height: 100%;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   background: #0b1220;
 }
 .deck-preview .deck-slide {
@@ -443,7 +445,7 @@ img, svg { max-width: 100%; height: auto; }
   <div class="section-head"><div><h2>Finance Projects</h2></div></div>
   <div class="grid-2">
     <article class="card">
-      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/stratbay/decks/nvidia/slide-01.jpg" alt="Nvidia Corporate Finance" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/stratbay/decks/nvidia/slide-01.jpg" alt="Nvidia Corporate Finance" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/nvidia/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="card-body">
         <h3>Corporate Finance — Nvidia</h3>
         <p>Full project PDF on GitHub.</p>
@@ -453,7 +455,7 @@ img, svg { max-width: 100%; height: auto; }
       </div>
     </article>
     <article class="card">
-      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/stratbay/decks/vitasoy/slide-01.jpg" alt="Vitasoy Financial Statement Analysis" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-02.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-03.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-04.jpg" alt="" loading="lazy" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-05.jpg" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="shot"><div class="deck-preview" data-no-swipe aria-hidden="true"><img class="deck-slide is-active" src="assets/stratbay/decks/vitasoy/slide-01.jpg" alt="Vitasoy Financial Statement Analysis" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-02.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-03.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-04.jpg" alt="" loading="eager" decoding="async"><img class="deck-slide" src="assets/stratbay/decks/vitasoy/slide-05.jpg" alt="" loading="eager" decoding="async"></div></div>
       <div class="card-body">
         <h3>Financial Statement Analysis — Vitasoy</h3>
         <p>Full project PDF on GitHub.</p>
@@ -627,6 +629,6 @@ img, svg { max-width: 100%; height: auto; }
 
 <!-- wf-swipe:20260923 -->
 <script src="assets/workfolio-swipe-tabs.js?v=7"></script>
-<script src="assets/workfolio-deck-preview.js"></script>
+<script src="assets/workfolio-deck-preview.js?v=2"></script>
 </body>
 </html>
