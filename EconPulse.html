@@ -251,7 +251,9 @@
   #tipcard p { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
   #tipcard .kv { font-size: 12px; margin: 8px 0; }
 
-  .sheet-close, .sheet-dim { display: none; }
+  .sheet-head, .sheet-close, .sheet-dim { display: none; }
+  .sheet-handle { display: none; }
+  .sheet-body { min-height: 0; }
   @media (max-width: 800px) {
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -307,26 +309,63 @@
     .mapbox { height: 260px; }
     table.inf { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .inf-head .filters { width: 100%; }
-    .sheet-close {
-      display: block; width: 100%; margin-bottom: 10px;
-      min-height: 44px;
-    }
     .sheet-dim.on {
       display: block; position: fixed; inset: 0;
       background: rgba(0,0,0,0.5); z-index: 35;
     }
     .detail {
       position: fixed; left: 0; right: 0; bottom: 0;
-      max-height: min(78vh, 720px);
+      display: flex; flex-direction: column;
+      max-height: min(88vh, 760px);
       min-height: 0;
+      overflow: hidden;
       border-radius: 18px 18px 0 0;
       z-index: 40;
-      padding: 14px 16px calc(20px + env(safe-area-inset-bottom));
+      padding: 0;
+      background: var(--panel-solid);
       transform: translateY(110%);
       transition: transform .22s ease;
       box-shadow: 0 -12px 40px rgba(0,0,0,0.4);
     }
     .detail.open { transform: translateY(0); }
+    .sheet-head {
+      display: block;
+      flex: 0 0 auto;
+      position: sticky; top: 0;
+      z-index: 2;
+      background: var(--panel-solid);
+      padding: calc(8px + env(safe-area-inset-top, 0px)) 16px 10px;
+      border-bottom: 1px solid rgba(124,58,237,0.18);
+    }
+    .sheet-handle {
+      display: block;
+      width: 40px; height: 4px; border-radius: 99px;
+      background: rgba(167,139,250,0.45);
+      margin: 0 auto 10px;
+    }
+    .sheet-close {
+      display: block; width: 100%;
+      min-height: 48px;
+      margin: 0;
+      border-radius: 12px;
+      font-size: 16px; font-weight: 700;
+      color: #f5f3ff;
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      border: 1px solid rgba(167,139,250,0.55);
+      box-shadow: 0 0 16px rgba(124,58,237,0.35);
+    }
+    .sheet-close:hover {
+      color: #fff;
+      border-color: rgba(196,181,253,0.7);
+    }
+    .sheet-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding: 14px 16px calc(20px + env(safe-area-inset-bottom));
+    }
     #tipcard {
       left: 10px !important; right: 10px; width: auto; max-width: none;
       bottom: calc(12px + env(safe-area-inset-bottom));
@@ -414,8 +453,13 @@
     <div id="board"></div>
   </section>
   <aside class="detail" id="detail">
-    <button type="button" class="sheet-close" id="sheetClose">Done</button>
-    <p class="empty">Tap an event.</p>
+    <div class="sheet-head">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <button type="button" class="sheet-close" id="sheetClose">Done</button>
+    </div>
+    <div class="sheet-body" id="sheetBody">
+      <p class="empty">Tap an event.</p>
+    </div>
   </aside>
   <div class="sheet-dim" id="sheetDim"></div>
 </main>
@@ -1080,7 +1124,7 @@ function pickInf(code) {
   document.querySelectorAll(".land").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   document.querySelectorAll("table.inf tr[data-code]").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   const r = INFLATION.find(x => x.code === code);
-  const box = document.getElementById("detail");
+  const box = document.getElementById("sheetBody") || document.getElementById("detail");
   if (!r) return;
   const d = r.last - r.prev;
   box.innerHTML = `
@@ -1293,7 +1337,7 @@ function renderNext() {
 }
 
 function showDetail(ev, dateStr) {
-  const box = document.getElementById("detail");
+  const box = document.getElementById("sheetBody") || document.getElementById("detail");
   if (!ev && dateStr) {
     const list = eventsOn(dateStr);
     if (!list.length) {
@@ -1303,12 +1347,11 @@ function showDetail(ev, dateStr) {
     }
     ev = list[0];
   }
-  if (!ev) { box.innerHTML = `<button type="button" class="sheet-close" id="sheetClose">Done</button><p class="empty">Tap an event.</p>`; bindSheet(); return; }
+  if (!ev) { box.innerHTML = `<p class="empty">Tap an event.</p>`; return; }
   selectedId = ev.id;
   selectedDate = ev.date;
   const d = parse(ev.date);
   box.innerHTML = `
-    <button type="button" class="sheet-close" id="sheetClose">Done</button>
     <div class="tag ${ev.impact}">${ev.impact}${ev.status==="released"?" · released":""}</div>
     <h3 style="margin-top:10px">${flag(ev.country)} ${ico(ev.cat,"detail-ico")} ${evTitle(ev)}</h3>
     <div class="meta">${d.toLocaleDateString("en-US",{weekday:"long", month:"long", day:"numeric", year:"numeric"})}
@@ -1333,11 +1376,33 @@ function showDetail(ev, dateStr) {
   render();
 }
 
+let _sheetBound = false;
+let _bodyOverflowPrev = "";
 function bindSheet() {
+  if (_sheetBound) return;
+  _sheetBound = true;
   const close = document.getElementById("sheetClose");
   const dim = document.getElementById("sheetDim");
-  if (close) close.onclick = closeSheet;
-  if (dim) dim.onclick = closeSheet;
+  const head = document.querySelector("#detail .sheet-head");
+  if (close) close.addEventListener("click", closeSheet);
+  if (dim) dim.addEventListener("click", closeSheet);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.getElementById("detail")?.classList.contains("open")) closeSheet();
+  });
+  // Light swipe-down on sheet head / handle to dismiss
+  let startY = null;
+  const onStart = (e) => { startY = e.touches?.[0]?.clientY ?? null; };
+  const onMove = (e) => {
+    if (startY == null) return;
+    const y = e.touches?.[0]?.clientY;
+    if (y != null && y - startY > 80) { startY = null; closeSheet(); }
+  };
+  const onEnd = () => { startY = null; };
+  if (head) {
+    head.addEventListener("touchstart", onStart, { passive: true });
+    head.addEventListener("touchmove", onMove, { passive: true });
+    head.addEventListener("touchend", onEnd);
+  }
 }
 function openSheet() {
   const box = document.getElementById("detail");
@@ -1345,6 +1410,8 @@ function openSheet() {
   if (isPhone()) {
     box.classList.add("open");
     if (dim) dim.classList.add("on");
+    _bodyOverflowPrev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
   }
   bindSheet();
 }
@@ -1352,6 +1419,7 @@ function closeSheet() {
   document.getElementById("detail").classList.remove("open");
   const dim = document.getElementById("sheetDim");
   if (dim) dim.classList.remove("on");
+  document.body.style.overflow = _bodyOverflowPrev || "";
 }
 
 function pick(id) {
@@ -1595,6 +1663,7 @@ function checkPrintAlerts() {
 setInterval(checkPrintAlerts, 15000);
 checkPrintAlerts();
 
+bindSheet();
 document.querySelectorAll("[data-view]").forEach(x => x.classList.toggle("active", x.dataset.view === view));
 renderNext();
 render();
