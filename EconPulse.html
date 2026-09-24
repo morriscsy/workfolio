@@ -53,6 +53,11 @@
     background: radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%);
   }
   header, .toolbar, main, .legend { position: relative; z-index: 1; }
+  /* Swipe shell: real box on phone; display:contents on desktop so grid still works */
+  .ep-swipe-wrap {
+    display: flex; flex-direction: column; flex: 1 1 auto;
+    min-height: 0; min-width: 0; position: relative; z-index: 1;
+  }
   header {
     display: flex; flex-direction: column; align-items: stretch; gap: 12px;
     padding: 22px 26px 16px;
@@ -172,6 +177,7 @@
       grid-template-rows: auto minmax(0, 1fr) auto;
       column-gap: 12px;
     }
+    .ep-swipe-wrap { display: contents; }
     header { grid-column: 1 / -1; }
     main { grid-column: 1; grid-row: 2; padding: 0 0 8px 18px; }
     body > .detail {
@@ -181,7 +187,7 @@
       position: relative;
       z-index: 1;
     }
-    body > .legend { grid-column: 1 / -1; grid-row: 3; }
+    .legend { grid-column: 1 / -1; grid-row: 3; }
     /* Fixed overlays: park in header track so they don't invent extra rows */
     body > .sheet-dim,
     body > #tipcard,
@@ -730,6 +736,7 @@
 </style>
 </head>
 <body>
+<div class="ep-swipe-wrap">
 <header>
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
@@ -772,8 +779,21 @@
     <div id="board"></div>
   </section>
 </main>
+<div class="legend cal-only" id="catLegend" data-no-swipe>
+  <span class="lg on" data-cat="all">All</span>
+  <span class="lg" data-cat="rates"></span>
+  <span class="lg" data-cat="inflation"></span>
+  <span class="lg" data-cat="labor"></span>
+  <span class="lg" data-cat="growth"></span>
+  <span class="lg" data-cat="housing"></span>
+  <span class="lg" data-cat="speech"></span>
+  <span class="lg" data-cat="trade"></span>
+  <span class="lg" data-cat="policy"></span>
+  <span>High = red chip · Medium = cyan chip</span>
+</div>
+</div><!-- /.ep-swipe-wrap -->
 <!-- ep-sheet:20260924e · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
-<aside class="detail" id="detail">
+<aside class="detail" id="detail" data-no-swipe>
   <div class="sheet-head">
     <div class="sheet-handle" aria-hidden="true"></div>
     <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
@@ -786,21 +806,9 @@
     <button type="button" class="sheet-close" id="sheetClose">Done</button>
   </div>
 </aside>
-<div class="sheet-dim" id="sheetDim"></div>
+<div class="sheet-dim" id="sheetDim" data-no-swipe></div>
 <div id="tipcard"></div>
 <div id="toasts"></div>
-<div class="legend cal-only" id="catLegend">
-  <span class="lg on" data-cat="all">All</span>
-  <span class="lg" data-cat="rates"></span>
-  <span class="lg" data-cat="inflation"></span>
-  <span class="lg" data-cat="labor"></span>
-  <span class="lg" data-cat="growth"></span>
-  <span class="lg" data-cat="housing"></span>
-  <span class="lg" data-cat="speech"></span>
-  <span class="lg" data-cat="trade"></span>
-  <span class="lg" data-cat="policy"></span>
-  <span>High = red chip · Medium = cyan chip</span>
-</div>
 <script>
 
 const TODAY = new Date(2026, 8, 24); // Thu 24 Sep 2026
@@ -1587,7 +1595,7 @@ function renderInflation() {
         <button type="button" class="${infSortKey==="te"?"active":""}" onclick="resetInfTeOrder()">TE order</button>
       </div>
     </div>
-    <div class="mapbox" id="mapbox">
+    <div class="mapbox" id="mapbox" data-no-swipe>
       <div class="map-tools">
         <button type="button" onclick="mapZoom(1.25)">+</button>
         <button type="button" onclick="mapZoom(0.8)">−</button>
@@ -2080,10 +2088,22 @@ function syncViewTabs() {
     x.setAttribute("aria-selected", on ? "true" : "false");
   });
 }
-document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => {
-  view = b.dataset.view;
+function setView(name) {
+  const allowed = ["month", "week", "agenda", "inflation"];
+  if (!allowed.includes(name) || name === view) {
+    if (allowed.includes(name)) { syncViewTabs(); render(); }
+    return;
+  }
+  view = name;
   syncViewTabs();
   render();
+}
+window.EconPulse = Object.assign(window.EconPulse || {}, {
+  setView,
+  getView: () => view,
+});
+document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => {
+  setView(b.dataset.view);
 });
 
 window.matchMedia("(max-width: 800px)").addEventListener("change", () => {
@@ -2224,5 +2244,6 @@ if (!(isPhone() && !location.hash.startsWith("#ev="))) {
 }
 
 </script>
+<script src="assets/econpulse-swipe-views.js?v=1"></script>
 </body>
 </html>
