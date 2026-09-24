@@ -331,7 +331,13 @@
   #tipcard .kv { font-size: 12px; margin: 8px 0; }
 
   .sheet-head, .sheet-foot, .sheet-close, .sheet-x, .sheet-dim, .sheet-handle { display: none; }
+  .sheet-title { margin-bottom: 4px; }
+  .sheet-title:empty { display: none; }
+  .sheet-title .tag { margin-bottom: 2px; }
+  .sheet-title h3 { margin: 8px 0 4px; font-size: 18px; font-weight: 750; letter-spacing: -0.02em; }
+  .sheet-title .meta { color: var(--muted); font-size: 12px; margin-bottom: 0; }
   .sheet-body { min-height: 0; }
+  .prev-under { display: none; }
   html.sheet-open, html.sheet-open body {
     overflow: hidden;
     overscroll-behavior: none;
@@ -470,7 +476,36 @@
     .legend { padding: 4px 14px 20px; }
     .legend .lg { min-height: 36px; padding: 8px 10px; }
     .mapbox { height: 260px; }
-    table.inf { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.inf {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      font-size: 11px;
+      overflow-x: visible;
+    }
+    table.inf th, table.inf td {
+      padding: 6px 3px;
+      vertical-align: top;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    table.inf td.when-td { min-width: 0; }
+    table.inf th.prev-col, table.inf td.prev-col { display: none; }
+    /* Country | Last(+prev under) | Δ | Reference | Next — Prev column hidden */
+    table.inf th:nth-child(1), table.inf td:nth-child(1) { width: 24%; }
+    table.inf th:nth-child(2), table.inf td:nth-child(2) { width: 14%; }
+    table.inf th:nth-child(4), table.inf td:nth-child(4) { width: 12%; }
+    table.inf th:nth-child(5), table.inf td:nth-child(5) { width: 25%; }
+    table.inf th:nth-child(6), table.inf td:nth-child(6) { width: 25%; }
+    table.inf .period { font-size: 10px; font-weight: 650; }
+    table.inf .when { font-size: 10px; line-height: 1.25; }
+    table.inf .when2 { font-size: 9px; line-height: 1.2; }
+    .prev-under {
+      display: block;
+      font-size: 9px; font-weight: 550; color: var(--muted);
+      margin-top: 2px; line-height: 1.2;
+    }
+    table.inf td.val { font-size: 13px; }
     .inf-head .filters { width: 100%; }
     .sheet-dim.on {
       display: block; position: fixed; inset: 0;
@@ -523,10 +558,27 @@
       -webkit-tap-highlight-color: transparent;
     }
     .sheet-x:hover { color: #fff; background: rgba(124,58,237,0.18); }
+    .sheet-title {
+      display: block;
+      flex: 0 0 auto;
+      z-index: 2;
+      background: var(--panel-solid);
+      padding: 10px 16px 12px;
+      border-bottom: 1px solid rgba(124,58,237,0.18);
+    }
+    .sheet-title:empty { display: none; }
+    .sheet-title .tag { margin-bottom: 2px; }
+    .sheet-title h3 {
+      margin: 8px 0 4px; font-size: 17px; font-weight: 750; letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .sheet-title .meta { color: var(--muted); font-size: 12px; margin: 0; line-height: 1.35; }
     .sheet-body {
       flex: 1 1 auto;
       min-height: 0;
       overflow: auto;
+      overflow-anchor: none;
+      scroll-behavior: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       touch-action: auto;
@@ -650,12 +702,13 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
-  <!-- ep-sheet:20260923c -->
+  <!-- ep-sheet:20260924a -->
   <aside class="detail" id="detail">
     <div class="sheet-head">
       <div class="sheet-handle" aria-hidden="true"></div>
       <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
     </div>
+    <div class="sheet-title" id="sheetTitle"></div>
     <div class="sheet-body" id="sheetBody">
       <p class="empty">Tap an event.</p>
     </div>
@@ -1326,8 +1379,8 @@ const INFLATION = [
     refPeriod:"Aug 2026", refDate:"2026-09-09", refTime:"9:30am", refTz:"CST",
     nextPeriod:"Oct 2026", nextDate:"2026-10-14", nextTime:"9:30am", nextTz:"CST" }
 ];
-let infSortKey = "te";
-let infSortDir = "desc";
+let infSortKey = "last";
+let infSortDir = "asc";
 let infG20only = false;
 let infSel = "US";
 let mapCam = { k: 1, x: 0, y: 0 };
@@ -1357,10 +1410,11 @@ function resetInfTeOrder() {
   infSortDir = "desc";
   render();
 }
-function infTh(key, label) {
+function infTh(key, label, extraClass) {
   const on = infSortKey === key;
   const ind = on ? `<span class="sort-ind">${infSortDir === "asc" ? "▲" : "▼"}</span>` : "";
-  return `<th class="${on ? "sorted" : ""}" role="columnheader" aria-sort="${on ? (infSortDir === "asc" ? "ascending" : "descending") : "none"}" onclick="toggleInfSort('${key}')">${label}${ind}</th>`;
+  const cls = [on ? "sorted" : "", extraClass || ""].filter(Boolean).join(" ");
+  return `<th class="${cls}" role="columnheader" aria-sort="${on ? (infSortDir === "asc" ? "ascending" : "descending") : "none"}" onclick="toggleInfSort('${key}')">${label}${ind}</th>`;
 }
 function infRows() {
   let rows = INFLATION.filter(r => infG20only ? r.g20 : true);
@@ -1414,13 +1468,14 @@ function pickInf(code) {
   document.querySelectorAll(".land").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   document.querySelectorAll("table.inf tr[data-code]").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   const r = INFLATION.find(x => x.code === code);
+  const titleEl = document.getElementById("sheetTitle");
   const box = document.getElementById("sheetBody") || document.getElementById("detail");
   if (!r) return;
-  const d = r.last - r.prev;
-  box.innerHTML = `
+  const titleHTML = `
     <div class="tag ${r.last>=5?"high":"medium"}">${r.g20?"G20":"TE list (non-G20)"}</div>
-    <h3 style="margin-top:10px">${flag(r.code)} ${r.name}</h3>
-    <div class="meta">Headline CPI / inflation rate · y/y</div>
+    <h3>${flag(r.code)} ${r.name}</h3>
+    <div class="meta">Headline CPI / inflation rate · y/y</div>`;
+  const bodyHTML = `
     <div class="kv">
       <b>Last</b><span style="font-size:22px;font-weight:800">${r.last}%</span>
       <b>Previous</b><span>${r.prev}%</span>
@@ -1431,6 +1486,13 @@ function pickInf(code) {
     <p>Figures refreshed from the Trading Economics country-list (https://tradingeconomics.com/country-list/inflation-rate) as of Thu 24 Sep 2026. Weekday actuals routines auto-check via <code>scripts/refresh_inflation.py</code>; prefer official agency prints when the calendar CPI conflicts.</p>
     <p style="color:var(--muted);font-size:12px">Argentina and Turkey are the red 10%+ countries. Everyone else uses the 0–7 band so the pack stays readable.</p>
   `;
+  if (titleEl) {
+    titleEl.innerHTML = titleHTML;
+    box.innerHTML = bodyHTML;
+  } else {
+    box.innerHTML = titleHTML + bodyHTML;
+  }
+  resetSheetBodyScroll();
 }
 function renderInflation() {
   document.getElementById("monthLabel").textContent = "G20 inflation";
@@ -1449,15 +1511,15 @@ function renderInflation() {
   }).join("");
   const trs = rows.map(r => `<tr data-code="${r.code}" class="${r.code===infSel?"on":""}" onclick="pickInf('${r.code}')">
     <td>${flag(r.code)} ${r.name}</td>
-    <td class="val">${r.last}</td>
-    <td>${r.prev}</td>
+    <td class="val">${r.last}<span class="prev-under">prev ${r.prev}</span></td>
+    <td class="prev-col">${r.prev}</td>
     <td class="chg ${chgClass(r)}">${chgTxt(r)}</td>
     <td class="when-td"><div class="period">${r.refPeriod}</div>${whenHTML(r.refDate,r.refTime,r.refTz)}</td>
     <td class="when-td"><div class="period">${r.nextPeriod}</div>${whenHTML(r.nextDate,r.nextTime,r.nextTz)}</td>
   </tr>`).join("");
   board.innerHTML = `
     <div class="inf-head">
-      <p>TE Last-descending country-list order as of Thu 24 Sep 2026. Reference / Next carry the official date and clock where the agency published one, shown in HKT plus local. date/time TBD means I could not verify a stamp. Cyan pulse = a dated print still in the current month. G20 filter hides Spain/Singapore/Switzerland.</p>
+      <p>Default sort: Last % ascending (low → high). Use column headers to re-sort, or TE order for the Trading Economics country-list. Reference / Next show official date and clock in HKT plus local. date/time TBD means unverified. Cyan pulse = a dated print still in the current month. G20 filter hides Spain/Singapore/Switzerland.</p>
       <div class="filters">
         <button type="button" class="${!infG20only?"active":""}" onclick="infG20only=false;render()">TE list</button>
         <button type="button" class="${infG20only?"active":""}" onclick="infG20only=true;render()">G20 only</button>
@@ -1487,7 +1549,7 @@ function renderInflation() {
       <thead><tr>
         ${infTh("name", "Country")}
         ${infTh("last", "Last %")}
-        ${infTh("prev", "Prev")}
+        ${infTh("prev", "Prev", "prev-col")}
         ${infTh("chg", "Δ pp")}
         ${infTh("ref", "Reference")}
         ${infTh("next", "Next")}
@@ -1609,12 +1671,23 @@ function nextUpcoming() {
 }
 
 function resetSheetBodyScroll() {
-  const body = document.getElementById("sheetBody");
-  if (!body) return;
-  body.scrollTop = 0;
-  requestAnimationFrame(() => { body.scrollTop = 0; });
-  setTimeout(() => { body.scrollTop = 0; }, 50);
-  setTimeout(() => { body.scrollTop = 0; }, 250);
+  const candidates = [
+    document.getElementById("sheetBody"),
+    document.getElementById("detail"),
+    document.documentElement,
+    document.body
+  ].filter(Boolean);
+  const zero = () => {
+    for (const el of candidates) {
+      try { el.scrollTop = 0; } catch (_) {}
+    }
+  };
+  zero();
+  requestAnimationFrame(() => {
+    zero();
+    requestAnimationFrame(zero);
+  });
+  [0, 50, 100, 300].forEach((ms) => setTimeout(zero, ms));
 }
 
 function renderNext() {
@@ -1631,18 +1704,23 @@ function renderNext() {
 
 function showDetail(ev, dateStr) {
   if (_sheetClosing) return;
+  const titleEl = document.getElementById("sheetTitle");
   const box = document.getElementById("sheetBody") || document.getElementById("detail");
+  const setTitle = (html) => { if (titleEl) titleEl.innerHTML = html || ""; };
   if (!ev && dateStr) {
     const list = eventsOn(dateStr);
     if (!list.length) {
-      box.innerHTML = `<h3>${parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}</h3>
-        <p class="empty">No events in this filter.</p>`;
+      const dayTitle = parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"});
+      setTitle(`<h3>${dayTitle}</h3>`);
+      box.innerHTML = `<p class="empty">No events in this filter.</p>`;
+      openSheet();
       resetSheetBodyScroll();
       return;
     }
     ev = list[0];
   }
   if (!ev) {
+    setTitle("");
     box.innerHTML = `<p class="empty">Tap an event.</p>`;
     resetSheetBodyScroll();
     return;
@@ -1650,11 +1728,12 @@ function showDetail(ev, dateStr) {
   selectedId = ev.id;
   selectedDate = ev.date;
   const d = parse(ev.date);
-  box.innerHTML = `
+  const titleHTML = `
     <div class="tag ${ev.impact}">${ev.impact}${ev.status==="released"?" · released":""}</div>
-    <h3 style="margin-top:10px">${flag(ev.country)} ${ico(ev.cat,"detail-ico")} ${evTitle(ev)}</h3>
+    <h3>${flag(ev.country)} ${ico(ev.cat,"detail-ico")} ${evTitle(ev)}</h3>
     <div class="meta">${d.toLocaleDateString("en-US",{weekday:"long", month:"long", day:"numeric", year:"numeric"})}
-      · ${ev.time || "time TBD"} ${ev.tz}${hkStamp(ev) ? " · " + hkStamp(ev) : ""}</div>
+      · ${ev.time || "time TBD"} ${ev.tz}${hkStamp(ev) ? " · " + hkStamp(ev) : ""}</div>`;
+  const bodyHTML = `
     <div class="kv">
       <b>Country</b><span>${flag(ev.country)} ${ev.country} · ${ev.inst}</span>
       <b>Actual</b><span>${ev.actual || "n/a"}</span>
@@ -1671,6 +1750,13 @@ function showDetail(ev, dateStr) {
       `<div class="arow" data-eid="${x.id}" onclick="pick('${x.id}')"><span class="t">${x.time||"—"}</span>
        ${flag(x.country)}${ico(x.cat)}<span class="tag ${x.impact}">${x.impact}</span><span>${evTitle(x)}</span></div>`).join("")}
   `;
+  // Sticky heading outside the scroll body (preferred on iOS); fall back to inline if no title slot
+  if (titleEl) {
+    setTitle(titleHTML);
+    box.innerHTML = bodyHTML;
+  } else {
+    box.innerHTML = titleHTML + bodyHTML;
+  }
   openSheet();
   resetSheetBodyScroll();
   render();
@@ -1730,6 +1816,13 @@ function openSheet() {
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
     }
+    // After slide-up animation, force body back to top (iOS scroll anchoring / focus)
+    const onEnd = (e) => {
+      if (e && e.target !== box) return;
+      box.removeEventListener("transitionend", onEnd);
+      resetSheetBodyScroll();
+    };
+    box.addEventListener("transitionend", onEnd);
   }
   bindSheet();
   resetSheetBodyScroll();
