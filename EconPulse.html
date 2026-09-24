@@ -337,13 +337,18 @@
   .sheet-title h3 { margin: 8px 0 4px; font-size: 18px; font-weight: 750; letter-spacing: -0.02em; }
   .sheet-title .meta { color: var(--muted); font-size: 12px; margin-bottom: 0; }
   .sheet-body { min-height: 0; }
+  .sheet-sticky {
+    position: relative;
+    background: var(--panel-solid);
+  }
+  .sheet-sticky:empty { display: none; }
   .prev-under { display: none; }
   html.sheet-open, html.sheet-open body {
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
   }
-  html.sheet-open .sheet-body { touch-action: auto; }
+  html.sheet-open .sheet-body { touch-action: pan-y; }
   @media (max-width: 800px) {
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -518,21 +523,37 @@
       max-height: min(92dvh, 92vh);
       min-height: 0;
       overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
+      isolation: isolate;
       border-radius: 18px 18px 0 0;
       z-index: 40;
       padding: 0;
       padding-bottom: env(safe-area-inset-bottom);
       background: var(--panel-solid);
-      transform: translateY(110%);
-      transition: transform .22s ease;
+      /* Slide with translate3d while animating; .settled strips transform (iOS pan bug) */
+      -webkit-transform: translate3d(0, 110%, 0);
+      transform: translate3d(0, 110%, 0);
+      transition: transform .22s ease, -webkit-transform .22s ease;
       box-shadow: 0 -12px 40px rgba(0,0,0,0.4);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
-    .detail.open { transform: translateY(0); }
+    .detail.open {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    .detail.open.settled {
+      /* Nuclear: no transform while open — stops iOS from panning whole sheet */
+      -webkit-transform: none !important;
+      transform: none !important;
+      transition: none;
+    }
     .sheet-head {
       display: block;
       flex: 0 0 auto;
       position: relative;
-      z-index: 2;
+      z-index: 6;
       background: var(--panel-solid);
       padding: 8px 52px 8px 16px;
       min-height: 44px;
@@ -558,36 +579,43 @@
       -webkit-tap-highlight-color: transparent;
     }
     .sheet-x:hover { color: #fff; background: rgba(124,58,237,0.18); }
-    .sheet-title {
+    /* Title lives INSIDE #sheetBody as sticky first child — cannot scroll away */
+    .sheet-title, .sheet-sticky {
       display: block;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 5;
       flex: 0 0 auto;
-      z-index: 2;
       background: var(--panel-solid);
       padding: 10px 16px 12px;
+      margin: -14px -16px 12px;
       border-bottom: 1px solid rgba(124,58,237,0.18);
+      box-shadow: 0 8px 16px rgba(14,18,32,0.55);
     }
-    .sheet-title:empty { display: none; }
-    .sheet-title .tag { margin-bottom: 2px; }
-    .sheet-title h3 {
+    .sheet-title:empty, .sheet-sticky:empty { display: none; }
+    .sheet-title .tag, .sheet-sticky .tag { margin-bottom: 2px; }
+    .sheet-title h3, .sheet-sticky h3 {
       margin: 8px 0 4px; font-size: 17px; font-weight: 750; letter-spacing: -0.02em;
       line-height: 1.25;
     }
-    .sheet-title .meta { color: var(--muted); font-size: 12px; margin: 0; line-height: 1.35; }
+    .sheet-title .meta, .sheet-sticky .meta { color: var(--muted); font-size: 12px; margin: 0; line-height: 1.35; }
     .sheet-body {
       flex: 1 1 auto;
       min-height: 0;
-      overflow: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
       overflow-anchor: none;
       scroll-behavior: auto;
       -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-      touch-action: auto;
+      overscroll-behavior: none;
+      touch-action: pan-y;
       padding: 14px 16px;
     }
     .sheet-foot {
       display: block;
       flex: 0 0 auto;
-      z-index: 2;
+      z-index: 6;
       background: var(--panel-solid);
       padding: 10px 16px 12px;
       border-top: 1px solid rgba(124,58,237,0.18);
@@ -702,14 +730,14 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
-  <!-- ep-sheet:20260924a -->
+  <!-- ep-sheet:20260924b · sticky-in-body + no-transform open · cache-bust ?v= -->
   <aside class="detail" id="detail">
     <div class="sheet-head">
       <div class="sheet-handle" aria-hidden="true"></div>
       <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
     </div>
-    <div class="sheet-title" id="sheetTitle"></div>
     <div class="sheet-body" id="sheetBody">
+      <div class="sheet-title sheet-sticky" id="sheetTitle"></div>
       <p class="empty">Tap an event.</p>
     </div>
     <div class="sheet-foot">
@@ -1468,8 +1496,6 @@ function pickInf(code) {
   document.querySelectorAll(".land").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   document.querySelectorAll("table.inf tr[data-code]").forEach(el => el.classList.toggle("on", el.dataset.code === code));
   const r = INFLATION.find(x => x.code === code);
-  const titleEl = document.getElementById("sheetTitle");
-  const box = document.getElementById("sheetBody") || document.getElementById("detail");
   if (!r) return;
   const titleHTML = `
     <div class="tag ${r.last>=5?"high":"medium"}">${r.g20?"G20":"TE list (non-G20)"}</div>
@@ -1486,12 +1512,7 @@ function pickInf(code) {
     <p>Figures refreshed from the Trading Economics country-list (https://tradingeconomics.com/country-list/inflation-rate) as of Thu 24 Sep 2026. Weekday actuals routines auto-check via <code>scripts/refresh_inflation.py</code>; prefer official agency prints when the calendar CPI conflicts.</p>
     <p style="color:var(--muted);font-size:12px">Argentina and Turkey are the red 10%+ countries. Everyone else uses the 0–7 band so the pack stays readable.</p>
   `;
-  if (titleEl) {
-    titleEl.innerHTML = titleHTML;
-    box.innerHTML = bodyHTML;
-  } else {
-    box.innerHTML = titleHTML + bodyHTML;
-  }
+  setSheetContent(titleHTML, bodyHTML);
   resetSheetBodyScroll();
 }
 function renderInflation() {
@@ -1670,24 +1691,70 @@ function nextUpcoming() {
     .sort(byWhen)[0];
 }
 
+function ensureSheetTitle() {
+  const body = document.getElementById("sheetBody") || document.getElementById("detail");
+  if (!body) return null;
+  let titleEl = document.getElementById("sheetTitle");
+  if (!titleEl) {
+    titleEl = document.createElement("div");
+    titleEl.id = "sheetTitle";
+    titleEl.className = "sheet-title sheet-sticky";
+    body.insertBefore(titleEl, body.firstChild);
+  } else if (titleEl.parentElement !== body) {
+    body.insertBefore(titleEl, body.firstChild);
+  } else if (body.firstChild !== titleEl) {
+    body.insertBefore(titleEl, body.firstChild);
+  }
+  titleEl.classList.add("sheet-title", "sheet-sticky");
+  return titleEl;
+}
+function setSheetContent(titleHTML, bodyHTML) {
+  const body = document.getElementById("sheetBody") || document.getElementById("detail");
+  const titleEl = ensureSheetTitle();
+  if (!body) return;
+  if (titleEl) titleEl.innerHTML = titleHTML || "";
+  // Keep #sheetTitle as first child; replace only the rest
+  const keep = titleEl;
+  const rest = [];
+  for (const node of Array.from(body.childNodes)) {
+    if (node !== keep) rest.push(node);
+  }
+  rest.forEach((n) => n.remove());
+  const wrap = document.createElement("div");
+  wrap.className = "sheet-content";
+  wrap.innerHTML = bodyHTML || "";
+  while (wrap.firstChild) body.appendChild(wrap.firstChild);
+}
 function resetSheetBodyScroll() {
-  const candidates = [
-    document.getElementById("sheetBody"),
-    document.getElementById("detail"),
-    document.documentElement,
-    document.body
-  ].filter(Boolean);
+  const body = document.getElementById("sheetBody");
+  const detail = document.getElementById("detail");
+  const titleEl = document.getElementById("sheetTitle");
+  const candidates = [body, detail, document.documentElement, document.body].filter(Boolean);
   const zero = () => {
     for (const el of candidates) {
-      try { el.scrollTop = 0; } catch (_) {}
+      try { el.scrollTop = 0; el.scrollLeft = 0; } catch (_) {}
+    }
+    if (titleEl) {
+      try { titleEl.scrollIntoView({ block: "start", inline: "nearest" }); } catch (_) {}
     }
   };
   zero();
-  requestAnimationFrame(() => {
-    zero();
-    requestAnimationFrame(zero);
-  });
-  [0, 50, 100, 300].forEach((ms) => setTimeout(zero, ms));
+  // iOS scroll-anchoring kill: briefly freeze overflow then restore
+  if (body) {
+    const prev = body.style.overflow;
+    body.style.overflow = "hidden";
+    requestAnimationFrame(() => {
+      zero();
+      body.style.overflow = prev || "";
+      requestAnimationFrame(zero);
+    });
+  } else {
+    requestAnimationFrame(() => {
+      zero();
+      requestAnimationFrame(zero);
+    });
+  }
+  [0, 50, 100, 200, 400].forEach((ms) => setTimeout(zero, ms));
 }
 
 function renderNext() {
@@ -1704,15 +1771,12 @@ function renderNext() {
 
 function showDetail(ev, dateStr) {
   if (_sheetClosing) return;
-  const titleEl = document.getElementById("sheetTitle");
-  const box = document.getElementById("sheetBody") || document.getElementById("detail");
-  const setTitle = (html) => { if (titleEl) titleEl.innerHTML = html || ""; };
+  ensureSheetTitle();
   if (!ev && dateStr) {
     const list = eventsOn(dateStr);
     if (!list.length) {
       const dayTitle = parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"});
-      setTitle(`<h3>${dayTitle}</h3>`);
-      box.innerHTML = `<p class="empty">No events in this filter.</p>`;
+      setSheetContent(`<h3>${dayTitle}</h3>`, `<p class="empty">No events in this filter.</p>`);
       openSheet();
       resetSheetBodyScroll();
       return;
@@ -1720,8 +1784,7 @@ function showDetail(ev, dateStr) {
     ev = list[0];
   }
   if (!ev) {
-    setTitle("");
-    box.innerHTML = `<p class="empty">Tap an event.</p>`;
+    setSheetContent("", `<p class="empty">Tap an event.</p>`);
     resetSheetBodyScroll();
     return;
   }
@@ -1747,16 +1810,11 @@ function showDetail(ev, dateStr) {
     <p>${ev.note}</p>
     <p><a href="${ev.source}" target="_blank" rel="noopener">Source</a></p>
     ${eventsOn(ev.date).filter(x => x.id!==ev.id).map(x =>
-      `<div class="arow" data-eid="${x.id}" onclick="pick('${x.id}')"><span class="t">${x.time||"—"}</span>
+      `<div class="arow" data-eid="${x.id}" onclick="pick('${x.id}',event)"><span class="t">${x.time||"—"}</span>
        ${flag(x.country)}${ico(x.cat)}<span class="tag ${x.impact}">${x.impact}</span><span>${evTitle(x)}</span></div>`).join("")}
   `;
-  // Sticky heading outside the scroll body (preferred on iOS); fall back to inline if no title slot
-  if (titleEl) {
-    setTitle(titleHTML);
-    box.innerHTML = bodyHTML;
-  } else {
-    box.innerHTML = titleHTML + bodyHTML;
-  }
+  // Nuclear: heading ONLY as sticky first child of #sheetBody — never duplicated below
+  setSheetContent(titleHTML, bodyHTML);
   openSheet();
   resetSheetBodyScroll();
   render();
@@ -1807,6 +1865,10 @@ function openSheet() {
   const dim = document.getElementById("sheetDim");
   if (isPhone()) {
     const already = box.classList.contains("open");
+    // Allow CSS slide-in (clear prior settled / inline kills)
+    box.classList.remove("settled");
+    box.style.transform = "";
+    box.style.webkitTransform = "";
     box.classList.add("open");
     if (dim) dim.classList.add("on");
     if (!already) {
@@ -1816,13 +1878,19 @@ function openSheet() {
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
     }
-    // After slide-up animation, force body back to top (iOS scroll anchoring / focus)
+    const settle = () => {
+      box.classList.add("settled"); // strips transform — iOS can no longer pan whole sheet
+      resetSheetBodyScroll();
+    };
     const onEnd = (e) => {
       if (e && e.target !== box) return;
       box.removeEventListener("transitionend", onEnd);
-      resetSheetBodyScroll();
+      settle();
     };
     box.addEventListener("transitionend", onEnd);
+    // Fallback if transitionend swallowed
+    setTimeout(settle, 280);
+    if (already) settle();
   }
   bindSheet();
   resetSheetBodyScroll();
@@ -1834,6 +1902,10 @@ function closeSheet() {
   const box = document.getElementById("detail");
   const dim = document.getElementById("sheetDim");
   if (box) {
+    // Drop settled so close slide (translate3d) can run
+    box.classList.remove("settled");
+    box.style.transform = "";
+    box.style.webkitTransform = "";
     box.classList.remove("open");
     box.style.pointerEvents = "none";
   }
@@ -1861,8 +1933,12 @@ function closeSheet() {
   }, 400);
 }
 
-function pick(id) {
+function pick(id, evt) {
   if (_sheetClosing) return;
+  if (evt) {
+    try { evt.preventDefault(); } catch (_) {}
+    try { evt.stopPropagation(); } catch (_) {}
+  }
   const ev = EVENTS.find(e => e.id === id);
   if (ev) showDetail(ev);
 }
@@ -1898,7 +1974,7 @@ function renderMonth() {
     const labelFn = mobile ? chipLabelMobile : chipLabel;
     const chips = evs.slice(0, maxChips).map(e => {
       const icons = mobile ? flag(e.country) : flag(e.country) + ico(e.cat);
-      return `<div class="chip ${e.impact} ${e.status}" data-eid="${e.id}" onclick="event.stopPropagation();pick('${e.id}')">${icons}<span class="lab">${labelFn(e)}</span></div>`;
+      return `<div class="chip ${e.impact} ${e.status}" data-eid="${e.id}" onclick="event.preventDefault();event.stopPropagation();pick('${e.id}',event)">${icons}<span class="lab">${labelFn(e)}</span></div>`;
     }).join("");
     const extra = evs.length > maxChips
       ? `<div class="more">+${evs.length - maxChips}</div>`
@@ -1922,7 +1998,7 @@ function renderWeek() {
     html += `<div class="aday"><h3>${d.toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"})}${sameDay(d,TODAY)?" · today":""}</h3>`;
     if (!evs.length) html += `<p class="empty" style="padding:4px 0">No events</p>`;
     evs.forEach(e => {
-      html += `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+      html += `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}',event)"><span class="t">${e.time||"—"}</span>
         ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
         <span>${evTitle(e)}</span></div>`;
     });
@@ -1941,7 +2017,7 @@ function renderAgenda() {
   board.innerHTML = Object.keys(groups).map(date => {
     const d = parse(date);
     const rows = groups[date].map(e =>
-      `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}')"><span class="t">${e.time||"—"}</span>
+      `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}',event)"><span class="t">${e.time||"—"}</span>
        ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
        <span>${evTitle(e)} <span style="color:var(--muted)">· ${e.inst}</span></span></div>`
     ).join("");
