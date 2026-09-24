@@ -163,8 +163,36 @@
     .views .v-sub { display: none; }
     .views button { align-items: center; min-width: 0; padding: 10px 12px; }
   }
-  main { display: grid; grid-template-columns: 1fr 340px; flex: 1; min-height: 0; padding: 0 18px 8px; gap: 12px; }
-  @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
+  main { display: block; flex: 1; min-height: 0; padding: 0 18px 8px; min-width: 0; }
+  /* Desktop: main + body-level .detail sit side-by-side (detail escaped <main> for sheet stacking) */
+  @media (min-width: 981px) {
+    body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      column-gap: 12px;
+    }
+    header { grid-column: 1 / -1; }
+    main { grid-column: 1; grid-row: 2; padding: 0 0 8px 18px; }
+    body > .detail {
+      grid-column: 2; grid-row: 2;
+      margin-right: 18px;
+      align-self: stretch;
+      position: relative;
+      z-index: 1;
+    }
+    body > .legend { grid-column: 1 / -1; grid-row: 3; }
+    /* Fixed overlays: park in header track so they don't invent extra rows */
+    body > .sheet-dim,
+    body > #tipcard,
+    body > #toasts {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+  @media (max-width: 980px) {
+    body > .detail { margin: 0 18px 8px; }
+  }
   .cal-wrap { padding: 6px 8px 16px; overflow: auto; }
   .dow { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-bottom: 6px; }
   .dow span { color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 6px; font-weight: 600; text-align: center; }
@@ -354,6 +382,11 @@
     touch-action: none;
   }
   html.sheet-open .sheet-body { touch-action: pan-y; }
+  /* Demote sticky chrome so nothing peeks above the full-bleed sheet */
+  html.sheet-open header {
+    visibility: hidden;
+    pointer-events: none;
+  }
   @media (max-width: 800px) {
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -521,28 +554,32 @@
     .inf-head .filters { width: 100%; }
     .sheet-dim.on {
       display: block; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5); z-index: 35;
+      background: rgba(0,0,0,0.5); z-index: 9000;
     }
     .detail {
-      position: fixed; left: 0; right: 0; bottom: 0;
+      position: fixed; left: 0; right: 0; top: 0; bottom: 0;
+      inset: 0;
       display: flex; flex-direction: column;
-      height: min(92dvh, 92vh);
-      max-height: min(92dvh, 92vh);
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
       min-height: 0;
       overflow: hidden;
       overscroll-behavior: none;
       touch-action: none;
       isolation: isolate;
-      border-radius: 18px 18px 0 0;
-      z-index: 40;
+      border-radius: 0;
+      z-index: 9001;
       padding: 0;
+      padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
       background: var(--panel-solid);
       /* Slide with translate3d while animating; .settled strips transform (iOS pan bug) */
       -webkit-transform: translate3d(0, 110%, 0);
       transform: translate3d(0, 110%, 0);
       transition: transform .22s ease, -webkit-transform .22s ease;
-      box-shadow: 0 -12px 40px rgba(0,0,0,0.4);
+      box-shadow: none;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
@@ -734,22 +771,22 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
-  <!-- ep-sheet:20260924d · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
-  <aside class="detail" id="detail">
-    <div class="sheet-head">
-      <div class="sheet-handle" aria-hidden="true"></div>
-      <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
-    </div>
-    <div class="sheet-title" id="sheetTitle"></div>
-    <div class="sheet-body" id="sheetBody">
-      <p class="empty">Tap an event.</p>
-    </div>
-    <div class="sheet-foot">
-      <button type="button" class="sheet-close" id="sheetClose">Done</button>
-    </div>
-  </aside>
-  <div class="sheet-dim" id="sheetDim"></div>
 </main>
+<!-- ep-sheet:20260924e · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
+<aside class="detail" id="detail">
+  <div class="sheet-head">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
+  </div>
+  <div class="sheet-title" id="sheetTitle"></div>
+  <div class="sheet-body" id="sheetBody">
+    <p class="empty">Tap an event.</p>
+  </div>
+  <div class="sheet-foot">
+    <button type="button" class="sheet-close" id="sheetClose">Done</button>
+  </div>
+</aside>
+<div class="sheet-dim" id="sheetDim"></div>
 <div id="tipcard"></div>
 <div id="toasts"></div>
 <div class="legend cal-only" id="catLegend">
@@ -1905,7 +1942,7 @@ function closeSheet() {
     blocker = document.createElement("div");
     blocker.id = "sheetClickBlock";
     blocker.setAttribute("aria-hidden", "true");
-    blocker.style.cssText = "position:fixed;inset:0;z-index:55;background:transparent;touch-action:none;";
+    blocker.style.cssText = "position:fixed;inset:0;z-index:9002;background:transparent;touch-action:none;";
     document.body.appendChild(blocker);
   }
   blocker.style.display = "block";
