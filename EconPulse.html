@@ -590,9 +590,9 @@ const EVENTS = [
 { id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"released",
     actual:"Composite 58.4; Services 58.7; Manufacturing PMI 57.0 (flash)", actualShort:"Comp 58.4 · Svc 58.7 · Mfg 57.0", previous:"Aug final Comp 56.0; Svc 56.5; Mfg 53.9", consensus:"Mfg 53.6; Svc 55.8 (Investing); Comp ~55.2 (TE/FXStreet pre-print)", vs:"big beat all three vs consensus and Aug finals",
     note:"S&P Global flash US PMI 23 Sep 2026 13:45 UTC. TE + Investing.com: Comp 58.4 (from 56.0), Svc 58.7 (vs 55.8 fcast / 56.5 prior), Mfg 57.0 (vs 53.6 fcast / 53.9 prior). Broad acceleration vs Aug; opposite of soft consensus. Finals: mfg 1 Oct, svc/comp 3 Oct.", source:"https://tradingeconomics.com/united-states/composite-pmi" },
-  { id:"au-emp-sep", date:"2026-09-23", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia employment + unemployment (Aug)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Jul emp −15.8k; UE 4.5%; part. 66.9% (ABS)", consensus:"Emp +20k; UE 4.5% (Trading Economics)", vs:"",
-    note:"ABS Labour Force Aug 2026: 11:30 AEST Thu 24 Sep = 9:30pm ET Wed 23 Sep (01:30 GMT 24 Sep). Prior Jul: emp −15.8k, UE 4.5% (ABS). TE consensus emp +20k / UE 4.5% (CBA +15k preview).", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia" },
+  { id:"au-emp-sep", date:"2026-09-23", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia employment + unemployment (Aug)", impact:"high", status:"released",
+    actual:"emp +39.5k sa to 14,836.6k; UE 4.6% (+0.2pp); part. 67.1% (+0.2pp); underemp 6.2%", actualShort:"Emp +39.5k · UE 4.6%", previous:"Jul emp −15.8k; UE 4.5%; part. 66.9% (ABS)", consensus:"Emp +20k; UE 4.5% (Trading Economics)", vs:"emp big beat vs +20k; UE hotter 4.6% vs 4.5%",
+    note:"ABS Labour Force Aug 2026 (sa): employment +39,500 to 14,836,600; unemployment rate 4.6% (from 4.5%); participation 67.1% (from 66.9%); underemployment 6.2%. Full-time −6.3k; part-time +45.8k. Released 24/09/2026 11:30am AEST. Consensus was emp +20k / UE 4.5% (TE).", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release" },
   { id:"durables-aug", date:"2026-09-25", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Durable goods orders (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Census advance report on durable goods. Medium; watch with UMich revised Fri.", source:"https://www.census.gov/economic-indicators/" },
@@ -1059,7 +1059,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-09-24T02:07:05.708250+08:00";
+const INFLATION_UPDATED_AT = "2026-09-24T10:28:15.271278+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.5, prev:33.8, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"ART",

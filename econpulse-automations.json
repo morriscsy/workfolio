@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T08:59:23.633298+08:00",
+  "updatedAt": "2026-09-24T10:28:46.211110+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -29,11 +29,18 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-24T08:59:23.633298+08:00",
+      "lastRunAt": "2026-09-24T10:28:46.211110+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Asia/early Actuals refresh completed; no material fills this run (ABS Aug labour force due 11:30 AEST; SNB/US window later).",
+      "lastSummary": "Asia evening Actuals catch-up: filled ABS Labour Force Aug — emp +39.5k / UE 4.6% (vs TE +20k / 4.5%). Inflation TE live scrape; order/values unchanged. Calendar synced; LamboKiwi offline — no Desktop copy.",
       "nextRunAt": "2026-09-25T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "au-emp-sep",
+          "title": "Australia employment + unemployment (Aug)",
+          "actualShort": "Emp +39.5k · UE 4.6%",
+          "status": "released"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
