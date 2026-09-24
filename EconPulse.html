@@ -579,27 +579,23 @@
       -webkit-tap-highlight-color: transparent;
     }
     .sheet-x:hover { color: #fff; background: rgba(124,58,237,0.18); }
-    /* Title lives INSIDE #sheetBody as sticky first child — cannot scroll away */
-    .sheet-title, .sheet-sticky {
+    /* Title is a NON-scrolling flex sibling — never inside #sheetBody */
+    .sheet-title {
       display: block;
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      z-index: 5;
       flex: 0 0 auto;
+      position: relative;
+      z-index: 6;
       background: var(--panel-solid);
-      padding: 10px 16px 12px;
-      margin: -14px -16px 12px;
+      padding: 8px 16px 12px;
       border-bottom: 1px solid rgba(124,58,237,0.18);
-      box-shadow: 0 8px 16px rgba(14,18,32,0.55);
     }
-    .sheet-title:empty, .sheet-sticky:empty { display: none; }
-    .sheet-title .tag, .sheet-sticky .tag { margin-bottom: 2px; }
-    .sheet-title h3, .sheet-sticky h3 {
+    .sheet-title:empty { display: none; }
+    .sheet-title .tag { margin-bottom: 2px; }
+    .sheet-title h3 {
       margin: 8px 0 4px; font-size: 17px; font-weight: 750; letter-spacing: -0.02em;
       line-height: 1.25;
     }
-    .sheet-title .meta, .sheet-sticky .meta { color: var(--muted); font-size: 12px; margin: 0; line-height: 1.35; }
+    .sheet-title .meta { color: var(--muted); font-size: 12px; margin: 0; line-height: 1.35; }
     .sheet-body {
       flex: 1 1 auto;
       min-height: 0;
@@ -730,14 +726,14 @@
     <div class="dow" id="dow"></div>
     <div id="board"></div>
   </section>
-  <!-- ep-sheet:20260924b · sticky-in-body + no-transform open · cache-bust ?v= -->
+  <!-- ep-sheet:20260924c · title OUTSIDE scroll body · no scrollIntoView · cache-bust ?v= -->
   <aside class="detail" id="detail">
     <div class="sheet-head">
       <div class="sheet-handle" aria-hidden="true"></div>
       <button type="button" class="sheet-x" id="sheetX" aria-label="Close">×</button>
     </div>
+    <div class="sheet-title" id="sheetTitle"></div>
     <div class="sheet-body" id="sheetBody">
-      <div class="sheet-title sheet-sticky" id="sheetTitle"></div>
       <p class="empty">Tap an event.</p>
     </div>
     <div class="sheet-foot">
@@ -1540,8 +1536,7 @@ function renderInflation() {
   </tr>`).join("");
   board.innerHTML = `
     <div class="inf-head">
-      <p>Default sort: Last % ascending (low → high). Use column headers to re-sort, or TE order for the Trading Economics country-list. Reference / Next show official date and clock in HKT plus local. date/time TBD means unverified. Cyan pulse = a dated print still in the current month. G20 filter hides Spain/Singapore/Switzerland.</p>
-      <div class="filters">
+<div class="filters">
         <button type="button" class="${!infG20only?"active":""}" onclick="infG20only=false;render()">TE list</button>
         <button type="button" class="${infG20only?"active":""}" onclick="infG20only=true;render()">G20 only</button>
         <button type="button" class="${infSortKey==="te"?"active":""}" onclick="resetInfTeOrder()">TE order</button>
@@ -1692,20 +1687,24 @@ function nextUpcoming() {
 }
 
 function ensureSheetTitle() {
-  const body = document.getElementById("sheetBody") || document.getElementById("detail");
-  if (!body) return null;
+  const detail = document.getElementById("detail");
+  const body = document.getElementById("sheetBody");
+  if (!detail) return null;
   let titleEl = document.getElementById("sheetTitle");
   if (!titleEl) {
     titleEl = document.createElement("div");
     titleEl.id = "sheetTitle";
-    titleEl.className = "sheet-title sheet-sticky";
-    body.insertBefore(titleEl, body.firstChild);
-  } else if (titleEl.parentElement !== body) {
-    body.insertBefore(titleEl, body.firstChild);
-  } else if (body.firstChild !== titleEl) {
-    body.insertBefore(titleEl, body.firstChild);
+    titleEl.className = "sheet-title";
   }
-  titleEl.classList.add("sheet-title", "sheet-sticky");
+  titleEl.className = "sheet-title";
+  // MUST sit between .sheet-head and #sheetBody — never inside the scroll body
+  if (body && titleEl.parentElement !== detail) {
+    detail.insertBefore(titleEl, body);
+  } else if (body && titleEl.nextElementSibling !== body) {
+    detail.insertBefore(titleEl, body);
+  } else if (!body && titleEl.parentElement !== detail) {
+    detail.appendChild(titleEl);
+  }
   return titleEl;
 }
 function setSheetContent(titleHTML, bodyHTML) {
@@ -1713,48 +1712,24 @@ function setSheetContent(titleHTML, bodyHTML) {
   const titleEl = ensureSheetTitle();
   if (!body) return;
   if (titleEl) titleEl.innerHTML = titleHTML || "";
-  // Keep #sheetTitle as first child; replace only the rest
-  const keep = titleEl;
-  const rest = [];
-  for (const node of Array.from(body.childNodes)) {
-    if (node !== keep) rest.push(node);
-  }
-  rest.forEach((n) => n.remove());
-  const wrap = document.createElement("div");
-  wrap.className = "sheet-content";
-  wrap.innerHTML = bodyHTML || "";
-  while (wrap.firstChild) body.appendChild(wrap.firstChild);
+  // Body only — never put heading HTML here
+  body.innerHTML = bodyHTML || "";
 }
 function resetSheetBodyScroll() {
+  // NEVER call scrollIntoView — on iOS it scrolls title under the browser chrome
+  // and leaves Country/Actual/… off-screen (sheet opens on "Vs").
   const body = document.getElementById("sheetBody");
   const detail = document.getElementById("detail");
-  const titleEl = document.getElementById("sheetTitle");
-  const candidates = [body, detail, document.documentElement, document.body].filter(Boolean);
   const zero = () => {
-    for (const el of candidates) {
-      try { el.scrollTop = 0; el.scrollLeft = 0; } catch (_) {}
-    }
-    if (titleEl) {
-      try { titleEl.scrollIntoView({ block: "start", inline: "nearest" }); } catch (_) {}
-    }
+    if (body) { try { body.scrollTop = 0; body.scrollLeft = 0; } catch (_) {} }
+    if (detail) { try { detail.scrollTop = 0; detail.scrollLeft = 0; } catch (_) {} }
   };
   zero();
-  // iOS scroll-anchoring kill: briefly freeze overflow then restore
-  if (body) {
-    const prev = body.style.overflow;
-    body.style.overflow = "hidden";
-    requestAnimationFrame(() => {
-      zero();
-      body.style.overflow = prev || "";
-      requestAnimationFrame(zero);
-    });
-  } else {
-    requestAnimationFrame(() => {
-      zero();
-      requestAnimationFrame(zero);
-    });
-  }
-  [0, 50, 100, 200, 400].forEach((ms) => setTimeout(zero, ms));
+  requestAnimationFrame(() => {
+    zero();
+    requestAnimationFrame(zero);
+  });
+  [0, 50, 100, 250].forEach((ms) => setTimeout(zero, ms));
 }
 
 function renderNext() {
@@ -1813,7 +1788,7 @@ function showDetail(ev, dateStr) {
       `<div class="arow" data-eid="${x.id}" onclick="pick('${x.id}',event)"><span class="t">${x.time||"—"}</span>
        ${flag(x.country)}${ico(x.cat)}<span class="tag ${x.impact}">${x.impact}</span><span>${evTitle(x)}</span></div>`).join("")}
   `;
-  // Nuclear: heading ONLY as sticky first child of #sheetBody — never duplicated below
+  // Heading ONLY in #sheetTitle (outside scroll). Body starts at Country kv.
   setSheetContent(titleHTML, bodyHTML);
   openSheet();
   resetSheetBodyScroll();
