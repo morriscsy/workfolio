@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-23T22:38:43.208805+08:00",
+  "updatedAt": "2026-09-24T08:59:23.633298+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -29,10 +29,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-23T08:48:00+08:00",
+      "lastRunAt": "2026-09-24T08:59:23.633298+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Asia/early Actuals refresh completed; no material fills this run.",
-      "nextRunAt": "2026-09-24T08:40:00+08:00",
+      "lastSummary": "Morning Asia/early Actuals refresh completed; no material fills this run (ABS Aug labour force due 11:30 AEST; SNB/US window later).",
+      "nextRunAt": "2026-09-25T08:40:00+08:00",
       "lastItems": []
     },
     {
