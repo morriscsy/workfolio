@@ -1488,7 +1488,7 @@ function infTh(key, label, extraClass) {
   return `<th class="${cls}" role="columnheader" aria-sort="${on ? (infSortDir === "asc" ? "ascending" : "descending") : "none"}" onclick="toggleInfSort('${key}')">${label}${ind}</th>`;
 }
 function infRows() {
-  let rows = INFLATION.slice();
+  let rows = INFLATION.filter(r => r.g20);
   const cmp = (a, b) => {
     switch (infSortKey) {
       case "name": return a.name.localeCompare(b.name);
