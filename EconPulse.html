@@ -870,10 +870,10 @@ const EVENTS = [
   { id:"ez-flash-pmi-sep", date:"2026-09-23", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone flash PMI (Sep)", impact:"high", status:"released",
     actual:"Composite 53.1; Services 53.0; Manufacturing PMI 52.7 (flash)", actualShort:"Comp 53.1 · Svc 53.0 · Mfg 52.7", previous:"Aug final Comp 52.0; Svc 51.6; Mfg 52.7", consensus:"Comp ~51.7; Svc ~51.5; Mfg ~52.6 (InvestingLive pre-print estimates)", vs:"big beat on composite and services; mfg in line / slight beat",
     note:"S&P Global/HCOB flash Sep 2026 (TE display updated 08:01 UTC 23 Sep). Services-led jump; Germany Comp 53.8 (vs 51.8 exp; svc 52.9 from 49.7); France Comp 51.2 (vs 48.7; back to expansion). Next: US flash PMI 9:45am ET.", source:"https://tradingeconomics.com/euro-area/composite-pmi" },
-  { id:"uk-flash-pmi-sep", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"UK", inst:"S&P Global", title:"UK flash PMI mfg + services (Sep)", impact:"high", status:"released",
+    { id:"uk-flash-pmi-sep", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"UK", inst:"S&P Global", title:"UK flash PMI mfg + services (Sep)", impact:"high", status:"released",
     actual:"Composite 51.7; Services 51.7; Manufacturing PMI 52.0 (flash)", actualShort:"Comp 51.7 · Svc 51.7 · Mfg 52.0", previous:"Aug Comp 52.5; Svc 52.5; Mfg 51.7", consensus:"Comp ~52.0; Svc ~52.0; Mfg ~51.5 (InvestingLive)", vs:"soft miss on composite/services; mfg beat",
     note:"S&P Global flash UK PMI 23 Sep 2026. Growth slowed to a 3-month low (~0.1% q/q implied); price pressures intensified. Next same day: US flash PMI 9:45am ET.", source:"https://www.pmi.spglobal.com/Public/Release/ReleaseDates" },
-  { id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"released",
+{ id:"us-flash-pmi-sep", date:"2026-09-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"US flash PMI mfg + services (Sep)", impact:"high", status:"released",
     actual:"Composite 58.4; Services 58.7; Manufacturing PMI 57.0 (flash)", actualShort:"Comp 58.4 · Svc 58.7 · Mfg 57.0", previous:"Aug final Comp 56.0; Svc 56.5; Mfg 53.9", consensus:"Mfg 53.6; Svc 55.8 (Investing); Comp ~55.2 (TE/FXStreet pre-print)", vs:"big beat all three vs consensus and Aug finals",
     note:"S&P Global flash US PMI 23 Sep 2026 13:45 UTC. TE + Investing.com: Comp 58.4 (from 56.0), Svc 58.7 (vs 55.8 fcast / 56.5 prior), Mfg 57.0 (vs 53.6 fcast / 53.9 prior). Broad acceleration vs Aug; opposite of soft consensus. Finals: mfg 1 Oct, svc/comp 3 Oct.", source:"https://tradingeconomics.com/united-states/composite-pmi" },
   { id:"au-emp-sep", date:"2026-09-23", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia employment + unemployment (Aug)", impact:"high", status:"released",
@@ -882,33 +882,30 @@ const EVENTS = [
   { id:"durables-aug", date:"2026-09-25", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Durable goods orders (Aug)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Census advance report on durable goods. Medium; watch with UMich revised Fri.", source:"https://www.census.gov/economic-indicators/" },
-  { id:"riksbank", date:"2026-09-24", time:"3:30am", tz:"ET", country:"SE", inst:"Riksbank", title:"Riksbank policy rate decision", impact:"high", status:"released",
-    actual:"Hold policy rate at 1.75% (unchanged); path raised vs June — hikes expected to begin this year if outlook holds", actualShort:"Hold 1.75% · hawkish path", previous:"1.75%", consensus:"hold 1.75% (street)", vs:"hold; hawkish vs June path",
-    note:"Official Riksbank 24 Sep 2026. Hold 1.75% from 30 Sep. Stronger activity + supply shocks → policy rate should be raised more than June forecast; increases expected to begin this year if outlook unchanged. Vigilant on inflation upside.", source:"https://www.riksbank.se/en-gb/press-and-published/notices-and-press-releases/press-releases/2026/policy-rate-unchanged-at-16.75-per-cent" },
   { id:"snb", date:"2026-09-24", time:"3:30am", tz:"ET", country:"CH", inst:"SNB", title:"SNB monetary policy decision", impact:"high", status:"released",
     actual:"Hold SNB policy rate at 0% (unchanged); sight-deposit threshold remun. at policy rate; FX intervention willingness reiterated", actualShort:"Hold 0%", previous:"0% (Jun 2026 assessment)", consensus:"hold 0% (Reuters poll)", vs:"hold as expected",
     note:"Official SNB 24 Sep 2026. Conditional inflation forecast 0.7% (2026), 0.8% (2027), 0.8% (2028) at assumed 0% policy rate — slightly higher near-term vs June on oil/energy and weaker CHF. News conference 4:00am ET.", source:"https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924" },
-  { id:"de-ifo", date:"2026-09-24", time:"4:00am", tz:"ET", country:"DE", inst:"Ifo", title:"Germany Ifo business climate (Sep)", impact:"medium", status:"released",
-    actual:"Business Climate 89.9 (Aug 88.8); recovery continues — situation + expectations both brighter (Ifo)", actualShort:"Climate 89.9", previous:"Aug 88.8", consensus:"≈89.0–89.1 (street calendars)", vs:"beat / firmer recovery",
-    note:"Official Ifo 24 Sep 2026: Climate rose to 89.9 from 88.8 in August. Companies assessed current situation more positively; expectations brightened. German economy continues its recovery.", source:"https://www.ifo.de/en/survey/ifo-business-climate-index-germany" },
-  { id:"norges", date:"2026-09-24", time:"4:00am", tz:"ET", country:"NO", inst:"Norges Bank", title:"Norges Bank policy rate decision", impact:"high", status:"released",
-    actual:"+25bp to 4.50% (from 4.25%); next decision 5 Nov 2026", actualShort:"+25bp · 4.50%", previous:"4.25% (13 Aug 2026)", consensus:"+25bp (Reuters poll majority)", vs:"+25bp hike as expected",
-    note:"Official Norges Bank policy rate page 24 Sep 2026 shows 4.5% published 24.09.2026. Rate decision September meeting page linked from norges-bank.no. Reuters: majority expected +25bp; prepared to hike further if needed.", source:"https://www.norges-bank.no/en/topics/monetary-policy/policy-rate" },
   { id:"snb-pc", date:"2026-09-24", time:"4:00am", tz:"ET", country:"CH", inst:"SNB", title:"SNB news conference", impact:"high", status:"released",
     actual:"PC underway; Schlegel/Martin/Tschudin: hold 0% affirmed; FX intervene as necessary; CHF ~−3% trade-weighted since June; growth 2026 raised to 1.5–2%", actualShort:"PC live · hold 0%", previous:"n/a", consensus:"n/a", vs:"tone as expected (hold + FX readiness)",
     note:"Official SNB introductory remarks 24 Sep 2026 (live from 10:00 CEST / 4:00am ET). Rate held at 0%; inflation 0.8% Aug (energy/oil); conditional forecast 0.7/0.8/0.8 at assumed 0% over horizon; medium-term pressure up only slightly; CHF depreciated ~3% trade-weighted since June; willing to intervene in FX as necessary. Web-TV + remarks on snb.ch.", source:"https://www.snb.ch/en/publications/communication/speeches-restricted/ref_20260924_mslanmargpe" },
-  { id:"claims-24", date:"2026-09-24", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
-    actual:"initial 197k (−1k vs rev prior); 4-wk avg 202.25k; continuing 1,719k (+2k)", actualShort:"Claims 197k · Cont 1.72M", previous:"Week ended 12 Sep revised: initial 198k (was 196k); cont 1,717k (was 1,730k) (DOL)", consensus:"≈200k initial (market calendars; ActionForex 200k / TE~203k)", vs:"slight beat / softer vs ~200k",
-    note:"DOL UI weekly USDL 26-1535-NAT, week ending 19 Sep 2026. SA initial 197k (−1k from prior week revised up +2k to 198k). 4-wk avg 202.25k (−1.75k). Continuing week ended 12 Sep: 1,719k (+2k; prior revised −13k to 1,717k). IUR 1.1% unch. Street ~200k.", source:"https://www.dol.gov/ui/data.pdf" },
-  { id:"iip", date:"2026-09-24", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"International transactions / IIP (Q2)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Official BEA schedule.", source:"https://www.bea.gov/news/schedule" },
-  { id:"nhs", date:"2026-09-24", time:"10:00am", tz:"ET", country:"US", inst:"Census", title:"New home sales (Aug)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Jul 607k SAAR (Census)", consensus:"≈619–650k (market calendars vary)", vs:"",
-    note:"Census New Residential Sales Aug 2026 — 10:00am ET. Medium impact; watch vs Jul 607k. Confirm day-of on census.gov.", source:"https://www.census.gov/construction/soc/schedule.html" },
+  { id:"riksbank", date:"2026-09-24", time:"3:30am", tz:"ET", country:"SE", inst:"Riksbank", title:"Riksbank policy rate decision", impact:"high", status:"released",
+    actual:"Hold policy rate at 1.75% (unchanged); path raised vs June — hikes expected to begin this year if outlook holds", actualShort:"Hold 1.75% · hawkish path", previous:"1.75%", consensus:"hold 1.75% (street)", vs:"hold; hawkish vs June path",
+    note:"Official Riksbank 24 Sep 2026. Hold 1.75% from 30 Sep. Stronger activity + supply shocks → policy rate should be raised more than June forecast; increases expected to begin this year if outlook unchanged. Vigilant on inflation upside.", source:"https://www.riksbank.se/en-gb/press-and-published/notices-and-press-releases/press-releases/2026/policy-rate-unchanged-at-16.75-per-cent" },
+  { id:"norges", date:"2026-09-24", time:"4:00am", tz:"ET", country:"NO", inst:"Norges Bank", title:"Norges Bank policy rate decision", impact:"high", status:"released",
+    actual:"+25bp to 4.50% (from 4.25%); next decision 5 Nov 2026", actualShort:"+25bp · 4.50%", previous:"4.25% (13 Aug 2026)", consensus:"+25bp (Reuters poll majority)", vs:"+25bp hike as expected",
+    note:"Official Norges Bank policy rate page 24 Sep 2026 shows 4.5% published 24.09.2026. Rate decision September meeting page linked from norges-bank.no. Reuters: majority expected +25bp; prepared to hike further if needed.", source:"https://www.norges-bank.no/en/topics/monetary-policy/policy-rate" },
   { id:"banxico", date:"2026-09-24", time:"2:00pm", tz:"ET", country:"MX", inst:"Banxico", title:"Banxico overnight rate decision", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"6.50% (held since May 2026)", consensus:"hold 6.50% (street / Barclays)", vs:"",
     note:"Banxico announces ~13:00 Mexico City / ~2:00pm ET Thu 24 Sep. Rate at 6.50% since May pause. Street expects another hold; confirm day-of on banxico.org.mx.", source:"https://www.banxico.org.mx" },
+  { id:"claims-24", date:"2026-09-24", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
+    actual:"initial 197k (−1k vs rev prior); 4-wk avg 202.25k; continuing 1,719k (+2k)", actualShort:"Claims 197k · Cont 1.72M", previous:"Week ended 12 Sep revised: initial 198k (was 196k); cont 1,717k (was 1,730k) (DOL)", consensus:"≈200k initial (market calendars; ActionForex 200k / TE~203k)", vs:"slight beat / softer vs ~200k",
+    note:"DOL UI weekly USDL 26-1535-NAT, week ending 19 Sep 2026. SA initial 197k (−1k from prior week revised up +2k to 198k). 4-wk avg 202.25k (−1.75k). Continuing week ended 12 Sep: 1,719k (+2k; prior revised −13k to 1,717k). IUR 1.1% unch. Street ~200k.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"iip", date:"2026-09-24", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"International transactions / IIP (Q2)", impact:"medium", status:"released",
+    actual:"CA deficit $246.0bn (Q1 rev $212.6bn; +$33.4bn / +15.7%); 3.0% of GDP (was 2.7%). Net IIP −$22.42T (Q1 rev −$21.27T); assets $46.97T / liabilities $69.39T. Net financial-account −$369.7bn", actualShort:"CA −$246bn · IIP −$22.4T", previous:"Q1 2026 revised: CA deficit $212.6bn (2.7% GDP); net IIP −$21.27T (assets $43.37T / liab $64.64T) (BEA)", consensus:"n/a", vs:"",
+    note:"BEA 26–41, embargoed until 8:30am EDT Thu 24 Sep 2026. Official PDF ita-iip226.pdf. Widening CA deficit on larger goods deficit partly offset by smaller primary/secondary income deficits. Exports+income receipts $1.44T (+$58.8bn); imports+income payments $1.69T (+$92.2bn).", source:"https://www.bea.gov/news/2026/us-international-transactions-and-investment-position-2nd-quarter-2026" },
+  { id:"nhs", date:"2026-09-24", time:"10:00am", tz:"ET", country:"US", inst:"Census", title:"New home sales (Aug)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Jul 607k SAAR (Census)", consensus:"≈619–650k (market calendars vary)", vs:"",
+    note:"Census New Residential Sales Aug 2026 — 10:00am ET. Medium impact; watch vs Jul 607k. Confirm day-of on census.gov.", source:"https://www.census.gov/construction/soc/schedule.html" },
   { id:"rba", date:"2026-09-29", time:"~12:30am", tz:"ET", country:"AU", inst:"RBA", title:"RBA cash rate decision", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Meeting 28–29 Sep. ~2:30pm AEST.", source:"https://www.rba.gov.au" },
@@ -933,6 +930,8 @@ const EVENTS = [
   { id:"ecb-oct", date:"2026-10-29", time:"", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
     note:"Governing Council 28–29 Oct in Frankfurt.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
+
+  /* Futu checklist fill — official dates preferred; consensus blank unless sourced */
   { id:"ism-mfg-sep", date:"2026-10-01", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a — confirm ISM day-of", consensus:"n/a", vs:"",
     note:"Typical first business day after month-end. High for USD rates.", source:"https://www.ismworld.org" },
@@ -972,6 +971,7 @@ const EVENTS = [
   { id:"claims-oct29", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Same morning as GDP/PCE window.", source:"https://www.dol.gov/ui/data.pdf" },
+
   { id:"cn-pmi-sep", date:"2026-09-30", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a — pull NBS at 09:30 CST", consensus:"n/a", vs:"",
     note:"NBS calendar: last day of month ~09:30 China time (= 9:30pm ET). Manufacturing + non-manufacturing.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
@@ -984,6 +984,7 @@ const EVENTS = [
   { id:"cn-pmi-oct", date:"2026-10-31", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Oct)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"NBS last-calendar-day PMI window ~09:30 CST.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+
   { id:"hk-cpi-aug", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Aug)", impact:"medium", status:"released",
     actual:"Composite CPI +1.7% y/y (unch vs Jul); underlying +1.9% y/y; SA 3-mo avg +0.2% m/m", actualShort:"CPI 1.7% · und. 1.9%", previous:"Jul Composite +1.7% y/y; underlying +1.9% (C&SD)", consensus:"~1.7% (The Standard / market)", vs:"in line; y/y unchanged vs Jul",
     note:"Official C&SD via HKSAR GIA 23 Sep 2026 (P2026092300316). Electricity/gas/water +11.5%, misc services +4.7%, transport +3.9%; basic food −0.2%. CPI(A/B/C) +1.2%/+1.8%/+1.9%. Fuel-related still hot; overall inflation moderate.", source:"https://www.info.gov.hk/gia/general/202609/23/P2026092300316.htm" },
@@ -993,6 +994,7 @@ const EVENTS = [
   { id:"hk-gdp-q3", date:"2026-10-30", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong GDP advance (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"HK C&SD advance GDP estimates — Oct 30 listed for Q3 on 2026 schedule.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+
   { id:"jp-cpi-aug", date:"2026-09-18", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Aug)", impact:"high", status:"released",
     actual:"headline +1.9% y/y; ex-fresh food +1.7% y/y; ex-fresh food & energy +1.9% y/y", actualShort:"CPI 1.9% · core 1.7%", previous:"Jul ex-fresh food +1.8% y/y (MIC)", consensus:"ex-fresh food hold ~1.8% (Bloomberg street)", vs:"soft vs hold-at-1.8%",
     note:"Statistics Bureau / MIC, 18 Sep 2026 (2025-base). Index 102.2 (headline). Slowed first time in four months.", source:"https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html" },
@@ -1002,12 +1004,16 @@ const EVENTS = [
   { id:"jp-cpi-sep", date:"2026-10-23", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Nationwide Sep CPI 23 Oct. 08:30 JST typical.", source:"https://www.stat.go.jp/english/data/cpi/1582.html" },
+
   { id:"ez-pmi-sep", date:"2026-10-01", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone manufacturing PMI final (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Final manufacturing PMI typically first business day. Confirm S&P Global day-of.", source:"https://www.pmi.spglobal.com" },
   { id:"ez-svc-pmi-sep", date:"2026-10-03", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone services PMI final (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Final services PMI typically early month. Confirm day-of.", source:"https://www.pmi.spglobal.com" }
+    note:"Final services PMI typically early month. Confirm day-of.", source:"https://www.pmi.spglobal.com" },
+  { id:"de-ifo", date:"2026-09-24", time:"4:00am", tz:"ET", country:"DE", inst:"Ifo", title:"Germany Ifo business climate (Sep)", impact:"medium", status:"released",
+    actual:"Business Climate 89.9 (Aug 88.8); recovery continues — situation + expectations both brighter (Ifo)", actualShort:"Climate 89.9", previous:"Aug 88.8", consensus:"≈89.0–89.1 (street calendars)", vs:"beat / firmer recovery",
+    note:"Official Ifo 24 Sep 2026: Climate rose to 89.9 from 88.8 in August. Companies assessed current situation more positively; expectations brightened. German economy continues its recovery.", source:"https://www.ifo.de/en/survey/ifo-business-climate-index-germany" }
 ];
 
 
@@ -1034,6 +1040,8 @@ const FLAGS = {
   MX: '<svg class="flag" viewBox="0 0 16 11"><rect width="5.4" height="11" fill="#006847"/><rect x="5.3" width="5.4" height="11" fill="#fff"/><rect x="10.6" width="5.4" height="11" fill="#ce1126"/></svg>',
   ID: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="5.5" fill="#ce1126"/><rect y="5.5" width="16" height="5.5" fill="#fff"/></svg>',
   KR: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="11" fill="#fff"/><circle cx="8" cy="5.5" r="2" fill="#c60c30"/><path d="M6 5.5a2 2 0 0 0 4 0" fill="#003478"/></svg>',
+  SE: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#006aa7"/><rect y="4.4" width="16" height="2.2" fill="#fecc00"/><rect x="5" width="2.2" height="11" fill="#fecc00"/></svg>',
+  NO: '<svg class="flag" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="11" fill="#ba0c2f"/><rect x="4.2" width="2.4" height="11" fill="#fff"/><rect y="4.3" width="16" height="2.4" fill="#fff"/><rect x="4.6" width="1.6" height="11" fill="#00205b"/><rect y="4.7" width="16" height="1.6" fill="#00205b"/></svg>',
   DE: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="3.7" fill="#000"/><rect y="3.7" width="16" height="3.6" fill="#dd0000"/><rect y="7.3" width="16" height="3.7" fill="#ffce00"/></svg>',
   FR: '<svg class="flag" viewBox="0 0 16 11"><rect width="5.4" height="11" fill="#002395"/><rect x="5.3" width="5.4" height="11" fill="#fff"/><rect x="10.6" width="5.4" height="11" fill="#ed2939"/></svg>',
   SG: '<svg class="flag" viewBox="0 0 16 11"><rect width="16" height="5.5" fill="#ed2939"/><rect y="5.5" width="16" height="5.5" fill="#fff"/><circle cx="4.2" cy="2.8" r="1.5" fill="#fff"/></svg>',
@@ -1170,7 +1178,7 @@ function shortChipTitle(ev) {
     else if (/^(boj)$/i.test(tag)) tag = "BoJ";
     else tag = tag.toUpperCase();
     const c = ev.country || "";
-    const prefix = ({ UK: "UK", EU: "EZ", CA: "CA", JP: "JP", CN: "CN", AU: "AU", CH: "CH", DE: "DE", MX: "MX" })[c] || "";
+    const prefix = ({ UK: "UK", EU: "EZ", CA: "CA", JP: "JP", CN: "CN", AU: "AU", CH: "CH", DE: "DE", MX: "MX", SE: "SE", NO: "NO" })[c] || "";
     if (tag === "PMI") return prefix ? `${prefix} PMI` : "PMI";
     if (/^(CPI|PPI|GDP|HICP)$/.test(tag) && prefix && c !== "US") return `${prefix} ${tag}`;
     if (tag === "FOMC" && /day 1/i.test(raw)) return "FOMC d1";
@@ -1387,7 +1395,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-09-24T10:28:15.271278+08:00";
+const INFLATION_UPDATED_AT = "2026-09-24T21:11:09.482114+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.5, prev:33.8, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"ART",
@@ -1403,7 +1411,7 @@ const INFLATION = [
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"IST" },
   { code:"ZA", name:"South Africa", last:4.4, prev:4.3, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-08-19", refTime:"", refTz:"SAST",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"SAST" },
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"SAST" },
   { code:"ES", name:"Spain", last:4.3, prev:3.6, g20:false,
     refPeriod:"Aug 2026", refDate:"2026-08-28", refTime:"", refTz:"CEST",
     nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
@@ -1445,7 +1453,7 @@ const INFLATION = [
     nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
   { code:"SG", name:"Singapore", last:2.3, prev:2.2, g20:false,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"SGT",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
   { code:"JP", name:"Japan", last:1.9, prev:1.9, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-08-21", refTime:"", refTz:"JST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"JST" },
@@ -1707,7 +1715,7 @@ let view = bootView();
 let catFilter = "all";
 let cursor = new Date(2026, 8, 1);
 let selectedDate = "2026-09-21";
-let selectedId = "snb";
+let selectedId = "claims-24";
 
 const pad = n => String(n).padStart(2,"0");
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;

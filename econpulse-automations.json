@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T10:28:46.211110+08:00",
+  "updatedAt": "2026-09-24T21:11:26.770914+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -56,24 +56,17 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-23T21:12:00+08:00",
+      "lastRunAt": "2026-09-24T21:11:26.770914+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening US-morning Actuals refresh completed; Pages updated (US flash PMI Sep, HK CPI Aug).",
-      "nextRunAt": "2026-09-24T20:45:00+08:00",
+      "lastSummary": "Evening US-morning Actuals: filled BEA ITA/IIP Q2 — CA deficit $246.0bn (3.0% GDP); net IIP −$22.42T. Claims already on calendar from earlier pass. NHS (10:00am ET) and Banxico (~1pm Mexico City) still ahead. Inflation TE scrape: ZA/SG next-period labels only.",
+      "nextRunAt": "2026-09-25T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "us-flash-pmi-sep",
-          "title": "US flash PMI mfg + services (Sep)",
-          "actualShort": "Comp 58.4 · Svc 58.7 · Mfg 57.0",
+          "id": "iip",
+          "title": "International transactions / IIP (Q2)",
+          "actualShort": "CA −$246bn · IIP −$22.4T",
           "status": "released",
-          "when": "2026-09-23T21:45:00+08:00"
-        },
-        {
-          "id": "hk-cpi-aug",
-          "title": "Hong Kong CPI (Aug)",
-          "actualShort": "+1.7% y/y · und. +1.9%",
-          "status": "released",
-          "when": "2026-09-23T16:30:00+08:00"
+          "when": "2026-09-24T20:30:00+08:00"
         }
       ]
     }
