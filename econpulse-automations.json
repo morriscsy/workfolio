@@ -1,16 +1,19 @@
 {
-  "updatedAt": "2026-09-25T08:46:08.578763+08:00",
+  "updatedAt": "2026-09-27T03:32:45+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
     {
       "id": "morning",
-      "label": "Morning batch · Weekdays ~08:40 HKT",
-      "order": 1
+      "label": "Morning batch \u00b7 Weekdays ~08:40 HKT",
+      "order": 1,
+      "lastRunAt": "2026-09-27T03:32:45+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Manual calendar scan 2026-09-27 HKT: filled Durables Aug (~0.0% / core +1.6%); added UMich Sep final 48.1 (missed after evening 9/25 failure). Next: RBA + JOLTS Tue 29 Sep."
     },
     {
       "id": "evening",
-      "label": "Evening batch · Weekdays ~20:45 HKT",
+      "label": "Evening batch \u00b7 Weekdays ~20:45 HKT",
       "order": 2
     }
   ],
@@ -18,9 +21,9 @@
     {
       "id": "econpulse-actuals-morning-refresh",
       "name": "Actuals morning refresh",
-      "description": "Weekday Asia/early Actuals backfill → Pages",
+      "description": "Weekday Asia/early Actuals backfill \u2192 Pages",
       "batchId": "morning",
-      "batchLabel": "Morning batch · Weekdays ~08:40 HKT",
+      "batchLabel": "Morning batch \u00b7 Weekdays ~08:40 HKT",
       "batchOrder": 1,
       "covers": [
         "Asia CPI/labor (JP/CN/AU/HK)",
@@ -29,9 +32,9 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-25T08:46:08.578763+08:00",
+      "lastRunAt": "2026-09-25T10:22:32+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals 2026-09-25 ~08:40 HKT: Banxico hold 6.50% (official 24 Sep statement); Census NHS Aug 684k SAAR (Jul rev 643k). Durables Aug still ahead (8:30am ET). Inflation TE live refresh: no value changes. TODAY→2026-09-25.",
+      "lastSummary": "Asia-evening Actuals 2026-09-24 ~10:22pm ET (\u224810:22am HKT 25 Sep): no new high/medium blanks through Sep 24 ET (Banxico/claims/IIP/NHS/SNB/Riksbank/Norges already filled). Next: Durables Aug 8:30am ET Fri 25 Sep. Inflation TE live: order/values unchanged. Silent.",
       "nextRunAt": "2026-09-28T08:40:00+08:00",
       "lastItems": [
         {
@@ -53,9 +56,9 @@
     {
       "id": "econpulse-actuals-evening-refresh",
       "name": "Actuals evening refresh",
-      "description": "Weekday after-US-morning Actuals → Pages",
+      "description": "Weekday after-US-morning Actuals \u2192 Pages",
       "batchId": "evening",
-      "batchLabel": "Evening batch · Weekdays ~20:45 HKT",
+      "batchLabel": "Evening batch \u00b7 Weekdays ~20:45 HKT",
       "batchOrder": 2,
       "covers": [
         "US morning data window (BLS/Census/BEA/DOL/ISM/S&P Global)",
@@ -66,7 +69,7 @@
       "cron": "45 20 * * 1-5",
       "lastRunAt": "2026-09-24T21:36:26.263211+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US catch-up 9:35am ET: no new Actuals (claims-24 already filled; nhs 10:00am + Banxico 2:00pm still ahead). Inflation TE scrape live — order/values unchanged.",
+      "lastSummary": "Post-US catch-up 9:35am ET: no new Actuals (claims-24 already filled; nhs 10:00am + Banxico 2:00pm still ahead). Inflation TE scrape live \u2014 order/values unchanged.",
       "nextRunAt": "2026-09-25T20:45:00+08:00",
       "lastItems": [
         {
@@ -76,12 +79,12 @@
         },
         {
           "id": "nhs",
-          "title": "New home sales Aug — due 10:00am ET",
+          "title": "New home sales Aug \u2014 due 10:00am ET",
           "actualShort": "pending"
         },
         {
           "id": "banxico",
-          "title": "Banxico overnight rate — due 2:00pm ET",
+          "title": "Banxico overnight rate \u2014 due 2:00pm ET",
           "actualShort": "pending"
         }
       ]
