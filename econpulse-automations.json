@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T03:32:45+08:00",
+  "updatedAt": "2026-09-27T03:33:55+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -7,14 +7,17 @@
       "id": "morning",
       "label": "Morning batch \u00b7 Weekdays ~08:40 HKT",
       "order": 1,
-      "lastRunAt": "2026-09-27T03:32:45+08:00",
+      "lastRunAt": "2026-09-25T08:43:21+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Manual calendar scan 2026-09-27 HKT: filled Durables Aug (~0.0% / core +1.6%); added UMich Sep final 48.1 (missed after evening 9/25 failure). Next: RBA + JOLTS Tue 29 Sep."
+      "lastSummary": "Morning Actuals 2026-09-25: Banxico hold 6.50%; NHS Aug 684k."
     },
     {
       "id": "evening",
       "label": "Evening batch \u00b7 Weekdays ~20:45 HKT",
-      "order": 2
+      "order": 2,
+      "lastRunAt": "2026-09-25T20:45:22+08:00",
+      "lastStatus": "failed",
+      "lastSummary": "Evening 2026-09-25 failed (Activity task). Catch-up 2026-09-27: Durables + UMich on Pages b3d8478."
     }
   ],
   "automations": [
@@ -32,9 +35,9 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-25T10:22:32+08:00",
+      "lastRunAt": "2026-09-25T08:43:21+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals 2026-09-24 ~10:22pm ET (\u224810:22am HKT 25 Sep): no new high/medium blanks through Sep 24 ET (Banxico/claims/IIP/NHS/SNB/Riksbank/Norges already filled). Next: Durables Aug 8:30am ET Fri 25 Sep. Inflation TE live: order/values unchanged. Silent.",
+      "lastSummary": "Morning Actuals 2026-09-25 ~08:40 HKT: Banxico hold 6.50%; NHS Aug 684k SAAR. Durables Aug still ahead then (filled later in b3d8478 after evening fail).",
       "nextRunAt": "2026-09-28T08:40:00+08:00",
       "lastItems": [
         {
@@ -67,27 +70,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-24T21:36:26.263211+08:00",
-      "lastStatus": "succeeded",
-      "lastSummary": "Post-US catch-up 9:35am ET: no new Actuals (claims-24 already filled; nhs 10:00am + Banxico 2:00pm still ahead). Inflation TE scrape live \u2014 order/values unchanged.",
-      "nextRunAt": "2026-09-25T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "claims-24",
-          "title": "Initial claims (already released)",
-          "actualShort": "197k"
-        },
-        {
-          "id": "nhs",
-          "title": "New home sales Aug \u2014 due 10:00am ET",
-          "actualShort": "pending"
-        },
-        {
-          "id": "banxico",
-          "title": "Banxico overnight rate \u2014 due 2:00pm ET",
-          "actualShort": "pending"
-        }
-      ]
+      "lastRunAt": "2026-09-25T20:45:22+08:00",
+      "lastStatus": "failed",
+      "lastSummary": "Evening Actuals 2026-09-25 ~20:45 HKT: Activity task failed \u2014 did not fill Durables Aug / did not add UMich Sep final. Manual catch-up 2026-09-27 \u2192 Pages b3d8478.",
+      "nextRunAt": "2026-09-28T20:45:00+08:00",
+      "lastItems": []
     }
   ]
 }
