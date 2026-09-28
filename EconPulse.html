@@ -975,9 +975,9 @@ const EVENTS = [
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Same morning as GDP/PCE window.", source:"https://www.dol.gov/ui/data.pdf" },
 
-  { id:"cn-pmi-sep", date:"2026-09-30", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Sep)", impact:"high", status:"scheduled",
+  { id:"cn-pmi-sep", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a — pull NBS at 09:30 CST", consensus:"n/a", vs:"",
-    note:"NBS calendar: last day of month ~09:30 China time (= 9:30pm ET). Manufacturing + non-manufacturing.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+    note:"NBS PMI ~09:30 China Wed 30 Sep = 9:30pm ET Tue 29 Sep (TE 01:30 GMT Wed). Was incorrectly stamped Wed 30 9:30pm ET (= Thu Beijing).", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
   { id:"cn-cpi-sep", date:"2026-10-14", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China CPI + PPI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug CPI 0.8% y/y (TE capture)", consensus:"n/a", vs:"",
     note:"NBS regular calendar lists mid-month CPI/PPI ~09:30 China time. Confirm day-of.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
@@ -1016,7 +1016,43 @@ const EVENTS = [
     note:"Final services PMI typically early month. Confirm day-of.", source:"https://www.pmi.spglobal.com" },
   { id:"de-ifo", date:"2026-09-24", time:"4:00am", tz:"ET", country:"DE", inst:"Ifo", title:"Germany Ifo business climate (Sep)", impact:"medium", status:"released",
     actual:"Business Climate 89.9 (Aug 88.8); recovery continues — situation + expectations both brighter (Ifo)", actualShort:"Climate 89.9", previous:"Aug 88.8", consensus:"≈89.0–89.1 (street calendars)", vs:"beat / firmer recovery",
-    note:"Official Ifo 24 Sep 2026: Climate rose to 89.9 from 88.8 in August. Companies assessed current situation more positively; expectations brightened. German economy continues its recovery.", source:"https://www.ifo.de/en/survey/ifo-business-climate-index-germany" }
+    note:"Official Ifo 24 Sep 2026: Climate rose to 89.9 from 88.8 in August. Companies assessed current situation more positively; expectations brightened. German economy continues its recovery.", source:"https://www.ifo.de/en/survey/ifo-business-climate-index-germany" },
+
+
+  /* 2026-09-28 Futu-align gap fill (TE/ActionForex/official; Futu scrape blocked) */
+  { id:"cn-ind-profits-aug", date:"2026-09-28", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China industrial profits (Jan–Aug / Aug)", impact:"medium", status:"released",
+    actual:"Jan–Aug profits +15.7% y/y to ¥5.272tn (vs +17.6% Jan–Jul); Aug alone +4.2% y/y (Jul +11.2%)", actualShort:"YTD +15.7% · Aug +4.2%", previous:"Jan–Jul +17.6% y/y (NBS)", consensus:"n/a", vs:"slowed further (YTD and Aug)",
+    note:"NBS industrial enterprise profits above designated size, released Mon 28 Sep 2026 ~Beijing morning (Reuters 01:40 UTC). Electronics manufacturing led; soft domestic demand weighed. Calendar stamp uses CN-evening convention (9:30pm ET label on China print day).", source:"https://www.reuters.com/world/asia-pacific/china-industrial-profits-rise-157-january-august-2026-09-28/" },
+  { id:"rba-pc", date:"2026-09-29", time:"~1:30am", tz:"ET", country:"AU", inst:"RBA", title:"RBA press conference (Bullock)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Follows cash-rate decision (~2:30pm AEST / ~12:30am ET). TE/ActionForex: presser ~05:30 GMT Tue 29 Sep.", source:"https://www.rba.gov.au" },
+  { id:"case-fhfa-jul", date:"2026-09-29", time:"9:00am", tz:"ET", country:"US", inst:"S&P/FHFA", title:"Case-Shiller + FHFA HPI (Jul)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Both typically last Tuesday of month 9:00am ET. July 2026 house prices (2-month lag).", source:"https://www.spglobal.com/spdji/en/index-family/indicators/sp-corelogic-case-shiller/" },
+  { id:"cb-conf-sep", date:"2026-09-29", time:"10:00am", tz:"ET", country:"US", inst:"Conference Board", title:"CB Consumer Confidence (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug 89.4 (Conference Board)", consensus:"n/a", vs:"",
+    note:"Conference Board: last Tuesday 10:00am ET. Same stamp window as JOLTS.", source:"https://www.conference-board.org/topics/consumer-confidence/" },
+  { id:"au-cpi-aug", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia CPI (Aug)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — pull ABS day-of", consensus:"n/a", vs:"",
+    note:"ABS monthly CPI ~11:30am AEST Wed 30 Sep (= 9:30pm ET Tue 29). High for AUD / RBA path. Trimmed-mean also due.", source:"https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation" },
+  { id:"au-permits-aug", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia building permits (Aug)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"ABS building approvals typically same 11:30am AEST stamp as monthly CPI. Medium housing.", source:"https://www.abs.gov.au/statistics/industry/building-and-construction" },
+  { id:"ca-gdp-jul", date:"2026-09-29", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada GDP (Jul)", impact:"medium", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"StatCan monthly GDP. TE: Tue 29 Sep 12:30 GMT (= 8:30am ET).", source:"https://www.statcan.gc.ca" },
+  { id:"adp-sep", date:"2026-09-30", time:"8:15am", tz:"ET", country:"US", inst:"ADP", title:"ADP employment change (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a — confirm ADP day-of", consensus:"n/a", vs:"",
+    note:"ADP National Employment Report typically 8:15am ET Wednesday before NFP. TE: 12:15 GMT Wed 30 Sep.", source:"https://adpemploymentreport.com" },
+  { id:"de-cpi-sep", date:"2026-09-30", time:"8:00am", tz:"ET", country:"DE", inst:"Destatis", title:"Germany CPI preliminary (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Destatis flash CPI. TE: Wed 30 Sep 12:00 GMT (= 8:00am ET). Key input ahead of EZ flash Fri.", source:"https://www.destatis.de" },
+  { id:"tankan-q3", date:"2026-09-30", time:"7:50pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ Tankan large manufacturers (Q3)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Q2 large mfg 22 (BoJ)", consensus:"n/a", vs:"",
+    note:"BoJ Tankan ~08:50 JST Thu 1 Oct (= 7:50pm ET Wed 30 Sep). TE high-importance.", source:"https://www.boj.or.jp" },
+  { id:"ez-cpi-flash-sep", date:"2026-10-02", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone CPI flash (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug HICP final +3.2% y/y; core +2.4%", consensus:"n/a", vs:"",
+    note:"Eurostat flash estimate. TE/ActionForex: Fri 2 Oct 09:00 GMT (= ~5:00am ET). Main inflation print before late-Oct ECB.", source:"https://ec.europa.eu/eurostat" }
 ];
 
 
@@ -1717,7 +1753,7 @@ function bootView() {
 let view = bootView();
 let catFilter = "all";
 let cursor = new Date(2026, 8, 1);
-let selectedDate = "2026-09-21";
+let selectedDate = "2026-09-28";
 let selectedId = "claims-24";
 
 const pad = n => String(n).padStart(2,"0");
