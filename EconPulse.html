@@ -741,7 +741,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 28 Sep 2026 · public macro releases · Futu checklist fill</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 28 Sep 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
   </div>
   <!-- ep-toolbar-up:20260924d · toolbar above Next Up (was below header) -->
@@ -1834,7 +1834,10 @@ const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y
 const sameDay = (a,b) => a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
 const monthName = d => d.toLocaleString("en-US", { month:"long", year:"numeric" });
 
+const SHOW_COUNTRIES = new Set(["US", "CN", "JP"]); // Morris: calendar shows USA, China, Japan only
+
 function visible(ev) {
+  if (!SHOW_COUNTRIES.has(ev.country)) return false;
   if (catFilter !== "all" && ev.cat !== catFilter) return false;
   return true;
 }
@@ -1856,7 +1859,7 @@ function eventsOn(dateStr) {
 }
 
 function nextUpcoming() {
-  return EVENTS.filter(e => e.status !== "released" && parse(e.date) >= TODAY)
+  return EVENTS.filter(e => visible(e) && e.status !== "released" && parse(e.date) >= TODAY)
     .sort(byWhen)[0];
 }
 
@@ -2344,6 +2347,7 @@ function pushToast(ev, kind) {
 function checkPrintAlerts() {
   const now = Date.now();
   EVENTS.forEach(ev => {
+    if (!visible(ev)) return;
     if (ev.status === "released") return;
     const t = eventInstant(ev);
     if (t == null) return;
