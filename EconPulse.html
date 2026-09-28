@@ -352,6 +352,100 @@
   .chart-leg i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: -1px; }
   .chart-empty { color: var(--muted); font-size: 12px; padding: 8px 2px; }
   .chart-svg { width: 100%; height: auto; display: block; }
+
+  /* Visual-first release result block */
+  .result-viz { margin: 4px 0 10px; }
+  .surprise-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin: 0 0 10px; }
+  .surprise-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; font-weight:750; letter-spacing:0.04em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px; border:1px solid transparent;
+  }
+  .surprise-badge.beat { background:rgba(52,211,153,0.14); color:#34d399; border-color:rgba(52,211,153,0.35); }
+  .surprise-badge.miss { background:rgba(248,113,113,0.14); color:#f87171; border-color:rgba(248,113,113,0.35); }
+  .surprise-badge.inline { background:rgba(103,232,249,0.12); color:#67e8f9; border-color:rgba(103,232,249,0.32); }
+  .surprise-badge.hot { background:rgba(245,158,11,0.14); color:#fbbf24; border-color:rgba(245,158,11,0.35); }
+  .surprise-badge.soft { background:rgba(52,211,153,0.12); color:#6ee7b7; border-color:rgba(52,211,153,0.28); }
+  .surprise-badge.pending { background:rgba(107,114,128,0.16); color:#9ca3af; border-color:rgba(107,114,128,0.3); }
+  .surprise-badge.na { background:rgba(167,139,250,0.12); color:#c4b5fd; border-color:rgba(167,139,250,0.28); }
+  .surprise-sub { font-size:11px; color:var(--muted); font-weight:550; letter-spacing:0; text-transform:none; max-width:100%; }
+  .cmp-cards {
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0 0 10px;
+  }
+  .cmp-card {
+    background:rgba(8,11,20,0.65);
+    border:1px solid rgba(124,58,237,0.18);
+    border-radius:12px; padding:10px 8px 9px; min-width:0;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .cmp-card.actual {
+    border-color:rgba(167,139,250,0.42);
+    background:linear-gradient(160deg, rgba(124,58,237,0.18), rgba(8,11,20,0.7));
+    box-shadow:0 0 18px rgba(124,58,237,0.12);
+  }
+  .cmp-card .lab {
+    font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted);
+  }
+  .cmp-card.actual .lab { color:#c4b5fd; }
+  .cmp-card .val {
+    font-size:15px; font-weight:800; letter-spacing:-0.02em; line-height:1.25;
+    font-variant-numeric:tabular-nums; word-break:break-word;
+  }
+  .cmp-card .val.pending { color:#6b7280; font-weight:650; }
+  .cmp-card .hint { font-size:10px; color:var(--muted); line-height:1.3; }
+  .metric-grid {
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:0 0 10px;
+  }
+  .metric-pill {
+    background:rgba(8,11,20,0.55);
+    border:1px solid rgba(124,58,237,0.16);
+    border-radius:10px; padding:8px 9px; min-width:0;
+  }
+  .metric-pill .ml { font-size:10px; color:var(--muted); font-weight:650; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:4px; }
+  .metric-pill .mv { font-size:14px; font-weight:750; font-variant-numeric:tabular-nums; }
+  .metric-pill .ms { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; font-size:10px; color:var(--muted); }
+  .metric-pill .ms b { font-weight:650; color:#a0a8c0; }
+  .delta-bar-wrap { margin: 2px 0 10px; }
+  .delta-bar {
+    position:relative; height:28px; border-radius:8px;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(124,58,237,0.14);
+    overflow:hidden;
+  }
+  .delta-bar .zero {
+    position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.18);
+  }
+  .delta-bar .delta-fill {
+    position:absolute; top:5px; bottom:5px; height:auto; border-radius:5px; min-width:4px;
+  }
+  .delta-bar .delta-fill.pos { background:linear-gradient(90deg,#34d399,#a78bfa); left:50%; }
+  .delta-bar .delta-fill.neg { background:linear-gradient(90deg,#f87171,#f59e0b); right:50%; }
+  .delta-bar .dl {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:#e8eaf0; pointer-events:none;
+    text-shadow:0 1px 2px rgba(0,0,0,0.6);
+  }
+  .meta-slim {
+    display:flex; flex-wrap:wrap; gap:6px 12px; font-size:12px; color:var(--muted);
+    margin: 0 0 10px; padding-bottom:8px; border-bottom:1px dashed rgba(167,139,250,0.18);
+  }
+  .meta-slim b { color:#a0a8c0; font-weight:600; }
+  .note-cap { margin:8px 0 0; font-size:13px; color:#c5cad8; line-height:1.45; }
+  .note-full { margin:6px 0 0; font-size:12px; color:var(--muted); line-height:1.45; }
+  .note-toggle {
+    appearance:none; border:none; background:transparent; color:var(--violet-soft);
+    font:inherit; font-weight:700; font-size:12px; cursor:pointer; padding:0 0 0 4px;
+  }
+  .note-toggle:hover { color:#fff; }
+  #tipcard .cmp-cards { gap:6px; margin-bottom:8px; }
+  #tipcard .cmp-card { padding:7px 6px; }
+  #tipcard .cmp-card .val { font-size:13px; }
+  #tipcard .metric-grid { display:none; }
+  #tipcard .note-cap { font-size:12px; }
+  @media (max-width: 420px) {
+    .cmp-card .val { font-size:13px; }
+    .metric-grid { grid-template-columns:1fr; }
+  }
+
   #toasts {
     position: fixed; right: 18px; bottom: 18px; z-index: 60;
     display: flex; flex-direction: column; gap: 8px; width: min(360px, calc(100vw - 28px));
@@ -810,7 +904,7 @@
   <span>High = red chip · Medium = cyan chip</span>
 </div>
 </div><!-- /.ep-swipe-wrap -->
-<!-- ep-sheet:20260928a · day-list sheet for +N overflow · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
+<!-- ep-sheet:20260928b · visual result block · day-list sheet for +N overflow · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
 <aside class="detail" id="detail" data-no-swipe>
   <div class="sheet-head">
     <div class="sheet-handle" aria-hidden="true"></div>
@@ -1380,15 +1474,77 @@ const METRICS = {
     { label:"Core CPI y/y", unit:"%", actual:2.4, previous:2.5, sense:"hot" }
   ],
   "retailsales": [
-    { label:"Retail sales m/m", unit:"%", previous:-0.6, sense:"higher-good" }
+    { label:"Retail sales m/m", unit:"%", actual:1.2, consensus:0.8, previous:-0.5, sense:"higher-good" },
+    { label:"Ex-auto m/m", unit:"%", actual:1.4, previous:null, sense:"higher-good" }
+  ],
+  "mxpx": [
+    { label:"Import prices m/m", unit:"%", actual:0.7, consensus:0.4, previous:-0.3, sense:"hot" },
+    { label:"Export prices m/m", unit:"%", actual:0.6, previous:-1.4, sense:"hot" }
+  ],
+  "fomc": [
+    { label:"FF upper", unit:"%", actual:4.00, previous:3.75, sense:"rate" }
   ],
   "starts": [
-    { label:"Starts", unit:"k", previous:1239, sense:"higher-good" },
-    { label:"Permits", unit:"k", previous:1443, sense:"higher-good" }
+    { label:"Starts", unit:"k", actual:1275, previous:1309, sense:"higher-good" },
+    { label:"Permits", unit:"k", actual:1394, previous:1433, sense:"higher-good" },
+    { label:"SF starts", unit:"k", actual:918, previous:null, sense:"higher-good" }
+  ],
+  "claims-17": [
+    { label:"Initial claims", unit:"k", actual:196, consensus:208, previous:206, sense:"lower-good" },
+    { label:"Continuing", unit:"k", actual:1730, previous:1769, sense:"lower-good" }
   ],
   "boe": [
-    { label:"Bank Rate", unit:"%", previous:3.75, sense:"rate" }
+    { label:"Bank Rate", unit:"%", actual:3.75, previous:3.75, consensus:3.75, sense:"rate" }
   ],
+  "boj": [
+    { label:"Policy rate", unit:"%", actual:1.25, consensus:1.25, previous:1.00, sense:"rate" }
+  ],
+  "ip": [
+    { label:"IP m/m", unit:"%", actual:0.0, previous:0.2, sense:"higher-good" },
+    { label:"Capacity util", unit:"%", actual:76.3, previous:76.3, sense:"higher-good" }
+  ],
+  "us-flash-pmi-sep": [
+    { label:"Composite", unit:"", actual:58.4, consensus:55.2, previous:56.0, sense:"higher-good" },
+    { label:"Services", unit:"", actual:58.7, consensus:55.8, previous:56.5, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", actual:57.0, consensus:53.6, previous:53.9, sense:"higher-good" }
+  ],
+  "durables-aug": [
+    { label:"Durables m/m", unit:"%", actual:0.0, consensus:-0.3, previous:0.9, sense:"higher-good" },
+    { label:"Ex-transport", unit:"%", actual:0.3, consensus:0.6, previous:null, sense:"higher-good" },
+    { label:"Core capex orders", unit:"%", actual:1.6, previous:null, sense:"higher-good" }
+  ],
+  "umich-sep-final": [
+    { label:"CSI final", unit:"", actual:48.1, consensus:47.6, previous:51.7, sense:"higher-good" },
+    { label:"Current", unit:"", actual:50.9, previous:null, sense:"higher-good" },
+    { label:"Expectations", unit:"", actual:46.3, previous:null, sense:"higher-good" },
+    { label:"1y infl. exp.", unit:"%", actual:4.6, previous:4.0, sense:"hot" },
+    { label:"5–10y infl. exp.", unit:"%", actual:3.4, previous:3.3, sense:"hot" }
+  ],
+  "claims-24": [
+    { label:"Initial claims", unit:"k", actual:197, consensus:200, previous:198, sense:"lower-good" },
+    { label:"Continuing", unit:"k", actual:1719, previous:1717, sense:"lower-good" }
+  ],
+  "iip": [
+    { label:"CA deficit $bn", unit:"", actual:246.0, previous:212.6, sense:"lower-good" },
+    { label:"CA % GDP", unit:"%", actual:3.0, previous:2.7, sense:"lower-good" }
+  ],
+  "nhs": [
+    { label:"New home sales", unit:"k", actual:684, consensus:635, previous:643, sense:"higher-good" }
+  ],
+  "jp-cpi-aug": [
+    { label:"CPI y/y", unit:"%", actual:1.9, previous:null, sense:"hot" },
+    { label:"Ex-fresh food y/y", unit:"%", actual:1.7, consensus:1.8, previous:1.8, sense:"hot" },
+    { label:"Core ex energy y/y", unit:"%", actual:1.9, previous:null, sense:"hot" }
+  ],
+  "cn-ind-profits-aug": [
+    { label:"YTD profits y/y", unit:"%", actual:15.7, previous:17.6, sense:"higher-good" },
+    { label:"Aug alone y/y", unit:"%", actual:4.2, previous:11.2, sense:"higher-good" }
+  ],
+  "hk-cpi-aug": [
+    { label:"Composite CPI y/y", unit:"%", actual:1.7, consensus:1.7, previous:1.7, sense:"hot" },
+    { label:"Underlying y/y", unit:"%", actual:1.9, previous:1.9, sense:"hot" }
+  ],
+  /* Upcoming skeletons — previous only so layout matches at release */
   "nfp": [
     { label:"Payrolls", unit:"k", previous:162, sense:"higher-good" },
     { label:"Unemployment", unit:"%", previous:4.1, sense:"lower-good" }
@@ -1397,22 +1553,74 @@ const METRICS = {
     { label:"CPI m/m", unit:"%", previous:0.4, sense:"hot" },
     { label:"Core CPI m/m", unit:"%", previous:0.3, sense:"hot" }
   ],
-  "us-flash-pmi-sep": [
-    { label:"Composite", unit:"", actual:58.4, consensus:55.2, previous:56.0, sense:"higher-good" },
-    { label:"Services", unit:"", actual:58.7, consensus:55.8, previous:56.5, sense:"higher-good" },
-    { label:"Manufacturing PMI", unit:"", actual:57.0, consensus:53.6, previous:53.9, sense:"higher-good" }
+  "ppi-sep": [
+    { label:"PPI m/m", unit:"%", previous:0.4, sense:"hot" }
   ],
-  "hk-cpi-aug": [
-    { label:"Composite CPI y/y", unit:"%", actual:1.7, consensus:1.7, previous:1.7, sense:"hot" },
-    { label:"Underlying y/y", unit:"%", actual:1.9, previous:1.9, sense:"hot" }
+  "retailsales-sep": [
+    { label:"Retail sales m/m", unit:"%", previous:1.2, sense:"higher-good" }
+  ],
+  "starts-sep": [
+    { label:"Starts", unit:"k", previous:1275, sense:"higher-good" },
+    { label:"Permits", unit:"k", previous:1394, sense:"higher-good" }
+  ],
+  "durables-sep": [
+    { label:"Durables m/m", unit:"%", previous:0.0, sense:"higher-good" },
+    { label:"Core capex orders", unit:"%", previous:1.6, sense:"higher-good" }
+  ],
+  "uom-prelim-oct": [
+    { label:"CSI prelim", unit:"", previous:48.1, sense:"higher-good" },
+    { label:"1y infl. exp.", unit:"%", previous:4.6, sense:"hot" }
+  ],
+  "ism-mfg-sep": [
+    { label:"ISM Mfg", unit:"", previous:null, sense:"higher-good" }
+  ],
+  "ism-svc-sep": [
+    { label:"ISM Services", unit:"", previous:null, sense:"higher-good" }
+  ],
+  "boj-oct": [
+    { label:"Policy rate", unit:"%", previous:1.25, sense:"rate" }
+  ],
+  "fomc-oct": [
+    { label:"FF upper", unit:"%", previous:4.00, sense:"rate" }
+  ],
+  "jp-cpi-sep": [
+    { label:"Ex-fresh food y/y", unit:"%", previous:1.7, sense:"hot" }
+  ],
+  "cn-cpi-sep": [
+    { label:"CPI y/y", unit:"%", previous:0.8, sense:"hot" }
+  ],
+  "cn-pmi-sep": [
+    { label:"Official Mfg PMI", unit:"", previous:null, sense:"higher-good" }
+  ],
+  "us-pmi-flash-oct": [
+    { label:"Composite", unit:"", previous:58.4, sense:"higher-good" },
+    { label:"Services", unit:"", previous:58.7, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", previous:57.0, sense:"higher-good" }
   ]
 };
+
 EVENTS.forEach(e => { if (METRICS[e.id]) e.metrics = METRICS[e.id]; });
 
 function fmtMetric(v, unit) {
   if (v == null || Number.isNaN(v)) return "—";
-  if (unit === "%") return (v > 0 ? "+" : "") + (+v).toFixed(Math.abs(v) >= 10 ? 1 : 2).replace(/0$/,"").replace(/\.$/,"") + "%";
-  if (unit === "k") return (v > 0 ? "+" : "") + (Math.abs(v) >= 100 ? Math.round(v) : v) + "k";
+  if (unit === "%") {
+    const abs = Math.abs(v);
+    const digits = abs >= 10 ? 1 : (Number.isInteger(v) || Math.abs(v*10 - Math.round(v*10)) < 1e-9 ? 1 : 2);
+    let t = (v > 0 ? "+" : "") + (+v).toFixed(digits);
+    t = t.replace(/(\.\d*?)0+$/,"$1").replace(/\.$/,"");
+    return t + "%";
+  }
+  if (unit === "k") {
+    const n = Math.abs(v) >= 100 ? Math.round(v) : v;
+    return (v > 0 ? "+" : "") + n + "k";
+  }
+  if (unit === "") {
+    const abs = Math.abs(v);
+    const digits = abs >= 100 ? 0 : (abs >= 10 ? 1 : 2);
+    let t = (+v).toFixed(digits);
+    t = t.replace(/(\.\d*?)0+$/,"$1").replace(/\.$/,"");
+    return t;
+  }
   return String(v);
 }
 function actTone(m) {
@@ -1451,7 +1659,7 @@ function barChart(metrics, compact) {
       { v: m.consensus, c: "#06b6d4", x: 1 },
       { v: m.actual, c: actTone(m), x: 2 }
     ];
-    svg += `<text x="0" y="${y0+28}" fill="#a0a8c0" font-size="11" font-weight="600">${m.label}</text>`;
+    svg += `<text x="0" y="${y0+28}" fill="#a0a8c0" font-size="11" font-weight="600">${escHtml(m.label)}</text>`;
     svg += `<line x1="${left}" x2="${W-right}" y1="${y0+base}" y2="${y0+base}" stroke="rgba(167,139,250,0.18)"/>`;
     if (min < 0 && max > 0) svg += `<line x1="${zero}" x2="${zero}" y1="${y0+top}" y2="${y0+base}" stroke="rgba(255,255,255,0.12)"/>`;
     bars.forEach(b => {
@@ -1466,6 +1674,7 @@ function barChart(metrics, compact) {
     });
   });
   const h = rows.length * Hrow;
+  if (!svg) return "";
   return `<svg class="chart-svg" viewBox="0 0 ${W} ${h}" width="100%" height="${h}">${svg}</svg>`;
 }
 function rateChart(metrics, compact) {
@@ -1480,7 +1689,7 @@ function rateChart(metrics, compact) {
     { v: m.consensus, c: "#06b6d4", lab: "Cons" },
     { v: m.actual, c: "#a78bfa", lab: "Act" }
   ].filter(k => k.v != null);
-  let svg = `<text x="8" y="16" fill="#a0a8c0" font-size="11" font-weight="600">${m.label}</text>
+  let svg = `<text x="8" y="16" fill="#a0a8c0" font-size="11" font-weight="600">${escHtml(m.label)}</text>
     <line x1="24" x2="${W-24}" y1="52" y2="52" stroke="rgba(167,139,250,0.35)" stroke-width="4" stroke-linecap="round"/>`;
   marks.forEach((k,i) => {
     svg += `<circle cx="${x(k.v)}" cy="52" r="8" fill="${k.c}" stroke="#080b14" stroke-width="2"/>
@@ -1488,16 +1697,170 @@ function rateChart(metrics, compact) {
   });
   return `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" width="100%" height="${H}">${svg}</svg>`;
 }
+function escHtml(t) {
+  return String(t == null ? "" : t)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function blankish(v) {
+  if (v == null) return true;
+  const t = String(v).trim().toLowerCase();
+  return !t || t === "n/a" || t === "—" || t === "-";
+}
+function shortVal(v, max) {
+  if (blankish(v)) return "—";
+  let t = String(v).replace(/\s+/g," ").trim();
+  // drop parenthetical source noise for card display
+  t = t.replace(/\s*\([^)]*(TE|Reuters|Bloomberg|Census|BLS|street|poll|CNBC|Action|Investing|market calendars)[^)]*\)/gi, "").trim();
+  const lim = max || 42;
+  if (t.length > lim) t = t.slice(0, lim - 1).replace(/\s+\S*$/,"") + "…";
+  return t || "—";
+}
+function isPrintEvent(ev) {
+  if (ev.cat === "speech" || ev.cat === "policy") return false;
+  if (ev.id === "fomc-d1" || ev.id === "powell" || ev.id === "powell-oct" || ev.id === "bowman") return false;
+  return true;
+}
+function hasReleasedPrint(ev) {
+  return ev.status === "released" && !blankish(ev.actual) && ev.actual !== "n/a";
+}
+function surpriseInfo(ev) {
+  if (!isPrintEvent(ev)) {
+    return { kind:"na", label: hasReleasedPrint(ev) ? "Event" : "Pending", sub:"" };
+  }
+  if (!hasReleasedPrint(ev)) {
+    return { kind:"pending", label:"Pending", sub: blankish(ev.consensus) ? "Awaiting release" : "Consensus set · actual soon" };
+  }
+  const scored = (ev.metrics || []).find(m => m.actual != null && m.consensus != null);
+  if (scored) {
+    const d = scored.actual - scored.consensus;
+    const tol = scored.unit === "%" ? 0.04 : (scored.unit === "k" ? 2 : 0.15);
+    if (Math.abs(d) <= tol) {
+      return { kind:"inline", label:"In line", sub: scored.label + " " + fmtMetric(scored.actual, scored.unit) + " vs " + fmtMetric(scored.consensus, scored.unit) };
+    }
+    if (scored.sense === "hot") {
+      return d > 0
+        ? { kind:"hot", label:"Above cons", sub: scored.label + " hotter vs " + fmtMetric(scored.consensus, scored.unit) }
+        : { kind:"soft", label:"Below cons", sub: scored.label + " softer vs " + fmtMetric(scored.consensus, scored.unit) };
+    }
+    if (scored.sense === "lower-good") {
+      return d < 0
+        ? { kind:"beat", label:"Beat", sub: scored.label + " " + fmtMetric(scored.actual, scored.unit) + " vs " + fmtMetric(scored.consensus, scored.unit) }
+        : { kind:"miss", label:"Miss", sub: scored.label + " " + fmtMetric(scored.actual, scored.unit) + " vs " + fmtMetric(scored.consensus, scored.unit) };
+    }
+    if (scored.sense === "higher-good") {
+      return d > 0
+        ? { kind:"beat", label:"Beat", sub: scored.label + " " + fmtMetric(scored.actual, scored.unit) + " vs " + fmtMetric(scored.consensus, scored.unit) }
+        : { kind:"miss", label:"Miss", sub: scored.label + " " + fmtMetric(scored.actual, scored.unit) + " vs " + fmtMetric(scored.consensus, scored.unit) };
+    }
+    if (scored.sense === "rate") {
+      return { kind:"inline", label:"As expected", sub: (ev.vs || scored.label) };
+    }
+  }
+  const vs = (ev.vs || "").toLowerCase();
+  if (!vs) return { kind:"na", label:"Released", sub: ev.actualShort || "" };
+  if (/in line|as expected|matched|steady|unchanged|hold as expected/.test(vs))
+    return { kind:"inline", label:"In line", sub: ev.vs };
+  if (/big beat|beat|above street|above|firmer/.test(vs))
+    return { kind:"beat", label:/big beat/.test(vs) ? "Big beat" : "Beat", sub: ev.vs };
+  if (/soft miss|miss|below/.test(vs))
+    return { kind:"miss", label:"Miss", sub: ev.vs };
+  if (/hotter|\bhot\b/.test(vs))
+    return { kind:"hot", label:"Hotter", sub: ev.vs };
+  if (/soft|slowed/.test(vs))
+    return { kind:"soft", label:"Soft", sub: ev.vs };
+  return { kind:"na", label:"Result", sub: ev.vs };
+}
+function cmpValues(ev) {
+  const primary = (ev.metrics || []).find(m => m.actual != null || m.previous != null || m.consensus != null)
+    || (ev.metrics || [])[0];
+  const released = hasReleasedPrint(ev);
+  let actual = "—", consensus = "—", previous = "—";
+  let actualHint = "", consHint = "", prevHint = "";
+  if (primary) {
+    if (primary.actual != null) {
+      actual = fmtMetric(primary.actual, primary.unit);
+      actualHint = primary.label;
+    } else if (released) {
+      actual = ev.actualShort ? shortVal(ev.actualShort, 28) : shortVal(ev.actual, 28);
+    }
+    if (primary.consensus != null) {
+      consensus = fmtMetric(primary.consensus, primary.unit);
+      consHint = primary.label;
+    } else if (!blankish(ev.consensus)) {
+      consensus = shortVal(ev.consensus, 28);
+    }
+    if (primary.previous != null) {
+      previous = fmtMetric(primary.previous, primary.unit);
+      prevHint = primary.label;
+    } else if (!blankish(ev.previous)) {
+      previous = shortVal(ev.previous, 28);
+    }
+  } else {
+    actual = released ? (ev.actualShort ? shortVal(ev.actualShort, 28) : shortVal(ev.actual, 28)) : "—";
+    consensus = blankish(ev.consensus) ? "—" : shortVal(ev.consensus, 28);
+    previous = blankish(ev.previous) ? "—" : shortVal(ev.previous, 28);
+  }
+  return { actual, consensus, previous, actualHint, consHint, prevHint, released };
+}
+function surpriseDeltaBar(ev) {
+  const m = (ev.metrics || []).find(x => x.actual != null && x.consensus != null);
+  if (!m) return "";
+  const d = m.actual - m.consensus;
+  if (Math.abs(d) < 1e-12) {
+    return `<div class="delta-bar-wrap"><div class="delta-bar"><div class="zero"></div><div class="dl">Surprise 0 · in line</div></div></div>`;
+  }
+  // scale so |d| maps into ~42% of half-width, capped
+  const unit = m.unit || "";
+  const mag = Math.abs(d);
+  const ref = Math.max(mag, unit === "%" ? 0.3 : (unit === "k" ? 20 : 1.5));
+  const pct = Math.min(46, Math.max(8, (mag / ref) * 42));
+  const pos = d > 0;
+  // color by sense
+  let good = true;
+  if (m.sense === "lower-good") good = d < 0;
+  else if (m.sense === "hot") good = null;
+  else if (m.sense === "higher-good") good = d > 0;
+  const fillClass = pos ? "pos" : "neg";
+  const label = (pos ? "+" : "") + (unit === "%" || unit === "k" ? fmtMetric(d, unit).replace(/^\+/,"+") : fmtMetric(d, unit))
+    + " vs cons";
+  const style = pos
+    ? `left:50%;width:${pct}%`
+    : `right:50%;width:${pct}%`;
+  return `<div class="delta-bar-wrap"><div class="delta-bar"><div class="zero"></div>
+    <div class="delta-fill ${fillClass}" style="${style}"></div>
+    <div class="dl">${escHtml(label)}</div>
+  </div></div>`;
+}
+function metricPills(ev, compact) {
+  const rows = (ev.metrics || []).filter(m => m.actual != null || m.previous != null || m.consensus != null);
+  if (rows.length < 2) return "";
+  const show = compact ? rows.slice(0, 4) : rows.slice(0, 6);
+  return `<div class="metric-grid">${show.map(m => {
+    const act = m.actual != null ? fmtMetric(m.actual, m.unit) : "—";
+    const bits = [];
+    if (m.consensus != null) bits.push(`<span><b>C</b> ${fmtMetric(m.consensus, m.unit)}</span>`);
+    if (m.previous != null) bits.push(`<span><b>P</b> ${fmtMetric(m.previous, m.unit)}</span>`);
+    return `<div class="metric-pill"><div class="ml">${escHtml(m.label)}</div><div class="mv">${act}</div>
+      <div class="ms">${bits.join("")}</div></div>`;
+  }).join("")}</div>`;
+}
 function renderChart(ev, compact) {
   const kind = chartKind(ev);
-  if (kind === "empty") {
-    if (ev.cat === "speech" || ev.cat === "policy" || ev.id === "fomc-d1") {
-      return `<div class="chart-empty">No print to chart — this is a meeting / speech.</div>`;
-    }
-    return `<div class="chart-empty">No sourced print yet. Chart fills at release (actual / consensus / prior). Consensus stays blank unless an official or named source exists.</div>`;
-  }
+  if (kind === "empty") return "";
   const body = kind === "rates" ? rateChart(ev.metrics, compact) : barChart(ev.metrics, compact);
-  const title = kind === "rates" ? "Policy rate" : compact ? "Print vs prior / consensus" : "Actual · consensus · previous";
+  if (!body) return "";
+  if (compact) {
+    return `<div class="chart-card">
+      <h4>${kind === "rates" ? "Policy rate" : "Print vs prior / consensus"}</h4>
+      ${body}
+      <div class="chart-leg">
+        <span><i style="background:#6b7280"></i>Previous</span>
+        <span><i style="background:#06b6d4"></i>Consensus</span>
+        <span><i style="background:#a78bfa"></i>Actual</span>
+      </div>
+    </div>`;
+  }
+  const title = kind === "rates" ? "Policy rate" : "Actual · consensus · previous";
   return `<div class="chart-card">
     <h4>${title}</h4>
     ${body}
@@ -1508,6 +1871,72 @@ function renderChart(ev, compact) {
     </div>
   </div>`;
 }
+function noteBlock(ev, compact) {
+  const note = (ev.note || "").trim();
+  if (!note) return "";
+  const limit = compact ? 100 : 150;
+  if (note.length <= limit) {
+    return `<p class="note-cap">${escHtml(note)}</p>`;
+  }
+  const short = note.slice(0, limit - 1).replace(/\s+\S*$/,"") + "…";
+  const id = "note-" + ev.id + (compact ? "-t" : "");
+  return `<p class="note-cap">${escHtml(short)}
+    <button type="button" class="note-toggle" data-note="${id}" onclick="toggleNote(this)">More</button></p>
+    <p class="note-full" id="${id}" hidden>${escHtml(note)}</p>`;
+}
+function toggleNote(btn) {
+  const el = document.getElementById(btn.getAttribute("data-note"));
+  if (!el) return;
+  const open = el.hasAttribute("hidden");
+  if (open) el.removeAttribute("hidden"); else el.setAttribute("hidden","");
+  btn.textContent = open ? "Less" : "More";
+}
+function renderResultBlock(ev, compact) {
+  const sur = surpriseInfo(ev);
+  const cmp = cmpValues(ev);
+  const printish = isPrintEvent(ev);
+  const badge = `<span class="surprise-badge ${sur.kind}">${escHtml(sur.label)}</span>`
+    + (sur.sub && !compact ? `<span class="surprise-sub">${escHtml(shortVal(sur.sub, 72))}</span>` : "");
+  const cards = `<div class="cmp-cards">
+    <div class="cmp-card actual">
+      <div class="lab">Actual</div>
+      <div class="val${cmp.actual==="—"?" pending":""}">${escHtml(cmp.actual)}</div>
+      ${cmp.actualHint && !compact ? `<div class="hint">${escHtml(cmp.actualHint)}</div>` : ""}
+    </div>
+    <div class="cmp-card">
+      <div class="lab">Consensus</div>
+      <div class="val${cmp.consensus==="—"?" pending":""}">${escHtml(cmp.consensus)}</div>
+      ${cmp.consHint && !compact ? `<div class="hint">${escHtml(cmp.consHint)}</div>` : ""}
+    </div>
+    <div class="cmp-card">
+      <div class="lab">Previous</div>
+      <div class="val${cmp.previous==="—"?" pending":""}">${escHtml(cmp.previous)}</div>
+      ${cmp.prevHint && !compact ? `<div class="hint">${escHtml(cmp.prevHint)}</div>` : ""}
+    </div>
+  </div>`;
+  let extras = "";
+  if (printish && !compact) {
+    extras += surpriseDeltaBar(ev);
+    extras += metricPills(ev, false);
+  } else if (printish && compact) {
+    extras += metricPills(ev, true);
+  }
+  const chart = renderChart(ev, !!compact);
+  let emptyHint = "";
+  if (!chart && !extras && printish && !hasReleasedPrint(ev)) {
+    emptyHint = `<div class="chart-empty">Skeleton ready — Actual fills at release. Consensus stays blank unless sourced.</div>`;
+  } else if (!chart && !printish) {
+    emptyHint = `<div class="chart-empty">No print to chart — meeting / speech / presser.</div>`;
+  }
+  return `<div class="result-viz">
+    <div class="surprise-row">${badge}</div>
+    ${cards}
+    ${extras}
+    ${chart}
+    ${emptyHint}
+  </div>`;
+}
+
 
 function ico(cat, extra="") {
   const c = CATS[cat] || CATS.growth;
@@ -1987,23 +2416,19 @@ function showDetail(ev, dateStr) {
     <div class="meta">${d.toLocaleDateString("en-US",{weekday:"long", month:"long", day:"numeric", year:"numeric"})}
       · ${ev.time || "time TBD"} ${ev.tz}${hkStamp(ev) ? " · " + hkStamp(ev) : ""}</div>`;
   const bodyHTML = `
-    <div class="kv">
-      <b>Country</b><span>${flag(ev.country)} ${ev.country} · ${ev.inst}</span>
-      <b>Actual</b><span>${ev.actual || "n/a"}</span>
-      <b>Consensus</b><span>${ev.consensus}</span>
-      <b>Previous</b><span>${ev.previous}</span>
-      <b>Vs</b><span>${ev.vs || "n/a"}</span>
-      <b>Category</b><span>${ico(ev.cat)} ${CATS[ev.cat].label}</span>
-      <b>Status</b><span>${ev.status}</span>
+    ${renderResultBlock(ev, false)}
+    <div class="meta-slim">
+      <span><b>Country</b> ${flag(ev.country)} ${ev.country} · ${ev.inst}</span>
+      <span><b>Cat</b> ${ico(ev.cat)} ${CATS[ev.cat].label}</span>
+      <span><b>Status</b> ${ev.status}</span>
     </div>
-    ${renderChart(ev, false)}
-    <p>${ev.note}</p>
-    <p><a href="${ev.source}" target="_blank" rel="noopener">Source</a></p>
+    ${noteBlock(ev, false)}
+    <p style="margin:10px 0 0"><a href="${ev.source}" target="_blank" rel="noopener">Source</a></p>
     ${eventsOn(ev.date).filter(x => x.id!==ev.id).map(x =>
       `<div class="arow" data-eid="${x.id}" onclick="pick('${x.id}',event)"><span class="t">${x.time||"—"}</span>
        ${flag(x.country)}${ico(x.cat)}<span class="tag ${x.impact}">${x.impact}</span><span>${evTitle(x)}</span></div>`).join("")}
   `;
-  // Heading ONLY in #sheetTitle (outside scroll). Body starts at Country kv.
+  // Heading ONLY in #sheetTitle (outside scroll). Body starts with visual result block.
   setSheetContent(titleHTML, bodyHTML);
   openSheet();
   resetSheetBodyScroll();
@@ -2290,14 +2715,8 @@ function tipHTML(ev) {
     <div class="tip-title">${flag(ev.country)} ${ico(ev.cat)} ${evTitle(ev)}</div>
     <div class="tip-meta">${d.toLocaleDateString("en-US",{weekday:"short", month:"short", day:"numeric"})}
       · ${ev.time || "time TBD"} ${ev.tz}${hkStamp(ev) ? " · " + hkStamp(ev) : ""} · ${ev.inst}</div>
-    <div class="kv">
-      <b>Actual</b><span>${ev.actual || "n/a"}</span>
-      <b>Consensus</b><span>${ev.consensus}</span>
-      <b>Previous</b><span>${ev.previous}</span>
-      <b>Vs</b><span>${ev.vs || "n/a"}</span>
-    </div>
-    ${renderChart(ev, true)}
-    <p>${ev.note}</p>`;
+    ${renderResultBlock(ev, true)}
+    ${noteBlock(ev, true)}`;
 }
 let tipTimer = 0;
 let tipId = "";
