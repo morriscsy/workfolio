@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-09-27T03:33:55+08:00",
+  "updatedAt": "2026-09-28T08:44:53.278482+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
     {
       "id": "morning",
-      "label": "Morning batch \u00b7 Weekdays ~08:40 HKT",
+      "label": "Morning batch · Weekdays ~08:40 HKT",
       "order": 1,
       "lastRunAt": "2026-09-25T08:43:21+08:00",
       "lastStatus": "succeeded",
@@ -13,7 +13,7 @@
     },
     {
       "id": "evening",
-      "label": "Evening batch \u00b7 Weekdays ~20:45 HKT",
+      "label": "Evening batch · Weekdays ~20:45 HKT",
       "order": 2,
       "lastRunAt": "2026-09-25T20:45:22+08:00",
       "lastStatus": "failed",
@@ -24,9 +24,9 @@
     {
       "id": "econpulse-actuals-morning-refresh",
       "name": "Actuals morning refresh",
-      "description": "Weekday Asia/early Actuals backfill \u2192 Pages",
+      "description": "Weekday Asia/early Actuals backfill → Pages",
       "batchId": "morning",
-      "batchLabel": "Morning batch \u00b7 Weekdays ~08:40 HKT",
+      "batchLabel": "Morning batch · Weekdays ~08:40 HKT",
       "batchOrder": 1,
       "covers": [
         "Asia CPI/labor (JP/CN/AU/HK)",
@@ -35,33 +35,18 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-25T08:43:21+08:00",
+      "lastRunAt": "2026-09-28T08:44:53.278482+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals 2026-09-25 ~08:40 HKT: Banxico hold 6.50%; NHS Aug 684k SAAR. Durables Aug still ahead then (filled later in b3d8478 after evening fail).",
-      "nextRunAt": "2026-09-28T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "banxico",
-          "title": "Banxico overnight rate decision",
-          "actualShort": "Hold 6.50%",
-          "status": "released",
-          "when": "2026-09-24"
-        },
-        {
-          "id": "nhs",
-          "title": "New home sales (Aug)",
-          "actualShort": "NHS 684k SAAR",
-          "status": "released",
-          "when": "2026-09-24"
-        }
-      ]
+      "lastSummary": "Morning Actuals 2026-09-28 ~08:40 HKT: quiet — no material fills. Past blanks already filled; Mon Asia/UK/EZ window empty. RBA + JOLTS still ahead Tue 29 Sep. TODAY bumped to Mon 28; inflation TE unchanged.",
+      "nextRunAt": "2026-09-29T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
       "name": "Actuals evening refresh",
-      "description": "Weekday after-US-morning Actuals \u2192 Pages",
+      "description": "Weekday after-US-morning Actuals → Pages",
       "batchId": "evening",
-      "batchLabel": "Evening batch \u00b7 Weekdays ~20:45 HKT",
+      "batchLabel": "Evening batch · Weekdays ~20:45 HKT",
       "batchOrder": 2,
       "covers": [
         "US morning data window (BLS/Census/BEA/DOL/ISM/S&P Global)",
@@ -72,7 +57,7 @@
       "cron": "45 20 * * 1-5",
       "lastRunAt": "2026-09-25T20:45:22+08:00",
       "lastStatus": "failed",
-      "lastSummary": "Evening Actuals 2026-09-25 ~20:45 HKT: Activity task failed \u2014 did not fill Durables Aug / did not add UMich Sep final. Manual catch-up 2026-09-27 \u2192 Pages b3d8478.",
+      "lastSummary": "Evening Actuals 2026-09-25 ~20:45 HKT: Activity task failed — did not fill Durables Aug / did not add UMich Sep final. Manual catch-up 2026-09-27 → Pages b3d8478.",
       "nextRunAt": "2026-09-28T20:45:00+08:00",
       "lastItems": []
     }
