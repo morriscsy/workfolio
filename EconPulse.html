@@ -243,7 +243,19 @@
   .chip.released { opacity: 0.92; }
 
 
-  .more { font-size: 10px; color: var(--muted); padding-left: 4px; }
+  .more {
+    font-size: 10px; color: var(--violet-soft); font-weight: 650;
+    padding: 4px 8px; margin-top: 2px; border-radius: 7px;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    min-height: 24px; min-width: 28px; width: fit-content;
+    background: rgba(124,58,237,0.14); border: 1px solid rgba(167,139,250,0.32);
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+  .more:hover, .more:focus-visible {
+    background: rgba(124,58,237,0.28); color: #fff; outline: none;
+  }
+  .more:active { transform: scale(0.97); }
   .agenda { display: flex; flex-direction: column; gap: 10px; }
   .aday {
     background: rgba(14,18,32,0.78);
@@ -512,7 +524,13 @@
     .chip .flag { width: 11px; height: 8px; flex: 0 0 11px; margin-right: 0; }
     .chip .ico { display: none; }
     .chip .lab { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .more { font-size: 9px; padding: 0 1px; text-align: center; color: var(--violet-soft); font-weight: 650; }
+    .more {
+      font-size: 10px; font-weight: 700; padding: 5px 6px; margin: 2px auto 0;
+      min-height: 28px; min-width: 36px; text-align: center;
+      color: var(--violet-soft); background: rgba(124,58,237,0.18);
+      border: 1px solid rgba(167,139,250,0.35); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
     .legend { gap: 6px; }
     .legend .lg { min-height: 32px; padding: 6px 8px; font-size: 10px; }
     .arow {
@@ -792,7 +810,7 @@
   <span>High = red chip · Medium = cyan chip</span>
 </div>
 </div><!-- /.ep-swipe-wrap -->
-<!-- ep-sheet:20260924e · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
+<!-- ep-sheet:20260928a · day-list sheet for +N overflow · stacking escape + full-bleed top · title OUTSIDE scroll body · no scrollIntoView · ep-toolbar-up · cache-bust ?v= -->
 <aside class="detail" id="detail" data-no-swipe>
   <div class="sheet-head">
     <div class="sheet-handle" aria-hidden="true"></div>
@@ -1921,19 +1939,39 @@ function renderNext() {
     <div class="s">${n.date.slice(5)} · ${n.time || "time TBD"} ${n.tz} · ${n.country} · ${CATS[n.cat].label}</div>`;
 }
 
+function showDayList(dateStr) {
+  if (_sheetClosing) return;
+  if (!dateStr) return;
+  ensureSheetTitle();
+  selectedDate = dateStr;
+  const list = eventsOn(dateStr);
+  const dayTitle = parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"});
+  const countLabel = list.length === 0
+    ? "No events"
+    : list.length + " event" + (list.length === 1 ? "" : "s");
+  const titleHTML = `<h3>${dayTitle}</h3><div class="meta">${countLabel} · tap to open</div>`;
+  let bodyHTML;
+  if (!list.length) {
+    bodyHTML = `<p class="empty">No events in this filter.</p>`;
+  } else {
+    bodyHTML = list.map(e =>
+      `<div class="arow" data-eid="${e.id}" onclick="pick('${e.id}',event)"><span class="t">${e.time||"—"}</span>
+       ${flag(e.country)}${ico(e.cat)}<span class="tag ${e.impact}">${e.impact}</span>
+       <span>${evTitle(e)}</span></div>`
+    ).join("");
+  }
+  setSheetContent(titleHTML, bodyHTML);
+  openSheet();
+  resetSheetBodyScroll();
+  render();
+}
+
 function showDetail(ev, dateStr) {
   if (_sheetClosing) return;
   ensureSheetTitle();
   if (!ev && dateStr) {
-    const list = eventsOn(dateStr);
-    if (!list.length) {
-      const dayTitle = parse(dateStr).toLocaleDateString("en-US",{weekday:"long", month:"short", day:"numeric"});
-      setSheetContent(`<h3>${dayTitle}</h3>`, `<p class="empty">No events in this filter.</p>`);
-      openSheet();
-      resetSheetBodyScroll();
-      return;
-    }
-    ev = list[0];
+    showDayList(dateStr);
+    return;
   }
   if (!ev) {
     setSheetContent("", `<p class="empty">Tap an event.</p>`);
@@ -2116,7 +2154,8 @@ function renderMonth() {
   document.getElementById("dow").innerHTML = dowLabels.map(d=>`<span>${d}</span>`).join("");
   const board = document.getElementById("board");
   board.className = "grid";
-  const maxChips = 3;
+  // Desktop cells are taller — fit one more chip when filter is US/CN/JP-only
+  const maxChips = mobile ? 3 : 4;
   board.innerHTML = monthCells(cursor).map(d => {
     const id = iso(d);
     const evs = eventsOn(id);
@@ -2128,8 +2167,9 @@ function renderMonth() {
       const icons = mobile ? flag(e.country) : flag(e.country) + ico(e.cat);
       return `<div class="chip ${e.impact} ${e.status}" data-eid="${e.id}" onclick="event.preventDefault();event.stopPropagation();pick('${e.id}',event)">${icons}<span class="lab">${labelFn(e)}</span></div>`;
     }).join("");
-    const extra = evs.length > maxChips
-      ? `<div class="more">+${evs.length - maxChips}</div>`
+    const hidden = evs.length - maxChips;
+    const extra = hidden > 0
+      ? `<div class="more" role="button" tabindex="0" aria-label="Show ${hidden} more events on this day" onclick="event.preventDefault();event.stopPropagation();showDayList('${id}')">+${hidden}</div>`
       : "";
     return `<div class="${cls}" onclick="selectDay('${id}')">
       <div class="dnum">${d.getDate()}</div><div class="chips">${chips}${extra}</div></div>`;
@@ -2190,8 +2230,7 @@ function selectDay(id) {
   if (_sheetClosing) return;
   selectedDate = id;
   cursor = parse(id);
-  const list = eventsOn(id);
-  showDetail(list[0] || null, id);
+  showDayList(id);
 }
 
 document.getElementById("prev").onclick = () => {
