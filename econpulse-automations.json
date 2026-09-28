@@ -1,8 +1,16 @@
 {
-  "updatedAt": "2026-09-28T20:54:28.429603+08:00",
+  "updatedAt": "2026-09-28T21:50:00+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
+    {
+      "id": "radio",
+      "label": "Radio · desk briefs",
+      "order": 0,
+      "lastRunAt": "2026-09-28T21:45:30+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Five live radios: 7am desk, 8am Asia, 4pm Europe, 8pm print window, 9pm US open."
+    },
     {
       "id": "morning",
       "label": "Morning batch · Weekdays ~08:40 HKT",
@@ -21,6 +29,116 @@
     }
   ],
   "automations": [
+    {
+      "id": "econpulse-radio-morning",
+      "name": "Morning desk",
+      "chip": "7am desk",
+      "description": "Daily radio. Portfolio note, desk board, six desk calls. PNG card at the end.",
+      "batchId": "radio",
+      "batchLabel": "Radio · desk briefs",
+      "batchOrder": 1,
+      "covers": [
+        "Overnight tape",
+        "Next 36 hours",
+        "Six desks"
+      ],
+      "scheduleLabel": "Every day · 7am Hong Kong Time",
+      "cron": "0 7 * * *",
+      "lastRunAt": "2026-09-28T07:03:23+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "PCE and RBA loom",
+      "nextRunAt": "2026-09-29T07:00:00+08:00",
+      "chatUrl": "https://grok.com/chat/851946aa-9db2-49ad-812c-85b86739c560",
+      "lastItems": []
+    },
+    {
+      "id": "econpulse-radio-asia",
+      "name": "Asia open",
+      "chip": "8am Asia",
+      "description": "Daily radio into the Asia cash open.",
+      "batchId": "radio",
+      "batchLabel": "Radio · desk briefs",
+      "batchOrder": 2,
+      "covers": [
+        "US close",
+        "HK and Japan",
+        "CNH and JPY"
+      ],
+      "scheduleLabel": "Every day · 8am Hong Kong Time",
+      "cron": "0 8 * * *",
+      "lastRunAt": "2026-09-28T08:07:38+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Yields hold, oil cools, Asia mixed",
+      "nextRunAt": "2026-09-29T08:00:00+08:00",
+      "chatUrl": "https://grok.com/chat/6ff71cbd-ac11-48b9-b943-68c0d6ebd52c",
+      "lastItems": []
+    },
+    {
+      "id": "econpulse-radio-europe",
+      "name": "Europe open",
+      "chip": "4pm Europe",
+      "description": "Daily radio at the Asia close and Europe open.",
+      "batchId": "radio",
+      "batchLabel": "Radio · desk briefs",
+      "batchOrder": 3,
+      "covers": [
+        "Asia scorecard",
+        "London handoff",
+        "Six desks"
+      ],
+      "scheduleLabel": "Every day · 4pm Hong Kong Time",
+      "cron": "0 16 * * *",
+      "lastRunAt": "2026-09-28T16:56:35+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Asia closes mixed, yields constrain Europe",
+      "nextRunAt": "2026-09-29T16:00:00+08:00",
+      "chatUrl": "https://grok.com/chat/b65d836c-cbda-4a6c-96a6-56af6142023f",
+      "lastItems": []
+    },
+    {
+      "id": "econpulse-radio-ussession",
+      "name": "US print window",
+      "chip": "8pm window",
+      "description": "Weekday radio, thirty minutes before the usual 8:30am Eastern print.",
+      "batchId": "radio",
+      "batchLabel": "Radio · desk briefs",
+      "batchOrder": 4,
+      "covers": [
+        "8:30am Eastern print",
+        "Rates and dollar",
+        "Six desks"
+      ],
+      "scheduleLabel": "Weekdays · 8pm Hong Kong Time",
+      "cron": "0 20 * * 1-5",
+      "lastRunAt": "2026-09-28T20:16:10+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Empty US window, Dallas Fed next",
+      "nextRunAt": "2026-09-29T20:00:00+08:00",
+      "chatUrl": "https://grok.com/chat/aeb519bd-2302-44f9-91ea-371f19fd1c38",
+      "lastItems": []
+    },
+    {
+      "id": "econpulse-radio-usopen",
+      "name": "US open",
+      "chip": "9pm US",
+      "description": "Daily radio into the US cash open.",
+      "batchId": "radio",
+      "batchLabel": "Radio · desk briefs",
+      "batchOrder": 5,
+      "covers": [
+        "Europe handoff",
+        "ES and the 10-year",
+        "Six desks"
+      ],
+      "scheduleLabel": "Every day · 9pm Hong Kong Time",
+      "cron": "0 21 * * *",
+      "lastRunAt": "2026-09-28T21:45:30+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "US Open Brief 28 Sep 26",
+      "nextRunAt": "2026-09-29T21:00:00+08:00",
+      "chatUrl": "https://grok.com/chat/533945b0-c763-45c8-942d-13909443bdf7",
+      "lastItems": []
+    },
     {
       "id": "econpulse-actuals-morning-refresh",
       "name": "Actuals morning refresh",

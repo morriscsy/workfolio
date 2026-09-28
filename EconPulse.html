@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#080b14">
+<link rel="canonical" href="https://morriscsy.github.io/workfolio/EconPulse.html">
 <title>EconPulse — Market Calendar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -86,6 +87,17 @@
     padding-bottom: 1px; width: fit-content;
   }
   .hub-link:hover { color: #a5f3fc; border-bottom-color: rgba(165,243,252,0.55); }
+
+  .radio-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+  .radio-row .rk { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet-soft); font-weight: 700; margin-right: 2px; }
+  .radio-row a {
+    font-size: 12px; font-weight: 650; color: var(--cyan-soft); text-decoration: none;
+    border: 1px solid rgba(6,182,212,0.28); border-radius: 999px; padding: 3px 9px;
+    background: rgba(6,182,212,0.08);
+  }
+  .radio-row a.on { color: #e9d5ff; border-color: rgba(167,139,250,0.7); background: rgba(124,58,237,0.22); }
+  .canon { margin: 6px 0 0; font-size: 11px; color: var(--dim); }
+  .canon a { color: var(--cyan-soft); text-decoration: none; border-bottom: 1px solid rgba(103,232,249,0.25); }
   .nextup {
     background: rgba(8,11,20,0.7);
     border: 1px solid rgba(124,58,237,0.28);
@@ -855,6 +867,15 @@
     <h1>EconPulse Calendar</h1>
     <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 28 Sep 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
+    <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
+      <span class="rk">Radio</span>
+      <a href="EconPulse-Automations.html">7am desk</a>
+      <a href="EconPulse-Automations.html">8am Asia</a>
+      <a href="EconPulse-Automations.html">4pm Europe</a>
+      <a href="EconPulse-Automations.html">8pm window</a>
+      <a href="EconPulse-Automations.html">9pm US</a>
+    </nav>
+    <p class="canon">Main page · <a href="https://morriscsy.github.io/workfolio/EconPulse.html">morriscsy.github.io/workfolio/EconPulse.html</a></p>
   </div>
   <!-- ep-toolbar-up:20260924d · toolbar above Next Up (was below header) -->
   <div class="toolbar">
@@ -2828,5 +2849,40 @@ if (!(isPhone() && !location.hash.startsWith("#ev="))) {
 
 </script>
 <script src="assets/econpulse-swipe-views.js?v=1"></script>
+
+<script>
+(function () {
+  var row = document.getElementById("radioRow");
+  if (!row) return;
+  fetch("econpulse-automations.json?t=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+    .then(function (data) {
+      var radios = (data.automations || []).filter(function (a) { return a.batchId === "radio"; });
+      radios.sort(function (a, b) { return (a.batchOrder || 0) - (b.batchOrder || 0); });
+      if (!radios.length) return;
+      var now = Date.now();
+      var next = null;
+      radios.forEach(function (a) {
+        var t = new Date(a.nextRunAt || 0).getTime();
+        if (t >= now && (!next || t < new Date(next.nextRunAt).getTime())) next = a;
+      });
+      row.replaceChildren();
+      var label = document.createElement("span");
+      label.className = "rk";
+      label.textContent = "Radio";
+      row.appendChild(label);
+      radios.forEach(function (a) {
+        var link = document.createElement("a");
+        link.href = a.chatUrl || "EconPulse-Automations.html";
+        link.target = "_blank";
+        link.rel = "noopener";
+        if (next && next.id === a.id) link.className = "on";
+        link.textContent = a.chip || a.name;
+        row.appendChild(link);
+      });
+    })
+    .catch(function () {});
+})();
+</script>
 </body>
 </html>

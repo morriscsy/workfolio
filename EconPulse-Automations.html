@@ -187,7 +187,7 @@
     <header>
       <div class="eyebrow">SuperGrok · HKT</div>
       <h1>EconPulse Automations</h1>
-      <p class="lede">SuperGrok routines that keep the calendar Actuals fresh — grouped by batch window, with what each run covered and filled. The public calendar stays announcement-only — no AUTO event spam.</p>
+      <p class="lede">Live page is the calendar. Radio briefs at 7am, 8am, 4pm, 8pm and 9pm Hong Kong Time sit above the Actuals refresh. The calendar stays announcement-only.</p>
       <div class="navrow">
         <a class="cta" href="EconPulse.html">Open calendar</a>
         <a class="ghost" href="EconPulse.html">← Back to calendar</a>
@@ -289,6 +289,9 @@
 
   function cardHtml(a) {
     const b = badge(a.lastStatus);
+    const chat = a.chatUrl
+      ? '<a class="evlink" href="' + esc(a.chatUrl) + '" target="_blank" rel="noopener">Open radio</a>'
+      : '';
     const last = fmtHKT(a.lastRunAt);
     const next = fmtHKT(a.nextRunAt);
     return '<article class="card">' +
@@ -304,7 +307,7 @@
         field('Status', String(a.lastStatus || '—'), '') +
       '</div>' +
       '<div class="summary"><strong>Last summary</strong> — ' +
-        esc(a.lastSummary || 'n/a') + '</div>' +
+        esc(a.lastSummary || 'n/a') + '</div>' + chat +
       coversHtml(a.covers) +
       itemsHtml(a.lastItems) +
     '</article>';
