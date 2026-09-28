@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T08:44:53.278482+08:00",
+  "updatedAt": "2026-09-28T20:54:28.429603+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -55,10 +55,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-25T20:45:22+08:00",
-      "lastStatus": "failed",
-      "lastSummary": "Evening Actuals 2026-09-25 ~20:45 HKT: Activity task failed — did not fill Durables Aug / did not add UMich Sep final. Manual catch-up 2026-09-27 → Pages b3d8478.",
-      "nextRunAt": "2026-09-28T20:45:00+08:00",
+      "lastRunAt": "2026-09-28T20:54:28.429603+08:00",
+      "lastStatus": "succeeded",
+      "lastSummary": "Evening quiet Mon 28 Sep ~20:52 HKT: no US morning BLS/Census/BEA prints due; past high/medium blanks already filled; RBA/JOLTS Tue 29 and GDP/PCE + CN PMI Wed 30 still ahead.",
+      "nextRunAt": "2026-09-29T20:45:00+08:00",
       "lastItems": []
     }
   ]
