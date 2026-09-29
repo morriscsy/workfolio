@@ -1159,9 +1159,9 @@ const EVENTS = [
   { id:"rba-pc", date:"2026-09-29", time:"~1:30am", tz:"ET", country:"AU", inst:"RBA", title:"RBA press conference (Bullock)", impact:"high", status:"released",
     actual:"Bullock: considered hold vs +25bp only; will hike again if needed; today's hike could be last this year if upside inflation risks do not deepen; less weight on Aug CPI alone", actualShort:"Hawkish hike · door ajar", previous:"n/a", consensus:"n/a", vs:"hawkish decision, slightly softer guidance",
     note:"RBA Governor Bullock press conference ~3:30pm AEST / ~1:30am ET Tue 29 Sep after +25bp to 4.60%. Reinforced readiness to hike further if needed while signalling possible end of cycle if inflation risks fade. AUD softened post-presser (market reports).", source:"https://www.rba.gov.au/media-releases/2026/mr-26-27.html" },
-  { id:"case-fhfa-jul", date:"2026-09-29", time:"9:00am", tz:"ET", country:"US", inst:"S&P/FHFA", title:"Case-Shiller + FHFA HPI (Jul)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Both typically last Tuesday of month 9:00am ET. July 2026 house prices (2-month lag).", source:"https://www.spglobal.com/spdji/en/index-family/indicators/sp-corelogic-case-shiller/" },
+  { id:"case-fhfa-jul", date:"2026-09-29", time:"9:00am", tz:"ET", country:"US", inst:"S&P/FHFA", title:"Case-Shiller + FHFA HPI (Jul)", impact:"medium", status:"released",
+    actual:"FHFA Jul HPI +0.3% m/m SA / +2.6% y/y (June 0.0% unchanged). Case-Shiller 20-City +2.5% y/y NSA (TE citing S&P; strongest since May 2025); MoM flat 0% NSA after five monthly gains; Chicago +6.9% / New York +5.8% / Cleveland +4.2% y/y; Seattle −1.6% (TE). Primary S&P DJI press page not yet listing July PR at catch-up — prefer SP Global/Cotality if they diverge from TE.", actualShort:"FHFA +0.3% m/m · CS 20c +2.5% y/y", previous:"FHFA Jun 0.0% m/m SA (FHFA); Case-Shiller Jun 20-City +2.1% y/y / National +1.5% y/y (S&P Cotality PR 25 Aug 2026)", consensus:"CS 20-City y/y ~2.2% (TE expectations); FHFA m/m n/a", vs:"FHFA firm +0.3% m/m; CS 20c y/y +2.5% above TE ~2.2% exp (beat)",
+    note:"Tue 29 Sep 9:00am ET dual housing print. FHFA official: Jul +0.3% m/m SA, +2.6% y/y; June 0.0% unrevised; divisions −0.8% Mountain to +1.5% Middle Atlantic m/m; next FHFA 27 Oct (Aug data). Case-Shiller July via TE capture citing Standard & Poor's (TELastUpdate ~9:20am ET): 20-City +2.5% y/y NSA, MoM flat; metro leaders Chicago/NY/Cleveland; West soft. Confirm on S&P Cotality Case-Shiller PR when press.spglobal.com posts — do not treat TE as primary if conflict.", source:"https://www.fhfa.gov/news/news-release/fhfa-house-price-index-up-0.3-percent-in-july-up-2.6-percent-from-last-year" },
   { id:"cb-conf-sep", date:"2026-09-29", time:"10:00am", tz:"ET", country:"US", inst:"Conference Board", title:"CB Consumer Confidence (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug 89.4; Present Situation 121.2; Expectations 68.2 (Conference Board)", consensus:"89.2 (WSJ/Dow Jones survey, n=8)", vs:"",
     note:"Conference Board Consumer Confidence Sep — Tue 29 Sep 10:00am ET (same stamp as JOLTS). Aug prior 89.4; Expectations still deep below 80. Street median 89.2 (WSJ Data Week Ahead 25 Sep).", source:"https://www.conference-board.org/topics/consumer-confidence/" },
@@ -1974,7 +1974,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-09-29T20:54:55.322077+08:00";
+const INFLATION_UPDATED_AT = "2026-09-29T21:30:09.973502+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.5, prev:33.8, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"ART",

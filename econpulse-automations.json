@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T20:55:12.000014+08:00",
+  "updatedAt": "2026-09-29T21:30:29.688604+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,17 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-29T08:43:37.015656+08:00",
+      "lastRunAt": "2026-09-29T21:30:29.688604+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals 2026-09-29 ~08:40 HKT: quiet — no material fills. Past blanks already filled; Tue Asia/UK/EZ window empty before RBA. RBA decision (~2:30pm AEST / ~12:30pm HKT) + Bullock PC still ahead; JOLTS/CB confidence 10:00am ET; AU CPI/permits + CN PMI evening ET; CA GDP 8:30am ET. TODAY bumped to Tue 29; inflation TE unchanged.",
+      "lastSummary": "Morning post-US Actuals ~9:24am ET: filled case-fhfa-jul (FHFA Jul +0.3% m/m / +2.6% y/y official; CS 20c +2.5% y/y TE/S&P). Left blank upcoming: jolts, cb-conf-sep, au-cpi-aug, au-permits-aug, cn-pmi-sep. Inflation TE live: order/values unchanged. Sync ok.",
       "nextRunAt": "2026-09-30T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "case-fhfa-jul",
+          "title": "Case-Shiller + FHFA HPI (Jul)",
+          "actualShort": "FHFA +0.3% m/m · CS 20c +2.5% y/y"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
