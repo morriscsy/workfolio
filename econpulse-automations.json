@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T08:43:37.015656+08:00",
+  "updatedAt": "2026-09-29T20:55:12.000014+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,11 +173,19 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-28T21:27:58.357045+08:00",
+      "lastRunAt": "2026-09-29T20:55:12.000014+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US catch-up 2026-09-28: 0 blank high/medium past events; inflation order/values unchanged (TE live).",
-      "nextRunAt": "2026-09-29T20:45:00+08:00",
-      "lastItems": []
+      "lastSummary": "Evening Actuals 2026-09-29 ~20:52 HKT: filled Canada GDP Jul (StatCan) 0.0% m/m · adv Aug +0.2%. Still ahead correctly blank: Case-Shiller/FHFA 9:00am ET, JOLTS+CB Conf 10:00am ET; AU CPI Aug + permits (ABS Next 30/09/2026); CN PMI Sep (~NBS Sep 30). Wed 30 gdp-pce/adp/de-cpi/tankan still ahead. RBA/+PC already filled earlier. Inflation TE: ES Sep 4.9%.",
+      "nextRunAt": "2026-09-30T20:45:00+08:00",
+      "lastItems": [
+        {
+          "id": "ca-gdp-jul",
+          "title": "Canada GDP (Jul)",
+          "actualShort": "GDP 0.0% m/m · adv Aug +0.2%",
+          "status": "released",
+          "when": "2026-09-29T20:30:00+08:00"
+        }
+      ]
     }
   ]
 }
