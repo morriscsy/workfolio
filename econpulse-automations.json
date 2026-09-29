@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T21:50:00+08:00",
+  "updatedAt": "2026-09-29T08:43:37.015656+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-28T08:44:53.278482+08:00",
+      "lastRunAt": "2026-09-29T08:43:37.015656+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals 2026-09-28 ~08:40 HKT: quiet — no material fills. Past blanks already filled; Mon Asia/UK/EZ window empty. RBA + JOLTS still ahead Tue 29 Sep. TODAY bumped to Mon 28; inflation TE unchanged.",
-      "nextRunAt": "2026-09-29T08:40:00+08:00",
+      "lastSummary": "Morning Actuals 2026-09-29 ~08:40 HKT: quiet — no material fills. Past blanks already filled; Tue Asia/UK/EZ window empty before RBA. RBA decision (~2:30pm AEST / ~12:30pm HKT) + Bullock PC still ahead; JOLTS/CB confidence 10:00am ET; AU CPI/permits + CN PMI evening ET; CA GDP 8:30am ET. TODAY bumped to Tue 29; inflation TE unchanged.",
+      "nextRunAt": "2026-09-30T08:40:00+08:00",
       "lastItems": []
     },
     {
@@ -173,9 +173,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-28T20:54:28.429603+08:00",
+      "lastRunAt": "2026-09-28T21:27:58.357045+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening quiet Mon 28 Sep ~20:52 HKT: no US morning BLS/Census/BEA prints due; past high/medium blanks already filled; RBA/JOLTS Tue 29 and GDP/PCE + CN PMI Wed 30 still ahead.",
+      "lastSummary": "Post-US catch-up 2026-09-28: 0 blank high/medium past events; inflation order/values unchanged (TE live).",
       "nextRunAt": "2026-09-29T20:45:00+08:00",
       "lastItems": []
     }
