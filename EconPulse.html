@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 30 Sep 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Tue 29 Sep 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 8, 30); // Wed 30 Sep 2026
+const TODAY = new Date(2026, 8, 29); // Tue 29 Sep 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1168,9 +1168,9 @@ const EVENTS = [
   { id:"au-cpi-aug", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia CPI (Aug)", impact:"high", status:"released",
     actual:"headline +4.0% y/y (Jul +3.5%); trimmed mean +3.6% y/y (unch); Aug m/m +0.4% original / +0.7% SA (ABS)", actualShort:"CPI 4.0% · TM 3.6%", previous:"Jul headline +3.5% y/y; trimmed mean +3.6% y/y (ABS)", consensus:"headline ~4.0–4.1% y/y (Westpac 4.0% / NAB 4.1% / CBA ~4%; bank forecasts)", vs:"headline in line at soft end of ~4.0–4.1 bank range; TM hold 3.6%",
     note:"ABS monthly CPI Aug — released Wed 30 Sep 2026 11:30am AEST (= 9:30pm ET Tue 29). Headline +4.0% y/y (up from 3.5% Jul); trimmed mean held 3.6%; month +0.4% original / +0.7% SA. Housing group +5.7% y/y (electricity +13.2%, new dwellings +5.4%, rents +3.x). First inflation print after RBA +25bp to 4.60%. Next monthly CPI (Sep) 28 Oct 2026.", source:"https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release" },
-  { id:"au-permits-aug", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia building permits (Aug)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"ABS building approvals typically same 11:30am AEST stamp as monthly CPI. Medium housing.", source:"https://www.abs.gov.au/statistics/industry/building-and-construction" },
+  { id:"au-permits-aug", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia building permits (Aug)", impact:"medium", status:"released",
+    actual:"total dwellings SA −6.1% m/m to 16,953 (+10.3% y/y); private houses +3.7% to 10,885; private ex-houses −21.2% to 5,674. Residential value −0.6% to $11.30b; non-residential −44.8% to $5.53b; total building value −21.3% to $16.82b (ABS)", actualShort:"Dwellings −6.1% · 16,953", previous:"Jul SA total dwellings 18,056 (−1.9% m/m, ABS revised in Aug release); Jul media earlier cited 17,687 (−3.6%)", consensus:"n/a", vs:"sharp SA drop led by apartments (−21.2%); houses rose +3.7%",
+    note:"ABS Building Approvals Aug — released Wed 30 Sep 2026 11:30am AEST (= 9:30pm ET Tue 29), same stamp as monthly CPI. Total dwellings SA fell 6.1% to 16,953 after −1.9% July (revised). Private houses +3.7% to 10,885; private dwellings excluding houses −21.2% to 5,674. Residential value −0.6% to $11.30b; non-residential −44.8% to $5.53b; total building −21.3% to $16.82b. Small-area add-on 7 Oct 2026.", source:"https://www.abs.gov.au/statistics/industry/building-and-construction/building-approvals-australia/latest-release" },
   { id:"ca-gdp-jul", date:"2026-09-29", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada GDP (Jul)", impact:"medium", status:"released",
     actual:"Jul real GDP by industry essentially unchanged 0.0% m/m SA (chained 2017$); construction +1.3%, utilities +1.7%; manufacturing −0.9%, retail −1.0%; advance Aug +0.2%", actualShort:"GDP 0.0% m/m · adv Aug +0.2%", previous:"Jun +0.3% m/m (StatCan Daily 28 Aug 2026)", consensus:"n/a", vs:"flat; matched advance (essentially unchanged)",
     note:"StatCan The Daily 29 Sep 2026 8:30am ET. Real GDP by industry Jul 2026 0.0% m/m (essentially unchanged); 10 of 20 sectors up. Construction +1.3% (4th consecutive), utilities +1.7% (heat-wave power demand); manufacturing −0.9% (refinery downtime), retail −1.0%, mining/O&G −0.5%. Advance Aug +0.2% (mining/quarrying + retail offset O&G). Official Aug GDP: 30 Oct. Revisions back to Jan 2025.", source:"https://www150.statcan.gc.ca/n1/daily-quotidien/260929/dq260929a-eng.htm" },
@@ -1974,7 +1974,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-09-30T08:50:25.533670+08:00";
+const INFLATION_UPDATED_AT = "2026-09-30T10:17:49.112736+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.5, prev:33.8, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"ART",
@@ -1987,7 +1987,7 @@ const INFLATION = [
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"MSK" },
   { code:"ES", name:"Spain", last:4.9, prev:4.3, g20:false,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CEST",
-    nextPeriod:"Sep 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
   { code:"IN", name:"India", last:4.82, prev:4.44, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"IST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"IST" },
@@ -1997,8 +1997,8 @@ const INFLATION = [
   { code:"BR", name:"Brazil", last:4.22, prev:4.44, g20:true,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"BRT",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"BRT" },
-  { code:"AU", name:"Australia", last:3.5, prev:3.8, g20:true,
-    refPeriod:"Jul 2026", refDate:"2026-08-26", refTime:"11:30am", refTz:"AEST",
+  { code:"AU", name:"Australia", last:4, prev:3.5, g20:true,
+    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"AEST",
     nextPeriod:"Sep 2026", nextDate:"2026-09-30", nextTime:"11:30am", nextTz:"AEST" },
   { code:"US", name:"United States", last:3.4, prev:3.4, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-09-11", refTime:"8:30am", refTz:"ET",

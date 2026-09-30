@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T08:50:43.716400+08:00",
+  "updatedAt": "2026-09-30T10:18:52.339027+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,17 +173,15 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-29T20:55:12.000014+08:00",
+      "lastRunAt": "2026-09-30T10:17:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals 2026-09-29 ~20:52 HKT: filled Canada GDP Jul (StatCan) 0.0% m/m · adv Aug +0.2%. Still ahead correctly blank: Case-Shiller/FHFA 9:00am ET, JOLTS+CB Conf 10:00am ET; AU CPI Aug + permits (ABS Next 30/09/2026); CN PMI Sep (~NBS Sep 30). Wed 30 gdp-pce/adp/de-cpi/tankan still ahead. RBA/+PC already filled earlier. Inflation TE: ES Sep 4.9%.",
+      "lastSummary": "Asia evening catch-up ~10:17pm ET Tue 29: filled au-permits-aug from ABS (dwellings SA −6.1% to 16,953). Inflation TE live: AU 3.5→4.0 (Aug), ES next Sep→Oct. index+EconPulse synced. Hub Desktop skipped (LamboKiwi offline). Pages push needed.",
       "nextRunAt": "2026-09-30T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "ca-gdp-jul",
-          "title": "Canada GDP (Jul)",
-          "actualShort": "GDP 0.0% m/m · adv Aug +0.2%",
-          "status": "released",
-          "when": "2026-09-29T20:30:00+08:00"
+          "id": "au-permits-aug",
+          "title": "Australia building permits (Aug)",
+          "actualShort": "Dwellings −6.1% · 16,953"
         }
       ]
     }
