@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Tue 29 Sep 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 30 Sep 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 8, 29); // Tue 29 Sep 2026
+const TODAY = new Date(2026, 8, 30); // Wed 30 Sep 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1050,7 +1050,7 @@ const EVENTS = [
     note:"BLS JOLTS Aug (USDL-26-1547) — Tue 29 Sep 10:00am ET. Openings little changed at 7.1M / 4.3% (vs Jul 7.3M / 4.4%; street 7.2M). Hires little changed 5.2M; separations unchanged 5.1M; quits 3.1M unchanged; layoffs/discharges 1.6M essentially unchanged. Soft labor-demand cooling into Oct FOMC / Fri NFP.", source:"https://www.bls.gov/news.release/jolts.nr0.htm" },
   { id:"gdp-pce", date:"2026-09-30", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"GDP 3rd estimate (Q2) + PCE (Aug)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Q2 second est. +1.5% saar (BEA 26 Aug); Jul PCE +3.7% y/y / core +3.3% (BEA)", consensus:"GDP Q2 3rd hold +1.5% saar; PCE Aug +0.3% m/m / +3.6% y/y; core +0.3% / +3.2% (WSJ/Dow Jones)", vs:"",
-    note:"BEA Wed 30 Sep 8:30am ET: GDP Q2 third + Personal Income/Outlays (Aug PCE). WSJ Data Week Ahead medians above. Fed preferred inflation gauge into Oct FOMC.", source:"https://www.bea.gov/news/schedule" },
+    note:"BEA Wed 30 Sep 8:30am ET: GDP Q2 third + Personal Income/Outlays (Aug PCE). ALSO first day of 2026 annual update of national/industry/regional accounts (revisions back through earlier years). WSJ/Dow Jones medians above. Fed preferred inflation gauge into Oct FOMC.", source:"https://www.bea.gov/news/schedule" },
   { id:"nfp", date:"2026-10-02", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug +162k payrolls, U-3 4.1%; AHE +0.3% m/m / +3.1% y/y (BLS)", consensus:"+83k payrolls; U-3 hold 4.1%; AHE +0.3% m/m (WSJ/Dow Jones, n=9)", vs:"",
     note:"BLS Employment Situation Sep — Fri 2 Oct 8:30am ET. Street median +83k / UE 4.1% (WSJ Data Week Ahead 25 Sep). Confirm day-of on bls.gov.", source:"https://www.bls.gov/schedule/2026/" },
@@ -1175,14 +1175,14 @@ const EVENTS = [
     actual:"Jul real GDP by industry essentially unchanged 0.0% m/m SA (chained 2017$); construction +1.3%, utilities +1.7%; manufacturing −0.9%, retail −1.0%; advance Aug +0.2%", actualShort:"GDP 0.0% m/m · adv Aug +0.2%", previous:"Jun +0.3% m/m (StatCan Daily 28 Aug 2026)", consensus:"n/a", vs:"flat; matched advance (essentially unchanged)",
     note:"StatCan The Daily 29 Sep 2026 8:30am ET. Real GDP by industry Jul 2026 0.0% m/m (essentially unchanged); 10 of 20 sectors up. Construction +1.3% (4th consecutive), utilities +1.7% (heat-wave power demand); manufacturing −0.9% (refinery downtime), retail −1.0%, mining/O&G −0.5%. Advance Aug +0.2% (mining/quarrying + retail offset O&G). Official Aug GDP: 30 Oct. Revisions back to Jan 2025.", source:"https://www150.statcan.gc.ca/n1/daily-quotidien/260929/dq260929a-eng.htm" },
   { id:"adp-sep", date:"2026-09-30", time:"8:15am", tz:"ET", country:"US", inst:"ADP", title:"ADP employment change (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a — confirm ADP day-of", consensus:"n/a (WSJ showed N/A vs prior +38k)", vs:"",
-    note:"ADP National Employment Report Sep — Wed 30 Sep 8:15am ET (ahead of NFP Fri). Confirm day-of; do not invent consensus.", source:"https://adpemploymentreport.com" },
+    actual:"n/a", actualShort:"", previous:"Aug +38k private jobs (ADP 2 Sep 2026 release)", consensus:"n/a (WSJ showed N/A; no Dow Jones/Reuters street median cited)", vs:"",
+    note:"ADP National Employment Report Sep — Wed 30 Sep 8:15am ET (confirmed on Aug release page; ahead of NFP Fri). Prior Aug +38k. Leave consensus blank — do not invent.", source:"https://adpemploymentreport.com" },
   { id:"de-cpi-sep", date:"2026-09-30", time:"8:00am", tz:"ET", country:"DE", inst:"Destatis", title:"Germany CPI preliminary (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Destatis flash CPI. TE: Wed 30 Sep 12:00 GMT (= 8:00am ET). Key input ahead of EZ flash Fri.", source:"https://www.destatis.de" },
+    actual:"n/a", actualShort:"", previous:"Aug CPI +2.9% y/y / +0.2% m/m; HICP +2.9% y/y / +0.2% m/m; core ~+2.4% y/y (Destatis PE26_320_611)", consensus:"HICP +0.6% m/m / +3.2% y/y; companion CPI table +0.6% / +3.3% (Dow Jones forecast, MarketScreener 29 Sep)", vs:"",
+    note:"Destatis flash CPI Sep — Wed 30 Sep 14:00 CEST (= 8:00am ET). Aug prior +2.9% y/y / +0.2% m/m (CPI+HICP); core ~+2.4%. Dow Jones forecast table: HICP +0.6% m/m / +3.2% y/y. Key national input ahead of Eurozone flash Fri.", source:"https://www.destatis.de" },
   { id:"tankan-q3", date:"2026-09-30", time:"7:50pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ Tankan large manufacturers DI (Q3)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Q2 large mfg 22 (BoJ)", consensus:"n/a", vs:"",
-    note:"BoJ Tankan ~08:50 JST Thu 1 Oct (= 7:50pm ET Wed 30 Sep). TE high-importance. Futu also lists large non-mfg DI at same stamp (star=2).", source:"https://www.boj.or.jp" },
+    actual:"n/a", actualShort:"", previous:"Q2 large mfg DI 22 (BoJ)", consensus:"n/a", vs:"",
+    note:"BoJ Tankan (Sept survey) Summary+Outline — Thu 1 Oct 8:50 JST (= 7:50pm ET Wed 30 Sep). Prior Q2 large manufacturers DI 22. Leave consensus n/a (calendar forecasts only; no Dow Jones/Reuters poll cited).", source:"https://www.boj.or.jp/en/statistics/tk/index.htm" },
   { id:"ez-cpi-flash-sep", date:"2026-10-02", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone CPI flash (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug HICP final +3.2% y/y; core +2.4%", consensus:"n/a", vs:"",
     note:"Eurostat flash estimate. TE/ActionForex: Fri 2 Oct 09:00 GMT (= ~5:00am ET). Main inflation print before late-Oct ECB.", source:"https://ec.europa.eu/eurostat" },
