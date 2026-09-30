@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T10:18:52.339027+08:00",
+  "updatedAt": "2026-09-30T20:47:44.815398+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,15 +173,31 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-30T10:17:00+08:00",
+      "lastRunAt": "2026-09-30T20:46:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia evening catch-up ~10:17pm ET Tue 29: filled au-permits-aug from ABS (dwellings SA −6.1% to 16,953). Inflation TE live: AU 3.5→4.0 (Aug), ES next Sep→Oct. index+EconPulse synced. Hub Desktop skipped (LamboKiwi offline). Pages push needed.",
-      "nextRunAt": "2026-09-30T20:45:00+08:00",
+      "lastSummary": "Evening ~20:46 HKT Wed 30: US morning window filled — DE CPI Sep Destatis +3.3% y/y (HICP hot vs +3.2% DJ); ADP +90k private; BEA GDP Q2 3rd +2.2% saar (beat +1.5%) + Aug PCE +0.3%/+3.4% core +0.2%/+3.0%. Calendar already on Pages (5e8b2e2). Tankan Q3 correctly blank until ~08:50 JST Thu.",
+      "nextRunAt": "2026-10-01T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "au-permits-aug",
-          "title": "Australia building permits (Aug)",
-          "actualShort": "Dwellings −6.1% · 16,953"
+          "id": "de-cpi-sep",
+          "title": "Germany CPI preliminary (Sep)",
+          "actualShort": "CPI/HICP +3.3% y/y · +0.6% m/m · core +2.4%",
+          "status": "released",
+          "when": "2026-09-30T20:00:00+08:00"
+        },
+        {
+          "id": "adp-sep",
+          "title": "ADP employment change (Sep)",
+          "actualShort": "+90k private · pay +3.2% base / +4.7% gross",
+          "status": "released",
+          "when": "2026-09-30T20:15:00+08:00"
+        },
+        {
+          "id": "gdp-pce",
+          "title": "GDP 3rd estimate (Q2) + PCE (Aug)",
+          "actualShort": "GDP +2.2% · PCE +0.3%/+3.4% · core +0.2%/+3.0%",
+          "status": "released",
+          "when": "2026-09-30T20:30:00+08:00"
         }
       ]
     }
