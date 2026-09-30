@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T21:30:29.688604+08:00",
+  "updatedAt": "2026-09-30T08:50:43.716400+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,17 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-09-29T21:30:29.688604+08:00",
+      "lastRunAt": "2026-09-30T08:50:43.716400+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning post-US Actuals ~9:24am ET: filled case-fhfa-jul (FHFA Jul +0.3% m/m / +2.6% y/y official; CS 20c +2.5% y/y TE/S&P). Left blank upcoming: jolts, cb-conf-sep, au-cpi-aug, au-permits-aug, cn-pmi-sep. Inflation TE live: order/values unchanged. Sync ok.",
-      "nextRunAt": "2026-09-30T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "case-fhfa-jul",
-          "title": "Case-Shiller + FHFA HPI (Jul)",
-          "actualShort": "FHFA +0.3% m/m · CS 20c +2.5% y/y"
-        }
-      ]
+      "lastSummary": "Morning quiet ~08:40 HKT Wed 30 Sep: no material Actuals; TODAY→Wed 30; AU CPI/permits + CN PMI still ahead (~09:30 HKT); DE CPI flash / ADP / GDP+PCE / Tankan later; overnight US spillover already filled. Inflation TE refresh no value changes.",
+      "nextRunAt": "2026-10-01T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
