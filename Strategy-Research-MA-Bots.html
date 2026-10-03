@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy research summary — MA bots</title>
+<style>
+  :root {
+    --bg: #070a12;
+    --text: #E8EEF9;
+    --muted: #94A3B8;
+    --card: rgba(16, 24, 42, .88);
+    --line: #243152;
+    --purple: #7C5CFF;
+    --cyan: #22D3EE;
+    --green: #34D399;
+    --amber: #FBBF24;
+    --red: #fb7185;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--text);
+    font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.55;
+    background-color: #070a12;
+    background-image:
+      radial-gradient(980px 560px at -8% -12%, rgba(124, 92, 255, .38), transparent 62%),
+      radial-gradient(820px 480px at 108% -8%, rgba(34, 211, 238, .16), transparent 58%);
+    background-attachment: fixed;
+  }
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 22px;
+    background: rgba(7, 10, 18, .78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C5CFF, #22D3EE);
+    box-shadow: 0 0 14px rgba(124, 92, 255, .75);
+  }
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    padding-bottom: 2px;
+  }
+  .nav-links a {
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: var(--text);
+    background: rgba(16, 24, 42, .72);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 650;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { border-color: var(--cyan); color: var(--cyan); }
+  .page { max-width: 1120px; margin: 0 auto; padding: 28px 22px 80px; }
+  .hero-card {
+    border-radius: 22px;
+    padding: 22px 24px 20px;
+    margin: 0 0 28px;
+    background:
+      linear-gradient(135deg, rgba(124, 92, 255, .28), rgba(16, 24, 42, .72) 46%, rgba(34, 211, 238, .14));
+    border: 1px solid rgba(124, 92, 255, .45);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
+  }
+  .eyebrow, section > h2 {
+    margin: 0 0 8px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  section > h2 { margin: 0 0 12px; }
+  h1 { font-size: 2.15rem; line-height: 1.12; margin: 0 0 8px; letter-spacing: -.03em; }
+  .finding { margin: 0 0 12px; font-size: 1.2rem; font-weight: 650; letter-spacing: -.015em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+  .chip {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cyan);
+    background: rgba(34, 211, 238, .1);
+    border: 1px solid rgba(34, 211, 238, .35);
+  }
+  .lede { margin: 0; color: var(--muted); max-width: 78ch; }
+  section { margin: 0 0 32px; scroll-margin-top: 76px; }
+  h3 { font-size: 1.12rem; margin: 0; letter-spacing: -.015em; }
+  p { margin: 0 0 10px; }
+  a { color: var(--cyan); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, .22);
+    padding: 18px 18px 16px;
+  }
+  .hero {
+    background:
+      linear-gradient(160deg, rgba(52, 211, 153, .12), rgba(16, 24, 42, .9) 48%);
+    border-color: rgba(52, 211, 153, .35);
+    border-radius: 18px;
+    padding: 18px 18px 16px;
+    margin-bottom: 14px;
+  }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .pill {
+    flex: 0 0 auto;
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: .02em;
+    border: 1px solid transparent;
+  }
+  .pill.green { background: rgba(52, 211, 153, .14); color: var(--green); border-color: rgba(52, 211, 153, .35); }
+  .pill.red { background: rgba(251, 113, 133, .14); color: var(--red); border-color: rgba(251, 113, 133, .35); }
+  .pill.amber { background: rgba(251, 191, 36, .14); color: var(--amber); border-color: rgba(251, 191, 36, .35); }
+  .pill.blue { background: rgba(34, 211, 238, .12); color: var(--cyan); border-color: rgba(34, 211, 238, .35); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .block {
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+    background: rgba(16, 24, 42, .72);
+    border: 1px solid var(--line);
+  }
+  .block h3 { margin-bottom: 6px; }
+  .block.good { background: rgba(52, 211, 153, .08); border-color: rgba(52, 211, 153, .28); }
+  .block.bad { background: rgba(251, 113, 133, .08); border-color: rgba(251, 113, 133, .28); }
+  .block.warn { background: rgba(251, 191, 36, .08); border-color: rgba(251, 191, 36, .28); }
+  .block p:last-child { margin-bottom: 0; }
+  .stat4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0 6px; }
+  .stat {
+    background: rgba(7, 10, 18, .55);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 8px 10px;
+  }
+  .stat span { display: block; color: var(--muted); font-size: 12px; font-weight: 650; }
+  .stat b { display: block; font-size: 1.2rem; letter-spacing: -.02em; margin-top: 2px; }
+  .stat small { display: block; color: var(--muted); font-size: 12px; }
+  .src { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+  .one { margin: 0; }
+  .tf-label { margin: 0; color: var(--cyan); font-size: 12px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+  .judge {
+    margin: 10px 0 0;
+    border-radius: 12px;
+    padding: 8px 10px;
+    font-weight: 650;
+    border: 1px solid transparent;
+  }
+  .judge.good { background: rgba(52, 211, 153, .12); color: var(--green); border-color: rgba(52, 211, 153, .28); }
+  .judge.bad { background: rgba(251, 113, 133, .12); color: var(--red); border-color: rgba(251, 113, 133, .28); }
+  .judge.warn { background: rgba(251, 191, 36, .12); color: var(--amber); border-color: rgba(251, 191, 36, .28); }
+  ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    align-items: start;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7C5CFF, #22D3EE);
+    color: #070a12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+  }
+  .table-wrap { overflow-x: auto; max-width: 100%; border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 14.5px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.pos { color: var(--green); font-weight: 700; }
+  td.neg { color: var(--red); font-weight: 700; }
+  tr.trust td { background: rgba(52, 211, 153, .12); }
+  tr.worst td { background: rgba(251, 113, 133, .12); }
+  tr.caution td { background: rgba(251, 191, 36, .1); }
+  tr.median td { background: rgba(34, 211, 238, .08); }
+  .note {
+    background: rgba(34, 211, 238, .08);
+    color: var(--text);
+    border: 1px solid rgba(34, 211, 238, .28);
+    border-radius: 16px;
+    padding: 12px 14px;
+    margin: 0 0 12px;
+  }
+  .actions { display: grid; gap: 10px; }
+  a.btn {
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    background: var(--card);
+  }
+  a.btn strong { display: block; margin-bottom: 4px; color: var(--text); }
+  a.btn.keep { background: rgba(52, 211, 153, .1); border-color: rgba(52, 211, 153, .35); }
+  a.btn.drop { background: rgba(251, 113, 133, .1); border-color: rgba(251, 113, 133, .35); }
+  a.btn.test { background: rgba(251, 191, 36, .1); border-color: rgba(251, 191, 36, .35); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: var(--cyan);
+  }
+  footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+  .chart-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .chart-card { min-width: 0; padding: 20px 18px 16px; }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .axis-label, .legend-label, .axis-title, .x-label, .bar-label { font-family: Inter, "Segoe UI", system-ui, sans-serif; }
+  .x-label { font-size: 12px; }
+  .axis-label { fill: #94A3B8; font-size: 15px; }
+  .axis-title { fill: #94A3B8; font-size: 14px; font-weight: 650; }
+  .legend-label { fill: #E8EEF9; font-size: 15px; }
+  .x-label { fill: #E8EEF9; font-size: 16px; font-weight: 700; }
+  .bar-label { fill: #E8EEF9; font-size: 13px; font-weight: 700; }
+  .median-label { fill: #22D3EE; }
+  .chart-caption { color: var(--muted); font-size: 14.5px; margin: 0 0 12px; }
+  .heatmap-scroll { max-height: 760px; overflow: auto; border: 1px solid var(--line); border-radius: 14px; background: rgba(7, 10, 18, .45); }
+  table.heatmap { min-width: 1240px; width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+  .heatmap th, .heatmap td {
+    padding: 11px 14px;
+    min-width: 118px;
+    border-right: 1px solid rgba(7, 10, 18, .18);
+    border-bottom: 1px solid rgba(7, 10, 18, .18);
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .heatmap thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #121a2e;
+    color: var(--cyan);
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .heatmap .symbol-head, .heatmap .symbol-cell { position: sticky; left: 0; z-index: 3; text-align: left; min-width: 96px; }
+  .heatmap .symbol-head { z-index: 4; background: #121a2e; }
+  .heatmap .symbol-cell { background: #10182a; color: var(--text); font-weight: 700; }
+  .heatmap td { font-size: 13px; }
+  .heat-legend { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; margin: 8px 0 14px; flex-wrap: wrap; }
+  .heat-gradient {
+    height: 12px;
+    width: 220px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #fb7185 0%, rgba(251,113,133,.25) 46%, #10182a 50%, rgba(52,211,153,.28) 54%, #34D399 100%);
+    border: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px) {
+    .grid-3, .cards { grid-template-columns: 1fr; }
+    .stat4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .topnav { flex-wrap: wrap; gap: 10px; padding: 10px 12px; }
+    .nav-links { width: 100%; }
+    .page { padding: 16px 12px 48px; }
+    h1 { font-size: 1.5rem; }
+    .finding { font-size: 1.05rem; }
+    .lede { font-size: .95rem; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .nav-links a { padding: 10px 14px; min-height: 42px; }
+    a.btn { width: 100%; }
+    .chart-svg { min-height: 280px; }
+  }
+  @media (max-width: 420px) {
+    h1 { font-size: 1.32rem; }
+    .stat b { font-size: 1.05rem; }
+  }
+
+
+  .mind-wrap { overflow-x: auto; padding-bottom: 6px; }
+  .mind { min-width: 980px; }
+  .mind text { font-family: Inter, "Segoe UI", system-ui, sans-serif; }
+
+  .nav-links { align-items: center; }
+  .nav-group { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+  .nav-group em {
+    font-style: normal;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding-left: 8px;
+  }
+  .nav-links a.on { border-color: var(--cyan); color: var(--cyan); }
+  .agenda { display: grid; gap: 10px; }
+  .step {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(16,24,42,.88);
+    border: 1px solid #243152;
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .step:hover { border-color: var(--cyan); }
+  .step b.n {
+    display: grid; place-items: center;
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, #7C5CFF, #22D3EE);
+    color: #070a12; font-size: 14px;
+  }
+  .step strong { display: block; }
+  .step span { color: var(--muted); font-size: 14.5px; }
+  section > h2 .sn {
+    display: inline-block;
+    margin-right: 8px;
+    color: #070a12;
+    background: var(--cyan);
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="Sections">
+  <a class="brand" href="#agenda"><span class="dot" aria-hidden="true"></span>Strategy research</a>
+  <div class="nav-links">
+    <div class="nav-group"><em>Start</em><a href="#agenda">Agenda</a></div>
+    <div class="nav-group"><em>Call</em><a href="#decision">Decision</a><a href="#overview">Overview</a></div>
+    <div class="nav-group"><em>Scripts</em><a href="#differences">Differences</a></div>
+    <div class="nav-group"><em>Scores</em><a href="#charts">Charts</a><a href="#results">Results</a><a href="#timeframe">1m vs 5m</a><a href="#split">2X and stocks</a><a href="#mid1m">1m midpoint</a></div>
+    <div class="nav-group"><em>Why</em><a href="#atr">ATR</a><a href="#personality">Personality</a><a href="#cases">Cases</a></div>
+    <div class="nav-group"><em>Do</em><a href="#actions">Actions</a></div>
+  </div>
+</nav>
+<div class="page">
+  <header class="hero-card">
+    <p class="eyebrow">Research summary</p>
+    <h1>Which MA bot to trust</h1>
+    <p class="finding">5-minute Mid TP34 is the result to trust.</p>
+    <div class="chips">
+      <span class="chip">5-minute</span>
+      <span class="chip">34% take profit</span>
+      <span class="chip">22 of 32 above zero</span>
+    </div>
+    <p class="lede">Seven long-only dip-and-reclaim scripts around MA150 and MA200, on 32 symbols. 1-minute and 5-minute totals from the same workbook. Every figure below was counted again from the data sheet.</p>
+  </header>
+
+  <section id="agenda">
+    <h2><span class="sn">00</span>How this analysis was done</h2>
+    <p>Read it in this order. Each step answers one question, and the later steps do not replace the earlier ones.</p>
+    <div class="agenda">
+      <a class="step" href="#differences"><b class="n">1</b><div><strong>Name what actually changed</strong><span>Market TP30 is the base. The other six are that bot with a switch flipped. If two columns are the same trade, they are not two ideas.</span></div></a>
+      <a class="step" href="#charts"><b class="n">2</b><div><strong>Score 1-minute and 5-minute, and do not rank by the biggest average</strong><span>Thirty-two symbols. The highest average can be two names. The median and the win rate decide which column to trust.</span></div></a>
+      <a class="step" href="#timeframe"><b class="n">3</b><div><strong>Separate the timeframe from the script</strong><span>Two strategies lose on the 1-minute average and win on the 5-minute average. Nothing flips the other way.</span></div></a>
+      <a class="step" href="#split"><b class="n">4</b><div><strong>Split 2X ETFs from stocks</strong><span>Fifteen names in each group. A result that works on stocks can lose on the leveraged list.</span></div></a>
+      <a class="step" href="#mid1m"><b class="n">5</b><div><strong>Check the three midpoint scripts on 1-minute alone</strong><span>Mid TP30, Mid 15m, and Mid TP34. This is where the 34% target does not help the typical symbol.</span></div></a>
+      <a class="step" href="#atr"><b class="n">6</b><div><strong>Ask whether volatility explains it</strong><span>1-minute and 5-minute ATR, as a percent of price. A 2% stop is a few bars on a wild 2X name and many bars on a quiet stock.</span></div></a>
+      <a class="step" href="#personality"><b class="n">7</b><div><strong>Ask what kind of tape the bot wants</strong><span>Daily path from 23 Mar to 2 Oct. A dip that is kept, not one-day momentum, and not a bounce that is given back.</span></div></a>
+      <a class="step" href="#actions"><b class="n">8</b><div><strong>Keep, drop, or test</strong><span>The names that are negative in every cell, and the one column to trust first.</span></div></a>
+    </div>
+  </section>
+
+
+
+  <section id="decision">
+    <h2><span class="sn">01</span>Decision map</h2>
+    <p>Read left to right. The question is on the left. Each branch is one step in the call.</p>
+    <div class="card mind-wrap">
+      <svg class="mind" viewBox="0 0 1040 760" role="img" aria-label="Decision map from the base bot to what to keep">
+        <defs>
+          <linearGradient id="rootFill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7C5CFF"/>
+            <stop offset="1" stop-color="#22D3EE"/>
+          </linearGradient>
+        </defs>
+        <rect x="18" y="330" width="168" height="100" rx="18" fill="url(#rootFill)"/>
+        <text x="102" y="368" text-anchor="middle" fill="#070a12" font-size="15" font-weight="750">Which bot</text>
+        <text x="102" y="390" text-anchor="middle" fill="#070a12" font-size="15" font-weight="750">to trust?</text>
+        <text x="102" y="412" text-anchor="middle" fill="#070a12" font-size="12">Base: Market TP30</text>
+
+        <!-- curves from root to branch titles -->
+        <path d="M186 380 C 250 380, 230 58, 310 58" fill="none" stroke="#7C5CFF" stroke-width="2"/>
+        <path d="M186 390 C 250 390, 240 176, 310 176" fill="none" stroke="#22D3EE" stroke-width="2"/>
+        <path d="M186 400 C 260 400, 250 300, 310 300" fill="none" stroke="#34D399" stroke-width="2"/>
+        <path d="M186 410 C 260 410, 250 440, 310 440" fill="none" stroke="#FBBF24" stroke-width="2"/>
+        <path d="M186 420 C 250 420, 240 572, 310 572" fill="none" stroke="#22D3EE" stroke-width="2"/>
+        <path d="M186 430 C 250 430, 230 700, 310 700" fill="none" stroke="#fb7185" stroke-width="2"/>
+
+        <!-- branch titles -->
+        <text x="318" y="52" fill="#7C5CFF" font-size="15" font-weight="750">Same family</text>
+        <text x="318" y="170" fill="#22D3EE" font-size="15" font-weight="750">Branch A · market buy</text>
+        <text x="318" y="294" fill="#34D399" font-size="15" font-weight="750">Branch B · midpoint limit</text>
+        <text x="318" y="434" fill="#FBBF24" font-size="15" font-weight="750">Mid Pyramid</text>
+        <text x="318" y="566" fill="#22D3EE" font-size="15" font-weight="750">Then the timeframe</text>
+        <text x="318" y="694" fill="#fb7185" font-size="15" font-weight="750">Then the names</text>
+
+        <!-- curves from titles to notes -->
+        <path d="M455 46 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+        <path d="M500 164 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+        <path d="M530 288 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+        <path d="M430 428 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+        <path d="M470 560 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+        <path d="M445 688 H548" fill="none" stroke="#243152" stroke-width="1.5"/>
+
+        <rect x="548" y="16" width="470" height="78" rx="12" fill="rgba(16,24,42,0.92)" stroke="#243152"/>
+        <text x="566" y="42" fill="#E8EEF9" font-size="14">All seven are Market TP30 with one switch flipped.</text>
+        <text x="566" y="64" fill="#94A3B8" font-size="13">Long only. Reclaim of MA150 and MA200. Stop is 2%.</text>
+        <text x="566" y="82" fill="#94A3B8" font-size="13">A 15-minute bar only confirms a target. It is not a time stop.</text>
+
+        <rect x="548" y="112" width="470" height="112" rx="12" fill="rgba(16,24,42,0.92)" stroke="#fb7185"/>
+        <text x="566" y="138" fill="#E8EEF9" font-size="14">Market MA150 cashes out on MA150 once the trade is green.</text>
+        <text x="566" y="158" fill="#94A3B8" font-size="13">That early exit is the worst cell. Drop the 1-minute book.</text>
+        <text x="566" y="180" fill="#E8EEF9" font-size="14">Limit MA23 keeps those signals, but buys with a midpoint limit</text>
+        <text x="566" y="200" fill="#94A3B8" font-size="13">and waits until the trade is up 23%. Real change, not the lead.</text>
+
+        <rect x="548" y="240" width="470" height="128" rx="12" fill="rgba(16,24,42,0.92)" stroke="#34D399"/>
+        <text x="566" y="266" fill="#E8EEF9" font-size="14">Mid TP30 is the base, except the buy is a limit. Keep it.</text>
+        <text x="566" y="286" fill="#94A3B8" font-size="13">It has the highest 5-minute median.</text>
+        <text x="566" y="308" fill="#E8EEF9" font-size="14">Mid 15m is the same trade. The target waits for a closed</text>
+        <text x="566" y="328" fill="#94A3B8" font-size="13">15-minute bar. The 5-minute average barely moves.</text>
+        <text x="566" y="350" fill="#34D399" font-size="14" font-weight="750">Mid TP34 is that trade at 34%. Trust the 5-minute column.</text>
+
+        <rect x="548" y="386" width="470" height="92" rx="12" fill="rgba(16,24,42,0.92)" stroke="#FBBF24"/>
+        <text x="566" y="414" fill="#E8EEF9" font-size="14">Up to 3 entries. Later adds use the first entry’s 2% stop.</text>
+        <text x="566" y="436" fill="#94A3B8" font-size="13">Highest average, and the median does not follow.</text>
+        <text x="566" y="458" fill="#FBBF24" font-size="14">Test it on stocks only. It loses on the 2X ETFs.</text>
+
+        <rect x="548" y="512" width="470" height="92" rx="12" fill="rgba(16,24,42,0.92)" stroke="#243152"/>
+        <text x="566" y="540" fill="#E8EEF9" font-size="14">Use 5-minute, not 1-minute.</text>
+        <text x="566" y="562" fill="#94A3B8" font-size="13">Market TP30 and Market MA150 lose on the 1-minute average</text>
+        <text x="566" y="582" fill="#94A3B8" font-size="13">and win on 5-minute. Nothing flips the other way.</text>
+
+        <rect x="548" y="640" width="470" height="92" rx="12" fill="rgba(16,24,42,0.92)" stroke="#fb7185"/>
+        <text x="566" y="668" fill="#E8EEF9" font-size="14">Drop CONL and NFLX. They are negative in every filled cell.</text>
+        <text x="566" y="690" fill="#94A3B8" font-size="13">Stocks carry the 5-minute book.</text>
+        <text x="566" y="710" fill="#94A3B8" font-size="13">Futures are only two symbols, so they do not decide the family.</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="overview">
+    <h2><span class="sn">02</span>Overview</h2>
+    <article class="card hero">
+      <div class="card-top">
+        <h3>Trust 5-minute Mid TP34</h3>
+        <span class="pill green">Main result</span>
+      </div>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+23.27%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+9.50%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>68.75%</b><small>22 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>4</b><small>CONL -51.99%, OKLL -34.73%, NFLX -25.98%, GGLL -25.49%</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">This is the only column that was run with a 34% take profit. The Pine file, Mid TP34, still defaults to 30%. Say that plainly when you quote the result. Without MSTR and SMCI the average is still +15.40%, with 20 of 30 above zero.</p>
+      <p class="judge good">Use this as the book to trust. Judge the others against it, not against the Mid Pyramid average.</p>
+    </article>
+
+    <div class="grid-3">
+      <div class="block warn">
+        <h3>Mid Pyramid average is two names</h3>
+        <p>5-minute Mid Pyramid averages +33.76%, but the median is +5.34% and the win rate is 56.25% (18 of 32). MSTR is +534.11% and SMCI is +351.90%. Without them the average is +6.47% (median +3.41%, 16 of 30 above zero).</p>
+      </div>
+      <div class="block bad">
+        <h3>Worst strategy cell</h3>
+        <p>1-minute Market MA150 averages -6.08%, median -9.39%, 10 of 30 above zero (33.33%). It cashes out on an MA150 touch once the trade is green. The single worst reading is 5-minute Mid Pyramid on METU at -94.11%.</p>
+      </div>
+      <div class="block good">
+        <h3>What did not flip</h3>
+        <p>Market TP30 and Market MA150 lose on the 1-minute average and win on the 5-minute average. Nothing flips the other way. Every strategy’s average is higher on 5-minute bars.</p>
+      </div>
+    </div>
+
+    <div class="note">Comparisons are directional. Each symbol uses its own available bars through 2026-10-03, so the windows are not the same length. Blanks on Market MA150 for CLmain and MNQmain are failed calculations, not zeros. They are excluded. That column is 30 symbols. The other six are 32.</div>
+
+    <ol class="steps">
+      <li><div><strong>One family, not seven ideas.</strong> All seven are long-only dip-and-reclaim bots around MA150 and MA200. The stop is 2%. None has a time stop.</div></li>
+      <li><div><strong>A 15-minute bar only confirms the profit target.</strong> It does not close a trade because 15 minutes passed.</div></li>
+      <li><div><strong>Read the median next to the average.</strong> Mid Pyramid’s average is MSTR and SMCI. TP34% still leads after those two are removed.</div></li>
+    </ol>
+  </section>
+
+
+  <section id="charts">
+    <h2><span class="sn">03</span>Charts at a glance</h2>
+    <p>The four visuals below are recomputed directly from rows 2–33 of “26101 record”. Percentages are Excel percent decimals converted to percentage points. Blanks in Market MA150 for CLmain and MNQmain are excluded.</p>
+    <div class="chart-grid">
+      <article class="card chart-card">
+        <div class="card-top"><h3>Average PnL by strategy</h3><span class="pill blue">14 cells</span></div>
+        <p class="chart-caption">Grouped bars compare the mean result for each strategy. Green is above zero; red is below zero.</p>
+        <svg class="chart-svg" viewBox="0 0 1000 400" role="img" aria-label="Grouped bar chart of average PnL for seven strategies on 1-minute and 5-minute data"><title>Average PnL by strategy and timeframe</title><line x1="62" y1="302.0" x2="978" y2="302.0" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="306.0" text-anchor="end" class="axis-label">-10%</text><line x1="62" y1="246.8" x2="978" y2="246.8" stroke="#94A3B8" stroke-width="1.6"/><text x="52" y="250.8" text-anchor="end" class="axis-label">0%</text><line x1="62" y1="191.6" x2="978" y2="191.6" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="195.6" text-anchor="end" class="axis-label">10%</text><line x1="62" y1="136.4" x2="978" y2="136.4" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="140.4" text-anchor="end" class="axis-label">20%</text><line x1="62" y1="81.2" x2="978" y2="81.2" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="85.2" text-anchor="end" class="axis-label">30%</text><line x1="62" y1="26.0" x2="978" y2="26.0" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="30.0" text-anchor="end" class="axis-label">40%</text><rect x="101.4" y="246.8" width="22" height="4.0" rx="3" fill="#fb7185"/><text x="112.4" y="264.8" text-anchor="middle" class="bar-label">-0.73%</text><rect x="131.4" y="163.8" width="22" height="83.0" rx="3" fill="#34D399"/><text x="142.4" y="158.8" text-anchor="middle" class="bar-label">+15.04%</text><text x="127.4" y="331" text-anchor="middle" class="x-label">Market TP30</text><rect x="232.3" y="246.8" width="22" height="33.6" rx="3" fill="#fb7185"/><text x="243.3" y="294.4" text-anchor="middle" class="bar-label">-6.08%</text><rect x="262.3" y="200.0" width="22" height="46.8" rx="3" fill="#34D399"/><text x="273.3" y="195.0" text-anchor="middle" class="bar-label">+8.47%</text><text x="258.3" y="331" text-anchor="middle" class="x-label">Market MA150</text><rect x="363.1" y="234.3" width="22" height="12.5" rx="3" fill="#22D3EE"/><text x="374.1" y="229.3" text-anchor="middle" class="bar-label">+2.26%</text><rect x="393.1" y="155.3" width="22" height="91.5" rx="3" fill="#34D399"/><text x="404.1" y="150.3" text-anchor="middle" class="bar-label">+16.57%</text><text x="389.1" y="331" text-anchor="middle" class="x-label">Limit MA23</text><rect x="494.0" y="215.2" width="22" height="31.6" rx="3" fill="#22D3EE"/><text x="505.0" y="210.2" text-anchor="middle" class="bar-label">+5.72%</text><rect x="524.0" y="134.4" width="22" height="112.4" rx="3" fill="#34D399"/><text x="535.0" y="129.4" text-anchor="middle" class="bar-label">+20.36%</text><text x="520.0" y="331" text-anchor="middle" class="x-label">Entry</text><rect x="624.9" y="205.5" width="22" height="41.3" rx="3" fill="#22D3EE"/><text x="635.9" y="200.5" text-anchor="middle" class="bar-label">+7.48%</text><rect x="654.9" y="134.7" width="22" height="112.1" rx="3" fill="#34D399"/><text x="665.9" y="129.7" text-anchor="middle" class="bar-label">+20.31%</text><text x="650.9" y="331" text-anchor="middle" class="x-label">Mid 15m</text><rect x="755.7" y="208.8" width="22" height="38.0" rx="3" fill="#22D3EE"/><text x="766.7" y="203.8" text-anchor="middle" class="bar-label">+6.88%</text><rect x="785.7" y="118.3" width="22" height="128.5" rx="3" fill="#34D399"/><text x="796.7" y="113.3" text-anchor="middle" class="bar-label">+23.27%</text><text x="781.7" y="331" text-anchor="middle" class="x-label">TP34%</text><rect x="886.6" y="150.4" width="22" height="96.4" rx="3" fill="#22D3EE"/><text x="897.6" y="145.4" text-anchor="middle" class="bar-label">+17.46%</text><rect x="916.6" y="60.5" width="22" height="186.3" rx="3" fill="#34D399"/><text x="927.6" y="55.5" text-anchor="middle" class="bar-label">+33.76%</text><text x="912.6" y="331" text-anchor="middle" class="x-label">Mid Pyramid</text><line x1="62" y1="246.8" x2="978" y2="246.8" stroke="#E8EEF9" stroke-width="1.7"/><rect x="690" y="12" width="12" height="12" rx="2" fill="#22D3EE"/><text x="708" y="22" class="legend-label">1-minute</text><rect x="785" y="12" width="12" height="12" rx="2" fill="#34D399"/><text x="803" y="22" class="legend-label">5-minute</text><text x="62" y="368" class="axis-title">Average PnL (%) · zero line shown</text></svg>
+      </article>
+      <article class="card chart-card">
+        <div class="card-top"><h3>Win rate by strategy</h3><span class="pill blue">Above 0%</span></div>
+        <p class="chart-caption">Share of filled symbols with a positive result; each bar is independent of the other timeframe.</p>
+        <svg class="chart-svg" viewBox="0 0 1000 380" role="img" aria-label="Grouped bar chart of win rate for seven strategies on 1-minute and 5-minute data"><title>Win rate by strategy and timeframe</title><line x1="62" y1="280.0" x2="978" y2="280.0" stroke="#243152" stroke-width="1"/><text x="52" y="284.0" text-anchor="end" class="axis-label">0%</text><line x1="62" y1="229.2" x2="978" y2="229.2" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="233.2" text-anchor="end" class="axis-label">20%</text><line x1="62" y1="178.4" x2="978" y2="178.4" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="182.4" text-anchor="end" class="axis-label">40%</text><line x1="62" y1="127.6" x2="978" y2="127.6" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="131.6" text-anchor="end" class="axis-label">60%</text><line x1="62" y1="76.8" x2="978" y2="76.8" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="80.8" text-anchor="end" class="axis-label">80%</text><line x1="62" y1="26.0" x2="978" y2="26.0" stroke="#243152" stroke-width="1" stroke-dasharray="4 5"/><text x="52" y="30.0" text-anchor="end" class="axis-label">100%</text><rect x="101.4" y="160.9" width="22" height="119.1" rx="3" fill="#7C5CFF"/><text x="112.4" y="155.9" text-anchor="middle" class="bar-label">46.88%</text><rect x="131.4" y="113.3" width="22" height="166.7" rx="3" fill="#34D399"/><text x="142.4" y="108.3" text-anchor="middle" class="bar-label">65.62%</text><text x="127.4" y="308" text-anchor="middle" class="x-label">Market TP30</text><rect x="232.3" y="195.3" width="22" height="84.7" rx="3" fill="#7C5CFF"/><text x="243.3" y="190.3" text-anchor="middle" class="bar-label">33.33%</text><rect x="262.3" y="119.1" width="22" height="160.9" rx="3" fill="#34D399"/><text x="273.3" y="114.1" text-anchor="middle" class="bar-label">63.33%</text><text x="258.3" y="308" text-anchor="middle" class="x-label">Market MA150</text><rect x="363.1" y="168.9" width="22" height="111.1" rx="3" fill="#7C5CFF"/><text x="374.1" y="163.9" text-anchor="middle" class="bar-label">43.75%</text><rect x="393.1" y="121.2" width="22" height="158.8" rx="3" fill="#34D399"/><text x="404.1" y="116.2" text-anchor="middle" class="bar-label">62.50%</text><text x="389.1" y="308" text-anchor="middle" class="x-label">Limit MA23</text><rect x="494.0" y="153.0" width="22" height="127.0" rx="3" fill="#7C5CFF"/><text x="505.0" y="148.0" text-anchor="middle" class="bar-label">50.00%</text><rect x="524.0" y="113.3" width="22" height="166.7" rx="3" fill="#34D399"/><text x="535.0" y="108.3" text-anchor="middle" class="bar-label">65.62%</text><text x="520.0" y="308" text-anchor="middle" class="x-label">Entry</text><rect x="624.9" y="153.0" width="22" height="127.0" rx="3" fill="#7C5CFF"/><text x="635.9" y="148.0" text-anchor="middle" class="bar-label">50.00%</text><rect x="654.9" y="113.3" width="22" height="166.7" rx="3" fill="#34D399"/><text x="665.9" y="108.3" text-anchor="middle" class="bar-label">65.62%</text><text x="650.9" y="308" text-anchor="middle" class="x-label">Mid 15m</text><rect x="755.7" y="160.9" width="22" height="119.1" rx="3" fill="#7C5CFF"/><text x="766.7" y="155.9" text-anchor="middle" class="bar-label">46.88%</text><rect x="785.7" y="105.4" width="22" height="174.6" rx="3" fill="#34D399"/><text x="796.7" y="100.4" text-anchor="middle" class="bar-label">68.75%</text><text x="781.7" y="308" text-anchor="middle" class="x-label">TP34%</text><rect x="886.6" y="160.9" width="22" height="119.1" rx="3" fill="#7C5CFF"/><text x="897.6" y="155.9" text-anchor="middle" class="bar-label">46.88%</text><rect x="916.6" y="137.1" width="22" height="142.9" rx="3" fill="#34D399"/><text x="927.6" y="132.1" text-anchor="middle" class="bar-label">56.25%</text><text x="912.6" y="308" text-anchor="middle" class="x-label">Mid Pyramid</text><rect x="690" y="12" width="12" height="12" rx="2" fill="#7C5CFF"/><text x="708" y="22" class="legend-label">1-minute</text><rect x="785" y="12" width="12" height="12" rx="2" fill="#34D399"/><text x="803" y="22" class="legend-label">5-minute</text><text x="62" y="340" class="axis-title">Win rate = share of filled symbols above 0%</text></svg>
+      </article>
+      <article class="card chart-card full">
+        <div class="card-top"><h3>Strategy heatmaps by symbol</h3><span class="pill amber">Read across</span></div>
+        <p class="chart-caption">Each cell is one symbol-strategy result. Darker colors are farther from zero; “—” is a blank, not a zero.</p>
+        <div class="heat-legend"><span>Negative</span><span class="heat-gradient" aria-hidden="true"></span><span>Positive</span><span>Scale uses the largest absolute filled cell (+534.11%)</span></div>
+        <h3 style="margin:4px 0 8px;">5-minute results</h3>
+        <div class="heatmap-scroll"><table class="heatmap"><thead><tr><th class="symbol-head">Symbol</th><th>Market TP30</th><th>Market MA150</th><th>Limit MA23</th><th>Mid TP30</th><th>Mid 15m</th><th>Mid TP34</th><th>Mid Pyramid</th></tr></thead><tbody><tr><th class="symbol-cell" scope="row">INTW</th><td style="background:rgb(199,226,211);color:#1c2430" title="INTW · Market TP30 · 5-minute: +85.94%">+85.94%</td><td style="background:rgb(215,237,225);color:#1c2430" title="INTW · Market MA150 · 5-minute: +42.42%">+42.42%</td><td style="background:rgb(216,237,225);color:#1c2430" title="INTW · Limit MA23 · 5-minute: +41.87%">+41.87%</td><td style="background:rgb(199,226,211);color:#1c2430" title="INTW · Mid TP30 · 5-minute: +85.73%">+85.73%</td><td style="background:rgb(200,227,212);color:#1c2430" title="INTW · Mid 15m · 5-minute: +82.56%">+82.56%</td><td style="background:rgb(198,226,211);color:#1c2430" title="INTW · Mid TP34 · 5-minute: +86.04%">+86.04%</td><td style="background:rgb(198,226,211);color:#1c2430" title="INTW · Mid Pyramid · 5-minute: +86.42%">+86.42%</td></tr><tr><th class="symbol-cell" scope="row">CRWG</th><td style="background:rgb(214,236,223);color:#1c2430" title="CRWG · Market TP30 · 5-minute: +46.90%">+46.90%</td><td style="background:rgb(229,245,236);color:#1c2430" title="CRWG · Market MA150 · 5-minute: +8.02%">+8.02%</td><td style="background:rgb(200,227,212);color:#1c2430" title="CRWG · Limit MA23 · 5-minute: +82.27%">+82.27%</td><td style="background:rgb(224,242,232);color:#1c2430" title="CRWG · Mid TP30 · 5-minute: +19.98%">+19.98%</td><td style="background:rgb(229,245,235);color:#1c2430" title="CRWG · Mid 15m · 5-minute: +8.95%">+8.95%</td><td style="background:rgb(224,242,232);color:#1c2430" title="CRWG · Mid TP34 · 5-minute: +20.85%">+20.85%</td><td style="background:rgb(230,246,236);color:#1c2430" title="CRWG · Mid Pyramid · 5-minute: +5.53%">+5.53%</td></tr><tr><th class="symbol-cell" scope="row">CONL</th><td style="background:rgb(244,216,213);color:#1c2430" title="CONL · Market TP30 · 5-minute: -65.14%">-65.14%</td><td style="background:rgb(252,235,233);color:#1c2430" title="CONL · Market MA150 · 5-minute: -9.66%">-9.66%</td><td style="background:rgb(246,220,217);color:#1c2430" title="CONL · Limit MA23 · 5-minute: -52.09%">-52.09%</td><td style="background:rgb(246,221,218);color:#1c2430" title="CONL · Mid TP30 · 5-minute: -50.80%">-50.80%</td><td style="background:rgb(246,220,217);color:#1c2430" title="CONL · Mid 15m · 5-minute: -51.99%">-51.99%</td><td style="background:rgb(246,220,217);color:#1c2430" title="CONL · Mid TP34 · 5-minute: -51.99%">-51.99%</td><td style="background:rgb(245,218,216);color:#1c2430" title="CONL · Mid Pyramid · 5-minute: -56.97%">-56.97%</td></tr><tr><th class="symbol-cell" scope="row">OKLO</th><td style="background:rgb(249,228,226);color:#1c2430" title="OKLO · Market TP30 · 5-minute: -28.25%">-28.25%</td><td style="background:rgb(250,230,228);color:#1c2430" title="OKLO · Market MA150 · 5-minute: -22.35%">-22.35%</td><td style="background:rgb(248,226,223);color:#1c2430" title="OKLO · Limit MA23 · 5-minute: -35.82%">-35.82%</td><td style="background:rgb(250,230,228);color:#1c2430" title="OKLO · Mid TP30 · 5-minute: -21.97%">-21.97%</td><td style="background:rgb(251,232,230);color:#1c2430" title="OKLO · Mid 15m · 5-minute: -16.51%">-16.51%</td><td style="background:rgb(251,232,230);color:#1c2430" title="OKLO · Mid TP34 · 5-minute: -16.22%">-16.22%</td><td style="background:rgb(249,228,226);color:#1c2430" title="OKLO · Mid Pyramid · 5-minute: -29.12%">-29.12%</td></tr><tr><th class="symbol-cell" scope="row">SMCX</th><td style="background:rgb(219,239,228);color:#1c2430" title="SMCX · Market TP30 · 5-minute: +33.12%">+33.12%</td><td style="background:rgb(213,235,223);color:#1c2430" title="SMCX · Market MA150 · 5-minute: +48.70%">+48.70%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SMCX · Limit MA23 · 5-minute: -17.01%">-17.01%</td><td style="background:rgb(219,239,228);color:#1c2430" title="SMCX · Mid TP30 · 5-minute: +33.72%">+33.72%</td><td style="background:rgb(218,238,227);color:#1c2430" title="SMCX · Mid 15m · 5-minute: +35.94%">+35.94%</td><td style="background:rgb(215,236,224);color:#1c2430" title="SMCX · Mid TP34 · 5-minute: +44.23%">+44.23%</td><td style="background:rgb(248,226,223);color:#1c2430" title="SMCX · Mid Pyramid · 5-minute: -35.80%">-35.80%</td></tr><tr><th class="symbol-cell" scope="row">SNXX</th><td style="background:rgb(252,235,232);color:#1c2430" title="SNXX · Market TP30 · 5-minute: -9.79%">-9.79%</td><td style="background:rgb(253,237,235);color:#1c2430" title="SNXX · Market MA150 · 5-minute: -2.90%">-2.90%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SNXX · Limit MA23 · 5-minute: -9.44%">-9.44%</td><td style="background:rgb(231,246,237);color:#1c2430" title="SNXX · Mid TP30 · 5-minute: +3.07%">+3.07%</td><td style="background:rgb(228,245,235);color:#1c2430" title="SNXX · Mid 15m · 5-minute: +9.27%">+9.27%</td><td style="background:rgb(222,241,230);color:#1c2430" title="SNXX · Mid TP34 · 5-minute: +25.73%">+25.73%</td><td style="background:rgb(249,229,227);color:#1c2430" title="SNXX · Mid Pyramid · 5-minute: -26.25%">-26.25%</td></tr><tr><th class="symbol-cell" scope="row">SNDK</th><td style="background:rgb(222,241,230);color:#1c2430" title="SNDK · Market TP30 · 5-minute: +25.87%">+25.87%</td><td style="background:rgb(224,242,232);color:#1c2430" title="SNDK · Market MA150 · 5-minute: +20.02%">+20.02%</td><td style="background:rgb(229,245,236);color:#1c2430" title="SNDK · Limit MA23 · 5-minute: +7.48%">+7.48%</td><td style="background:rgb(195,224,208);color:#1c2430" title="SNDK · Mid TP30 · 5-minute: +96.28%">+96.28%</td><td style="background:rgb(193,223,207);color:#1c2430" title="SNDK · Mid 15m · 5-minute: +99.29%">+99.29%</td><td style="background:rgb(186,219,201);color:#1c2430" title="SNDK · Mid TP34 · 5-minute: +118.47%">+118.47%</td><td style="background:rgb(176,212,193);color:#1c2430" title="SNDK · Mid Pyramid · 5-minute: +144.07%">+144.07%</td></tr><tr><th class="symbol-cell" scope="row">OKLL</th><td style="background:rgb(249,228,226);color:#1c2430" title="OKLL · Market TP30 · 5-minute: -27.75%">-27.75%</td><td style="background:rgb(250,230,228);color:#1c2430" title="OKLL · Market MA150 · 5-minute: -22.88%">-22.88%</td><td style="background:rgb(250,229,227);color:#1c2430" title="OKLL · Limit MA23 · 5-minute: -25.78%">-25.78%</td><td style="background:rgb(251,233,231);color:#1c2430" title="OKLL · Mid TP30 · 5-minute: -15.07%">-15.07%</td><td style="background:rgb(250,231,229);color:#1c2430" title="OKLL · Mid 15m · 5-minute: -20.48%">-20.48%</td><td style="background:rgb(248,226,224);color:#1c2430" title="OKLL · Mid TP34 · 5-minute: -34.73%">-34.73%</td><td style="background:rgb(250,231,229);color:#1c2430" title="OKLL · Mid Pyramid · 5-minute: -20.48%">-20.48%</td></tr><tr><th class="symbol-cell" scope="row">GGLL</th><td style="background:rgb(214,236,223);color:#1c2430" title="GGLL · Market TP30 · 5-minute: +47.14%">+47.14%</td><td style="background:rgb(223,241,230);color:#1c2430" title="GGLL · Market MA150 · 5-minute: +24.23%">+24.23%</td><td style="background:rgb(216,237,225);color:#1c2430" title="GGLL · Limit MA23 · 5-minute: +41.31%">+41.31%</td><td style="background:rgb(252,236,234);color:#1c2430" title="GGLL · Mid TP30 · 5-minute: -6.84%">-6.84%</td><td style="background:rgb(252,235,233);color:#1c2430" title="GGLL · Mid 15m · 5-minute: -8.72%">-8.72%</td><td style="background:rgb(250,229,227);color:#1c2430" title="GGLL · Mid TP34 · 5-minute: -25.49%">-25.49%</td><td style="background:rgb(250,230,228);color:#1c2430" title="GGLL · Mid Pyramid · 5-minute: -22.59%">-22.59%</td></tr><tr><th class="symbol-cell" scope="row">NFXL</th><td style="background:rgb(247,222,220);color:#1c2430" title="NFXL · Market TP30 · 5-minute: -45.28%">-45.28%</td><td style="background:rgb(247,224,221);color:#1c2430" title="NFXL · Market MA150 · 5-minute: -42.10%">-42.10%</td><td style="background:rgb(248,226,224);color:#1c2430" title="NFXL · Limit MA23 · 5-minute: -33.97%">-33.97%</td><td style="background:rgb(249,229,227);color:#1c2430" title="NFXL · Mid TP30 · 5-minute: -26.12%">-26.12%</td><td style="background:rgb(249,228,226);color:#1c2430" title="NFXL · Mid 15m · 5-minute: -28.36%">-28.36%</td><td style="background:rgb(250,230,227);color:#1c2430" title="NFXL · Mid TP34 · 5-minute: -24.21%">-24.21%</td><td style="background:rgb(246,220,217);color:#1c2430" title="NFXL · Mid Pyramid · 5-minute: -53.69%">-53.69%</td></tr><tr><th class="symbol-cell" scope="row">BABA</th><td style="background:rgb(230,245,236);color:#1c2430" title="BABA · Market TP30 · 5-minute: +6.30%">+6.30%</td><td style="background:rgb(252,236,233);color:#1c2430" title="BABA · Market MA150 · 5-minute: -7.13%">-7.13%</td><td style="background:rgb(253,237,235);color:#1c2430" title="BABA · Limit MA23 · 5-minute: -3.27%">-3.27%</td><td style="background:rgb(228,244,234);color:#1c2430" title="BABA · Mid TP30 · 5-minute: +11.45%">+11.45%</td><td style="background:rgb(227,244,234);color:#1c2430" title="BABA · Mid 15m · 5-minute: +13.33%">+13.33%</td><td style="background:rgb(227,244,234);color:#1c2430" title="BABA · Mid TP34 · 5-minute: +13.33%">+13.33%</td><td style="background:rgb(221,240,229);color:#1c2430" title="BABA · Mid Pyramid · 5-minute: +27.50%">+27.50%</td></tr><tr><th class="symbol-cell" scope="row">NFLX</th><td style="background:rgb(249,229,226);color:#1c2430" title="NFLX · Market TP30 · 5-minute: -27.44%">-27.44%</td><td style="background:rgb(251,232,229);color:#1c2430" title="NFLX · Market MA150 · 5-minute: -18.49%">-18.49%</td><td style="background:rgb(249,228,226);color:#1c2430" title="NFLX · Limit MA23 · 5-minute: -27.91%">-27.91%</td><td style="background:rgb(249,229,227);color:#1c2430" title="NFLX · Mid TP30 · 5-minute: -25.98%">-25.98%</td><td style="background:rgb(249,229,227);color:#1c2430" title="NFLX · Mid 15m · 5-minute: -25.98%">-25.98%</td><td style="background:rgb(249,229,227);color:#1c2430" title="NFLX · Mid TP34 · 5-minute: -25.98%">-25.98%</td><td style="background:rgb(245,218,215);color:#1c2430" title="NFLX · Mid Pyramid · 5-minute: -58.43%">-58.43%</td></tr><tr><th class="symbol-cell" scope="row">SKUU</th><td style="background:rgb(249,229,226);color:#1c2430" title="SKUU · Market TP30 · 5-minute: -26.88%">-26.88%</td><td style="background:rgb(230,246,237);color:#1c2430" title="SKUU · Market MA150 · 5-minute: +3.90%">+3.90%</td><td style="background:rgb(221,240,229);color:#1c2430" title="SKUU · Limit MA23 · 5-minute: +28.71%">+28.71%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SKUU · Mid TP30 · 5-minute: -17.04%">-17.04%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SKUU · Mid 15m · 5-minute: -17.04%">-17.04%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SKUU · Mid TP34 · 5-minute: -17.04%">-17.04%</td><td style="background:rgb(251,233,231);color:#1c2430" title="SKUU · Mid Pyramid · 5-minute: -15.23%">-15.23%</td></tr><tr><th class="symbol-cell" scope="row">CRWV</th><td style="background:rgb(231,247,237);color:#1c2430" title="CRWV · Market TP30 · 5-minute: +1.98%">+1.98%</td><td style="background:rgb(188,220,203);color:#1c2430" title="CRWV · Market MA150 · 5-minute: +111.84%">+111.84%</td><td style="background:rgb(176,213,194);color:#1c2430" title="CRWV · Limit MA23 · 5-minute: +142.71%">+142.71%</td><td style="background:rgb(223,241,231);color:#1c2430" title="CRWV · Mid TP30 · 5-minute: +23.67%">+23.67%</td><td style="background:rgb(221,240,229);color:#1c2430" title="CRWV · Mid 15m · 5-minute: +28.29%">+28.29%</td><td style="background:rgb(253,238,236);color:#1c2430" title="CRWV · Mid TP34 · 5-minute: -1.06%">-1.06%</td><td style="background:rgb(252,235,233);color:#1c2430" title="CRWV · Mid Pyramid · 5-minute: -8.28%">-8.28%</td></tr><tr><th class="symbol-cell" scope="row">SPCH</th><td style="background:rgb(230,246,237);color:#1c2430" title="SPCH · Market TP30 · 5-minute: +4.26%">+4.26%</td><td style="background:rgb(247,224,221);color:#1c2430" title="SPCH · Market MA150 · 5-minute: -41.73%">-41.73%</td><td style="background:rgb(251,233,230);color:#1c2430" title="SPCH · Limit MA23 · 5-minute: -15.41%">-15.41%</td><td style="background:rgb(227,244,234);color:#1c2430" title="SPCH · Mid TP30 · 5-minute: +12.47%">+12.47%</td><td style="background:rgb(228,244,234);color:#1c2430" title="SPCH · Mid 15m · 5-minute: +11.31%">+11.31%</td><td style="background:rgb(223,241,230);color:#1c2430" title="SPCH · Mid TP34 · 5-minute: +24.20%">+24.20%</td><td style="background:rgb(225,242,232);color:#1c2430" title="SPCH · Mid Pyramid · 5-minute: +19.19%">+19.19%</td></tr><tr><th class="symbol-cell" scope="row">CLmain</th><td style="background:rgb(227,244,234);color:#1c2430" title="CLmain · Market TP30 · 5-minute: +13.28%">+13.28%</td><td style="background:#f7f9fb;color:#718096" title="CLmain · Market MA150 · 5-minute: —">—</td><td style="background:rgb(227,244,234);color:#1c2430" title="CLmain · Limit MA23 · 5-minute: +12.93%">+12.93%</td><td style="background:rgb(227,244,234);color:#1c2430" title="CLmain · Mid TP30 · 5-minute: +13.35%">+13.35%</td><td style="background:rgb(227,244,234);color:#1c2430" title="CLmain · Mid 15m · 5-minute: +13.94%">+13.94%</td><td style="background:rgb(226,244,234);color:#1c2430" title="CLmain · Mid TP34 · 5-minute: +14.44%">+14.44%</td><td style="background:rgb(216,237,225);color:#1c2430" title="CLmain · Mid Pyramid · 5-minute: +41.29%">+41.29%</td></tr><tr><th class="symbol-cell" scope="row">GOOG</th><td style="background:rgb(227,244,234);color:#1c2430" title="GOOG · Market TP30 · 5-minute: +11.56%">+11.56%</td><td style="background:rgb(228,245,235);color:#1c2430" title="GOOG · Market MA150 · 5-minute: +9.20%">+9.20%</td><td style="background:rgb(230,246,236);color:#1c2430" title="GOOG · Limit MA23 · 5-minute: +6.20%">+6.20%</td><td style="background:rgb(229,245,235);color:#1c2430" title="GOOG · Mid TP30 · 5-minute: +8.07%">+8.07%</td><td style="background:rgb(229,245,235);color:#1c2430" title="GOOG · Mid 15m · 5-minute: +8.07%">+8.07%</td><td style="background:rgb(229,245,235);color:#1c2430" title="GOOG · Mid TP34 · 5-minute: +8.07%">+8.07%</td><td style="background:rgb(225,242,232);color:#1c2430" title="GOOG · Mid Pyramid · 5-minute: +18.92%">+18.92%</td></tr><tr><th class="symbol-cell" scope="row">MNQmain</th><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Market TP30 · 5-minute: +1.70%">+1.70%</td><td style="background:#f7f9fb;color:#718096" title="MNQmain · Market MA150 · 5-minute: —">—</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Limit MA23 · 5-minute: +1.90%">+1.90%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid TP30 · 5-minute: +1.74%">+1.74%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid 15m · 5-minute: +1.74%">+1.74%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid TP34 · 5-minute: +1.74%">+1.74%</td><td style="background:rgb(230,246,236);color:#1c2430" title="MNQmain · Mid Pyramid · 5-minute: +5.15%">+5.15%</td></tr><tr><th class="symbol-cell" scope="row">TSLL</th><td style="background:rgb(206,231,218);color:#1c2430" title="TSLL · Market TP30 · 5-minute: +65.73%">+65.73%</td><td style="background:rgb(226,243,233);color:#1c2430" title="TSLL · Market MA150 · 5-minute: +16.00%">+16.00%</td><td style="background:rgb(222,241,230);color:#1c2430" title="TSLL · Limit MA23 · 5-minute: +24.40%">+24.40%</td><td style="background:rgb(197,226,210);color:#1c2430" title="TSLL · Mid TP30 · 5-minute: +89.23%">+89.23%</td><td style="background:rgb(200,227,212);color:#1c2430" title="TSLL · Mid 15m · 5-minute: +82.21%">+82.21%</td><td style="background:rgb(199,227,212);color:#1c2430" title="TSLL · Mid TP34 · 5-minute: +84.28%">+84.28%</td><td style="background:rgb(179,214,196);color:#1c2430" title="TSLL · Mid Pyramid · 5-minute: +135.92%">+135.92%</td></tr><tr><th class="symbol-cell" scope="row">TSLA</th><td style="background:rgb(224,242,231);color:#1c2430" title="TSLA · Market TP30 · 5-minute: +21.63%">+21.63%</td><td style="background:rgb(223,242,231);color:#1c2430" title="TSLA · Market MA150 · 5-minute: +22.73%">+22.73%</td><td style="background:rgb(219,239,228);color:#1c2430" title="TSLA · Limit MA23 · 5-minute: +33.08%">+33.08%</td><td style="background:rgb(220,240,229);color:#1c2430" title="TSLA · Mid TP30 · 5-minute: +30.32%">+30.32%</td><td style="background:rgb(221,240,229);color:#1c2430" title="TSLA · Mid 15m · 5-minute: +29.29%">+29.29%</td><td style="background:rgb(225,242,232);color:#1c2430" title="TSLA · Mid TP34 · 5-minute: +19.07%">+19.07%</td><td style="background:rgb(231,247,237);color:#1c2430" title="TSLA · Mid Pyramid · 5-minute: +1.66%">+1.66%</td></tr><tr><th class="symbol-cell" scope="row">SPCX</th><td style="background:rgb(231,247,237);color:#1c2430" title="SPCX · Market TP30 · 5-minute: +1.90%">+1.90%</td><td style="background:rgb(231,246,237);color:#1c2430" title="SPCX · Market MA150 · 5-minute: +3.11%">+3.11%</td><td style="background:rgb(229,245,235);color:#1c2430" title="SPCX · Limit MA23 · 5-minute: +8.67%">+8.67%</td><td style="background:rgb(230,246,237);color:#1c2430" title="SPCX · Mid TP30 · 5-minute: +4.20%">+4.20%</td><td style="background:rgb(230,246,237);color:#1c2430" title="SPCX · Mid 15m · 5-minute: +4.20%">+4.20%</td><td style="background:rgb(230,246,237);color:#1c2430" title="SPCX · Mid TP34 · 5-minute: +4.20%">+4.20%</td><td style="background:rgb(227,244,234);color:#1c2430" title="SPCX · Mid Pyramid · 5-minute: +13.43%">+13.43%</td></tr><tr><th class="symbol-cell" scope="row">BABX</th><td style="background:rgb(227,244,234);color:#1c2430" title="BABX · Market TP30 · 5-minute: +12.60%">+12.60%</td><td style="background:rgb(248,226,224);color:#1c2430" title="BABX · Market MA150 · 5-minute: -34.57%">-34.57%</td><td style="background:rgb(227,244,234);color:#1c2430" title="BABX · Limit MA23 · 5-minute: +12.89%">+12.89%</td><td style="background:rgb(252,236,234);color:#1c2430" title="BABX · Mid TP30 · 5-minute: -5.77%">-5.77%</td><td style="background:rgb(252,235,233);color:#1c2430" title="BABX · Mid 15m · 5-minute: -7.63%">-7.63%</td><td style="background:rgb(231,246,237);color:#1c2430" title="BABX · Mid TP34 · 5-minute: +2.84%">+2.84%</td><td style="background:rgb(252,234,232);color:#1c2430" title="BABX · Mid Pyramid · 5-minute: -10.29%">-10.29%</td></tr><tr><th class="symbol-cell" scope="row">SMCI</th><td style="background:rgb(178,214,195);color:#1c2430" title="SMCI · Market TP30 · 5-minute: +138.78%">+138.78%</td><td style="background:rgb(206,231,217);color:#1c2430" title="SMCI · Market MA150 · 5-minute: +67.72%">+67.72%</td><td style="background:rgb(175,212,192);color:#1c2430" title="SMCI · Limit MA23 · 5-minute: +146.80%">+146.80%</td><td style="background:rgb(177,213,194);color:#1c2430" title="SMCI · Mid TP30 · 5-minute: +140.62%">+140.62%</td><td style="background:rgb(180,215,197);color:#1c2430" title="SMCI · Mid 15m · 5-minute: +133.36%">+133.36%</td><td style="background:rgb(171,209,189);color:#1c2430" title="SMCI · Mid TP34 · 5-minute: +157.40%">+157.40%</td><td style="background:rgb(95,163,129);color:#fff" title="SMCI · Mid Pyramid · 5-minute: +351.90%">+351.90%</td></tr><tr><th class="symbol-cell" scope="row">SKHY</th><td style="background:rgb(226,243,233);color:#1c2430" title="SKHY · Market TP30 · 5-minute: +15.96%">+15.96%</td><td style="background:rgb(228,245,235);color:#1c2430" title="SKHY · Market MA150 · 5-minute: +9.68%">+9.68%</td><td style="background:rgb(226,243,233);color:#1c2430" title="SKHY · Limit MA23 · 5-minute: +15.41%">+15.41%</td><td style="background:rgb(226,243,233);color:#1c2430" title="SKHY · Mid TP30 · 5-minute: +16.58%">+16.58%</td><td style="background:rgb(226,243,233);color:#1c2430" title="SKHY · Mid 15m · 5-minute: +16.58%">+16.58%</td><td style="background:rgb(226,243,233);color:#1c2430" title="SKHY · Mid TP34 · 5-minute: +16.58%">+16.58%</td><td style="background:rgb(209,233,220);color:#1c2430" title="SKHY · Mid Pyramid · 5-minute: +58.41%">+58.41%</td></tr><tr><th class="symbol-cell" scope="row">CRCG</th><td style="background:rgb(251,232,230);color:#1c2430" title="CRCG · Market TP30 · 5-minute: -18.08%">-18.08%</td><td style="background:rgb(229,245,236);color:#1c2430" title="CRCG · Market MA150 · 5-minute: +6.76%">+6.76%</td><td style="background:rgb(250,231,228);color:#1c2430" title="CRCG · Limit MA23 · 5-minute: -21.71%">-21.71%</td><td style="background:rgb(250,231,229);color:#1c2430" title="CRCG · Mid TP30 · 5-minute: -20.33%">-20.33%</td><td style="background:rgb(250,231,229);color:#1c2430" title="CRCG · Mid 15m · 5-minute: -20.33%">-20.33%</td><td style="background:rgb(251,232,230);color:#1c2430" title="CRCG · Mid TP34 · 5-minute: -16.40%">-16.40%</td><td style="background:rgb(220,240,229);color:#1c2430" title="CRCG · Mid Pyramid · 5-minute: +29.71%">+29.71%</td></tr><tr><th class="symbol-cell" scope="row">INTC</th><td style="background:rgb(220,240,229);color:#1c2430" title="INTC · Market TP30 · 5-minute: +30.34%">+30.34%</td><td style="background:rgb(218,238,227);color:#1c2430" title="INTC · Market MA150 · 5-minute: +35.62%">+35.62%</td><td style="background:rgb(213,235,223);color:#1c2430" title="INTC · Limit MA23 · 5-minute: +48.63%">+48.63%</td><td style="background:rgb(206,231,218);color:#1c2430" title="INTC · Mid TP30 · 5-minute: +65.86%">+65.86%</td><td style="background:rgb(205,230,216);color:#1c2430" title="INTC · Mid 15m · 5-minute: +69.67%">+69.67%</td><td style="background:rgb(201,228,213);color:#1c2430" title="INTC · Mid TP34 · 5-minute: +79.30%">+79.30%</td><td style="background:rgb(197,225,210);color:#1c2430" title="INTC · Mid Pyramid · 5-minute: +89.76%">+89.76%</td></tr><tr><th class="symbol-cell" scope="row">META</th><td style="background:rgb(226,243,233);color:#1c2430" title="META · Market TP30 · 5-minute: +14.77%">+14.77%</td><td style="background:rgb(226,243,233);color:#1c2430" title="META · Market MA150 · 5-minute: +16.58%">+16.58%</td><td style="background:rgb(230,245,236);color:#1c2430" title="META · Limit MA23 · 5-minute: +6.32%">+6.32%</td><td style="background:rgb(230,246,237);color:#1c2430" title="META · Mid TP30 · 5-minute: +4.59%">+4.59%</td><td style="background:rgb(230,246,237);color:#1c2430" title="META · Mid 15m · 5-minute: +4.59%">+4.59%</td><td style="background:rgb(230,246,237);color:#1c2430" title="META · Mid TP34 · 5-minute: +4.59%">+4.59%</td><td style="background:rgb(248,225,222);color:#1c2430" title="META · Mid Pyramid · 5-minute: -38.36%">-38.36%</td></tr><tr><th class="symbol-cell" scope="row">CRCL</th><td style="background:rgb(249,227,225);color:#1c2430" title="CRCL · Market TP30 · 5-minute: -30.84%">-30.84%</td><td style="background:rgb(250,230,227);color:#1c2430" title="CRCL · Market MA150 · 5-minute: -24.75%">-24.75%</td><td style="background:rgb(252,235,233);color:#1c2430" title="CRCL · Limit MA23 · 5-minute: -8.00%">-8.00%</td><td style="background:rgb(252,237,235);color:#1c2430" title="CRCL · Mid TP30 · 5-minute: -4.16%">-4.16%</td><td style="background:rgb(252,236,234);color:#1c2430" title="CRCL · Mid 15m · 5-minute: -6.60%">-6.60%</td><td style="background:rgb(231,247,237);color:#1c2430" title="CRCL · Mid TP34 · 5-minute: +1.77%">+1.77%</td><td style="background:rgb(229,245,236);color:#1c2430" title="CRCL · Mid Pyramid · 5-minute: +6.77%">+6.77%</td></tr><tr><th class="symbol-cell" scope="row">COIN</th><td style="background:rgb(249,227,225);color:#1c2430" title="COIN · Market TP30 · 5-minute: -31.87%">-31.87%</td><td style="background:rgb(252,237,235);color:#1c2430" title="COIN · Market MA150 · 5-minute: -3.75%">-3.75%</td><td style="background:rgb(247,223,220);color:#1c2430" title="COIN · Limit MA23 · 5-minute: -43.35%">-43.35%</td><td style="background:rgb(251,234,232);color:#1c2430" title="COIN · Mid TP30 · 5-minute: -11.77%">-11.77%</td><td style="background:rgb(251,234,232);color:#1c2430" title="COIN · Mid 15m · 5-minute: -12.33%">-12.33%</td><td style="background:rgb(253,237,235);color:#1c2430" title="COIN · Mid TP34 · 5-minute: -2.59%">-2.59%</td><td style="background:rgb(224,242,231);color:#1c2430" title="COIN · Mid Pyramid · 5-minute: +21.74%">+21.74%</td></tr><tr><th class="symbol-cell" scope="row">MSTR</th><td style="background:rgb(196,225,209);color:#1c2430" title="MSTR · Market TP30 · 5-minute: +92.62%">+92.62%</td><td style="background:rgb(226,243,233);color:#1c2430" title="MSTR · Market MA150 · 5-minute: +15.45%">+15.45%</td><td style="background:rgb(194,224,208);color:#1c2430" title="MSTR · Limit MA23 · 5-minute: +97.99%">+97.99%</td><td style="background:rgb(192,223,206);color:#1c2430" title="MSTR · Mid TP30 · 5-minute: +102.15%">+102.15%</td><td style="background:rgb(189,221,204);color:#1c2430" title="MSTR · Mid 15m · 5-minute: +109.25%">+109.25%</td><td style="background:rgb(183,217,199);color:#1c2430" title="MSTR · Mid TP34 · 5-minute: +125.15%">+125.15%</td><td style="background:rgb(24,119,72);color:#fff" title="MSTR · Mid Pyramid · 5-minute: +534.11%">+534.11%</td></tr><tr><th class="symbol-cell" scope="row">METU</th><td style="background:rgb(185,218,200);color:#1c2430" title="METU · Market TP30 · 5-minute: +121.03%">+121.03%</td><td style="background:rgb(230,246,236);color:#1c2430" title="METU · Market MA150 · 5-minute: +5.21%">+5.21%</td><td style="background:rgb(226,243,233);color:#1c2430" title="METU · Limit MA23 · 5-minute: +15.17%">+15.17%</td><td style="background:rgb(200,228,213);color:#1c2430" title="METU · Mid TP30 · 5-minute: +80.91%">+80.91%</td><td style="background:rgb(197,225,210);color:#1c2430" title="METU · Mid 15m · 5-minute: +89.82%">+89.82%</td><td style="background:rgb(194,224,208);color:#1c2430" title="METU · Mid TP34 · 5-minute: +97.18%">+97.18%</td><td style="background:rgb(240,206,202);color:#1c2430" title="METU · Mid Pyramid · 5-minute: -94.11%">-94.11%</td></tr><tr><th class="symbol-cell" scope="row">MSTU</th><td style="background:rgb(253,238,236);color:#1c2430" title="MSTU · Market TP30 · 5-minute: -0.77%">-0.77%</td><td style="background:rgb(225,243,233);color:#1c2430" title="MSTU · Market MA150 · 5-minute: +17.28%">+17.28%</td><td style="background:rgb(213,235,223);color:#1c2430" title="MSTU · Limit MA23 · 5-minute: +49.22%">+49.22%</td><td style="background:rgb(227,244,234);color:#1c2430" title="MSTU · Mid TP30 · 5-minute: +13.41%">+13.41%</td><td style="background:rgb(226,244,234);color:#1c2430" title="MSTU · Mid 15m · 5-minute: +14.27%">+14.27%</td><td style="background:rgb(228,244,235);color:#1c2430" title="MSTU · Mid TP34 · 5-minute: +10.92%">+10.92%</td><td style="background:rgb(247,224,221);color:#1c2430" title="MSTU · Mid Pyramid · 5-minute: -41.68%">-41.68%</td></tr></tbody></table></div>
+        <h3 style="margin:18px 0 8px;">1-minute results</h3>
+        <div class="heatmap-scroll"><table class="heatmap"><thead><tr><th class="symbol-head">Symbol</th><th>Market TP30</th><th>Market MA150</th><th>Limit MA23</th><th>Mid TP30</th><th>Mid 15m</th><th>Mid TP34</th><th>Mid Pyramid</th></tr></thead><tbody><tr><th class="symbol-cell" scope="row">INTW</th><td style="background:rgb(247,222,220);color:#1c2430" title="INTW · Market TP30 · 1-minute: -45.26%">-45.26%</td><td style="background:rgb(249,229,227);color:#1c2430" title="INTW · Market MA150 · 1-minute: -26.27%">-26.27%</td><td style="background:rgb(253,237,235);color:#1c2430" title="INTW · Limit MA23 · 1-minute: -2.97%">-2.97%</td><td style="background:rgb(250,231,229);color:#1c2430" title="INTW · Mid TP30 · 1-minute: -20.09%">-20.09%</td><td style="background:rgb(250,231,229);color:#1c2430" title="INTW · Mid 15m · 1-minute: -20.52%">-20.52%</td><td style="background:rgb(251,233,230);color:#1c2430" title="INTW · Mid TP34 · 1-minute: -15.40%">-15.40%</td><td style="background:rgb(201,228,213);color:#1c2430" title="INTW · Mid Pyramid · 1-minute: +79.39%">+79.39%</td></tr><tr><th class="symbol-cell" scope="row">CRWG</th><td style="background:rgb(250,231,229);color:#1c2430" title="CRWG · Market TP30 · 1-minute: -20.83%">-20.83%</td><td style="background:rgb(229,245,236);color:#1c2430" title="CRWG · Market MA150 · 1-minute: +7.38%">+7.38%</td><td style="background:rgb(226,243,233);color:#1c2430" title="CRWG · Limit MA23 · 1-minute: +16.45%">+16.45%</td><td style="background:rgb(250,230,228);color:#1c2430" title="CRWG · Mid TP30 · 1-minute: -22.13%">-22.13%</td><td style="background:rgb(252,236,234);color:#1c2430" title="CRWG · Mid 15m · 1-minute: -4.80%">-4.80%</td><td style="background:rgb(252,236,234);color:#1c2430" title="CRWG · Mid TP34 · 1-minute: -4.71%">-4.71%</td><td style="background:rgb(218,238,227);color:#1c2430" title="CRWG · Mid Pyramid · 1-minute: +35.49%">+35.49%</td></tr><tr><th class="symbol-cell" scope="row">CONL</th><td style="background:rgb(248,224,222);color:#1c2430" title="CONL · Market TP30 · 1-minute: -40.40%">-40.40%</td><td style="background:rgb(247,223,220);color:#1c2430" title="CONL · Market MA150 · 1-minute: -44.84%">-44.84%</td><td style="background:rgb(251,233,231);color:#1c2430" title="CONL · Limit MA23 · 1-minute: -15.09%">-15.09%</td><td style="background:rgb(249,228,225);color:#1c2430" title="CONL · Mid TP30 · 1-minute: -30.29%">-30.29%</td><td style="background:rgb(249,227,225);color:#1c2430" title="CONL · Mid 15m · 1-minute: -30.75%">-30.75%</td><td style="background:rgb(249,227,225);color:#1c2430" title="CONL · Mid TP34 · 1-minute: -30.75%">-30.75%</td><td style="background:rgb(246,220,218);color:#1c2430" title="CONL · Mid Pyramid · 1-minute: -51.40%">-51.40%</td></tr><tr><th class="symbol-cell" scope="row">OKLO</th><td style="background:rgb(250,231,228);color:#1c2430" title="OKLO · Market TP30 · 1-minute: -21.21%">-21.21%</td><td style="background:rgb(232,247,238);color:#1c2430" title="OKLO · Market MA150 · 1-minute: +0.06%">+0.06%</td><td style="background:rgb(251,233,231);color:#1c2430" title="OKLO · Limit MA23 · 1-minute: -14.15%">-14.15%</td><td style="background:rgb(250,231,229);color:#1c2430" title="OKLO · Mid TP30 · 1-minute: -19.60%">-19.60%</td><td style="background:rgb(250,231,229);color:#1c2430" title="OKLO · Mid 15m · 1-minute: -20.50%">-20.50%</td><td style="background:rgb(250,231,229);color:#1c2430" title="OKLO · Mid TP34 · 1-minute: -20.50%">-20.50%</td><td style="background:rgb(247,222,220);color:#1c2430" title="OKLO · Mid Pyramid · 1-minute: -45.77%">-45.77%</td></tr><tr><th class="symbol-cell" scope="row">SMCX</th><td style="background:rgb(251,232,230);color:#1c2430" title="SMCX · Market TP30 · 1-minute: -17.22%">-17.22%</td><td style="background:rgb(252,236,234);color:#1c2430" title="SMCX · Market MA150 · 1-minute: -6.16%">-6.16%</td><td style="background:rgb(226,243,233);color:#1c2430" title="SMCX · Limit MA23 · 1-minute: +15.94%">+15.94%</td><td style="background:rgb(214,236,224);color:#1c2430" title="SMCX · Mid TP30 · 1-minute: +45.61%">+45.61%</td><td style="background:rgb(216,237,225);color:#1c2430" title="SMCX · Mid 15m · 1-minute: +40.86%">+40.86%</td><td style="background:rgb(217,238,226);color:#1c2430" title="SMCX · Mid TP34 · 1-minute: +39.29%">+39.29%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SMCX · Mid Pyramid · 1-minute: -9.57%">-9.57%</td></tr><tr><th class="symbol-cell" scope="row">SNXX</th><td style="background:rgb(252,236,234);color:#1c2430" title="SNXX · Market TP30 · 1-minute: -6.32%">-6.32%</td><td style="background:rgb(253,237,235);color:#1c2430" title="SNXX · Market MA150 · 1-minute: -2.27%">-2.27%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SNXX · Limit MA23 · 1-minute: -8.33%">-8.33%</td><td style="background:rgb(252,236,234);color:#1c2430" title="SNXX · Mid TP30 · 1-minute: -5.10%">-5.10%</td><td style="background:rgb(252,234,232);color:#1c2430" title="SNXX · Mid 15m · 1-minute: -11.09%">-11.09%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SNXX · Mid TP34 · 1-minute: -9.52%">-9.52%</td><td style="background:rgb(246,221,218);color:#1c2430" title="SNXX · Mid Pyramid · 1-minute: -49.20%">-49.20%</td></tr><tr><th class="symbol-cell" scope="row">SNDK</th><td style="background:rgb(252,236,234);color:#1c2430" title="SNDK · Market TP30 · 1-minute: -5.00%">-5.00%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SNDK · Market MA150 · 1-minute: -8.33%">-8.33%</td><td style="background:rgb(252,236,234);color:#1c2430" title="SNDK · Limit MA23 · 1-minute: -5.00%">-5.00%</td><td style="background:rgb(231,246,237);color:#1c2430" title="SNDK · Mid TP30 · 1-minute: +3.30%">+3.30%</td><td style="background:rgb(231,246,237);color:#1c2430" title="SNDK · Mid 15m · 1-minute: +3.30%">+3.30%</td><td style="background:rgb(231,246,237);color:#1c2430" title="SNDK · Mid TP34 · 1-minute: +3.30%">+3.30%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SNDK · Mid Pyramid · 1-minute: -17.91%">-17.91%</td></tr><tr><th class="symbol-cell" scope="row">OKLL</th><td style="background:rgb(248,224,222);color:#1c2430" title="OKLL · Market TP30 · 1-minute: -39.81%">-39.81%</td><td style="background:rgb(250,230,228);color:#1c2430" title="OKLL · Market MA150 · 1-minute: -23.30%">-23.30%</td><td style="background:rgb(251,233,231);color:#1c2430" title="OKLL · Limit MA23 · 1-minute: -14.78%">-14.78%</td><td style="background:rgb(226,243,233);color:#1c2430" title="OKLL · Mid TP30 · 1-minute: +15.52%">+15.52%</td><td style="background:rgb(230,246,236);color:#1c2430" title="OKLL · Mid 15m · 1-minute: +5.79%">+5.79%</td><td style="background:rgb(249,227,224);color:#1c2430" title="OKLL · Mid TP34 · 1-minute: -33.02%">-33.02%</td><td style="background:rgb(249,227,225);color:#1c2430" title="OKLL · Mid Pyramid · 1-minute: -32.10%">-32.10%</td></tr><tr><th class="symbol-cell" scope="row">GGLL</th><td style="background:rgb(252,235,233);color:#1c2430" title="GGLL · Market TP30 · 1-minute: -9.38%">-9.38%</td><td style="background:rgb(252,236,233);color:#1c2430" title="GGLL · Market MA150 · 1-minute: -7.04%">-7.04%</td><td style="background:rgb(251,234,232);color:#1c2430" title="GGLL · Limit MA23 · 1-minute: -11.58%">-11.58%</td><td style="background:rgb(252,235,233);color:#1c2430" title="GGLL · Mid TP30 · 1-minute: -9.20%">-9.20%</td><td style="background:rgb(252,235,233);color:#1c2430" title="GGLL · Mid 15m · 1-minute: -9.20%">-9.20%</td><td style="background:rgb(252,235,233);color:#1c2430" title="GGLL · Mid TP34 · 1-minute: -9.20%">-9.20%</td><td style="background:rgb(249,229,227);color:#1c2430" title="GGLL · Mid Pyramid · 1-minute: -26.12%">-26.12%</td></tr><tr><th class="symbol-cell" scope="row">NFXL</th><td style="background:rgb(250,230,228);color:#1c2430" title="NFXL · Market TP30 · 1-minute: -23.68%">-23.68%</td><td style="background:rgb(250,230,227);color:#1c2430" title="NFXL · Market MA150 · 1-minute: -24.71%">-24.71%</td><td style="background:rgb(228,245,235);color:#1c2430" title="NFXL · Limit MA23 · 1-minute: +9.59%">+9.59%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFXL · Mid TP30 · 1-minute: -13.68%">-13.68%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFXL · Mid 15m · 1-minute: -13.68%">-13.68%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFXL · Mid TP34 · 1-minute: -13.68%">-13.68%</td><td style="background:rgb(248,226,223);color:#1c2430" title="NFXL · Mid Pyramid · 1-minute: -35.30%">-35.30%</td></tr><tr><th class="symbol-cell" scope="row">BABA</th><td style="background:rgb(252,234,232);color:#1c2430" title="BABA · Market TP30 · 1-minute: -10.91%">-10.91%</td><td style="background:rgb(252,235,232);color:#1c2430" title="BABA · Market MA150 · 1-minute: -9.84%">-9.84%</td><td style="background:rgb(252,234,232);color:#1c2430" title="BABA · Limit MA23 · 1-minute: -10.27%">-10.27%</td><td style="background:rgb(252,235,233);color:#1c2430" title="BABA · Mid TP30 · 1-minute: -7.98%">-7.98%</td><td style="background:rgb(252,235,233);color:#1c2430" title="BABA · Mid 15m · 1-minute: -7.98%">-7.98%</td><td style="background:rgb(252,235,233);color:#1c2430" title="BABA · Mid TP34 · 1-minute: -7.98%">-7.98%</td><td style="background:rgb(250,230,228);color:#1c2430" title="BABA · Mid Pyramid · 1-minute: -22.70%">-22.70%</td></tr><tr><th class="symbol-cell" scope="row">NFLX</th><td style="background:rgb(251,233,230);color:#1c2430" title="NFLX · Market TP30 · 1-minute: -15.69%">-15.69%</td><td style="background:rgb(251,232,230);color:#1c2430" title="NFLX · Market MA150 · 1-minute: -16.37%">-16.37%</td><td style="background:rgb(251,232,230);color:#1c2430" title="NFLX · Limit MA23 · 1-minute: -17.39%">-17.39%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFLX · Mid TP30 · 1-minute: -13.84%">-13.84%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFLX · Mid 15m · 1-minute: -13.84%">-13.84%</td><td style="background:rgb(251,233,231);color:#1c2430" title="NFLX · Mid TP34 · 1-minute: -13.84%">-13.84%</td><td style="background:rgb(247,223,221);color:#1c2430" title="NFLX · Mid Pyramid · 1-minute: -43.04%">-43.04%</td></tr><tr><th class="symbol-cell" scope="row">SKUU</th><td style="background:rgb(228,245,235);color:#1c2430" title="SKUU · Market TP30 · 1-minute: +9.22%">+9.22%</td><td style="background:rgb(223,242,231);color:#1c2430" title="SKUU · Market MA150 · 1-minute: +22.39%">+22.39%</td><td style="background:rgb(223,241,231);color:#1c2430" title="SKUU · Limit MA23 · 1-minute: +23.30%">+23.30%</td><td style="background:rgb(224,242,232);color:#1c2430" title="SKUU · Mid TP30 · 1-minute: +20.32%">+20.32%</td><td style="background:rgb(221,240,229);color:#1c2430" title="SKUU · Mid 15m · 1-minute: +28.55%">+28.55%</td><td style="background:rgb(220,240,229);color:#1c2430" title="SKUU · Mid TP34 · 1-minute: +29.64%">+29.64%</td><td style="background:rgb(204,230,216);color:#1c2430" title="SKUU · Mid Pyramid · 1-minute: +72.03%">+72.03%</td></tr><tr><th class="symbol-cell" scope="row">CRWV</th><td style="background:rgb(231,246,237);color:#1c2430" title="CRWV · Market TP30 · 1-minute: +3.15%">+3.15%</td><td style="background:rgb(251,234,232);color:#1c2430" title="CRWV · Market MA150 · 1-minute: -11.78%">-11.78%</td><td style="background:rgb(253,237,235);color:#1c2430" title="CRWV · Limit MA23 · 1-minute: -1.46%">-1.46%</td><td style="background:rgb(253,237,235);color:#1c2430" title="CRWV · Mid TP30 · 1-minute: -1.46%">-1.46%</td><td style="background:rgb(253,237,235);color:#1c2430" title="CRWV · Mid 15m · 1-minute: -1.46%">-1.46%</td><td style="background:rgb(253,237,235);color:#1c2430" title="CRWV · Mid TP34 · 1-minute: -1.46%">-1.46%</td><td style="background:rgb(251,232,230);color:#1c2430" title="CRWV · Mid Pyramid · 1-minute: -16.22%">-16.22%</td></tr><tr><th class="symbol-cell" scope="row">SPCH</th><td style="background:rgb(221,240,229);color:#1c2430" title="SPCH · Market TP30 · 1-minute: +28.07%">+28.07%</td><td style="background:rgb(252,235,233);color:#1c2430" title="SPCH · Market MA150 · 1-minute: -9.38%">-9.38%</td><td style="background:rgb(229,245,235);color:#1c2430" title="SPCH · Limit MA23 · 1-minute: +8.58%">+8.58%</td><td style="background:rgb(217,238,226);color:#1c2430" title="SPCH · Mid TP30 · 1-minute: +37.92%">+37.92%</td><td style="background:rgb(218,239,227);color:#1c2430" title="SPCH · Mid 15m · 1-minute: +34.68%">+34.68%</td><td style="background:rgb(220,240,229);color:#1c2430" title="SPCH · Mid TP34 · 1-minute: +29.90%">+29.90%</td><td style="background:rgb(196,225,209);color:#1c2430" title="SPCH · Mid Pyramid · 1-minute: +92.39%">+92.39%</td></tr><tr><th class="symbol-cell" scope="row">CLmain</th><td style="background:rgb(252,237,235);color:#1c2430" title="CLmain · Market TP30 · 1-minute: -3.91%">-3.91%</td><td style="background:#f7f9fb;color:#718096" title="CLmain · Market MA150 · 1-minute: —">—</td><td style="background:rgb(253,237,235);color:#1c2430" title="CLmain · Limit MA23 · 1-minute: -2.32%">-2.32%</td><td style="background:rgb(252,237,234);color:#1c2430" title="CLmain · Mid TP30 · 1-minute: -4.22%">-4.22%</td><td style="background:rgb(252,237,234);color:#1c2430" title="CLmain · Mid 15m · 1-minute: -4.22%">-4.22%</td><td style="background:rgb(252,237,234);color:#1c2430" title="CLmain · Mid TP34 · 1-minute: -4.22%">-4.22%</td><td style="background:rgb(251,233,231);color:#1c2430" title="CLmain · Mid Pyramid · 1-minute: -14.21%">-14.21%</td></tr><tr><th class="symbol-cell" scope="row">GOOG</th><td style="background:rgb(253,237,235);color:#1c2430" title="GOOG · Market TP30 · 1-minute: -2.31%">-2.31%</td><td style="background:rgb(230,246,236);color:#1c2430" title="GOOG · Market MA150 · 1-minute: +4.99%">+4.99%</td><td style="background:rgb(252,236,233);color:#1c2430" title="GOOG · Limit MA23 · 1-minute: -7.20%">-7.20%</td><td style="background:rgb(253,237,235);color:#1c2430" title="GOOG · Mid TP30 · 1-minute: -1.71%">-1.71%</td><td style="background:rgb(253,237,235);color:#1c2430" title="GOOG · Mid 15m · 1-minute: -1.71%">-1.71%</td><td style="background:rgb(253,237,235);color:#1c2430" title="GOOG · Mid TP34 · 1-minute: -1.71%">-1.71%</td><td style="background:rgb(252,236,234);color:#1c2430" title="GOOG · Mid Pyramid · 1-minute: -5.26%">-5.26%</td></tr><tr><th class="symbol-cell" scope="row">MNQmain</th><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Market TP30 · 1-minute: +1.93%">+1.93%</td><td style="background:#f7f9fb;color:#718096" title="MNQmain · Market MA150 · 1-minute: —">—</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Limit MA23 · 1-minute: +1.61%">+1.61%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid TP30 · 1-minute: +1.92%">+1.92%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid 15m · 1-minute: +1.92%">+1.92%</td><td style="background:rgb(231,247,237);color:#1c2430" title="MNQmain · Mid TP34 · 1-minute: +1.92%">+1.92%</td><td style="background:rgb(230,246,236);color:#1c2430" title="MNQmain · Mid Pyramid · 1-minute: +5.73%">+5.73%</td></tr><tr><th class="symbol-cell" scope="row">TSLL</th><td style="background:rgb(253,237,235);color:#1c2430" title="TSLL · Market TP30 · 1-minute: -1.74%">-1.74%</td><td style="background:rgb(251,232,230);color:#1c2430" title="TSLL · Market MA150 · 1-minute: -16.57%">-16.57%</td><td style="background:rgb(252,235,233);color:#1c2430" title="TSLL · Limit MA23 · 1-minute: -9.72%">-9.72%</td><td style="background:rgb(249,228,226);color:#1c2430" title="TSLL · Mid TP30 · 1-minute: -27.90%">-27.90%</td><td style="background:rgb(249,228,226);color:#1c2430" title="TSLL · Mid 15m · 1-minute: -27.90%">-27.90%</td><td style="background:rgb(249,228,226);color:#1c2430" title="TSLL · Mid TP34 · 1-minute: -27.90%">-27.90%</td><td style="background:rgb(245,218,215);color:#1c2430" title="TSLL · Mid Pyramid · 1-minute: -57.75%">-57.75%</td></tr><tr><th class="symbol-cell" scope="row">TSLA</th><td style="background:rgb(231,246,237);color:#1c2430" title="TSLA · Market TP30 · 1-minute: +2.90%">+2.90%</td><td style="background:rgb(251,233,231);color:#1c2430" title="TSLA · Market MA150 · 1-minute: -14.99%">-14.99%</td><td style="background:rgb(253,237,235);color:#1c2430" title="TSLA · Limit MA23 · 1-minute: -2.66%">-2.66%</td><td style="background:rgb(231,246,237);color:#1c2430" title="TSLA · Mid TP30 · 1-minute: +2.80%">+2.80%</td><td style="background:rgb(231,246,237);color:#1c2430" title="TSLA · Mid 15m · 1-minute: +2.80%">+2.80%</td><td style="background:rgb(231,246,237);color:#1c2430" title="TSLA · Mid TP34 · 1-minute: +2.80%">+2.80%</td><td style="background:rgb(227,244,234);color:#1c2430" title="TSLA · Mid Pyramid · 1-minute: +12.09%">+12.09%</td></tr><tr><th class="symbol-cell" scope="row">SPCX</th><td style="background:rgb(226,243,233);color:#1c2430" title="SPCX · Market TP30 · 1-minute: +16.55%">+16.55%</td><td style="background:rgb(226,244,234);color:#1c2430" title="SPCX · Market MA150 · 1-minute: +14.18%">+14.18%</td><td style="background:rgb(229,245,235);color:#1c2430" title="SPCX · Limit MA23 · 1-minute: +8.26%">+8.26%</td><td style="background:rgb(227,244,234);color:#1c2430" title="SPCX · Mid TP30 · 1-minute: +12.60%">+12.60%</td><td style="background:rgb(227,244,234);color:#1c2430" title="SPCX · Mid 15m · 1-minute: +12.60%">+12.60%</td><td style="background:rgb(227,244,234);color:#1c2430" title="SPCX · Mid TP34 · 1-minute: +12.60%">+12.60%</td><td style="background:rgb(218,238,226);color:#1c2430" title="SPCX · Mid Pyramid · 1-minute: +37.15%">+37.15%</td></tr><tr><th class="symbol-cell" scope="row">BABX</th><td style="background:rgb(228,244,235);color:#1c2430" title="BABX · Market TP30 · 1-minute: +10.87%">+10.87%</td><td style="background:rgb(251,232,230);color:#1c2430" title="BABX · Market MA150 · 1-minute: -16.54%">-16.54%</td><td style="background:rgb(251,234,231);color:#1c2430" title="BABX · Limit MA23 · 1-minute: -12.87%">-12.87%</td><td style="background:rgb(227,244,234);color:#1c2430" title="BABX · Mid TP30 · 1-minute: +12.42%">+12.42%</td><td style="background:rgb(208,232,219);color:#1c2430" title="BABX · Mid 15m · 1-minute: +61.92%">+61.92%</td><td style="background:rgb(208,232,219);color:#1c2430" title="BABX · Mid TP34 · 1-minute: +61.92%">+61.92%</td><td style="background:rgb(206,231,217);color:#1c2430" title="BABX · Mid Pyramid · 1-minute: +67.65%">+67.65%</td></tr><tr><th class="symbol-cell" scope="row">SMCI</th><td style="background:rgb(223,241,231);color:#1c2430" title="SMCI · Market TP30 · 1-minute: +23.46%">+23.46%</td><td style="background:rgb(251,232,230);color:#1c2430" title="SMCI · Market MA150 · 1-minute: -17.45%">-17.45%</td><td style="background:rgb(223,241,231);color:#1c2430" title="SMCI · Limit MA23 · 1-minute: +23.19%">+23.19%</td><td style="background:rgb(223,241,231);color:#1c2430" title="SMCI · Mid TP30 · 1-minute: +23.67%">+23.67%</td><td style="background:rgb(223,241,231);color:#1c2430" title="SMCI · Mid 15m · 1-minute: +23.67%">+23.67%</td><td style="background:rgb(223,241,231);color:#1c2430" title="SMCI · Mid TP34 · 1-minute: +23.67%">+23.67%</td><td style="background:rgb(210,234,221);color:#1c2430" title="SMCI · Mid Pyramid · 1-minute: +55.76%">+55.76%</td></tr><tr><th class="symbol-cell" scope="row">SKHY</th><td style="background:rgb(222,241,230);color:#1c2430" title="SKHY · Market TP30 · 1-minute: +25.30%">+25.30%</td><td style="background:rgb(252,234,232);color:#1c2430" title="SKHY · Market MA150 · 1-minute: -10.67%">-10.67%</td><td style="background:rgb(217,238,226);color:#1c2430" title="SKHY · Limit MA23 · 1-minute: +37.33%">+37.33%</td><td style="background:rgb(222,241,230);color:#1c2430" title="SKHY · Mid TP30 · 1-minute: +25.58%">+25.58%</td><td style="background:rgb(222,241,230);color:#1c2430" title="SKHY · Mid 15m · 1-minute: +25.58%">+25.58%</td><td style="background:rgb(222,241,230);color:#1c2430" title="SKHY · Mid TP34 · 1-minute: +25.58%">+25.58%</td><td style="background:rgb(204,230,216);color:#1c2430" title="SKHY · Mid Pyramid · 1-minute: +71.84%">+71.84%</td></tr><tr><th class="symbol-cell" scope="row">CRCG</th><td style="background:rgb(228,245,235);color:#1c2430" title="CRCG · Market TP30 · 1-minute: +9.46%">+9.46%</td><td style="background:rgb(232,247,238);color:#1c2430" title="CRCG · Market MA150 · 1-minute: +1.04%">+1.04%</td><td style="background:rgb(249,227,225);color:#1c2430" title="CRCG · Limit MA23 · 1-minute: -31.05%">-31.05%</td><td style="background:rgb(247,222,220);color:#1c2430" title="CRCG · Mid TP30 · 1-minute: -46.11%">-46.11%</td><td style="background:rgb(247,222,220);color:#1c2430" title="CRCG · Mid 15m · 1-minute: -46.11%">-46.11%</td><td style="background:rgb(247,222,220);color:#1c2430" title="CRCG · Mid TP34 · 1-minute: -46.11%">-46.11%</td><td style="background:rgb(246,221,219);color:#1c2430" title="CRCG · Mid Pyramid · 1-minute: -48.58%">-48.58%</td></tr><tr><th class="symbol-cell" scope="row">INTC</th><td style="background:rgb(220,239,228);color:#1c2430" title="INTC · Market TP30 · 1-minute: +31.51%">+31.51%</td><td style="background:rgb(226,243,233);color:#1c2430" title="INTC · Market MA150 · 1-minute: +15.49%">+15.49%</td><td style="background:rgb(222,241,230);color:#1c2430" title="INTC · Limit MA23 · 1-minute: +25.91%">+25.91%</td><td style="background:rgb(218,239,227);color:#1c2430" title="INTC · Mid TP30 · 1-minute: +35.17%">+35.17%</td><td style="background:rgb(217,238,226);color:#1c2430" title="INTC · Mid 15m · 1-minute: +37.50%">+37.50%</td><td style="background:rgb(217,238,226);color:#1c2430" title="INTC · Mid TP34 · 1-minute: +37.50%">+37.50%</td><td style="background:rgb(191,222,206);color:#1c2430" title="INTC · Mid Pyramid · 1-minute: +104.11%">+104.11%</td></tr><tr><th class="symbol-cell" scope="row">META</th><td style="background:rgb(221,240,229);color:#1c2430" title="META · Market TP30 · 1-minute: +27.77%">+27.77%</td><td style="background:rgb(228,245,235);color:#1c2430" title="META · Market MA150 · 1-minute: +9.33%">+9.33%</td><td style="background:rgb(222,241,230);color:#1c2430" title="META · Limit MA23 · 1-minute: +26.60%">+26.60%</td><td style="background:rgb(221,240,229);color:#1c2430" title="META · Mid TP30 · 1-minute: +28.48%">+28.48%</td><td style="background:rgb(221,240,229);color:#1c2430" title="META · Mid 15m · 1-minute: +29.20%">+29.20%</td><td style="background:rgb(219,239,228);color:#1c2430" title="META · Mid TP34 · 1-minute: +32.90%">+32.90%</td><td style="background:rgb(199,227,212);color:#1c2430" title="META · Mid Pyramid · 1-minute: +84.87%">+84.87%</td></tr><tr><th class="symbol-cell" scope="row">CRCL</th><td style="background:rgb(251,233,231);color:#1c2430" title="CRCL · Market TP30 · 1-minute: -14.39%">-14.39%</td><td style="background:rgb(251,233,231);color:#1c2430" title="CRCL · Market MA150 · 1-minute: -13.30%">-13.30%</td><td style="background:rgb(251,233,231);color:#1c2430" title="CRCL · Limit MA23 · 1-minute: -13.19%">-13.19%</td><td style="background:rgb(251,233,230);color:#1c2430" title="CRCL · Mid TP30 · 1-minute: -15.74%">-15.74%</td><td style="background:rgb(251,233,230);color:#1c2430" title="CRCL · Mid 15m · 1-minute: -15.74%">-15.74%</td><td style="background:rgb(251,233,230);color:#1c2430" title="CRCL · Mid TP34 · 1-minute: -15.74%">-15.74%</td><td style="background:rgb(249,228,225);color:#1c2430" title="CRCL · Mid Pyramid · 1-minute: -29.61%">-29.61%</td></tr><tr><th class="symbol-cell" scope="row">COIN</th><td style="background:rgb(252,236,234);color:#1c2430" title="COIN · Market TP30 · 1-minute: -6.55%">-6.55%</td><td style="background:rgb(250,231,228);color:#1c2430" title="COIN · Market MA150 · 1-minute: -21.85%">-21.85%</td><td style="background:rgb(251,233,231);color:#1c2430" title="COIN · Limit MA23 · 1-minute: -13.75%">-13.75%</td><td style="background:rgb(251,233,231);color:#1c2430" title="COIN · Mid TP30 · 1-minute: -14.69%">-14.69%</td><td style="background:rgb(251,233,231);color:#1c2430" title="COIN · Mid 15m · 1-minute: -14.69%">-14.69%</td><td style="background:rgb(251,233,231);color:#1c2430" title="COIN · Mid TP34 · 1-minute: -14.69%">-14.69%</td><td style="background:rgb(246,220,217);color:#1c2430" title="COIN · Mid Pyramid · 1-minute: -52.88%">-52.88%</td></tr><tr><th class="symbol-cell" scope="row">MSTR</th><td style="background:rgb(226,243,233);color:#1c2430" title="MSTR · Market TP30 · 1-minute: +15.98%">+15.98%</td><td style="background:rgb(224,242,232);color:#1c2430" title="MSTR · Market MA150 · 1-minute: +20.03%">+20.03%</td><td style="background:rgb(230,246,236);color:#1c2430" title="MSTR · Limit MA23 · 1-minute: +5.96%">+5.96%</td><td style="background:rgb(221,240,229);color:#1c2430" title="MSTR · Mid TP30 · 1-minute: +28.75%">+28.75%</td><td style="background:rgb(220,240,228);color:#1c2430" title="MSTR · Mid 15m · 1-minute: +31.01%">+31.01%</td><td style="background:rgb(220,240,228);color:#1c2430" title="MSTR · Mid TP34 · 1-minute: +31.01%">+31.01%</td><td style="background:rgb(198,226,211);color:#1c2430" title="MSTR · Mid Pyramid · 1-minute: +88.24%">+88.24%</td></tr><tr><th class="symbol-cell" scope="row">METU</th><td style="background:rgb(214,236,224);color:#1c2430" title="METU · Market TP30 · 1-minute: +45.31%">+45.31%</td><td style="background:rgb(252,235,233);color:#1c2430" title="METU · Market MA150 · 1-minute: -9.40%">-9.40%</td><td style="background:rgb(226,243,233);color:#1c2430" title="METU · Limit MA23 · 1-minute: +16.15%">+16.15%</td><td style="background:rgb(210,234,221);color:#1c2430" title="METU · Mid TP30 · 1-minute: +56.00%">+56.00%</td><td style="background:rgb(211,234,221);color:#1c2430" title="METU · Mid 15m · 1-minute: +53.38%">+53.38%</td><td style="background:rgb(210,234,221);color:#1c2430" title="METU · Mid TP34 · 1-minute: +55.93%">+55.93%</td><td style="background:rgb(152,198,174);color:#1c2430" title="METU · Mid Pyramid · 1-minute: +205.43%">+205.43%</td></tr><tr><th class="symbol-cell" scope="row">MSTU</th><td style="background:rgb(228,245,235);color:#1c2430" title="MSTU · Market TP30 · 1-minute: +9.72%">+9.72%</td><td style="background:rgb(219,239,228);color:#1c2430" title="MSTU · Market MA150 · 1-minute: +33.63%">+33.63%</td><td style="background:rgb(214,236,223);color:#1c2430" title="MSTU · Limit MA23 · 1-minute: +47.13%">+47.13%</td><td style="background:rgb(198,226,211);color:#1c2430" title="MSTU · Mid TP30 · 1-minute: +86.62%">+86.62%</td><td style="background:rgb(197,225,210);color:#1c2430" title="MSTU · Mid 15m · 1-minute: +90.67%">+90.67%</td><td style="background:rgb(192,222,206);color:#1c2430" title="MSTU · Mid TP34 · 1-minute: +102.52%">+102.52%</td><td style="background:rgb(191,222,206);color:#1c2430" title="MSTU · Mid Pyramid · 1-minute: +104.16%">+104.16%</td></tr></tbody></table></div>
+      </article>
+      <article class="card chart-card full">
+        <div class="card-top"><h3>5-minute median versus average</h3><span class="pill green">Outlier check</span></div>
+        <p class="chart-caption">Blue dots are medians; green dots are averages. A long line means a few symbols pull the average away from the typical result.</p>
+        <svg class="chart-svg" viewBox="0 0 1000 360" role="img" aria-label="Dot comparison of median and average PnL for five-minute strategies"><title>Five-minute median versus average</title><line x1="160.0" y1="28" x2="160.0" y2="284" stroke="#243152" stroke-dasharray="4 5"/><text x="160.0" y="308" text-anchor="middle" class="axis-label">0%</text><line x1="340.0" y1="28" x2="340.0" y2="284" stroke="#243152" stroke-dasharray="4 5"/><text x="340.0" y="308" text-anchor="middle" class="axis-label">10%</text><line x1="520.0" y1="28" x2="520.0" y2="284" stroke="#243152" stroke-dasharray="4 5"/><text x="520.0" y="308" text-anchor="middle" class="axis-label">20%</text><line x1="700.0" y1="28" x2="700.0" y2="284" stroke="#243152" stroke-dasharray="4 5"/><text x="700.0" y="308" text-anchor="middle" class="axis-label">30%</text><line x1="880.0" y1="28" x2="880.0" y2="284" stroke="#243152" stroke-dasharray="4 5"/><text x="880.0" y="308" text-anchor="middle" class="axis-label">40%</text><text x="148" y="50.3" text-anchor="end" class="x-label">Market TP30</text><line x1="320.7" y1="46.3" x2="430.7" y2="46.3" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="320.7" cy="46.3" r="6" fill="#22D3EE"/><circle cx="430.7" cy="46.3" r="6" fill="#34D399"/><text x="441.7" y="50.3" class="bar-label">+15.04%</text><text x="309.7" y="50.3" text-anchor="end" class="bar-label median-label">+8.93%</text><text x="148" y="86.9" text-anchor="end" class="x-label">Market MA150</text><line x1="293.0" y1="82.9" x2="312.5" y2="82.9" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="293.0" cy="82.9" r="6" fill="#22D3EE"/><circle cx="312.5" cy="82.9" r="6" fill="#34D399"/><text x="323.5" y="86.9" class="bar-label">+8.47%</text><text x="282.0" y="86.9" text-anchor="end" class="bar-label median-label">+7.39%</text><text x="148" y="123.4" text-anchor="end" class="x-label">Limit MA23</text><line x1="305.3" y1="119.4" x2="458.2" y2="119.4" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="305.3" cy="119.4" r="6" fill="#22D3EE"/><circle cx="458.2" cy="119.4" r="6" fill="#34D399"/><text x="469.2" y="123.4" class="bar-label">+16.57%</text><text x="294.3" y="123.4" text-anchor="end" class="bar-label median-label">+8.08%</text><text x="148" y="160.0" text-anchor="end" class="x-label">Entry</text><line x1="335.7" y1="156.0" x2="526.5" y2="156.0" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="335.7" cy="156.0" r="6" fill="#22D3EE"/><circle cx="526.5" cy="156.0" r="6" fill="#34D399"/><text x="537.5" y="160.0" class="bar-label">+20.36%</text><text x="324.7" y="160.0" text-anchor="end" class="bar-label median-label">+9.76%</text><text x="148" y="196.6" text-anchor="end" class="x-label">Mid 15m</text><line x1="324.0" y1="192.6" x2="525.6" y2="192.6" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="324.0" cy="192.6" r="6" fill="#22D3EE"/><circle cx="525.6" cy="192.6" r="6" fill="#34D399"/><text x="536.6" y="196.6" class="bar-label">+20.31%</text><text x="313.0" y="196.6" text-anchor="end" class="bar-label median-label">+9.11%</text><text x="148" y="233.1" text-anchor="end" class="x-label">TP34%</text><line x1="330.9" y1="229.1" x2="578.9" y2="229.1" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="330.9" cy="229.1" r="6" fill="#22D3EE"/><circle cx="578.9" cy="229.1" r="6" fill="#34D399"/><text x="589.9" y="233.1" class="bar-label">+23.27%</text><text x="319.9" y="233.1" text-anchor="end" class="bar-label median-label">+9.50%</text><text x="148" y="269.7" text-anchor="end" class="x-label">Mid Pyramid</text><line x1="256.1" y1="265.7" x2="767.6" y2="265.7" stroke="#7C5CFF" stroke-width="5" stroke-linecap="round"/><circle cx="256.1" cy="265.7" r="6" fill="#22D3EE"/><circle cx="767.6" cy="265.7" r="6" fill="#34D399"/><text x="778.6" y="269.7" class="bar-label">+33.76%</text><text x="245.1" y="269.7" text-anchor="end" class="bar-label median-label">+5.34%</text><circle cx="790" cy="12" r="6" fill="#22D3EE"/><text x="802" y="16" class="legend-label">Median</text><circle cx="860" cy="12" r="6" fill="#34D399"/><text x="872" y="16" class="legend-label">Average</text><text x="160" y="324" class="axis-title">5-minute PnL (%) · line shows the gap between the typical and mean symbol</text></svg>
+      </article>
+    </div>
+    <p class="src" style="margin-top:10px;">Visuals use the same seven-column order as the sheet: Market TP30, Market MA150, Limit MA23, Mid TP30, Mid 15m, Mid TP34, Mid Pyramid.</p>
+  </section>
+
+  <section id="differences">
+    <h2><span class="sn">04</span>How the seven differ</h2>
+    <p>Market TP30 is the base. Every other script is that bot with one or two switches flipped. Read down a branch. A grey chip is unchanged. A coloured chip is the change.</p>
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-top"><h3>Market TP30</h3><span class="pill blue">Base</span></div>
+      <p>Market buy when price reclaims the MA150 / MA200 band. Stop is 2% under the fill. Target is +30% on the chart’s own bar. One entry. No early exit.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-top"><h3>Branch A · still a market buy</h3><span class="pill">From the base</span></div>
+        <p><b>Market MA150.</b> Same market buy and same +30% target. Two adds: a flip path that can buy when the band was pointing down, and an exit on an MA150 touch as soon as the trade is green. That early exit is why this one underperforms.</p>
+        <p><b>Limit MA23,</b> one step further. Same signals as Market MA150, including the flip path, but the order is a limit at the midpoint of MA150 and MA200. The MA150 exit is blocked until the trade is up at least 23%.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><h3>Branch B · limit at the midpoint</h3><span class="pill">From the base</span></div>
+        <p><b>Mid TP30.</b> Drops the flip path and the MA150 exit. The only change from the base is the order: a limit at the midpoint of MA150 and MA200, cancelled if it is still open after 5 bars. Stop and +30% target stay on the chart bar.</p>
+        <p><b>Mid 15m.</b> Same as Mid TP30. The +30% target fills only after a closed 15-minute bar has traded through it. The 15-minute bar does not close the trade by itself.</p>
+        <p><b>Mid TP34.</b> Same as Mid 15m, plus an on-chart stop and target panel that does not change the orders. The script still defaults to 30%. This backtest used 34%.</p>
+        <p><b>Mid Pyramid.</b> Same as Mid 15m, but a new signal can add while a trade is open, up to 3 entries. Every add uses the first entry’s 2% stop, not a fresh stop under its own fill. Each entry still targets +30%, confirmed on 15 minutes. This one was not rerun at 34%.</p>
+      </article>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Script</th>
+              <th>Comes from</th>
+              <th>Order</th>
+              <th>Flip path</th>
+              <th>MA150 exit</th>
+              <th>Target</th>
+              <th>Adds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Market TP30</td>
+              <td>Base</td>
+              <td>Market</td>
+              <td>No</td>
+              <td>No</td>
+              <td>+30% on the chart bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Market MA150</td>
+              <td>Market TP30</td>
+              <td>Market</td>
+              <td>Yes</td>
+              <td>As soon as the trade is green</td>
+              <td>+30% on the chart bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Limit MA23</td>
+              <td>Market MA150</td>
+              <td>Limit at the midpoint</td>
+              <td>Yes</td>
+              <td>Only after +23%</td>
+              <td>+30% on the chart bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Mid TP30</td>
+              <td>Market TP30</td>
+              <td>Limit at the midpoint</td>
+              <td>No</td>
+              <td>No</td>
+              <td>+30% on the chart bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Mid 15m</td>
+              <td>Mid TP30</td>
+              <td>Limit at the midpoint</td>
+              <td>No</td>
+              <td>No</td>
+              <td>+30% after a closed 15-minute bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Mid TP34</td>
+              <td>Mid 15m</td>
+              <td>Limit at the midpoint</td>
+              <td>No</td>
+              <td>No</td>
+              <td>+34% after a closed 15-minute bar</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Mid Pyramid</td>
+              <td>Mid 15m</td>
+              <td>Limit at the midpoint</td>
+              <td>No</td>
+              <td>No</td>
+              <td>+30% on each fill, after a closed 15-minute bar</td>
+              <td>Up to 3, shared stop</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src">TradingView still shows the old script titles until you rename them there: MA_Bot_2xETF_v3.2.2, v3.2.2c, v3.2.2f, MID_MA150_200_ENTRY, MID_MA_TP15m, MID_MA_SLTP_UI2, MID_MA_TP15m_SSL. The 2% stop is the same on all seven.</p>
+    </div>
+  </section>
+
+  <section id="results">
+    <h2><span class="sn">05</span>Results</h2>
+    <p>The four figures on each card are the 5-minute column. The sentence under the card includes the 1-minute reading. Green, red, and amber on the judgment line are the call, not a decoration.</p>
+    <div class="cards">
+      <article class="card strat" id="strat-0">
+      <div class="card-top"><h3>Market TP30</h3><span class="pill blue">Baseline</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+15.04%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+8.93%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>65.63%</b><small>21 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>8</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average -0.73%, median -2.03%, 15 of 32 above zero (46.88%), 3 below -25%. The same book turns positive on the 5-minute chart. It is a market buy on the reclaim, with a fixed +30% take profit on the chart timeframe.</p>
+      <p class="judge good">Keep it as the market-order baseline, not as the book to trust. 5-minute TP34% is ahead on average, median, and win rate.</p>
+    </article>
+<article class="card strat" id="strat-1">
+      <div class="card-top"><h3>Market MA150</h3><span class="pill red">Early exit</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+8.47%</b><small>30 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+7.39%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>63.33%</b><small>19 of 30 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>3</b><small>of 30 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average -6.08%, median -9.39%, 10 of 30 above zero (33.33%), 2 below -25%. Same market buy as Market TP30, plus it cashes out when price touches MA150 once the trade is green. On the 30 symbols both columns have, it is 5.37 percentage points below Market TP30 on 1-minute and 7.07 points below on 5-minute. CLmain and MNQmain are blank here and are left out.</p>
+      <p class="judge bad">Drop it. This is the worst strategy cell in the sheet.</p>
+    </article>
+<article class="card strat" id="strat-2">
+      <div class="card-top"><h3>Limit MA23</h3><span class="pill amber">Limit variant</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+16.57%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+8.08%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>62.50%</b><small>20 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>6</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average +2.26%, median -2.49%, 14 of 32 above zero (43.75%), 1 below -25%. Same signals as Market MA150, including a flip path, but the order is a limit at the midpoint of MA150 and MA200, and the MA150 exit waits until the trade is up at least 23%. On 5-minute it beats Market TP30 on 16 symbols and loses on 16. The average edge is +1.53 percentage points. Correlation with Market TP30 is 0.66.</p>
+      <p class="judge warn">A real variant, roughly tied with Market TP30. Not the result to trust first. The 1-minute average hides a negative median.</p>
+    </article>
+<article class="card strat" id="strat-3">
+      <div class="card-top"><h3>Mid TP30</h3><span class="pill green">Midpoint entry</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+20.36%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+9.76%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>65.63%</b><small>21 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>3</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average +5.72%, median +0.23%, 16 of 32 above zero (50.00%), 3 below -25%. Limit at the MA midpoint, +30% on the chart timeframe, no 15-minute confirmation. It matches Mid 15m exactly on 17 of 32 symbols at 1-minute.</p>
+      <p class="judge good">Keep it with TP34%. It has the highest 5-minute median in the sheet, +9.76%.</p>
+    </article>
+<article class="card strat" id="strat-4">
+      <div class="card-top"><h3>Mid 15m</h3><span class="pill green">15-minute confirm</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+20.31%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+9.11%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>65.63%</b><small>21 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>3</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average +7.48%, median +0.23%, 16 of 32 above zero (50.00%), 3 below -25%. Same limit entry. The +30% fills only after a closed 15-minute bar has traded through it. That bar does not close the trade because 15 minutes passed. On 5-minute the average is 0.05 percentage points below Entry (8 of 32 symbols are the identical number).</p>
+      <p class="judge good">Treat it as the same trade as Entry. The 15-minute check rarely changes the cell, so it is not a separate edge.</p>
+    </article>
+<article class="card strat" id="strat-5">
+      <div class="card-top"><h3>Mid TP34</h3><span class="pill green">Target 34%</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+23.27%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+9.50%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>68.75%</b><small>22 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>4</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average +6.88%, median -1.59%, 15 of 32 above zero (46.88%), 4 below -25%. This column is Mid TP34. The Pine file still defaults to 30%. The backtest used 34%, still confirmed on a closed 15-minute bar. On 5-minute it beats Mid 15m on 18 symbols, loses on 5, and ties on 9, an average gap of +2.96 percentage points. On 1-minute the two still match on 22 of 32 symbols. Without MSTR and SMCI the 5-minute average is +15.40%, median +6.33%, 20 of 30 above zero.</p>
+      <p class="judge good">Trust this combo. The win rate is the best in the sheet, and the result still holds after MSTR and SMCI are removed.</p>
+    </article>
+<article class="card strat" id="strat-6">
+      <div class="card-top"><h3>Mid Pyramid</h3><span class="pill amber">Pyramid</span></div>
+      <p class="tf-label">5-minute</p>
+      <div class="stat4">
+        <div class="stat"><span>Average</span><b>+33.76%</b><small>32 symbols</small></div>
+        <div class="stat"><span>Median</span><b>+5.34%</b><small>middle symbol</small></div>
+        <div class="stat"><span>Win rate</span><b>56.25%</b><small>18 of 32 above zero</small></div>
+        <div class="stat"><span>Below -25%</span><b>9</b><small>of 32 symbols</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">1-minute: average +17.46%, median -7.42%, 15 of 32 above zero (46.88%), 11 below -25%. Up to 3 pyramid entries share the first entry's 2% stop. Each entry's +30% is confirmed on a closed 15-minute bar. This column was not rerun at 34%. MSTR is +534.11% and SMCI is +351.90%. Without those two the average is +6.47%, median +3.41%, 16 of 30 above zero. Nine symbols are still below -25%: METU -94.11%, NFLX -58.43%, CONL -56.97%, NFXL -53.69%, MSTU -41.68%, META -38.36%, SMCX -35.80%, OKLO -29.12%, SNXX -26.25%.</p>
+      <p class="judge warn">Do not trust the +33.76% average. The median is +5.34%, the weakest 5-minute median here.</p>
+    </article>
+    </div>
+    <h3 style="margin:18px 0 8px;">Full grid</h3>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Timeframe</th><th>Strategy</th>
+              <th class="num">Symbols</th>
+              <th class="num">Average</th>
+              <th class="num">Median</th>
+              <th class="num">Above zero</th>
+              <th class="num">Win rate</th>
+              <th class="num">Below -25%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class=""><td>1-minute</td><td>Market TP30</td><td class="num">32</td><td class="num neg">-0.73%</td><td class="num neg">-2.03%</td><td class="num">15 of 32</td><td class="num">46.88%</td><td class="num">3</td></tr>
+<tr class="worst"><td>1-minute</td><td>Market MA150</td><td class="num">30</td><td class="num neg">-6.08%</td><td class="num neg">-9.39%</td><td class="num">10 of 30</td><td class="num">33.33%</td><td class="num">2</td></tr>
+<tr class=""><td>1-minute</td><td>Limit MA23</td><td class="num">32</td><td class="num pos">+2.26%</td><td class="num neg">-2.49%</td><td class="num">14 of 32</td><td class="num">43.75%</td><td class="num">1</td></tr>
+<tr class=""><td>1-minute</td><td>Mid TP30</td><td class="num">32</td><td class="num pos">+5.72%</td><td class="num pos">+0.23%</td><td class="num">16 of 32</td><td class="num">50.00%</td><td class="num">3</td></tr>
+<tr class=""><td>1-minute</td><td>Mid 15m</td><td class="num">32</td><td class="num pos">+7.48%</td><td class="num pos">+0.23%</td><td class="num">16 of 32</td><td class="num">50.00%</td><td class="num">3</td></tr>
+<tr class=""><td>1-minute</td><td>Mid TP34</td><td class="num">32</td><td class="num pos">+6.88%</td><td class="num neg">-1.59%</td><td class="num">15 of 32</td><td class="num">46.88%</td><td class="num">4</td></tr>
+<tr class=""><td>1-minute</td><td>Mid Pyramid</td><td class="num">32</td><td class="num pos">+17.46%</td><td class="num neg">-7.42%</td><td class="num">15 of 32</td><td class="num">46.88%</td><td class="num">11</td></tr>
+<tr class=""><td>5-minute</td><td>Market TP30</td><td class="num">32</td><td class="num pos">+15.04%</td><td class="num pos">+8.93%</td><td class="num">21 of 32</td><td class="num">65.63%</td><td class="num">8</td></tr>
+<tr class=""><td>5-minute</td><td>Market MA150</td><td class="num">30</td><td class="num pos">+8.47%</td><td class="num pos">+7.39%</td><td class="num">19 of 30</td><td class="num">63.33%</td><td class="num">3</td></tr>
+<tr class=""><td>5-minute</td><td>Limit MA23</td><td class="num">32</td><td class="num pos">+16.57%</td><td class="num pos">+8.08%</td><td class="num">20 of 32</td><td class="num">62.50%</td><td class="num">6</td></tr>
+<tr class="median"><td>5-minute</td><td>Mid TP30</td><td class="num">32</td><td class="num pos">+20.36%</td><td class="num pos">+9.76%</td><td class="num">21 of 32</td><td class="num">65.63%</td><td class="num">3</td></tr>
+<tr class=""><td>5-minute</td><td>Mid 15m</td><td class="num">32</td><td class="num pos">+20.31%</td><td class="num pos">+9.11%</td><td class="num">21 of 32</td><td class="num">65.63%</td><td class="num">3</td></tr>
+<tr class="trust"><td>5-minute</td><td>Mid TP34</td><td class="num">32</td><td class="num pos">+23.27%</td><td class="num pos">+9.50%</td><td class="num">22 of 32</td><td class="num">68.75%</td><td class="num">4</td></tr>
+<tr class="caution"><td>5-minute</td><td>Mid Pyramid</td><td class="num">32</td><td class="num pos">+33.76%</td><td class="num pos">+5.34%</td><td class="num">18 of 32</td><td class="num">56.25%</td><td class="num">9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src" style="margin-top:8px;">Green row: 5-minute TP34%, the result to trust. Blue row: 5-minute Entry, the highest median. Amber row: 5-minute Mid Pyramid, the highest average and a weak middle. Red row: 1-minute Market MA150, the worst cell. 26103_record.xlsx · 2026-10-03</p>
+    </div>
+  </section>
+
+  <section id="timeframe">
+    <h2><span class="sn">06</span>1-minute against 5-minute</h2>
+    <div class="note">Two strategies change from a losing average to a winning average: Market TP30 goes from -0.73% to +15.04%, and Market MA150 goes from -6.08% to +8.47%. No strategy does the reverse. The average rises on every column, by about 13 to 16 percentage points.</div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Strategy</th>
+              <th class="num">1m average</th>
+              <th class="num">1m median</th>
+              <th class="num">1m win rate</th>
+              <th class="num">5m average</th>
+              <th class="num">5m median</th>
+              <th class="num">5m win rate</th>
+              <th class="num">Change in average</th>
+              <th>What the sign did</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Market TP30</td><td class="num neg">-0.73%</td><td class="num neg">-2.03%</td><td class="num">46.88%</td><td class="num pos">+15.04%</td><td class="num pos">+8.93%</td><td class="num">65.63%</td><td class="num pos">+15.77%</td><td>Loss on 1-minute, gain on 5-minute</td></tr>
+<tr><td>Market MA150</td><td class="num neg">-6.08%</td><td class="num neg">-9.39%</td><td class="num">33.33%</td><td class="num pos">+8.47%</td><td class="num pos">+7.39%</td><td class="num">63.33%</td><td class="num pos">+14.56%</td><td>Loss on 1-minute, gain on 5-minute</td></tr>
+<tr><td>Limit MA23</td><td class="num pos">+2.26%</td><td class="num neg">-2.49%</td><td class="num">43.75%</td><td class="num pos">+16.57%</td><td class="num pos">+8.08%</td><td class="num">62.50%</td><td class="num pos">+14.31%</td><td>Average already up; median was down</td></tr>
+<tr><td>Mid TP30</td><td class="num pos">+5.72%</td><td class="num pos">+0.23%</td><td class="num">50.00%</td><td class="num pos">+20.36%</td><td class="num pos">+9.76%</td><td class="num">65.63%</td><td class="num pos">+14.64%</td><td>Gain on both, larger on 5-minute</td></tr>
+<tr><td>Mid 15m</td><td class="num pos">+7.48%</td><td class="num pos">+0.23%</td><td class="num">50.00%</td><td class="num pos">+20.31%</td><td class="num pos">+9.11%</td><td class="num">65.63%</td><td class="num pos">+12.84%</td><td>Gain on both, larger on 5-minute</td></tr>
+<tr><td>Mid TP34</td><td class="num pos">+6.88%</td><td class="num neg">-1.59%</td><td class="num">46.88%</td><td class="num pos">+23.27%</td><td class="num pos">+9.50%</td><td class="num">68.75%</td><td class="num pos">+16.39%</td><td>Gain on both, larger on 5-minute</td></tr>
+<tr><td>Mid Pyramid</td><td class="num pos">+17.46%</td><td class="num neg">-7.42%</td><td class="num">46.88%</td><td class="num pos">+33.76%</td><td class="num pos">+5.34%</td><td class="num">56.25%</td><td class="num pos">+16.30%</td><td>Average up on both; median stays weak</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:12px;">
+      <div class="block warn">
+        <h3>Limit MA23 is not a quiet 1-minute winner</h3>
+        <p>Its 1-minute average is +2.26%, but the median is -2.49% and only 14 of 32 are above zero. The positive average is not the typical symbol.</p>
+      </div>
+      <div class="block warn">
+        <h3>Mid Pyramid’s median does not follow</h3>
+        <p>1-minute Mid Pyramid averages +17.46% with a median of -7.42% and 11 symbols below -25%. On 5-minute the median is only +5.34%, the weakest 5-minute median in the sheet, with 9 symbols below -25%.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="types">
+    <h2><span class="sn">07</span>Symbol type</h2>
+    <p>The book is 15 2X ETFs, 15 stocks, and 2 futures (CLmain, MNQmain). Pooled readings stack all seven columns. A futures cell count of 12, not 14, is the missing Market MA150 pair.</p>
+    <div class="card" style="margin-bottom:12px;">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th class="num">1m readings</th><th class="num">1m average</th><th class="num">1m median</th><th class="num">1m above 0</th>
+              <th class="num">5m readings</th><th class="num">5m average</th><th class="num">5m median</th><th class="num">5m above 0</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2X ETF</td><td class="num">105</td><td class="num pos">+5.18%</td><td class="num neg">-7.04%</td><td class="num">44 of 105</td><td class="num">105</td><td class="num pos">+8.23%</td><td class="num pos">+3.90%</td><td class="num">55 of 105</td></tr>
+<tr><td>Stock</td><td class="num">105</td><td class="num pos">+5.16%</td><td class="num neg">-1.46%</td><td class="num">51 of 105</td><td class="num">105</td><td class="num pos">+32.42%</td><td class="num pos">+11.45%</td><td class="num">75 of 105</td></tr>
+<tr><td>Futures</td><td class="num">12</td><td class="num neg">-1.51%</td><td class="num neg">-0.36%</td><td class="num">6 of 12</td><td class="num">12</td><td class="num pos">+10.27%</td><td class="num pos">+9.04%</td><td class="num">12 of 12</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="block good">
+        <h3>Stocks</h3>
+        <p>This is where the 5-minute book works. Across all seven 5-minute columns, 75 of 105 readings are above zero, the pooled average is +32.42%, and the median is +11.45%. 5-minute Entry, Mid 15m, and TP34% average +29.33%, +30.30%, and +33.47%, with 11 of 15, 11 of 15, and 11 of 15 above zero.</p>
+      </div>
+      <div class="block warn">
+        <h3>2X ETFs</h3>
+        <p>Weaker and less even. The 5-minute pool averages +8.23% with a median of +3.90% (55 of 105 above zero). 5-minute TP34% is +15.09% with 9 of 15 above zero. 5-minute Mid Pyramid is the one column that loses on this group: average -6.69%, median -20.48%, 5 of 15 above zero, 6 below -25%.</p>
+      </div>
+      <div class="block">
+        <h3>Futures</h3>
+        <p>Two symbols can show a direction. They cannot show that the family works. All 12 filled 5-minute futures readings are above zero. The pooled 5-minute average is +10.27% and the median is +9.04%. The 1-minute pool is -1.51%. Market MA150 has no futures number.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <h3 style="margin-bottom:8px;">5-minute average inside each type</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Strategy</th>
+              <th class="num">2X average</th><th class="num">2X above 0</th>
+              <th class="num">Stock average</th><th class="num">Stock above 0</th>
+              <th class="num">Futures average</th><th class="num">Futures above 0</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Market TP30</td><td class="num pos">+14.87%</td><td class="num">8 of 15</td><td class="num pos">+16.22%</td><td class="num">11 of 15</td><td class="num pos">+7.49%</td><td class="num">2 of 2</td></tr>
+<tr><td>Market MA150</td><td class="num pos">+1.25%</td><td class="num">9 of 15</td><td class="num pos">+15.70%</td><td class="num">10 of 15</td><td class="num">—</td><td class="num">—</td></tr>
+<tr><td>Limit MA23</td><td class="num pos">+8.03%</td><td class="num">8 of 15</td><td class="num pos">+26.33%</td><td class="num">10 of 15</td><td class="num pos">+7.42%</td><td class="num">2 of 2</td></tr>
+<tr><td>Mid TP30</td><td class="num pos">+13.10%</td><td class="num">8 of 15</td><td class="num pos">+29.33%</td><td class="num">11 of 15</td><td class="num pos">+7.55%</td><td class="num">2 of 2</td></tr>
+<tr><td>Mid 15m</td><td class="num pos">+11.99%</td><td class="num">8 of 15</td><td class="num pos">+30.30%</td><td class="num">11 of 15</td><td class="num pos">+7.84%</td><td class="num">2 of 2</td></tr>
+<tr><td>Mid TP34</td><td class="num pos">+15.09%</td><td class="num">9 of 15</td><td class="num pos">+33.47%</td><td class="num">11 of 15</td><td class="num pos">+8.09%</td><td class="num">2 of 2</td></tr>
+<tr><td>Mid Pyramid</td><td class="num neg">-6.69%</td><td class="num">5 of 15</td><td class="num pos">+75.61%</td><td class="num">11 of 15</td><td class="num pos">+23.22%</td><td class="num">2 of 2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src" style="margin-top:8px;">Mid Pyramid on stocks averages +75.61%, median +18.92%, 11 of 15 above zero. Without MSTR and SMCI that stock average is +19.08%, median +13.43%, 9 of 13 above zero. Stocks still hard-negative on 5-minute Mid Pyramid: NFLX -58.43%, META -38.36%, OKLO -29.12%.</p>
+    </div>
+  </section>
+
+  <section id="split">
+    <h2><span class="sn">08</span>2X ETFs and stocks</h2>
+    <p>Fifteen names in each group. Futures are only CLmain and MNQmain, so they stay out of this split. Averages below are the same counts as the By type sheet.</p>
+    <article class="card">
+      <div class="card-top"><h3>2X ETFs</h3><span class="pill">5-minute</span></div>
+      <p>Mid TP34 is the column that still works. Average +15.09%, median +10.92%, 9 of 15 above zero. Mid Pyramid does not. Average -6.69%, median -20.48%, only 5 of 15 above zero, and METU is -94.11%.</p>
+      <p>Positive on every 5-minute cell: INTW, CRWG, TSLL. Negative on every 5-minute cell: CONL, OKLL, NFXL. Drop those three, not the whole list. The 1-minute book is not usable. Every median is negative, and Mid Pyramid’s +23.10% average hides a -9.57% median with 7 names below -25%.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>5-minute</th><th class="num">Average</th><th class="num">Median</th><th class="num">Above 0</th><th class="num">Below -25%</th></tr></thead>
+          <tbody>
+            <tr><td>Market TP30</td><td class="num pos">+14.87%</td><td class="num pos">+4.26%</td><td class="num">8 of 15</td><td class="num">4</td></tr>
+            <tr><td>Market MA150</td><td class="num pos">+1.25%</td><td class="num pos">+5.21%</td><td class="num">9 of 15</td><td class="num">3</td></tr>
+            <tr><td>Limit MA23</td><td class="num pos">+8.03%</td><td class="num pos">+12.89%</td><td class="num">8 of 15</td><td class="num">3</td></tr>
+            <tr><td>Mid TP30</td><td class="num pos">+13.10%</td><td class="num pos">+3.07%</td><td class="num">8 of 15</td><td class="num">2</td></tr>
+            <tr><td>Mid 15m</td><td class="num pos">+11.99%</td><td class="num pos">+8.95%</td><td class="num">8 of 15</td><td class="num">2</td></tr>
+            <tr><td>Mid TP34</td><td class="num pos">+15.09%</td><td class="num pos">+10.92%</td><td class="num">9 of 15</td><td class="num">3</td></tr>
+            <tr><td>Mid Pyramid</td><td class="num neg">-6.69%</td><td class="num neg">-20.48%</td><td class="num">5 of 15</td><td class="num">6</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+    <article class="card" style="margin-top:14px">
+      <div class="card-top"><h3>Stocks</h3><span class="pill green">5-minute</span></div>
+      <p>This is the book that works. Mid TP34 averages +33.47%, median +8.07%, 11 of 15 above zero, and only NFLX is below -25%. Without MSTR and SMCI the average is still +16.89% and the median is +4.59%, 9 of 13 above zero.</p>
+      <p>Mid 15m’s median, +13.33%, is higher than Mid TP34’s. The extra target helps the large winners more than the typical stock. Mid Pyramid averages +75.61%, but MSTR is +534.11% and SMCI is +351.90%. Without those two it is +19.08% average and +13.43% median. That is a stock test, not the lead, and it is the column to keep off the 2X list.</p>
+      <p>Positive on every 5-minute cell: SNDK, GOOG, TSLA, SPCX, SMCI, SKHY, INTC, MSTR. Negative on every 5-minute cell: OKLO and NFLX. On 1-minute, Market MA150 is the loser, average -4.03% and median -9.84%. No other 1-minute stock column, except Mid Pyramid, has a name below -25%.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>5-minute</th><th class="num">Average</th><th class="num">Median</th><th class="num">Above 0</th><th class="num">Below -25%</th></tr></thead>
+          <tbody>
+            <tr><td>Market TP30</td><td class="num pos">+16.22%</td><td class="num pos">+11.56%</td><td class="num">11 of 15</td><td class="num">4</td></tr>
+            <tr><td>Market MA150</td><td class="num pos">+15.70%</td><td class="num pos">+9.68%</td><td class="num">10 of 15</td><td class="num">0</td></tr>
+            <tr><td>Limit MA23</td><td class="num pos">+26.33%</td><td class="num pos">+7.48%</td><td class="num">10 of 15</td><td class="num">3</td></tr>
+            <tr><td>Mid TP30</td><td class="num pos">+29.33%</td><td class="num pos">+11.45%</td><td class="num">11 of 15</td><td class="num">1</td></tr>
+            <tr><td>Mid 15m</td><td class="num pos">+30.30%</td><td class="num pos">+13.33%</td><td class="num">11 of 15</td><td class="num">1</td></tr>
+            <tr><td>Mid TP34</td><td class="num pos">+33.47%</td><td class="num pos">+8.07%</td><td class="num">11 of 15</td><td class="num">1</td></tr>
+            <tr><td>Mid Pyramid</td><td class="num pos">+75.61%</td><td class="num pos">+18.92%</td><td class="num">11 of 15</td><td class="num">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+<section id="mid1m">
+    <h2><span class="sn">09</span>1-minute: Mid TP30, Mid 15m, Mid TP34</h2>
+    <p>These three used to be called MID MA Entry, MID MA TP15M, and MID MA TP34%. Same midpoint limit, same 2% stop. Mid TP30 takes +30% on the 1-minute bar. Mid 15m waits for a closed 15-minute bar to confirm +30%. Mid TP34 is that confirm at 34% in this backtest. The script still defaults to 30%.</p>
+    <article class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>1-minute</th><th class="num">Average</th><th class="num">Median</th><th class="num">Above 0</th><th class="num">Below -25%</th><th>What changed</th></tr></thead>
+          <tbody>
+            <tr><td>Mid TP30</td><td class="num pos">+5.72%</td><td class="num pos">+0.23%</td><td class="num">16 of 32</td><td class="num">3</td><td>Target on the 1-minute bar.</td></tr>
+            <tr><td>Mid 15m</td><td class="num pos">+7.48%</td><td class="num pos">+0.23%</td><td class="num">16 of 32</td><td class="num">3</td><td>Same trade on 17 of 32 symbols. Average +1.76 points. Median unchanged.</td></tr>
+            <tr><td>Mid TP34</td><td class="num pos">+6.88%</td><td class="num neg">-1.58%</td><td class="num">15 of 32</td><td class="num">4</td><td>Same as Mid 15m on 22 of 32. Better on 7, worse on 3.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>On stocks they are almost one trade. Mid 15m and Mid TP34 match on 14 of 15 names, and all three medians are +2.80%. Against Mid TP30 the only gaps are META +4.42 points, INTC +2.33, MSTR +2.26, and OKLO -0.90.</p>
+      <p>The 1-minute difference is in the 2X ETFs. Mid 15m lifts that average by +3.46 points, and the median stays negative, about -5%. Mid TP34’s 2X median is -9.20% because OKLL goes from +15.52% on Mid TP30 to -33.02%. That one name is -48.54 points. Without OKLL the three averages are +5.40%, +7.53%, and +8.16%, and all three medians are -1.46%.</p>
+      <p>So on 1-minute, waiting for the 15-minute bar helps the average a little and does not help the typical symbol. Raising the target to 34% rarely changes the trade. The 34% edge in the rest of this report is a 5-minute result, not a 1-minute one.</p>
+    </article>
+  </section>
+
+<section id="atr">
+    <h2><span class="sn">10</span>1-minute and 5-minute volatility</h2>
+    <p>Average true range as a percent of price, from TradingView on 3 Oct 2026. This is the current bar size, not a replay of the whole backtest. Futures are left out: the feed had a daily ATR for CL1! (5.15%) and MNQ1! (1.52%), and no 1-minute or 5-minute figure.</p>
+    <article class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th class="num">1-minute median</th><th class="num">5-minute median</th><th class="num">Daily median</th><th>Widest 5-minute</th><th>Quietest 5-minute</th></tr></thead>
+          <tbody>
+            <tr><td>2X ETF, 15 names</td><td class="num">0.25%</td><td class="num">0.52%</td><td class="num">9.65%</td><td>CONL 0.73%</td><td>GGLL 0.22%</td></tr>
+            <tr><td>Stock, 15 names</td><td class="num">0.15%</td><td class="num">0.29%</td><td class="num">5.15%</td><td>MSTR 0.40%</td><td>GOOG 0.12%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A 5-minute bar is about twice a 1-minute bar, not five times. Across these 30 names the ratio runs from 1.8 to 2.6.</p>
+      <p>The 2% stop is wide on a quiet stock and tight on a wild 2X name. GOOG, META, BABA, and NFLX have a 5-minute ATR of 0.12% to 0.17%, so the stop is 12 to 16 typical bars. CONL, MSTU, OKLL, and CRCG are 0.64% to 0.73%, so the same stop is about 3 bars. A couple of fast bars can knock those out.</p>
+      <p>The 30% target is the other side of that. On a wild 2X name it is about 2 to 3 daily ATRs (CRCG’s daily ATR is 17.00%, CONL 13.00%, OKLL 14.49%). On GOOG it is about 12 daily ATRs, because the daily ATR is 2.59%. The target is a short burst on the leveraged names and a long trend on the quiet stocks.</p>
+      <p>That fits who can win big and who can be stopped quickly. It does not explain every loser. NFLX is one of the quiet names, daily ATR 2.95%, and it is still negative in every filled cell.</p>
+    </article>
+  </section>
+
+<section id="personality">
+    <h2><span class="sn">11</span>What kind of tape this bot wants</h2>
+    <p>Daily closes from 23 Mar 2026 through 2 Oct 2026, the same stretch as the 5-minute tests. A winner here means above zero on every filled 5-minute cell. A loser means below zero on every one. These bars cannot see the 5-minute fill. They only describe the daily path. SPCX and SKHY listed mid-window, so they are left out of the character call.</p>
+    <article class="card">
+      <p>One-day momentum is not the split. The correlation of today’s return with yesterday’s is near zero on almost every name, winners included. OKLO and OKLL are the exception, at -0.23, so yesterday’s move tended to reverse.</p>
+      <p>The tape that fits a long-only dip-and-reclaim with a 30% target is a low close early, a later close far above that low, and an ending close that keeps a good part of the gain. INTW, SNDK, INTC, and SMCI did that. The window low was 30 Mar on all four. From that low the later peak was INTW +824.66% (5.6675 to 52.405), SNDK +307.86%, INTC +242.17%, and SMCI +138.22%. On 2 Oct they were still far above the 23 Mar close, and the close sat above the 20-day average on most days. They still had deep drawdowns from a peak, so the path was a trend with holes, not a straight line.</p>
+      <p>MSTR is only the hole and the recovery. The close went from 82.31 on 26 Jun to 168.50 on 21 Sep, and it finished +15.78% versus 23 Mar. It had more down days than up days, 59 against 75.</p>
+      <p>The consistent losers are the other shape. The window finished down, down days outnumbered up days, and the close sat under the 20-day and 50-day averages on most days. OKLL, NFXL, and NFLX ended at the low close of the window. A bounce was not the difference. OKLL still ran +161.67% from a March close to a May close, and every 5-minute cell stayed negative, because the higher close was not kept. NFLX never produced a 30% close-to-close continuation at all. The largest was +22.38%.</p>
+      <p>This is not every winner. CRWG and TSLL won the 5-minute cells and finished the daily window down, -30.40% and -24.32%, after large runs that were given back. GOOG won with a 2.4% average daily range and only 9 days that moved more than 4%. A 2X ETF’s daily range is about twice its underlying: INTC 6.0% against INTW 11.7%, TSLA 3.7% against TSLL 7.3%, NFLX 2.7% against NFXL 5.3%.</p>
+    </article>
+  </section>
+
+<section id="cases">
+    <h2><span class="sn">12</span>Names that never change sign</h2>
+    <p>A name is in this section only if every filled cell is on the same side of zero. Blanks are not counted as either side.</p>
+    <h3 style="margin:12px 0 8px;">Above zero on every filled cell</h3>
+    <div class="cards">
+      <article class="card case good">
+      <div class="card-top"><h3>MSTR</h3><span class="pill green">Stock</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>14 of 14</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>+92.69%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>+59.63%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>+5.96% to +534.11%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">MSTR is above zero on every filled cell.</p>
+    </article>
+<article class="card case good">
+      <div class="card-top"><h3>INTC</h3><span class="pill green">Stock</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>14 of 14</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>+50.46%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>+37.50%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>+15.49% to +104.11%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">INTC is above zero on every filled cell.</p>
+    </article>
+<article class="card case good">
+      <div class="card-top"><h3>SPCX</h3><span class="pill green">Stock</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>14 of 14</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>+10.98%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>+10.64%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>+1.90% to +37.15%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">SPCX is above zero on every filled cell. Gains are steadier than huge.</p>
+    </article>
+<article class="card case good">
+      <div class="card-top"><h3>MNQmain</h3><span class="pill green">Futures</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>12 of 12</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>+2.42%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>+1.91%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>+1.61% to +5.73%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">MNQmain is above zero on every filled cell. Market MA150 is blank on both timeframes, so this is 12 filled cells, not 14. The gains are small.</p>
+    </article>
+    </div>
+    <h3 style="margin:16px 0 8px;">Below zero on every filled cell</h3>
+    <div class="cards">
+      <article class="card case bad">
+      <div class="card-top"><h3>CONL</h3><span class="pill red">2X ETF</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>0 of 14</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>-41.58%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>-47.82%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>-65.14% to -9.66%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">CONL is below zero on every filled cell. Best cell is still negative.</p>
+    </article>
+<article class="card case bad">
+      <div class="card-top"><h3>NFLX</h3><span class="pill red">Stock</span></div>
+      <div class="stat4">
+        <div class="stat"><span>Cells above 0</span><b>0 of 14</b><small>filled cells only</small></div>
+        <div class="stat"><span>Average</span><b>-24.59%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Median</span><b>-22.24%</b><small>all filled cells</small></div>
+        <div class="stat"><span>Range</span><b>-58.43% to -13.84%</b><small>worst to best</small></div>
+      </div>
+      <p class="src">26103_record.xlsx · 2026-10-03</p>
+      <p class="one">NFLX is below zero on every filled cell. Best cell is still negative.</p>
+    </article>
+    </div>
+    <div class="note" style="margin-top:12px;">Close, but not every cell: META (13 of 14, Stock), SKHY (13 of 14, Stock), SMCI (13 of 14, Stock) miss only one cell. Still poor as a book, with at most two positive cells: COIN (1 of 14, Stock), CRCL (2 of 14, Stock), NFXL (1 of 14, 2X ETF), OKLL (2 of 14, 2X ETF), OKLO (1 of 14, Stock). A name can win one cell hard and still be a poor name across the sheet.</div>
+  </section>
+
+  <section id="actions">
+    <h2><span class="sn">13</span>What to do</h2>
+    <div class="actions">
+      <a class="btn keep" href="#strat-5">
+        <span class="tag">Keep</span>
+        <strong>1. Keep 5-minute Mid TP34 as the main result.</strong>
+        The file still says 30%. The backtest used 34%. Average +23.27%, median +9.50%, 22 of 32 above zero, 4 symbols below -25% (CONL -51.99%, OKLL -34.73%, NFLX -25.98%, GGLL -25.49%). Removing MSTR and SMCI leaves +15.40%, median +6.33%, 20 of 30 above zero.
+      </a>
+      <a class="btn keep" href="#strat-3">
+        <span class="tag">Keep</span>
+        <strong>2. Keep 5-minute Mid TP30 next to it.</strong>
+        Highest median in the sheet, +9.76%, average +20.36%, 21 of 32 above zero. Entry and Mid 15m are the same number on 17 of 32 symbols at 1-minute. On 5-minute the average is 0.05 percentage points lower. Mid 15m is the same trade, not a second book.
+      </a>
+      <a class="btn drop" href="#strat-1">
+        <span class="tag">Drop</span>
+        <strong>3. Drop 1-minute Market MA150.</strong>
+        Worst cell: average -6.08%, median -9.39%, 10 of 30 above zero. The early MA150 exit is doing what the script says once the trade is green. Do not treat the other 1-minute MA bots as a live book either. Market TP30 averages -0.73% with a median of -2.03%. Limit MA23’s +2.26% average hides a median of -2.49% and 14 of 32 above zero.
+      </a>
+      <a class="btn drop" href="#cases">
+        <span class="tag">Drop</span>
+        <strong>4. Drop CONL and NFLX from this book.</strong>
+        CONL is negative on all 14 cells (best -9.66%, worst -65.14%). NFLX is negative on all 14 (best -13.84%, worst -58.43%).
+      </a>
+      <a class="btn test" href="#strat-6">
+        <span class="tag">Test next</span>
+        <strong>5. Test 5-minute Mid Pyramid on stocks only, not on the 2X ETF list.</strong>
+        Stocks average +75.61%, median +18.92%, 11 of 15 above zero. Without MSTR and SMCI the stock average is +19.08%, median +13.43%, 9 of 13 above zero. 2X ETFs average -6.69%, median -20.48%, 5 of 15 above zero. Three stocks still lose hard on this column: NFLX -58.43%, META -38.36%, OKLO -29.12%. A later add shares the first entry’s 2% stop, so a retest with adds turned off would show how much of the average is stacked winners rather than the base entry. That retest is not in this sheet.
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    Counted from rows 2–33 of sheet “26101 record” in 26103_record.xlsx · 2026-10-03. Excel percent decimals, blanks excluded, rounded half up to two decimals. Data-sheet percents were not overwritten. Later sheets add the type split, the 1-minute midpoint check, ATR, and daily personality. Script rules are the seven bots as specified: long-only dip-and-reclaim, 2% stop, no time stop, and a 15-minute bar that only confirms a profit target.
+  </footer>
+</div>
+
+<script>
+  const links=[...document.querySelectorAll('.nav-links a')];
+  const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function mark(){
+    let id=sections[0]&&sections[0].id;
+    for (const s of sections){ if (s.getBoundingClientRect().top < 120) id=s.id; }
+    for (const a of links) a.classList.toggle('on', a.getAttribute('href')==='#'+id);
+  }
+  document.addEventListener('scroll', mark, {passive:true});
+  mark();
+</script>
+</body>
+</html>
