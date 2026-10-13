@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T21:10:56.354612+08:00",
+  "updatedAt": "2026-10-13T21:00:56.803936+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,22 +173,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-09-30T21:10:56.354612+08:00",
+      "lastRunAt": "2026-10-13T21:00:56.803936+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Actuals quiet (0 blank through Sep 29; DE CPI/ADP/GDP+PCE already on calendar). Inflation TE live: IT 3.3→4.2, DE 2.9→3.3, FR 2.4→3.0 Sep; reorder IT/AU/US/DE/MX/EU/ID/UK/KR/FR/CA. Synced index + EconPulse.html. Hub offline.",
-      "nextRunAt": "2026-10-01T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "inflation-te",
-          "title": "G20 inflation TE Last↓",
-          "actualShort": "IT 4.2 · DE 3.3 · FR 3.0 Sep"
-        },
-        {
-          "id": "actuals",
-          "title": "Past blank high/medium",
-          "actualShort": "none new (morning prints already filled)"
-        }
-      ]
+      "lastSummary": "Evening quiet ~20:45 HKT Tue 13 Oct: no material Actuals. EHS Sep still embargoed to 10:00am ET (NAR); CN CPI/PPI Sep + trade still not on NBS/GAC (Aug latest). Ahead blanks: ehs-sep, cn-cpi-sep, cn-trade-sep.",
+      "nextRunAt": "2026-10-14T20:45:00+08:00",
+      "lastItems": []
     }
   ]
 }
