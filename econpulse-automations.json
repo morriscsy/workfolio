@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T08:47:09.127090+08:00",
+  "updatedAt": "2026-10-14T10:24:25.954242+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,11 +173,22 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-13T21:00:56.803936+08:00",
+      "lastRunAt": "2026-10-14T10:19:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening quiet ~20:45 HKT Tue 13 Oct: no material Actuals. EHS Sep still embargoed to 10:00am ET (NAR); CN CPI/PPI Sep + trade still not on NBS/GAC (Aug latest). Ahead blanks: ehs-sep, cn-cpi-sep, cn-trade-sep.",
+      "lastSummary": "Asia-evening ~10:19 HKT Wed 14 Oct / 22:19 ET Tue 13: filled cn-trade-sep (Customs Sep ¥5.16T; surplus ~¥900B beat; exp +29.6%). cn-cpi-sep already on calendar. INFLATION live: CN 0.8→0.9 (Sep). Left blank (not out): au-lfs-sep, cpi-sep, beige-book-oct.",
       "nextRunAt": "2026-10-14T20:45:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "cn-trade-sep",
+          "title": "China trade balance (Sep)",
+          "actualShort": "surplus ~¥900B · exp +29.6%"
+        },
+        {
+          "id": "inflation-CN",
+          "title": "G20 Inflation CN",
+          "actualShort": "0.9% (Sep)"
+        }
+      ]
     }
   ]
 }

@@ -1195,9 +1195,9 @@ const EVENTS = [
   { id:"uom-prelim-oct", date:"2026-10-09", time:"10:00am", tz:"ET", country:"US", inst:"UMich", title:"UMich consumer sentiment prelim (Oct)", impact:"high", status:"released",
     actual:"Sentiment prelim 46.3 (Sep 48.1); Current Conditions 44.7 (was 50.9); Expectations 47.3 (was 46.3); 1y inflation exp 4.7% (was 4.6%); long-run 3.5% (was 3.4%) (UMich Surveys of Consumers)", actualShort:"UMich 46.3 · 1y inf 4.7% · LR 3.5%", previous:"Sep final sentiment 48.1; Current 50.9; Expectations 46.3; 1y 4.6%; LR 3.4% (UMich)", consensus:"n/a", vs:"Sentiment slipped −1.8pt; inflation expectations up second month to highest since May",
     note:"University of Michigan Surveys of Consumers preliminary Oct 2026, Fri 9 Oct 10:00am ET. Final Oct due Fri 23 Oct. Official table on sca.isr.umich.edu.", source:"https://www.sca.isr.umich.edu/" },
-  { id:"cn-trade-sep", date:"2026-10-13", time:"~12:00pm", tz:"ET", country:"CN", inst:"Customs", title:"China trade balance (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Futu star=3 ~12:00pm ET (HKT ~12:00am Oct 14). Customs / GAC.", source:"Futu financial calendar (live API 2026-09-28)" },
+  { id:"cn-trade-sep", date:"2026-10-13", time:"~12:00pm", tz:"ET", country:"CN", inst:"Customs", title:"China trade balance (Sep)", impact:"medium", status:"released",
+    actual:"Sep goods trade ¥5.16T (+27.5% y/y); exports ¥3.03T (+29.6%); imports ¥2.13T (+24.6%); surplus ≈¥900B (Customs). Q1–Q3: ¥39.94T (+18.8%)", actualShort:"surplus ~¥900B · exp +29.6%", previous:"Aug surplus ~¥809.3B; exp +25.0% y/y; imp +28.2% y/y (GACC)", consensus:"surplus ~¥805B; exp ~+25.5% y/y; imp ~+24.5% y/y (TradingView)", vs:"surplus beat vs ~¥805B; exp hot vs ~25.5% (+4.1pp); imp in line vs ~24.5%",
+    note:"GAC/SCIO 14 Oct 2026 ~10:00 CST. 据海关统计: Sep goods trade first break above ¥5T (¥5.16T, +27.5% y/y); exports ¥3.03T (+29.6%), imports ¥2.13T (+24.6%) → surplus ≈¥900B vs Aug ¥809.3B and street ~¥805B. Q1–Q3 ¥39.94T (+18.8%). USD monthly tables not yet on english.customs.gov.cn (Aug still latest). Next: US CPI (cpi-sep) 8:30am ET Wed 14 Oct; AU LFS (au-lfs-sep) 8:30pm ET Wed 14 Oct.", source:"https://www.yicai.com/brief/103392659.html" },
   { id:"beige-book-oct", date:"2026-10-14", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"Fed Beige Book", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu Events tab star=3 on Oct 14 (same day as US CPI). Official: Federal Reserve.", source:"Futu financial calendar (live API 2026-09-28)" },
@@ -1981,11 +1981,11 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-14T08:47:08.921478+08:00";
+const INFLATION_UPDATED_AT = "2026-10-14T10:24:08.219469+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"ART" },
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"ART" },
   { code:"TR", name:"Turkey", last:29.73, prev:31.51, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"TRT",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"TRT" },
@@ -2049,8 +2049,8 @@ const INFLATION = [
   { code:"CH", name:"Switzerland", last:1, prev:0.8, g20:false,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CETCH",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CETCH" },
-  { code:"CN", name:"China", last:0.8, prev:0.5, g20:true,
-    refPeriod:"Aug 2026", refDate:"2026-09-09", refTime:"9:30am", refTz:"CST",
+  { code:"CN", name:"China", last:0.9, prev:0.8, g20:true,
+    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CST",
     nextPeriod:"Oct 2026", nextDate:"2026-10-14", nextTime:"9:30am", nextTz:"CST" }
 ];
 let infSortKey = "last";
