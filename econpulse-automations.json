@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T10:24:25.954242+08:00",
+  "updatedAt": "2026-10-14T20:53:01.851998+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,20 +173,17 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-14T10:19:00+08:00",
+      "lastRunAt": "2026-10-14T20:53:01.851998+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening ~10:19 HKT Wed 14 Oct / 22:19 ET Tue 13: filled cn-trade-sep (Customs Sep ¥5.16T; surplus ~¥900B beat; exp +29.6%). cn-cpi-sep already on calendar. INFLATION live: CN 0.8→0.9 (Sep). Left blank (not out): au-lfs-sep, cpi-sep, beige-book-oct.",
-      "nextRunAt": "2026-10-14T20:45:00+08:00",
+      "lastSummary": "Wed 14 Oct evening: pushed BLS CPI Sep (cpi-sep +0.6% m/m · 3.7% y/y; core +0.3%/2.6%, USDL-26-1574) to Pages; verified vs bls.gov. Quiet on remaining blanks — ABS LFS Sep due Thu 15 11:30 AEDT (not out); Fed Beige Book Oct not published yet (beigebook202610.htm 404; ~2pm ET). No new fills this pass beyond CPI push.",
+      "nextRunAt": "2026-10-15T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "cn-trade-sep",
-          "title": "China trade balance (Sep)",
-          "actualShort": "surplus ~¥900B · exp +29.6%"
-        },
-        {
-          "id": "inflation-CN",
-          "title": "G20 Inflation CN",
-          "actualShort": "0.9% (Sep)"
+          "id": "cpi-sep",
+          "title": "CPI (Sep)",
+          "actualShort": "CPI +0.6% · 3.7%",
+          "status": "released",
+          "when": "2026-10-14 8:30am ET"
         }
       ]
     }
