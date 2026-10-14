@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 14 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Thu 15 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 14); // Wed 14 Oct 2026
+const TODAY = new Date(2026, 9, 15); // Thu 15 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1198,9 +1198,9 @@ const EVENTS = [
   { id:"cn-trade-sep", date:"2026-10-13", time:"~12:00pm", tz:"ET", country:"CN", inst:"Customs", title:"China trade balance (Sep)", impact:"medium", status:"released",
     actual:"Sep goods trade ¥5.16T (+27.5% y/y); exports ¥3.03T (+29.6%); imports ¥2.13T (+24.6%); surplus ≈¥900B (Customs). Q1–Q3: ¥39.94T (+18.8%)", actualShort:"surplus ~¥900B · exp +29.6%", previous:"Aug surplus ~¥809.3B; exp +25.0% y/y; imp +28.2% y/y (GACC)", consensus:"surplus ~¥805B; exp ~+25.5% y/y; imp ~+24.5% y/y (TradingView)", vs:"surplus beat vs ~¥805B; exp hot vs ~25.5% (+4.1pp); imp in line vs ~24.5%",
     note:"GAC/SCIO 14 Oct 2026 ~10:00 CST. 据海关统计: Sep goods trade first break above ¥5T (¥5.16T, +27.5% y/y); exports ¥3.03T (+29.6%), imports ¥2.13T (+24.6%) → surplus ≈¥900B vs Aug ¥809.3B and street ~¥805B. Q1–Q3 ¥39.94T (+18.8%). USD monthly tables not yet on english.customs.gov.cn (Aug still latest). Next: US CPI (cpi-sep) 8:30am ET Wed 14 Oct; AU LFS (au-lfs-sep) 8:30pm ET Wed 14 Oct.", source:"https://www.yicai.com/brief/103392659.html" },
-  { id:"beige-book-oct", date:"2026-10-14", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"Fed Beige Book", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Fed Beige Book — Wed 14 Oct (scheduled on federalreserve.gov 2026 table). Typical ~2:00pm ET. Anecdotal District conditions into Oct 27–28 FOMC. Same day as US CPI.", source:"https://www.federalreserve.gov/monetarypolicy/publications/beige-book-default.htm" },
+  { id:"beige-book-oct", date:"2026-10-14", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"Fed Beige Book", impact:"medium", status:"released",
+    actual:"Activity: 2 Districts moderate, 3 modest, 4 slight, 3 little/no change; manufacturing strongest (Dallas moderate). Consumer spending mostly flat; employment little changed. Prices: 3 Districts robust, 8 moderate (3 intensifying); fuel/diesel surcharges, commodities, tariffs, insurance. Outlook slight growth, manufacturing-weighted, uncertainty-heavy (Fed Beige Book Oct 14; data through Oct 5; Philly prep).", actualShort:"Modest growth · prices firmer", previous:"n/a", consensus:"n/a", vs:"",
+    note:"Fed Beige Book — Wed 14 Oct. Official summary: manufacturing led; consumer spending little changed (high-income driven); employment little/no net change; price pressures elevated on fuel and inputs into Oct 27–28 FOMC. Next high: AU LFS (au-lfs-sep) ~08:30 HKT; US PPI + retail + claims 8:30am ET.", source:"https://www.federalreserve.gov/monetarypolicy/beigebook202610-summary.htm" },
   { id:"ez-cpi-final-sep", date:"2026-10-16", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP final (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 final CPI m/m+y/y. Official: Eurostat.", source:"Futu financial calendar (live API 2026-09-28)" },
