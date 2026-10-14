@@ -1114,9 +1114,9 @@ const EVENTS = [
   { id:"ehs-sep", date:"2026-10-13", time:"10:00am", tz:"ET", country:"US", inst:"NAR", title:"Existing home sales (Sep)", impact:"high", status:"released",
     actual:"3.99M SAAR (+1.5% m/m; −2.2% y/y); inventory 1.60M (+1.9% m/m) = 4.8 mo supply; median price $417,500 (+1.3% y/y) (NAR)", actualShort:"3.99M SAAR · +1.5% m/m", previous:"Aug 3.98M SAAR (−2.0% m/m) (NAR)", consensus:"3.95M SAAR (TradingView)", vs:"beat vs 3.95M; +0.01M vs Aug 3.98M",
     note:"NAR Existing-Home Sales Sep — Tue 13 Oct 10:00am ET. SAAR 3.99M (+1.5% m/m; −2.2% y/y) vs street 3.95M and Aug 3.98M. Inventory 1.60M (+1.9% m/m, +4.6% y/y) = 4.8 mo supply (unch vs Aug). Median $417,500 (+1.3% y/y). Yun: Aug–Sep slowest months of 2026; higher rates weighing on buyers. Next high: China CPI+PPI (cn-cpi-sep) 9:30pm ET; US CPI (cpi-sep) 8:30am ET Wed 14 Oct.", source:"https://www.nar.realtor/newsroom/existing-home-sales-increased-1-5-in-september-according-to-nar-report" },
-  { id:"cn-cpi-sep", date:"2026-10-13", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China CPI + PPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug CPI 0.8% y/y; PPI 3.8% y/y (NBS/TE)", consensus:"CPI ~1.0% y/y; PPI ~4.5% y/y (TradingView)", vs:"",
-    note:"9:30am China time Wed 14 Oct = 9:30pm ET Tue 13 Oct. Soft demand vs factory prices.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
+  { id:"cn-cpi-sep", date:"2026-10-13", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China CPI + PPI (Sep)", impact:"high", status:"released",
+    actual:"CPI +0.9% y/y (+0.2% m/m); core ex food & energy +1.0% y/y; PPI +5.0% y/y (+1.2% m/m); purchasing +6.9% y/y (NBS)", actualShort:"CPI 0.9% · PPI 5.0%", previous:"Aug CPI 0.8% y/y; PPI 3.8% y/y (NBS)", consensus:"CPI ~1.0% y/y; PPI ~4.5% y/y (TradingView)", vs:"CPI soft vs ~1.0% (−0.1pp); PPI hot vs ~4.5% (+0.5pp)",
+    note:"NBS 14 Oct 2026 09:30 CST. CPI edged up from Aug 0.8% but soft vs ~1.0% street; food −1.7% y/y, non-food +1.5%. PPI accelerated hard (Aug 3.8%→5.0%) on mining/energy/commodities; m/m +1.2%. Soft demand vs hot factory-gate split. Next high: US CPI (cpi-sep) 8:30am ET Wed 14 Oct; China GDP/activity (cn-activity-sep) ~18 Oct.", source:"https://www.stats.gov.cn/sj/zxfb/202610/t20261014_1965477.html" },
   { id:"cn-activity-sep", date:"2026-10-18", time:"~10:00pm", tz:"ET", country:"CN", inst:"NBS", title:"China GDP (Q3) + industrial production / retail / FAI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"NBS monthly activity bundle typically mid-month. Time approx — confirm NBS day-of.", source:"https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/" },
@@ -1611,7 +1611,11 @@ const METRICS = {
     { label:"Ex-fresh food y/y", unit:"%", previous:1.7, sense:"hot" }
   ],
   "cn-cpi-sep": [
-    { label:"CPI y/y", unit:"%", previous:0.8, sense:"hot" }
+    { label:"CPI y/y", unit:"%", actual:0.9, consensus:1.0, previous:0.8, sense:"hot" },
+    { label:"CPI m/m", unit:"%", actual:0.2, consensus:0.3, previous:0.4, sense:"hot" },
+    { label:"Core CPI y/y", unit:"%", actual:1.0, previous:1.0, sense:"hot" },
+    { label:"PPI y/y", unit:"%", actual:5.0, consensus:4.5, previous:3.8, sense:"hot" },
+    { label:"PPI m/m", unit:"%", actual:1.2, previous:0.4, sense:"hot" }
   ],
   "cn-pmi-sep": [
     { label:"Official Mfg PMI", unit:"", previous:null, sense:"higher-good" }
