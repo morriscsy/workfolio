@@ -1054,9 +1054,9 @@ const EVENTS = [
   { id:"nfp", date:"2026-10-02", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Sep)", impact:"high", status:"released",
     actual:"NFP +29k; U-3 4.2% (+0.1pp); AHE +0.1% m/m / +3.0% y/y to $37.81; Jul revised +21k→−10k; Aug +162k→+133k (−60k combined) (BLS USDL-26-1549)", actualShort:"NFP +29k · UE 4.2% · AHE +0.1%/+3.0%", previous:"Aug +133k revised (was +162k); U-3 was 4.1%; AHE context +0.3%/+3.1% prior print (BLS)", consensus:"+83k payrolls; U-3 hold 4.1%; AHE +0.3% m/m (WSJ/Dow Jones, n=9)", vs:"Large miss vs +83k; UE tick up vs hold 4.1%; AHE softer +0.1% vs +0.3%; prior two months −60k revised",
     note:"BLS Employment Situation Sep — Fri 2 Oct 8:30am ET. Private +46k; government −17k. LFPR 61.8%; EPOP 59.2%. Health care +17k. Workweek 34.4h. Next: Oct jobs Fri 6 Nov.", source:"https://www.bls.gov/news.release/empsit.nr0.htm" },
-  { id:"cpi-sep", date:"2026-10-14", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"CPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug +0.4% m/m / 3.4% y/y; core +0.3% / 2.4% (BLS)", consensus:"+0.6% m/m / 3.6% y/y; core +0.2% / 2.5% (TradingView)", vs:"",
-    note:"BLS CPI Sep — Wed 14 Oct 8:30am ET. Key for Fed path into late-Oct FOMC.", source:"https://www.bls.gov/schedule/news_release/cpi.htm" },
+  { id:"cpi-sep", date:"2026-10-14", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"CPI (Sep)", impact:"high", status:"released",
+    actual:"headline +0.6% m/m, 3.7% y/y; core +0.3% m/m, 2.6% y/y (BLS)", actualShort:"CPI +0.6% · 3.7%", previous:"Aug +0.4% m/m / 3.4% y/y; core +0.3% / 2.4% (BLS)", consensus:"+0.6% m/m / 3.6% y/y; core +0.2% / 2.5% (TradingView; Reuters/FactSet align)", vs:"headline m/m in line +0.6%; y/y hot 3.7% vs 3.6%; core hot +0.3%/+2.6% vs +0.2%/+2.5%",
+    note:"BLS CPI Sep — Wed 14 Oct 8:30am ET (USDL-26-1574). Gasoline +9.1% drove over half of headline; energy +5.2% m/m / +20.4% y/y; food flat; shelter +0.4%. Core held +0.3% m/m (hot vs street +0.2%) / +2.6% y/y. Next high: AU LFS (au-lfs-sep) 8:30pm ET; FOMC Oct 27–28.", source:"https://www.bls.gov/news.release/cpi.nr0.htm" },
   { id:"g20", date:"2026-10-15", time:"", tz:"ET", country:"G20", inst:"Treasury", title:"G20 FMCBG — Bangkok", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Asheville 31 Aug–1 Sep", consensus:"n/a", vs:"",
     note:"Finance ministers and central bank governors.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
@@ -1200,7 +1200,7 @@ const EVENTS = [
     note:"GAC/SCIO 14 Oct 2026 ~10:00 CST. 据海关统计: Sep goods trade first break above ¥5T (¥5.16T, +27.5% y/y); exports ¥3.03T (+29.6%), imports ¥2.13T (+24.6%) → surplus ≈¥900B vs Aug ¥809.3B and street ~¥805B. Q1–Q3 ¥39.94T (+18.8%). USD monthly tables not yet on english.customs.gov.cn (Aug still latest). Next: US CPI (cpi-sep) 8:30am ET Wed 14 Oct; AU LFS (au-lfs-sep) 8:30pm ET Wed 14 Oct.", source:"https://www.yicai.com/brief/103392659.html" },
   { id:"beige-book-oct", date:"2026-10-14", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"Fed Beige Book", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Futu Events tab star=3 on Oct 14 (same day as US CPI). Official: Federal Reserve.", source:"Futu financial calendar (live API 2026-09-28)" },
+    note:"Fed Beige Book — Wed 14 Oct (scheduled on federalreserve.gov 2026 table). Typical ~2:00pm ET. Anecdotal District conditions into Oct 27–28 FOMC. Same day as US CPI.", source:"https://www.federalreserve.gov/monetarypolicy/publications/beige-book-default.htm" },
   { id:"ez-cpi-final-sep", date:"2026-10-16", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP final (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 final CPI m/m+y/y. Official: Eurostat.", source:"Futu financial calendar (live API 2026-09-28)" },
@@ -1259,8 +1259,8 @@ const EVENTS = [
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 9:00pm ET Oct 27 (Events also Oct 27). Official: RBNZ. Optional for MasterKi if NZ desk wanted.", source:"Futu financial calendar (live API 2026-09-28)" },
   { id:"au-lfs-sep", date:"2026-10-14", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia unemployment / employment (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Futu star=3 8:30pm ET (HKT ~8:30am Oct 15). Official: ABS Labour Force. Distinct from earlier au-emp-sep stamp.", source:"Futu financial calendar (live API 2026-09-28)" },
+    actual:"n/a", actualShort:"", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"",
+    note:"ABS Labour Force Sep — Thu 15 Oct 11:30am AEDT (= Wed 14 Oct 8:30pm ET / HKT ~8:30am Thu 15). Official next-release on abs.gov.au. Watch jobs vs participation for RBA path.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia" },
 ];
 
 
@@ -1574,9 +1574,16 @@ const METRICS = {
     { label:"Unemployment", unit:"%", previous:4.1, sense:"lower-good" }
   ],
   "cpi-sep": [
-    { label:"CPI m/m", unit:"%", previous:0.4, sense:"hot" },
-    { label:"Core CPI m/m", unit:"%", previous:0.3, sense:"hot" }
+    { label:"CPI m/m", unit:"%", actual:0.6, consensus:0.6, previous:0.4, sense:"hot" },
+    { label:"CPI y/y", unit:"%", actual:3.7, consensus:3.6, previous:3.4, sense:"hot" },
+    { label:"Core CPI m/m", unit:"%", actual:0.3, consensus:0.2, previous:0.3, sense:"hot" },
+    { label:"Core CPI y/y", unit:"%", actual:2.6, consensus:2.5, previous:2.4, sense:"hot" }
   ],
+  "au-lfs-sep": [
+    { label:"Employment chg", unit:"k", consensus:20, previous:39.5, sense:"higher-good" },
+    { label:"Unemployment", unit:"%", consensus:4.6, previous:4.6, sense:"lower-good" }
+  ],
+
   "ppi-sep": [
     { label:"PPI m/m", unit:"%", previous:0.4, sense:"hot" }
   ],
@@ -1981,7 +1988,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-14T10:24:08.219469+08:00";
+const INFLATION_UPDATED_AT = "2026-10-14T20:33:07.678378+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
@@ -2016,9 +2023,9 @@ const INFLATION = [
   { code:"MX", name:"Mexico", last:3.45, prev:3.26, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CT",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CT" },
-  { code:"US", name:"United States", last:3.4, prev:3.4, g20:true,
-    refPeriod:"Aug 2026", refDate:"2026-09-11", refTime:"8:30am", refTz:"ET",
-    nextPeriod:"Oct 2026", nextDate:"2026-10-14", nextTime:"8:30am", nextTz:"ET" },
+  { code:"US", name:"United States", last:3.7, prev:3.4, g20:true,
+    refPeriod:"Sep 2026", refDate:"2026-10-14", refTime:"8:30am", refTz:"ET",
+    nextPeriod:"Oct 2026", nextDate:"2026-11-10", nextTime:"8:30am", nextTz:"ET" },
   { code:"DE", name:"Germany", last:3.3, prev:2.9, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
