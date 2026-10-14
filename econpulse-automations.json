@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T20:53:01.851998+08:00",
+  "updatedAt": "2026-10-14T21:07:58.154512+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,17 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-14T08:47:09.127090+08:00",
+      "lastRunAt": "2026-10-14T21:07:58.154512+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning quiet ~08:40 HKT Wed 14 Oct: no material Actuals. TODAY→Wed 14. Ahead blanks: cn-cpi-sep (~09:30 HKT), cn-trade-sep (~11:00 HKT), au-lfs-sep (ABS 15 Oct), US CPI + Beige Book later ET. Overnight ehs-sep already filled. Inflation TE: AR Sep 33.4 (was 33.5).",
+      "lastSummary": "2026-10-14 ~9:07am ET: no past blanks to fill (CPI Sep already released; AU LFS 8:30pm ET + Beige Book 2pm ET still ahead). Inflation live refresh: US↔MX rank swap only (no value/period changes); patched+synced.",
       "nextRunAt": "2026-10-15T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "inflation-rank",
+          "title": "G20 inflation Last↓ order",
+          "actualShort": "US #11↔MX #12"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
