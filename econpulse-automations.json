@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T08:48:21.393218+08:00",
+  "updatedAt": "2026-10-15T20:56:15.758705+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -188,17 +188,24 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-14T20:53:01.851998+08:00",
+      "lastRunAt": "2026-10-15T20:56:15.758705+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Wed 14 Oct evening: pushed BLS CPI Sep (cpi-sep +0.6% m/m · 3.7% y/y; core +0.3%/2.6%, USDL-26-1574) to Pages; verified vs bls.gov. Quiet on remaining blanks — ABS LFS Sep due Thu 15 11:30 AEDT (not out); Fed Beige Book Oct not published yet (beigebook202610.htm 404; ~2pm ET). No new fills this pass beyond CPI push.",
-      "nextRunAt": "2026-10-15T20:45:00+08:00",
+      "lastSummary": "Thu 15 Oct ~20:45 HKT: filled claims-oct15 (199k SA / Cont 1.71M DOL) + g20 (FMCBG held · no communique); inflation TE refresh (FR/SA + order).",
+      "nextRunAt": "2026-10-16T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "cpi-sep",
-          "title": "CPI (Sep)",
-          "actualShort": "CPI +0.6% · 3.7%",
+          "id": "claims-oct15",
+          "title": "Initial jobless claims",
+          "actualShort": "Claims 199k · Cont 1.71M",
           "status": "released",
-          "when": "2026-10-14 8:30am ET"
+          "when": "2026-10-15T08:30:00-04:00"
+        },
+        {
+          "id": "g20",
+          "title": "G20 FMCBG — Bangkok",
+          "actualShort": "G20 FMCBG held · no communique",
+          "status": "released",
+          "when": "2026-10-15"
         }
       ]
     }

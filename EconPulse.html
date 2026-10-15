@@ -1057,9 +1057,9 @@ const EVENTS = [
   { id:"cpi-sep", date:"2026-10-14", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"CPI (Sep)", impact:"high", status:"released",
     actual:"headline +0.6% m/m, 3.7% y/y; core +0.3% m/m, 2.6% y/y (BLS)", actualShort:"CPI +0.6% · 3.7%", previous:"Aug +0.4% m/m / 3.4% y/y; core +0.3% / 2.4% (BLS)", consensus:"+0.6% m/m / 3.6% y/y; core +0.2% / 2.5% (TradingView; Reuters/FactSet align)", vs:"headline m/m in line +0.6%; y/y hot 3.7% vs 3.6%; core hot +0.3%/+2.6% vs +0.2%/+2.5%",
     note:"BLS CPI Sep — Wed 14 Oct 8:30am ET (USDL-26-1574). Gasoline +9.1% drove over half of headline; energy +5.2% m/m / +20.4% y/y; food flat; shelter +0.4%. Core held +0.3% m/m (hot vs street +0.2%) / +2.6% y/y. Next high: AU LFS (au-lfs-sep) 8:30pm ET; FOMC Oct 27–28.", source:"https://www.bls.gov/news.release/cpi.nr0.htm" },
-  { id:"g20", date:"2026-10-15", time:"", tz:"ET", country:"G20", inst:"Treasury", title:"G20 FMCBG — Bangkok", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Asheville 31 Aug–1 Sep", consensus:"n/a", vs:"",
-    note:"G20 FMCBG — Bangkok, Thu 15 Oct (day event; no exact US print window). Finance ministers / CB governors. Watch communique tone vs US PPI+retail same morning.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
+  { id:"g20", date:"2026-10-15", time:"", tz:"ET", country:"G20", inst:"Treasury", title:"G20 FMCBG — Bangkok", impact:"high", status:"released",
+    actual:"G20 FMCBG Bangkok held 15 Oct (sidelines of IMF/World Bank Annual Meetings); ended without joint communique or chair's statement; US Treasury Sec. Bessent absent (domestic engagements); agenda inflation/oil, financial-market volatility, debt (Jiji 15 Oct; Nikkei)", actualShort:"G20 FMCBG held · no communique", previous:"Asheville 31 Aug–1 Sep (also no joint communique)", consensus:"n/a", vs:"",
+    note:"G20 FMCBG — Bangkok, Thu 15 Oct. Meeting confirmed held; no official Treasury outcome PR yet (schedule only: home.treasury.gov sb0398). Wire: Jiji via Nippon.com 19:22 JST — ended without joint statement; Bessent skipped. Speech-style fill only — no numbers invented.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
   { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"n/a", vs:"",
     note:"No SEP this meeting. Presser typically 2:30pm.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
@@ -1098,9 +1098,9 @@ const EVENTS = [
   { id:"claims-oct8", date:"2026-10-08", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
     actual:"Initial 197k (−2k) week ended Oct 3; prior week revised 197k→199k; 4-wk avg 198k. Continuing 1.716M (+17k) week ended Sep 26 (DOL)", actualShort:"Claims 197k · Cont 1.716M", previous:"Prior week initial revised to 199k (was 197k advance); continuing prior revised to 1.699M (DOL 8 Oct)", consensus:"n/a", vs:"Initial still historically low (fifth straight weekly decline in some media tallies); continuing bounced +17k",
     note:"DOL UI Weekly Claims, Thu 8 Oct 8:30am ET. SA initial 197k week ended Oct 3; 4-wk avg 198k. Insured unemployment 1.716M / IUR 1.1% week ended Sep 26.", source:"https://oui.doleta.gov/press/2026/100826.pdf" },
-  { id:"claims-oct15", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Week ended Oct 3: SA initial 197k; 4-wk avg 198k; insured unemp 1.716M (DOL 8 Oct)", consensus:"200k initial (TradingView)", vs:"",
-    note:"DOL UI weekly — Thu 15 Oct 8:30am ET (same window as PPI + retail). Medium impact; labor pulse into FOMC. Confirm oui.doleta.gov — never invent actuals.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct15", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"released",
+    actual:"Week ended Oct 10: SA initial 199k (+1k from prior revised 198k); 4-wk avg 198.5k (+0.25k); insured unemp week ended Oct 3: 1.710M (−4k; prior revised to 1.714M) (DOL)", actualShort:"Claims 199k · Cont 1.71M", previous:"Week ended Oct 3 revised: SA initial 198k (was 197k); 4-wk avg 198.25k; insured unemp 1.714M (was 1.716M) (DOL 15 Oct)", consensus:"200k initial (TradingView)", vs:"slight soft/beat — 199k vs 200k consensus",
+    note:"DOL UI weekly USDL 26-1599-NAT — Thu 15 Oct 8:30am ET. Week ending Oct 10: SA initial 199,000 (+1k from prior week revised up +1k to 198k). 4-wk avg 198,500 (+250). Insured unemployment week ending Oct 3: 1,710,000 (−4k; prior revised −2k to 1,714k). IUR 1.1% unch. Next claims: claims-oct22 Thu 22 Oct.", source:"https://www.dol.gov/ui/data.pdf" },
   { id:"claims-oct22", date:"2026-10-22", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Typical Thursday 8:30am ET.", source:"https://www.dol.gov/ui/data.pdf" },
@@ -1737,7 +1737,7 @@ function rateChart(metrics, compact) {
 }
 function escHtml(t) {
   return String(t == null ? "" : t)
-    .replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 function blankish(v) {
   if (v == null) return true;
@@ -1991,7 +1991,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-15T10:15:51.055814+08:00";
+const INFLATION_UPDATED_AT = "2026-10-15T20:56:02.972140+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
@@ -2025,7 +2025,7 @@ const INFLATION = [
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
   { code:"US", name:"United States", last:3.7, prev:3.4, g20:true,
     refPeriod:"Sep 2026", refDate:"2026-10-14", refTime:"8:30am", refTz:"ET",
-    nextPeriod:"Oct 2026", nextDate:"2026-11-10", nextTime:"8:30am", nextTz:"ET" },
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"ET" },
   { code:"MX", name:"Mexico", last:3.45, prev:3.26, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CT",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CT" },
@@ -2038,7 +2038,7 @@ const INFLATION = [
   { code:"UK", name:"United Kingdom", last:3.1, prev:2.9, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-08-19", refTime:"7:00am", refTz:"UK",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"UK" },
-  { code:"FR", name:"France", last:3, prev:2.4, g20:true,
+  { code:"FR", name:"France", last:3.1, prev:2.4, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
   { code:"CA", name:"Canada", last:3, prev:3, g20:true,
@@ -2050,18 +2050,18 @@ const INFLATION = [
   { code:"SG", name:"Singapore", last:2.3, prev:2.2, g20:false,
     refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"SGT",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
+  { code:"SA", name:"Saudi Arabia", last:1.9, prev:1.8, g20:true,
+    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"AST",
+    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"AST" },
   { code:"JP", name:"Japan", last:1.9, prev:1.9, g20:true,
     refPeriod:"Aug 2026", refDate:"2026-08-21", refTime:"", refTz:"JST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"JST" },
-  { code:"SA", name:"Saudi Arabia", last:1.8, prev:1.8, g20:true,
-    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"AST",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"AST" },
   { code:"CH", name:"Switzerland", last:1, prev:0.8, g20:false,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CETCH",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CETCH" },
   { code:"CN", name:"China", last:0.9, prev:0.8, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CST",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CST" }
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CST" }
 ];
 let infSortKey = "last";
 let infSortDir = "asc";
