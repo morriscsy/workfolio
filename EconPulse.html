@@ -1077,12 +1077,12 @@ const EVENTS = [
   { id:"fomc-min-oct", date:"2026-10-07", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC minutes (Sep 15–16)", impact:"medium", status:"released",
     actual:"Minutes published for Sep 15–16 FOMC (policy rate raised 25bp to 3.75%–4.00% at that meeting)", actualShort:"Minutes published (Sep 15–16)", previous:"n/a", consensus:"n/a", vs:"Text release — see Fed PDF for hike-path language",
     note:"Fed press release 7 Oct 2026 2:00pm EDT: minutes of FOMC meeting Sep 15–16, 2026. HTML + PDF on federalreserve.gov. Most participants expected another hike likely by year-end (media read-through of minutes).", source:"https://www.federalreserve.gov/newsevents/pressreleases/monetary20261007a.htm" },
-  { id:"ppi-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug +0.4% m/m / 5.4% y/y; core ex-food/energy +0.2% m/m (BLS)", consensus:"+0.5% m/m; core +0.3% m/m (TradingView)", vs:"",
-    note:"BLS PPI Sep — Thu 15 Oct 8:30am ET (official Oct schedule). Same morning as retail sales. Post-CPI path check into late-Oct FOMC. Confirm day-of on bls.gov — never invent actuals.", source:"https://www.bls.gov/schedule/2026/" },
-  { id:"retailsales-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Advance retail sales (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug +1.2% MoM to $773.9B SA; +6.0% y/y; ex-auto +1.4% (Census CB26-153)", consensus:"+0.3% MoM; ex-auto +0.5% (TradingView)", vs:"",
-    note:"Census Advance MARTS Sep — Thu 15 Oct 8:30am ET (next release on Aug MARTS). Same 8:30 as PPI. Watch control-group for Q3 goods spending. Confirm day-of on census.gov — never invent actuals.", source:"https://www.census.gov/retail/marts/www/marts_current.pdf" },
+  { id:"ppi-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Sep)", impact:"high", status:"released",
+    actual:"final demand +1.3% m/m, +6.3% y/y; FD less foods/energy/trade +0.5% m/m / +5.0% y/y; goods +2.6%, services +0.8% (BLS)", actualShort:"PPI +1.3% · 6.3%", previous:"Aug +0.4% m/m / 5.4% y/y (rev to +0.5% m/m in Sep tables); core ex-F/E/trade was +0.3% m/m (BLS)", consensus:"+0.5% m/m; core +0.3% m/m (TradingView)", vs:"headline hot +1.3% vs +0.5%; core (FD less F/E/trade) hot +0.5% vs +0.3%; y/y 6.3% largest since Dec 2022",
+    note:"BLS PPI Sep — Thu 15 Oct 8:30am ET (USDL 26-1576). Largest m/m final-demand rise since Mar 2022; energy goods +10.8% (gasoline +20.3%) drove goods +2.6%. FD less foods/energy/trade +0.5%. Next high: Import/Export prices Fri 16 Oct 8:30am ET; FOMC Oct 27–28.", source:"https://www.bls.gov/news.release/ppi.nr0.htm" },
+  { id:"retailsales-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Advance retail sales (Sep)", impact:"high", status:"released",
+    actual:"total $745.0B +0.8% m/m / +6.3% y/y; ex-auto +0.9% m/m / +7.2% y/y; ex-auto & gas +0.2% m/m (Census CB26-165; post Sep 28 annual revision)", actualShort:"Retail +0.8% · ex-auto +0.9%", previous:"Aug revised $739.3B / +1.3% m/m (was +1.2% / $773.9B pre-revision); Jul–Aug revised to +1.3% (Census)", consensus:"+0.3% MoM; ex-auto +0.5% (TradingView)", vs:"headline beat +0.8% vs +0.3%; ex-auto beat +0.9% vs +0.5%; control ex-auto&gas soft +0.2%",
+    note:"Census Advance MARTS Sep — Thu 15 Oct 8:30am ET (CB26-165). Levels rebased after Sep 28 annual revision (Aug now $739.3B). Gasoline stations +6.4% m/m lifted headline; ex-auto & gas +0.2%. Next high: Import/Export prices Fri 16 Oct 8:30am ET; FOMC Oct 27–28.", source:"https://www.census.gov/retail/marts/www/marts_current.pdf" },
   { id:"powell-oct", date:"2026-10-28", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Powell press conference (Oct FOMC)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Typical 2:30pm after the Oct decision. No SEP this meeting.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
@@ -1585,10 +1585,13 @@ const METRICS = {
   ],
 
   "ppi-sep": [
-    { label:"PPI m/m", unit:"%", previous:0.4, sense:"hot" }
+    { label:"PPI m/m", unit:"%", actual:1.3, consensus:0.5, previous:0.4, sense:"hot" },
+    { label:"Core PPI m/m", unit:"%", actual:0.5, consensus:0.3, previous:0.3, sense:"hot" },
+    { label:"PPI y/y", unit:"%", actual:6.3, previous:5.4, sense:"hot" }
   ],
   "retailsales-sep": [
-    { label:"Retail sales m/m", unit:"%", previous:1.2, sense:"higher-good" }
+    { label:"Retail sales m/m", unit:"%", actual:0.8, consensus:0.3, previous:1.2, sense:"higher-good" },
+    { label:"Ex-auto m/m", unit:"%", actual:0.9, consensus:0.5, previous:1.4, sense:"higher-good" }
   ],
   "starts-sep": [
     { label:"Starts", unit:"k", previous:1275, sense:"higher-good" },
@@ -1734,7 +1737,7 @@ function rateChart(metrics, compact) {
 }
 function escHtml(t) {
   return String(t == null ? "" : t)
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    .replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
 }
 function blankish(v) {
   if (v == null) return true;
