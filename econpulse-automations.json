@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T07:41:25.328056+08:00",
+  "updatedAt": "2026-10-15T08:48:21.393218+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-15T07:41:25.328056+08:00",
+      "lastRunAt": "2026-10-15T08:46:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Filled Fed Beige Book (Oct 14); bumped TODAY to 15 Oct; Pages ready.",
-      "nextRunAt": "2026-10-15T08:40:00+08:00",
+      "lastSummary": "Morning batch Thu 15 Oct: Beige Book Oct + ABS Labour Force Sep filled; TODAY→15 Oct; PPI/retail/claims still ahead 8:30am ET.",
+      "nextRunAt": "2026-10-16T08:40:00+08:00",
       "lastItems": [
         {
           "id": "beige-book-oct",
@@ -164,6 +164,13 @@
           "actualShort": "Modest growth · prices firmer",
           "status": "released",
           "when": "2026-10-15T07:40:00+08:00"
+        },
+        {
+          "id": "au-lfs-sep",
+          "title": "Australia unemployment / employment (Sep)",
+          "actualShort": "Emp −39.3k · UE 4.7%",
+          "status": "released",
+          "when": "2026-10-15T08:33:00+08:00"
         }
       ]
     },
