@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Thu 15 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 14 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 15); // Thu 15 Oct 2026
+const TODAY = new Date(2026, 9, 14); // Wed 14 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1258,9 +1258,9 @@ const EVENTS = [
   { id:"rbnz-oct", date:"2026-10-27", time:"9:00pm", tz:"ET", country:"NZ", inst:"RBNZ", title:"RBNZ OCR decision", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 9:00pm ET Oct 27 (Events also Oct 27). Official: RBNZ. Optional for MasterKi if NZ desk wanted.", source:"Futu financial calendar (live API 2026-09-28)" },
-  { id:"au-lfs-sep", date:"2026-10-14", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia unemployment / employment (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"",
-    note:"ABS Labour Force Sep — Thu 15 Oct 11:30am AEDT (= Wed 14 Oct 8:30pm ET / HKT ~8:30am Thu 15). Official next-release on abs.gov.au. Watch jobs vs participation for RBA path.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia" },
+  { id:"au-lfs-sep", date:"2026-10-14", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia unemployment / employment (Sep)", impact:"high", status:"released",
+    actual:"emp −39.3k to 14,782,700; U-rate 4.7%; participation 66.8%; underemp 6.3%; emp-to-pop 63.6% (ABS sa)", actualShort:"Emp −39.3k · UE 4.7%", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS prior release; Aug levels revised in Sep tables)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"miss — jobs −39.3k vs +20k; U-rate 4.7% vs 4.6% hold",
+    note:"ABS Labour Force Sep 2026 (sa), released 15/10/2026 11:30am AEDT (= Wed 14 Oct 8:30pm ET). Emp −39,300; FT +34.4k / PT −73.7k; U-rate +0.1ppt to 4.7%; participation −0.2ppt to 66.8%; underemp 6.3%; emp-to-pop 63.6%. Soft vs street; ABS notes Victoria weighting + rotation caution — prefer trend (U-rate held 4.6%). Next high: US PPI+retail+claims 8:30am ET Thu 15 Oct; FOMC Oct 27–28.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release" },
 ];
 
 
@@ -1580,8 +1580,8 @@ const METRICS = {
     { label:"Core CPI y/y", unit:"%", actual:2.6, consensus:2.5, previous:2.4, sense:"hot" }
   ],
   "au-lfs-sep": [
-    { label:"Employment chg", unit:"k", consensus:20, previous:39.5, sense:"higher-good" },
-    { label:"Unemployment", unit:"%", consensus:4.6, previous:4.6, sense:"lower-good" }
+    { label:"Employment chg", unit:"k", actual:-39.3, consensus:20, previous:39.5, sense:"higher-good" },
+    { label:"Unemployment", unit:"%", actual:4.7, consensus:4.6, previous:4.6, sense:"lower-good" }
   ],
 
   "ppi-sep": [
