@@ -1059,7 +1059,7 @@ const EVENTS = [
     note:"BLS CPI Sep — Wed 14 Oct 8:30am ET (USDL-26-1574). Gasoline +9.1% drove over half of headline; energy +5.2% m/m / +20.4% y/y; food flat; shelter +0.4%. Core held +0.3% m/m (hot vs street +0.2%) / +2.6% y/y. Next high: AU LFS (au-lfs-sep) 8:30pm ET; FOMC Oct 27–28.", source:"https://www.bls.gov/news.release/cpi.nr0.htm" },
   { id:"g20", date:"2026-10-15", time:"", tz:"ET", country:"G20", inst:"Treasury", title:"G20 FMCBG — Bangkok", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Asheville 31 Aug–1 Sep", consensus:"n/a", vs:"",
-    note:"Finance ministers and central bank governors.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
+    note:"G20 FMCBG — Bangkok, Thu 15 Oct (day event; no exact US print window). Finance ministers / CB governors. Watch communique tone vs US PPI+retail same morning.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
   { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"n/a", vs:"",
     note:"No SEP this meeting. Presser typically 2:30pm.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
@@ -1078,11 +1078,11 @@ const EVENTS = [
     actual:"Minutes published for Sep 15–16 FOMC (policy rate raised 25bp to 3.75%–4.00% at that meeting)", actualShort:"Minutes published (Sep 15–16)", previous:"n/a", consensus:"n/a", vs:"Text release — see Fed PDF for hike-path language",
     note:"Fed press release 7 Oct 2026 2:00pm EDT: minutes of FOMC meeting Sep 15–16, 2026. HTML + PDF on federalreserve.gov. Most participants expected another hike likely by year-end (media read-through of minutes).", source:"https://www.federalreserve.gov/newsevents/pressreleases/monetary20261007a.htm" },
   { id:"ppi-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug +0.4% m/m / 5.4% y/y (BLS)", consensus:"n/a", vs:"",
-    note:"Official BLS Oct schedule. Same morning as retail sales.", source:"https://www.bls.gov/schedule/2026/10_sched_list.htm" },
+    actual:"n/a", actualShort:"", previous:"Aug +0.4% m/m / 5.4% y/y; core ex-food/energy +0.2% m/m (BLS)", consensus:"+0.5% m/m; core +0.3% m/m (TradingView)", vs:"",
+    note:"BLS PPI Sep — Thu 15 Oct 8:30am ET (official Oct schedule). Same morning as retail sales. Post-CPI path check into late-Oct FOMC. Confirm day-of on bls.gov — never invent actuals.", source:"https://www.bls.gov/schedule/2026/" },
   { id:"retailsales-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Advance retail sales (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug print (see Sep 16 card)", consensus:"n/a", vs:"",
-    note:"Official Census window. Same 8:30 as PPI.", source:"https://www.census.gov/retail/release_schedule.html" },
+    actual:"n/a", actualShort:"", previous:"Aug +1.2% MoM to $773.9B SA; +6.0% y/y; ex-auto +1.4% (Census CB26-153)", consensus:"+0.3% MoM; ex-auto +0.5% (TradingView)", vs:"",
+    note:"Census Advance MARTS Sep — Thu 15 Oct 8:30am ET (next release on Aug MARTS). Same 8:30 as PPI. Watch control-group for Q3 goods spending. Confirm day-of on census.gov — never invent actuals.", source:"https://www.census.gov/retail/marts/www/marts_current.pdf" },
   { id:"powell-oct", date:"2026-10-28", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Powell press conference (Oct FOMC)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Typical 2:30pm after the Oct decision. No SEP this meeting.", source:"https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" },
@@ -1099,8 +1099,8 @@ const EVENTS = [
     actual:"Initial 197k (−2k) week ended Oct 3; prior week revised 197k→199k; 4-wk avg 198k. Continuing 1.716M (+17k) week ended Sep 26 (DOL)", actualShort:"Claims 197k · Cont 1.716M", previous:"Prior week initial revised to 199k (was 197k advance); continuing prior revised to 1.699M (DOL 8 Oct)", consensus:"n/a", vs:"Initial still historically low (fifth straight weekly decline in some media tallies); continuing bounced +17k",
     note:"DOL UI Weekly Claims, Thu 8 Oct 8:30am ET. SA initial 197k week ended Oct 3; 4-wk avg 198k. Insured unemployment 1.716M / IUR 1.1% week ended Sep 26.", source:"https://oui.doleta.gov/press/2026/100826.pdf" },
   { id:"claims-oct15", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Same morning as PPI + retail. Confirm DOL.", source:"https://www.dol.gov/ui/data.pdf" },
+    actual:"n/a", actualShort:"", previous:"Week ended Oct 3: SA initial 197k; 4-wk avg 198k; insured unemp 1.716M (DOL 8 Oct)", consensus:"200k initial (TradingView)", vs:"",
+    note:"DOL UI weekly — Thu 15 Oct 8:30am ET (same window as PPI + retail). Medium impact; labor pulse into FOMC. Confirm oui.doleta.gov — never invent actuals.", source:"https://www.dol.gov/ui/data.pdf" },
   { id:"claims-oct22", date:"2026-10-22", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Typical Thursday 8:30am ET.", source:"https://www.dol.gov/ui/data.pdf" },
@@ -1988,7 +1988,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-15T08:48:15.525379+08:00";
+const INFLATION_UPDATED_AT = "2026-10-15T10:15:51.055814+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
