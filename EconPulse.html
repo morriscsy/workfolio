@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Thu 15 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Sat 17 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 15); // Thu 15 Oct 2026
+const TODAY = new Date(2026, 9, 17); // Sat 17 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1201,12 +1201,15 @@ const EVENTS = [
   { id:"beige-book-oct", date:"2026-10-14", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"Fed Beige Book", impact:"medium", status:"released",
     actual:"Activity: 2 Districts moderate, 3 modest, 4 slight, 3 little/no change; manufacturing strongest (Dallas moderate). Consumer spending mostly flat; employment little changed. Prices: 3 Districts robust, 8 moderate (3 intensifying); fuel/diesel surcharges, commodities, tariffs, insurance. Outlook slight growth, manufacturing-weighted, uncertainty-heavy (Fed Beige Book Oct 14; data through Oct 5; Philly prep).", actualShort:"Modest growth · prices firmer", previous:"n/a", consensus:"n/a", vs:"",
     note:"Fed Beige Book — Wed 14 Oct. Official summary: manufacturing led; consumer spending little changed (high-income driven); employment little/no net change; price pressures elevated on fuel and inputs into Oct 27–28 FOMC. Next high: AU LFS (au-lfs-sep) ~08:30 HKT; US PPI + retail + claims 8:30am ET.", source:"https://www.federalreserve.gov/monetarypolicy/beigebook202610-summary.htm" },
-  { id:"ez-cpi-final-sep", date:"2026-10-16", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP final (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Futu star=3 final CPI m/m+y/y. Official: Eurostat.", source:"Futu financial calendar (live API 2026-09-28)" },
-  { id:"ip-sep", date:"2026-10-16", time:"9:15am", tz:"ET", country:"US", inst:"Fed", title:"Industrial production (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Futu star=3. Official: Federal Reserve G.17.", source:"Futu financial calendar (live API 2026-09-28)" },
+  { id:"ez-cpi-final-sep", date:"2026-10-16", time:"~5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP final (Sep)", impact:"medium", status:"released",
+    actual:"EA HICP final Sep +3.8% y/y / +0.6% m/m; core (ex energy, food, alcohol & tobacco) +2.5% y/y / +0.2% m/m; energy +18.9% y/y (Eurostat; confirms flash)", actualShort:"HICP final +3.8%/+0.6% · core +2.5%", previous:"Aug HICP final +3.2% y/y / +0.4% m/m; core +2.4%; Sep flash +3.8% / +0.6% / core +2.5% / energy +18.8% (Eurostat)", consensus:"+3.8% y/y / +0.6% m/m; core +2.5% (TradingView; matched flash)", vs:"confirmed flash / in line vs +3.8%; core confirmed +2.5%; energy revised +18.8%→+18.9%",
+    note:"Eurostat Euro indicators 16 Oct 2026 (~5:00am ET / 11:00 CEST). EA21 all-items HICP final Sep 3.8% y/y (Aug 3.2%; Sep-25 2.2%) / +0.6% m/m; core ex energy/food/alc/tob 2.5% (Aug 2.4%); energy 18.9%. Flash 2 Oct was 3.8%/0.6%/core 2.5%/energy 18.8%. Next flash Oct HICP 4 Nov.", source:"https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-16102026-ap" },
+  { id:"ip-sep", date:"2026-10-16", time:"9:15am", tz:"ET", country:"US", inst:"Fed", title:"Industrial production (Sep)", impact:"medium", status:"released",
+    actual:"IP +0.7% m/m; mfg +0.3%; mining +0.2%; utilities +3.5%; capacity util 76.9% (+0.5pt); total IP 104.0 (2017=100) / +2.2% y/y; Q3 IP +2.8% saar (Fed G.17)", actualShort:"IP +0.7% · CU 76.9%", previous:"Aug IP revised +0.1% m/m (was 0.0% prior print); CU revised 76.4% (was 76.3%) (Fed G.17 16 Oct)", consensus:"+0.4% m/m (TradingView)", vs:"beat +0.7% vs +0.4%; utilities-led (+3.5%); mfg modest +0.3%",
+    note:"Fed G.17 Industrial Production & Capacity Utilization — Fri 16 Oct 2026 9:15am ET. Sep IP +0.7% after Aug +0.1% (rev); mfg +0.3%, mining +0.2%, utilities +3.5%. Capacity util 76.9% (2.5pp below 1972–2025 avg). Annual revision scheduled 24 Nov 2026 (base year → 2022).", source:"https://www.federalreserve.gov/releases/g17/20261016/" },
+  { id:"mxpx-sep", date:"2026-10-16", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Import & export prices (Sep)", impact:"medium", status:"released",
+    actual:"import prices +1.1% m/m / +8.1% y/y; export prices +2.2% m/m / +11.6% y/y; fuel imports +4.8%; nonfuel imports +0.7%; agri exports +2.6%; non-agri exports +2.1% (BLS)", actualShort:"Imp +1.1% · Exp +2.2%", previous:"Aug imports revised +0.5% m/m (was +0.7%); exports revised +1.2% m/m (was +0.6%) (BLS USDL-26-1577)", consensus:"imports +0.8% m/m; exports +1.0% m/m (TradingView)", vs:"imports hot +1.1% vs +0.8%; exports hot +2.2% vs +1.0%; import y/y 8.1% largest since Jul 2022; export y/y 11.6% largest since Jul 2022",
+    note:"BLS US Import & Export Price Indexes Sep — Fri 16 Oct 8:30am ET (USDL-26-1577). Fuel imports +4.8% and nonfuel +0.7% drove imports; agri +2.6% and non-agri +2.1% drove exports. Next MXP: Tue 17 Nov 8:30am ET (Oct data).", source:"https://www.bls.gov/news.release/ximpim.nr0.htm" },
   { id:"ca-cpi-sep", date:"2026-10-19", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada CPI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 CPI m/m (+ y/y / core as medium companions). Official: StatCan. Prior patch noted next CPI 19 Oct.", source:"Futu financial calendar (live API 2026-09-28)" },
@@ -1991,7 +1994,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-15T20:56:02.972140+08:00";
+const INFLATION_UPDATED_AT = "2026-10-15T21:08:59.772735+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
