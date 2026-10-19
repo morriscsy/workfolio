@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T12:19:39.538886+08:00",
+  "updatedAt": "2026-10-19T20:54:18.670753+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,10 +181,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-17T23:19:56+08:00",
+      "lastRunAt": "2026-10-19T20:54:18.670753+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Freeze-gap RESUME backfill 16–17 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY→17 Oct.",
-      "nextRunAt": "2026-10-16T20:45:00+08:00",
+      "lastSummary": "Quiet evening: no new fills. ca-cpi-sep already on calendar (+3.1%/+0.1%, soft). Still blank: ca-bos-q3 (11:30 ET), cn-lpr-oct (~9:15 Beijing Tue).",
+      "nextRunAt": "2026-10-20T20:45:00+08:00",
       "lastItems": []
     }
   ]
