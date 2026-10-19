@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-17T23:19:56+08:00",
+  "updatedAt": "2026-10-19T08:47:49.064675+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
     {
       "id": "radio",
-      "label": "Radio \u00b7 desk briefs",
+      "label": "Radio · desk briefs",
       "order": 0,
       "lastRunAt": "2026-09-28T21:45:30+08:00",
       "lastStatus": "succeeded",
@@ -13,19 +13,19 @@
     },
     {
       "id": "morning",
-      "label": "Morning batch \u00b7 Weekdays ~08:40 HKT",
+      "label": "Morning batch · Weekdays ~08:40 HKT",
       "order": 1,
       "lastRunAt": "2026-10-17T23:19:56+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Freeze-gap RESUME backfill 16\u201317 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY\u219217 Oct."
+      "lastSummary": "Freeze-gap RESUME backfill 16–17 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY→17 Oct."
     },
     {
       "id": "evening",
-      "label": "Evening batch \u00b7 Weekdays ~20:45 HKT",
+      "label": "Evening batch · Weekdays ~20:45 HKT",
       "order": 2,
       "lastRunAt": "2026-10-17T23:19:56+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Freeze-gap RESUME backfill 16\u201317 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY\u219217 Oct."
+      "lastSummary": "Freeze-gap RESUME backfill 16–17 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY→17 Oct."
     }
   ],
   "automations": [
@@ -35,14 +35,14 @@
       "chip": "7am desk",
       "description": "Daily radio. Portfolio note, desk board, six desk calls. PNG card at the end.",
       "batchId": "radio",
-      "batchLabel": "Radio \u00b7 desk briefs",
+      "batchLabel": "Radio · desk briefs",
       "batchOrder": 1,
       "covers": [
         "Overnight tape",
         "Next 36 hours",
         "Six desks"
       ],
-      "scheduleLabel": "Every day \u00b7 7am Hong Kong Time",
+      "scheduleLabel": "Every day · 7am Hong Kong Time",
       "cron": "0 7 * * *",
       "lastRunAt": "2026-09-28T07:03:23+08:00",
       "lastStatus": "succeeded",
@@ -57,14 +57,14 @@
       "chip": "8am Asia",
       "description": "Daily radio into the Asia cash open.",
       "batchId": "radio",
-      "batchLabel": "Radio \u00b7 desk briefs",
+      "batchLabel": "Radio · desk briefs",
       "batchOrder": 2,
       "covers": [
         "US close",
         "HK and Japan",
         "CNH and JPY"
       ],
-      "scheduleLabel": "Every day \u00b7 8am Hong Kong Time",
+      "scheduleLabel": "Every day · 8am Hong Kong Time",
       "cron": "0 8 * * *",
       "lastRunAt": "2026-09-28T08:07:38+08:00",
       "lastStatus": "succeeded",
@@ -79,14 +79,14 @@
       "chip": "4pm Europe",
       "description": "Daily radio at the Asia close and Europe open.",
       "batchId": "radio",
-      "batchLabel": "Radio \u00b7 desk briefs",
+      "batchLabel": "Radio · desk briefs",
       "batchOrder": 3,
       "covers": [
         "Asia scorecard",
         "London handoff",
         "Six desks"
       ],
-      "scheduleLabel": "Every day \u00b7 4pm Hong Kong Time",
+      "scheduleLabel": "Every day · 4pm Hong Kong Time",
       "cron": "0 16 * * *",
       "lastRunAt": "2026-09-28T16:56:35+08:00",
       "lastStatus": "succeeded",
@@ -101,14 +101,14 @@
       "chip": "8pm window",
       "description": "Weekday radio, thirty minutes before the usual 8:30am Eastern print.",
       "batchId": "radio",
-      "batchLabel": "Radio \u00b7 desk briefs",
+      "batchLabel": "Radio · desk briefs",
       "batchOrder": 4,
       "covers": [
         "8:30am Eastern print",
         "Rates and dollar",
         "Six desks"
       ],
-      "scheduleLabel": "Weekdays \u00b7 8pm Hong Kong Time",
+      "scheduleLabel": "Weekdays · 8pm Hong Kong Time",
       "cron": "0 20 * * 1-5",
       "lastRunAt": "2026-09-28T20:16:10+08:00",
       "lastStatus": "succeeded",
@@ -123,14 +123,14 @@
       "chip": "9pm US",
       "description": "Daily radio into the US cash open.",
       "batchId": "radio",
-      "batchLabel": "Radio \u00b7 desk briefs",
+      "batchLabel": "Radio · desk briefs",
       "batchOrder": 5,
       "covers": [
         "Europe handoff",
         "ES and the 10-year",
         "Six desks"
       ],
-      "scheduleLabel": "Every day \u00b7 9pm Hong Kong Time",
+      "scheduleLabel": "Every day · 9pm Hong Kong Time",
       "cron": "0 21 * * *",
       "lastRunAt": "2026-09-28T21:45:30+08:00",
       "lastStatus": "succeeded",
@@ -142,9 +142,9 @@
     {
       "id": "econpulse-actuals-morning-refresh",
       "name": "Actuals morning refresh",
-      "description": "Weekday Asia/early Actuals backfill \u2192 Pages",
+      "description": "Weekday Asia/early Actuals backfill → Pages",
       "batchId": "morning",
-      "batchLabel": "Morning batch \u00b7 Weekdays ~08:40 HKT",
+      "batchLabel": "Morning batch · Weekdays ~08:40 HKT",
       "batchOrder": 1,
       "covers": [
         "Asia CPI/labor (JP/CN/AU/HK)",
@@ -153,33 +153,18 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-17T23:19:56+08:00",
+      "lastRunAt": "2026-10-19T08:47:49.064675+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Freeze-gap RESUME backfill 16\u201317 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY\u219217 Oct.",
-      "nextRunAt": "2026-10-16T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "beige-book-oct",
-          "title": "Fed Beige Book",
-          "actualShort": "Modest growth \u00b7 prices firmer",
-          "status": "released",
-          "when": "2026-10-15T07:40:00+08:00"
-        },
-        {
-          "id": "au-lfs-sep",
-          "title": "Australia unemployment / employment (Sep)",
-          "actualShort": "Emp \u221239.3k \u00b7 UE 4.7%",
-          "status": "released",
-          "when": "2026-10-15T08:33:00+08:00"
-        }
-      ]
+      "lastSummary": "Morning quiet ~08:45 HKT Mon 19 Oct: no material fills. cn-activity-sep still due ~10:00 HKT (NBS Aug latest; TV null). ca-cpi-sep / cn-lpr-oct later. TODAY→Mon 19.",
+      "nextRunAt": "2026-10-20T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
       "name": "Actuals evening refresh",
-      "description": "Weekday after-US-morning Actuals \u2192 Pages",
+      "description": "Weekday after-US-morning Actuals → Pages",
       "batchId": "evening",
-      "batchLabel": "Evening batch \u00b7 Weekdays ~20:45 HKT",
+      "batchLabel": "Evening batch · Weekdays ~20:45 HKT",
       "batchOrder": 2,
       "covers": [
         "US morning data window (BLS/Census/BEA/DOL/ISM/S&P Global)",
@@ -190,7 +175,7 @@
       "cron": "45 20 * * 1-5",
       "lastRunAt": "2026-10-17T23:19:56+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Freeze-gap RESUME backfill 16\u201317 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY\u219217 Oct.",
+      "lastSummary": "Freeze-gap RESUME backfill 16–17 Oct: filled ez-cpi-final-sep (HICP +3.8%), ip-sep (+0.7%), inserted+filled mxpx-sep (imp +1.1%/exp +2.2%); TODAY→17 Oct.",
       "nextRunAt": "2026-10-16T20:45:00+08:00",
       "lastItems": []
     }
