@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T20:54:18.670753+08:00",
+  "updatedAt": "2026-10-19T21:23:26.606366+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,11 +181,18 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-19T20:54:18.670753+08:00",
+      "lastRunAt": "2026-10-19T21:23:26.606366+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Quiet evening: no new fills. ca-cpi-sep already on calendar (+3.1%/+0.1%, soft). Still blank: ca-bos-q3 (11:30 ET), cn-lpr-oct (~9:15 Beijing Tue).",
+      "lastSummary": "Post-US ~9:05am ET catch-up: no new event fills (ca-cpi-sep already in; ca-bos-q3 due 10:30am ET; cn-lpr-oct ~9pm ET). INFLATION live refresh: CA 3.0→3.1 (Sep), EU/SA next→Nov 2026.",
       "nextRunAt": "2026-10-20T20:45:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "inflation-te",
+          "title": "G20 inflation TE Last↓",
+          "actualShort": "CA 3.1 Sep; EU/SA next Nov",
+          "status": "released"
+        }
+      ]
     }
   ]
 }
