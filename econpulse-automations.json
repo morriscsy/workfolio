@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T10:20:54.735629+08:00",
+  "updatedAt": "2026-10-20T20:48:36.277712+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,17 +173,17 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-20T10:20:54.735629+08:00",
+      "lastRunAt": "2026-10-20T20:46:43+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia evening ~10:19am HKT Tue 20 / ~10:19pm ET Mon 19: filled ca-bos-q3 (BoC BOS Q3: sentiment ↑, BOS −0.33). Inflation no material change. Left uk-labour-sep + starts-sep blank (still future vs fire). Desktop skip (machines offline).",
-      "nextRunAt": "2026-10-20T20:45:00+08:00",
+      "lastSummary": "Filled starts-sep: Starts 1,221k (−5.2%) · Permits 1,400k (−0.2%) SAAR (Census–HUD CB26-162); soft vs ~1.305M starts, firm vs ~1.387M permits.",
+      "nextRunAt": "2026-10-21T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "ca-bos-q3",
-          "title": "BoC Business Outlook Survey (Q3)",
-          "actual": "Sentiment ↑ · BOS −0.33",
-          "vs": "improved vs Q2",
-          "source": "https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/"
+          "id": "starts-sep",
+          "title": "Housing starts / building permits (Sep)",
+          "actualShort": "Starts 1,221k · Permits 1,400k",
+          "status": "released",
+          "when": "2026-10-20 8:30am ET"
         }
       ]
     }

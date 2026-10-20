@@ -1222,9 +1222,9 @@ const EVENTS = [
   { id:"uk-labour-sep", date:"2026-10-20", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK labour market (ILO unemployment / claimant count)", impact:"high", status:"released",
     actual:"ILO UE 4.7% (Jun–Aug); emp rate 75.3%; employment +102k q/q to 34.577M; inactivity 20.9%; Claimant Count Sep 1.701M (up on month/year); AWE total +3.7% 3m/y / regular +3.7% 3m/y; vacancies Jul–Sep 691k (−21k q/q) (ONS 20 Oct)", actualShort:"UE 4.7% · emp +102k · AWE 3.7%", previous:"Prior print: ILO UE 4.9%; emp change +67k (TradingView ECONOMICS:GBUR / GBEMC); AWE total ~3.9% 3m/y", consensus:"UE ~4.9%; emp change ~+20k; avg earnings incl. bonus ~3.8% 3m/y; claimant change ~+19.4k (TradingView)", vs:"UE soft 4.7% vs ~4.9% cons (beat lower); emp +102k big beat vs ~+20k; AWE total 3.7% soft vs ~3.8%",
     note:"ONS Labour market overview UK: October 2026 — released Tue 20 Oct 07:00 UK (~2:00am ET / 14:00 HKT). Jun–Aug: UE 4.7% (−0.1pp q/q), emp rate 75.3% (+0.2pp), employment +102k q/q, inactivity 20.9%. AWE total and regular both +3.7% 3m/y (total down from 3.9%). Claimant Count Sep 1.701M (up on month/year; exact m/m change not scraped). Vacancies Jul–Sep 691k (−21k q/q). Next high-impact today: Census housing starts/permits Sep (starts-sep) 8:30am ET — do not fill early.", source:"https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/october2026" },
-  { id:"starts-sep", date:"2026-10-20", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Housing starts / building permits (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug starts 1.275M SAAR (−2.6% m/m); permits 1.394M SAAR (−2.7% m/m); SF starts 918k; completions 1.128M (Census–HUD 17 Sep)", consensus:"starts ~1.30M SAAR; permits ~1.39M SAAR (TradingView ECONOMICS:USHST / USBP)", vs:"",
-    note:"Census–HUD New Residential Construction Sep — Tue 20 Oct 8:30am ET (12th workday; schedule confirmed census.gov BPS). Official Aug priors: starts 1.275M / permits 1.394M. Consensus TradingView only — some street calendars still blank. Confirm census.gov day-of — never invent actuals. Must-watch for Tue session.", source:"https://www.census.gov/construction/bps/schedule.html" },
+  { id:"starts-sep", date:"2026-10-20", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Housing starts / building permits (Sep)", impact:"medium", status:"released",
+    actual:"starts 1,221k SAAR (−5.2% m/m); permits 1,400k (−0.2%); SF starts 859k (−4.6%); SF permits 845k (−4.0%); completions 1,192k (+2.2%)", actualShort:"Starts 1,221k · Permits 1,400k", previous:"Aug starts 1,288k (rev from 1,275k); permits 1,403k (rev from 1,394k)", consensus:"Starts ~1.305M · Permits ~1.387M (street)", vs:"starts soft vs ~1.305M; permits firm vs ~1.387M",
+    note:"Census–HUD CB26-162, 20 Oct 2026. Aug revised: starts 1,288k / permits 1,403k. SF starts 859k; 5+ unit starts 349k. Completions 1,192k. Street consensus via Seeking Alpha (1.305M / 1.387M).", source:"https://www.census.gov/construction/nrc/current/" },
   { id:"uk-cpi-sep", date:"2026-10-21", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK CPI (Sep)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug CPI +3.1% y/y / +0.5% m/m; core +2.6% y/y (ONS / TradingView)", consensus:"headline ~3.4% y/y / ~+0.3% m/m; core ~2.8% y/y (TradingView ECONOMICS:GBIRYY)", vs:"",
     note:"ONS CPI Sep — Wed 21 Oct ~2:00am ET. Consensus TradingView 3.4% vs prior 3.1%. Confirm ons.gov.uk day-of — never invent actuals.", source:"https://www.ons.gov.uk/" },
@@ -1997,7 +1997,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-20T10:19:36.761754+08:00";
+const INFLATION_UPDATED_AT = "2026-10-20T20:48:25.134449+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
