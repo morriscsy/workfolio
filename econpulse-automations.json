@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T08:49:42.197428+08:00",
+  "updatedAt": "2026-10-20T10:20:54.735629+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,16 +173,17 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-19T21:23:26.606366+08:00",
+      "lastRunAt": "2026-10-20T10:20:54.735629+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US ~9:05am ET catch-up: no new event fills (ca-cpi-sep already in; ca-bos-q3 due 10:30am ET; cn-lpr-oct ~9pm ET). INFLATION live refresh: CA 3.0→3.1 (Sep), EU/SA next→Nov 2026.",
+      "lastSummary": "Asia evening ~10:19am HKT Tue 20 / ~10:19pm ET Mon 19: filled ca-bos-q3 (BoC BOS Q3: sentiment ↑, BOS −0.33). Inflation no material change. Left uk-labour-sep + starts-sep blank (still future vs fire). Desktop skip (machines offline).",
       "nextRunAt": "2026-10-20T20:45:00+08:00",
       "lastItems": [
         {
-          "id": "inflation-te",
-          "title": "G20 inflation TE Last↓",
-          "actualShort": "CA 3.1 Sep; EU/SA next Nov",
-          "status": "released"
+          "id": "ca-bos-q3",
+          "title": "BoC Business Outlook Survey (Q3)",
+          "actual": "Sentiment ↑ · BOS −0.33",
+          "vs": "improved vs Q2",
+          "source": "https://www.bankofcanada.ca/2026/10/business-outlook-survey-third-quarter-of-2026/"
         }
       ]
     }
