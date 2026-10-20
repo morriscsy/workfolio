@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Tue 20 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 19 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 20); // Tue 20 Oct 2026
+const TODAY = new Date(2026, 9, 19); // Mon 19 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1216,9 +1216,9 @@ const EVENTS = [
   { id:"ca-bos-q3", date:"2026-10-19", time:"10:30am", tz:"ET", country:"CA", inst:"BoC", title:"BoC Business Outlook Survey (Q3)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Bank of Canada Business Outlook Survey Q3 — Mon 19 Oct ~10:30am ET (TradingView 14:30Z; companion Survey of Consumer Expectations same window). Soft qualitative companion to StatCan CPI for Oct 28 BoC decision. No numeric consensus on TV. Source: bankofcanada.ca — never invent actuals.", source:"https://www.bankofcanada.ca/" },
-  { id:"cn-lpr-oct", date:"2026-10-19", time:"9:00pm", tz:"ET", country:"CN", inst:"PBOC", title:"China LPR (1y / 5y)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"1y 3.00% / 5y+ 3.50% (as of 2026-09-20 Bank of China LPR table)", consensus:"hold 3.00% / 3.50% (Reuters expectation; TV ECONOMICS:CNINTR also 3.00 / 3.50)", vs:"",
-    note:"PBOC/NIFA LPR fix Mon 19 Oct ~9:15 Beijing (= ~9:00pm ET / TV 01:15Z Tue 20). Watch 1y and 5y vs prior fix. Reuters (2026-10-19) expects 17th straight hold — expectation only, not locked actual. Confirm on NIFA/PBOC day-of — never invent actuals.", source:"http://www.pbc.gov.cn/" },
+  { id:"cn-lpr-oct", date:"2026-10-19", time:"9:00pm", tz:"ET", country:"CN", inst:"PBOC", title:"China LPR (1y / 5y)", impact:"high", status:"released",
+    actual:"1y LPR 3.0%; 5y+ LPR 3.5% (unchanged; PBOC/NIFA 20 Oct 2026 announcement)", actualShort:"Hold 3.0% / 3.5%", previous:"1y 3.00% / 5y+ 3.50% (as of 2026-09-20 Bank of China LPR table / PBOC Sep fix)", consensus:"hold 3.00% / 3.50% (Reuters survey expectation; TV ECONOMICS:CNINTR also 3.00 / 3.50)", vs:"hold as expected — 17th straight month unchanged",
+    note:"PBOC authorized NIFA LPR fix Tue 20 Oct 09:00 Beijing (= Mon 19 Oct ~9:00pm ET). Official: 1y 3.0%, 5y+ 3.5% — both unchanged vs Sep. Matches Reuters hold call after firmer Q3 GDP. Next high-impact: UK labour (uk-labour-sep) Tue 20 Oct ~2:00am ET.", source:"https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/3876551/2026102008303870640/index.html" },
   { id:"uk-labour-sep", date:"2026-10-20", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK labour market (ILO unemployment / claimant count)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"ILO UE 4.9% (prior print; TradingView ECONOMICS:GBUR)", consensus:"UE ~4.9% (TradingView); claimant change ~+19.4k; avg earnings incl. bonus ~3.8% 3m/y (TradingView)", vs:"",
     note:"ONS labour market cluster Tue 20 Oct ~2:00am ET (~HKT 2:00pm). Watch ILO unemployment vs 4.9% hold, pay growth, claimant count. Consensus TradingView — never invent actuals.", source:"https://www.ons.gov.uk/" },
