@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T21:23:26.606366+08:00",
+  "updatedAt": "2026-10-20T08:49:42.197428+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,19 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-19T12:19:39.538886+08:00",
+      "lastRunAt": "2026-10-20T08:49:42.197428+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Midday fill cn-activity-sep (Q3 GDP 4.5%, Sep IP 5.5%, retail 1.1%, FAI −7.2%); Pages push pending.",
-      "nextRunAt": "2026-10-20T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "cn-activity-sep",
-          "title": "China GDP (Q3) + industrial production / retail / FAI (Sep)",
-          "actualShort": "GDP 4.5% · IP 5.5% · retail 1.1% · FAI −7.2%",
-          "status": "released",
-          "when": "2026-10-19T12:20:00+08:00"
-        }
-      ]
+      "lastSummary": "Morning quiet ~08:49 HKT: no material fills; LPR (PBC/NIFC still Sep 20; TV actuals null pre-09:15 Beijing), UK labour (~14:00 HKT), BoC BOS (~11:30 ET), Census starts (8:30am ET) still ahead. TODAY bumped Tue 20. Inflation TE live unchanged.",
+      "nextRunAt": "2026-10-21T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
