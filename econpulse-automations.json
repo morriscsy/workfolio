@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:48:55.848407+08:00",
+  "updatedAt": "2026-10-21T20:50:39.630945+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,10 +181,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-21T10:19:50.647086+08:00",
+      "lastRunAt": "2026-10-21T20:50:39.630945+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Quiet Asia evening ~10:14pm ET Tue 20 Oct / 10:14am HKT Wed 21: no new official actuals (uk-labour-sep + starts-sep already filled). uk-cpi-sep still blank (ONS Sep bulletin 404; due Wed 07:00 UK). Inflation TE live: order/values unchanged. Next: claims-oct22 Thu 8:30am ET; jp-cpi-sep / hk-cpi-sep Thu.",
-      "nextRunAt": "2026-10-21T20:45:00+08:00",
+      "lastSummary": "Quiet Wed 21 Oct evening: no new calendar Actuals (uk-cpi-sep already on Pages from earlier push 5488074). Inflation TE live: ZA 4.4→4.5 Sep; UK next Nov→Oct; UK order ↑. Still ahead blank: claims-oct22 / jp-cpi-sep / hk-cpi-sep Thu 22.",
+      "nextRunAt": "2026-10-22T20:45:00+08:00",
       "lastItems": []
     }
   ]
