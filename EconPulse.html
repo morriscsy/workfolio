@@ -1225,9 +1225,9 @@ const EVENTS = [
   { id:"starts-sep", date:"2026-10-20", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Housing starts / building permits (Sep)", impact:"medium", status:"released",
     actual:"starts 1,221k SAAR (−5.2% m/m); permits 1,400k (−0.2%); SF starts 859k (−4.6%); SF permits 845k (−4.0%); completions 1,192k (+2.2%)", actualShort:"Starts 1,221k · Permits 1,400k", previous:"Aug starts 1,288k (rev from 1,275k); permits 1,403k (rev from 1,394k)", consensus:"Starts ~1.305M · Permits ~1.387M (street)", vs:"starts soft vs ~1.305M; permits firm vs ~1.387M",
     note:"Census–HUD CB26-162, 20 Oct 2026. Aug revised: starts 1,288k / permits 1,403k. SF starts 859k; 5+ unit starts 349k. Completions 1,192k. Street consensus via Seeking Alpha (1.305M / 1.387M).", source:"https://www.census.gov/construction/nrc/current/" },
-  { id:"uk-cpi-sep", date:"2026-10-21", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK CPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug CPI +3.1% y/y / +0.5% m/m; core +2.6% y/y (ONS / TradingView)", consensus:"headline ~3.4% y/y / ~+0.3% m/m; core ~2.8% y/y (TradingView ECONOMICS:GBIRYY)", vs:"",
-    note:"ONS CPI Sep — Wed 21 Oct ~2:00am ET. Consensus TradingView 3.4% vs prior 3.1%. Confirm ons.gov.uk day-of — never invent actuals.", source:"https://www.ons.gov.uk/" },
+  { id:"uk-cpi-sep", date:"2026-10-21", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK CPI (Sep)", impact:"high", status:"released",
+    actual:"CPI +3.5% y/y, +0.4% m/m; CPIH +3.6% y/y, +0.4% m/m; core CPI +2.8% y/y (from 2.6%); core CPIH +3.1% y/y (from 2.9%) (ONS 21 Oct)", actualShort:"CPI 3.5% · CPIH 3.6% · core 2.8%", previous:"Aug CPI +3.1% y/y / +0.5% m/m; core +2.6% y/y (ONS / TradingView)", consensus:"headline ~3.4% y/y / ~+0.3% m/m; core ~2.8% y/y (TradingView ECONOMICS:GBIRYY)", vs:"headline hot 3.5% vs ~3.4% cons; m/m +0.4% vs ~+0.3%; core 2.8% in line vs ~2.8%",
+    note:"ONS Consumer price inflation UK: September 2026 — released Wed 21 Oct 07:00 UK (~2:00am ET). Transport/motor fuels largest upward contribution to the monthly change in annual rates; restaurants and hotels largest offsetting downward. Next: 18 Nov.", source:"https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/september2026" },
   { id:"uk-retail-sep", date:"2026-10-23", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK retail sales (Sep)", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Aug +0.5% m/m / +2.4% y/y (ONS / TradingView)", consensus:"~−0.2% m/m / ~+1.0% y/y (TradingView ECONOMICS:GBRSMM)", vs:"",
     note:"ONS retail sales Sep — Fri 23 Oct ~2:00am ET. Consensus TradingView — never invent actuals.", source:"https://www.ons.gov.uk/" },
@@ -1997,7 +1997,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-21T08:50:21.209783+08:00";
+const INFLATION_UPDATED_AT = "2026-10-21T14:48:31.464493+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
@@ -2041,9 +2041,9 @@ const INFLATION = [
   { code:"ID", name:"Indonesia", last:3.28, prev:3.19, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"WIB",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"WIB" },
-  { code:"UK", name:"United Kingdom", last:3.1, prev:2.9, g20:true,
-    refPeriod:"Aug 2026", refDate:"2026-08-19", refTime:"7:00am", refTz:"UK",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"UK" },
+  { code:"UK", name:"United Kingdom", last:3.5, prev:3.1, g20:true,
+    refPeriod:"Sep 2026", refDate:"2026-10-21", refTime:"7:00am", refTz:"UK",
+    nextPeriod:"Nov 2026", nextDate:"2026-11-18", nextTime:"7:00am", nextTz:"UK" },
   { code:"FR", name:"France", last:3.1, prev:2.4, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
