@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T20:48:36.277712+08:00",
+  "updatedAt": "2026-10-21T08:50:27.377522+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-20T08:49:42.197428+08:00",
+      "lastRunAt": "2026-10-21T08:50:27.377522+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning quiet ~08:49 HKT: no material fills; LPR (PBC/NIFC still Sep 20; TV actuals null pre-09:15 Beijing), UK labour (~14:00 HKT), BoC BOS (~11:30 ET), Census starts (8:30am ET) still ahead. TODAY bumped Tue 20. Inflation TE live unchanged.",
-      "nextRunAt": "2026-10-21T08:40:00+08:00",
+      "lastSummary": "Quiet morning 21 Oct HKT: TODAY→Wed 21 Oct; uk-cpi-sep correctly blank (ONS not yet published, due ~14:00 HKT); inflation TE CA next Oct→Nov; no Actuals fills.",
+      "nextRunAt": "2026-10-22T08:40:00+08:00",
       "lastItems": []
     },
     {
