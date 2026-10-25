@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T20:50:39.630945+08:00",
+  "updatedAt": "2026-10-26T00:07:27.098237+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,19 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-21T14:48:55.848407+08:00",
+      "lastRunAt": "2026-10-21T21:15:25.700767+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Filled uk-cpi-sep: CPI 3.5% y/y (+0.4% m/m) · CPIH 3.6% · core CPI 2.8% (ONS 21 Oct); hot vs ~3.4% headline cons, core in line. Inflation UK row → Sep 3.5%.",
+      "lastSummary": "2026-10-21 ~9:14am ET post-US: 0 past blank high/medium; uk-cpi-sep already released. Inflation TE live: order/values unchanged. Silent.",
       "nextRunAt": "2026-10-22T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "uk-cpi-sep",
-          "title": "UK CPI (Sep)",
-          "actualShort": "CPI 3.5% · CPIH 3.6% · core 2.8%",
-          "status": "released",
-          "when": "2026-10-21 ~2:00am ET"
-        }
-      ]
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
@@ -181,11 +173,26 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-21T20:50:39.630945+08:00",
+      "lastRunAt": "2026-10-26T00:07:27.098237+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Quiet Wed 21 Oct evening: no new calendar Actuals (uk-cpi-sep already on Pages from earlier push 5488074). Inflation TE live: ZA 4.4→4.5 Sep; UK next Nov→Oct; UK order ↑. Still ahead blank: claims-oct22 / jp-cpi-sep / hk-cpi-sep Thu 22.",
-      "nextRunAt": "2026-10-22T20:45:00+08:00",
-      "lastItems": []
+      "lastSummary": "Freeze-gap RESUME backfill: verified Oct22–25 six; added uk-pmi-flash-oct (53.1/53.1/52.8) + umich-oct-final (48.0); TODAY→Mon 26; Pages push.",
+      "nextRunAt": "2026-10-26T20:45:00+08:00",
+      "lastItems": [
+        {
+          "id": "uk-pmi-flash-oct",
+          "title": "UK flash PMI mfg + services (Oct)",
+          "actualShort": "Comp 53.1 · Svcs 53.1 · Mfg 52.8",
+          "status": "released",
+          "when": "2026-10-26T00:10:00+08:00"
+        },
+        {
+          "id": "umich-oct-final",
+          "title": "UMich consumer sentiment final (Oct)",
+          "actualShort": "UMich 48.0 · 1y 4.7% · LR 3.5%",
+          "status": "released",
+          "when": "2026-10-26T00:10:00+08:00"
+        }
+      ]
     }
   ]
 }

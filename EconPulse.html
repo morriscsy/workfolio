@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Sun 25 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 26 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 25); // Sun 25 Oct 2026
+const TODAY = new Date(2026, 9, 26); // Mon 26 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1194,7 +1194,7 @@ const EVENTS = [
     note:"StatCan Labour Force Survey Sep 2026, released 9 Oct. Youth −48k; educational services −35k; health care −23k; manufacturing −13k. Quebec −49k; Alberta +23k. Avg hourly wages +2.3% y/y. Next: 6 Nov.", source:"https://www150.statcan.gc.ca/n1/daily-quotidien/261009/dq261009a-eng.htm" },
   { id:"uom-prelim-oct", date:"2026-10-09", time:"10:00am", tz:"ET", country:"US", inst:"UMich", title:"UMich consumer sentiment prelim (Oct)", impact:"high", status:"released",
     actual:"Sentiment prelim 46.3 (Sep 48.1); Current Conditions 44.7 (was 50.9); Expectations 47.3 (was 46.3); 1y inflation exp 4.7% (was 4.6%); long-run 3.5% (was 3.4%) (UMich Surveys of Consumers)", actualShort:"UMich 46.3 · 1y inf 4.7% · LR 3.5%", previous:"Sep final sentiment 48.1; Current 50.9; Expectations 46.3; 1y 4.6%; LR 3.4% (UMich)", consensus:"n/a", vs:"Sentiment slipped −1.8pt; inflation expectations up second month to highest since May",
-    note:"University of Michigan Surveys of Consumers preliminary Oct 2026, Fri 9 Oct 10:00am ET. Final Oct due Fri 23 Oct. Official table on sca.isr.umich.edu.", source:"https://www.sca.isr.umich.edu/" },
+    note:"University of Michigan Surveys of Consumers preliminary Oct 2026, Fri 9 Oct 10:00am ET. Final Oct filled as umich-oct-final (Fri 23 Oct CSI 48.0). Official table on sca.isr.umich.edu.", source:"https://www.sca.isr.umich.edu/" },
   { id:"cn-trade-sep", date:"2026-10-13", time:"~12:00pm", tz:"ET", country:"CN", inst:"Customs", title:"China trade balance (Sep)", impact:"medium", status:"released",
     actual:"Sep goods trade ¥5.16T (+27.5% y/y); exports ¥3.03T (+29.6%); imports ¥2.13T (+24.6%); surplus ≈¥900B (Customs). Q1–Q3: ¥39.94T (+18.8%)", actualShort:"surplus ~¥900B · exp +29.6%", previous:"Aug surplus ~¥809.3B; exp +25.0% y/y; imp +28.2% y/y (GACC)", consensus:"surplus ~¥805B; exp ~+25.5% y/y; imp ~+24.5% y/y (TradingView)", vs:"surplus beat vs ~¥805B; exp hot vs ~25.5% (+4.1pp); imp in line vs ~24.5%",
     note:"GAC/SCIO 14 Oct 2026 ~10:00 CST. 据海关统计: Sep goods trade first break above ¥5T (¥5.16T, +27.5% y/y); exports ¥3.03T (+29.6%), imports ¥2.13T (+24.6%) → surplus ≈¥900B vs Aug ¥809.3B and street ~¥805B. Q1–Q3 ¥39.94T (+18.8%). USD monthly tables not yet on english.customs.gov.cn (Aug still latest). Next: US CPI (cpi-sep) 8:30am ET Wed 14 Oct; AU LFS (au-lfs-sep) 8:30pm ET Wed 14 Oct.", source:"https://www.yicai.com/brief/103392659.html" },
@@ -1234,9 +1234,15 @@ const EVENTS = [
   { id:"ez-pmi-flash-oct", date:"2026-10-23", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global", title:"Eurozone PMI flash mfg + services (Oct)", impact:"high", status:"released",
     actual:"Flash composite 51.9 (Sep 53.1); services 51.7 (53.0); manufacturing PMI 52.4 (52.9); mfg output 52.4 (53.6) — 4-mo low composite; France back in contraction (S&P Global 23 Oct)", actualShort:"Comp 51.9 · Svcs 51.7 · Mfg 52.4", previous:"Sep final: mfg 52.9 / services 53.0 / composite 53.1 (S&P Global)", consensus:"mfg ~52.5 / services ~52.5 / composite ~52.7 (TradingView); Econoday composite 52.6 / mfg 52.6 / svcs 52.5", vs:"soft miss: composite 51.9 vs ~52.6–52.7; services 51.7 vs ~52.5; mfg 52.4 vs ~52.5–52.6",
     note:"S&P Global / HCOB Eurozone PMI flash Oct — Fri 23 Oct ~4:00am ET. Composite 51.9 (4-mo low); services 51.7; mfg PMI 52.4. Fourth month of expansion but slower; French private sector back into contraction. Finals: mfg 2 Nov / services+composite 4 Nov.", source:"https://www.pmi.spglobal.com/Public/Home/PressRelease/460d8e59c101498493559df807c62014" },
+  { id:"uk-pmi-flash-oct", date:"2026-10-23", time:"~4:30am", tz:"ET", country:"UK", inst:"S&P Global", title:"UK flash PMI mfg + services (Oct)", impact:"high", status:"released",
+    actual:"Flash composite 53.1 (Sep 52.0, 8-mo high); services 53.1 (52.1, 8-mo high); manufacturing PMI 52.8 (51.9, 5-mo high); mfg output 53.1 (51.5, 25-mo high) (S&P Global 23 Oct)", actualShort:"Comp 53.1 · Svcs 53.1 · Mfg 52.8", previous:"Sep flash/final context: composite 52.0; services 52.1; manufacturing PMI 51.9 (S&P Global)", consensus:"composite ~51.8 / mfg ~51.7 / services ~51.8 (Econoday)", vs:"big beat: composite 53.1 vs ~51.8; services 53.1 vs ~51.8; mfg 52.8 vs ~51.7",
+    note:"S&P Global Flash UK PMI Oct — Fri 23 Oct ~4:30am ET. Composite 53.1 (8-mo high); services 53.1; mfg PMI 52.8; mfg output 53.1 (25-mo high). Fourth month of expansion; employment returned to growth. Finals: mfg 2 Nov / services+composite 4 Nov.", source:"https://www.pmi.spglobal.com/Public/Home/PressRelease/eb1c5eed6ac8438a806b4d00ada164aa" },
   { id:"us-pmi-flash-oct", date:"2026-10-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"S&P Global US PMI flash mfg + services (Oct)", impact:"medium", status:"released",
     actual:"Flash composite 57.6 (Sep 58.4); services 57.9 (58.8); manufacturing PMI 56.0 (55.9, 53-mo high); mfg output 55.8 (56.2) (S&P Global 23 Oct)", actualShort:"Comp 57.6 · Svcs 57.9 · Mfg 56.0", previous:"Sep: mfg 55.9 / services 58.8 / composite 58.4 (S&P Global)", consensus:"mfg ~55.5 / services ~57.9–58.0 (TradingView; Econoday mfg 55.5 / svcs 58.0 / composite 57.6)", vs:"composite in line 57.6 vs ~57.6; mfg beat 56.0 vs ~55.5; services ~in line 57.9 vs ~58.0",
     note:"S&P Global US PMI flash Oct — Fri 23 Oct 9:45am ET. Composite 57.6 (2-mo low but still strong); services 57.9; mfg PMI 56.0 (strongest since May 2022). Selling prices rose at sharpest rate since Aug 2022. Finals: mfg 2 Nov / services+composite 4 Nov.", source:"https://www.pmi.spglobal.com/Public/Home/PressRelease/07d16568e63346999890940d47639cd9" },
+  { id:"umich-oct-final", date:"2026-10-23", time:"10:00am", tz:"ET", country:"US", inst:"UMich", title:"UMich consumer sentiment final (Oct)", impact:"medium", status:"released",
+    actual:"Final CSI 48.0 (prelim 46.3; Sep 48.1); Current Conditions 46.7 (prelim 44.7; Sep 50.9); Expectations 48.8 (prelim 47.3; Sep 46.3); 1y inflation exp 4.7% (Sep 4.6%); long-run 3.5% (Sep 3.4%) (UMich Surveys of Consumers)", actualShort:"UMich 48.0 · 1y 4.7% · LR 3.5%", previous:"Sep final CSI 48.1; Current 50.9; Expectations 46.3; 1y 4.6%; LR 3.4%. Oct prelim CSI 46.3 / Current 44.7 / Exp 47.3 (UMich)", consensus:"≈46.3 final (Reuters poll; matched Oct prelim)", vs:"beat vs ~46.3 street (final 48.0 revised up from prelim 46.3); −0.1pt vs Sep 48.1; Current soft, Expectations firmer",
+    note:"UMich Surveys of Consumers final Oct 2026 — Fri 23 Oct 10:00am ET. Sentiment held near Sep (48.0 vs 48.1); Current Conditions −8.3% m/m on durables/interest rates; Expectations +5.4% m/m. Year-ahead inflation 4.7% / long-run 3.5% — both highest since May. Official table on sca.isr.umich.edu.", source:"https://www.sca.isr.umich.edu/" },
   { id:"au-cpi-q3", date:"2026-10-27", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia CPI (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 quarterly CPI 8:30pm ET (HKT ~8:30am Oct 28). Official: ABS.", source:"Futu financial calendar (live API 2026-09-28)" },
@@ -1624,7 +1630,9 @@ const METRICS = {
     { label:"FF upper", unit:"%", previous:4.00, sense:"rate" }
   ],
   "jp-cpi-sep": [
-    { label:"Ex-fresh food y/y", unit:"%", previous:1.7, sense:"hot" }
+    { label:"CPI y/y", unit:"%", actual:2.1, previous:1.9, sense:"hot" },
+    { label:"Ex-fresh food y/y", unit:"%", actual:2.1, consensus:2.1, previous:1.7, sense:"hot" },
+    { label:"Core ex energy y/y", unit:"%", actual:2.4, previous:1.9, sense:"hot" }
   ],
   "cn-cpi-sep": [
     { label:"CPI y/y", unit:"%", actual:0.9, consensus:1.0, previous:0.8, sense:"hot" },
@@ -1637,9 +1645,26 @@ const METRICS = {
     { label:"Official Mfg PMI", unit:"", previous:null, sense:"higher-good" }
   ],
   "us-pmi-flash-oct": [
-    { label:"Composite", unit:"", previous:58.4, sense:"higher-good" },
-    { label:"Services", unit:"", previous:58.7, sense:"higher-good" },
-    { label:"Manufacturing PMI", unit:"", previous:57.0, sense:"higher-good" }
+    { label:"Composite", unit:"", actual:57.6, consensus:57.6, previous:58.4, sense:"higher-good" },
+    { label:"Services", unit:"", actual:57.9, consensus:58.0, previous:58.8, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", actual:56.0, consensus:55.5, previous:55.9, sense:"higher-good" }
+  ],
+  "uk-pmi-flash-oct": [
+    { label:"Composite", unit:"", actual:53.1, consensus:51.8, previous:52.0, sense:"higher-good" },
+    { label:"Services", unit:"", actual:53.1, consensus:51.8, previous:52.1, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", actual:52.8, consensus:51.7, previous:51.9, sense:"higher-good" }
+  ],
+  "umich-oct-final": [
+    { label:"CSI final", unit:"", actual:48.0, consensus:46.3, previous:48.1, sense:"higher-good" },
+    { label:"Current", unit:"", actual:46.7, previous:50.9, sense:"higher-good" },
+    { label:"Expectations", unit:"", actual:48.8, previous:46.3, sense:"higher-good" },
+    { label:"1y infl. exp.", unit:"%", actual:4.7, previous:4.6, sense:"hot" },
+    { label:"5–10y infl. exp.", unit:"%", actual:3.5, previous:3.4, sense:"hot" }
+  ],
+  "ez-pmi-flash-oct": [
+    { label:"Composite", unit:"", actual:51.9, consensus:52.6, previous:53.1, sense:"higher-good" },
+    { label:"Services", unit:"", actual:51.7, consensus:52.5, previous:53.0, sense:"higher-good" },
+    { label:"Manufacturing PMI", unit:"", actual:52.4, consensus:52.6, previous:52.9, sense:"higher-good" }
   ]
 };
 
