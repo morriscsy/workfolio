@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 21 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Sun 25 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 21); // Wed 21 Oct 2026
+const TODAY = new Date(2026, 9, 25); // Sun 25 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1101,9 +1101,9 @@ const EVENTS = [
   { id:"claims-oct15", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"released",
     actual:"Week ended Oct 10: SA initial 199k (+1k from prior revised 198k); 4-wk avg 198.5k (+0.25k); insured unemp week ended Oct 3: 1.710M (−4k; prior revised to 1.714M) (DOL)", actualShort:"Claims 199k · Cont 1.71M", previous:"Week ended Oct 3 revised: SA initial 198k (was 197k); 4-wk avg 198.25k; insured unemp 1.714M (was 1.716M) (DOL 15 Oct)", consensus:"200k initial (TradingView)", vs:"slight soft/beat — 199k vs 200k consensus",
     note:"DOL UI weekly USDL 26-1599-NAT — Thu 15 Oct 8:30am ET. Week ending Oct 10: SA initial 199,000 (+1k from prior week revised up +1k to 198k). 4-wk avg 198,500 (+250). Insured unemployment week ending Oct 3: 1,710,000 (−4k; prior revised −2k to 1,714k). IUR 1.1% unch. Next claims: claims-oct22 Thu 22 Oct.", source:"https://www.dol.gov/ui/data.pdf" },
-  { id:"claims-oct22", date:"2026-10-22", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Week ended Oct 10: SA initial 199k; 4-wk avg 198.5k; insured unemp 1.710M (DOL 15 Oct)", consensus:"~200k initial (TradingView ECONOMICS:USIJC)", vs:"",
-    note:"DOL UI weekly — Thu 22 Oct 8:30am ET. Prior week 199k. Consensus TradingView 200k. Confirm oui.doleta.gov / dol.gov — never invent actuals.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-oct22", date:"2026-10-22", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
+    actual:"Week ended Oct 17: SA initial 194k (−6k from prior revised 200k); 4-wk avg 197.75k (−1k); insured unemp week ended Oct 10: 1.728M (+25k; prior revised 1.710M→1.703M) (DOL USDL 26-1613-NAT)", actualShort:"Claims 194k · Cont 1.728M", previous:"Week ended Oct 10 revised: SA initial 200k (was 199k); 4-wk avg 198.75k; insured unemp 1.703M (was 1.710M) (DOL 22 Oct)", consensus:"~200k initial (TradingView ECONOMICS:USIJC; Reuters poll 200k)", vs:"softer/beat 194k vs ~200k; near multi-decade lows; cont claims +25k to 1.728M",
+    note:"DOL UI weekly — Thu 22 Oct 8:30am ET (USDL 26-1613-NAT). Advance SA initial week ended Oct 17: 194k (−6k); prior week revised up 199k→200k; 4-wk avg 197,750. Insured unemployment week ended Oct 10: 1,728,000 (+25k); prior revised down 1,710k→1,703k. Sixth straight week ≤200k.", source:"https://www.dol.gov/ui/data.pdf" },
   { id:"claims-oct29", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Same morning as GDP/PCE window.", source:"https://www.dol.gov/ui/data.pdf" },
@@ -1127,9 +1127,9 @@ const EVENTS = [
   { id:"hk-cpi-aug", date:"2026-09-23", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Aug)", impact:"medium", status:"released",
     actual:"Composite CPI +1.7% y/y (unch vs Jul); underlying +1.9% y/y; SA 3-mo avg +0.2% m/m", actualShort:"CPI 1.7% · und. 1.9%", previous:"Jul Composite +1.7% y/y; underlying +1.9% (C&SD)", consensus:"~1.7% (The Standard / market)", vs:"in line; y/y unchanged vs Jul",
     note:"Official C&SD via HKSAR GIA 23 Sep 2026 (P2026092300316). Electricity/gas/water +11.5%, misc services +4.7%, transport +3.9%; basic food −0.2%. CPI(A/B/C) +1.2%/+1.8%/+1.9%. Fuel-related still hot; overall inflation moderate.", source:"https://www.info.gov.hk/gia/general/202609/23/P2026092300316.htm" },
-  { id:"hk-cpi-sep", date:"2026-10-22", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"HK C&SD schedule: Sep CPI release 22 Oct 2026.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
+  { id:"hk-cpi-sep", date:"2026-10-22", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Sep)", impact:"medium", status:"released",
+    actual:"Composite CPI +1.9% y/y (Aug +1.7%); underlying (ex govt one-off relief) +2.1% y/y (Aug +1.9%); CPI(A)/(B)/(C) +1.4%/+2.0%/+2.3% y/y; 3-mo sa avg m/m Composite +0.2% (C&SD 22 Oct)", actualShort:"Comp CPI +1.9% · underlying +2.1%", previous:"Aug Composite CPI +1.7% y/y; underlying +1.9% y/y (C&SD)", consensus:"n/a", vs:"headline +1.9% (from +1.7%); underlying +2.1% (from +1.9%) — transport/package holidays main upward drivers",
+    note:"HK C&SD Consumer Price Indices Sep — Thu 22 Oct 2026. Overall +1.9% y/y; underlying inflation 2.1%. Faster inbound/outbound transport fares and package holiday charges. Electricity/gas/water +12.9% y/y largest component rise.", source:"https://www.info.gov.hk/gia/general/202610/22/P2026102200426.htm" },
   { id:"hk-gdp-q3", date:"2026-10-30", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong GDP advance (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"HK C&SD advance GDP estimates — Oct 30 listed for Q3 on 2026 schedule.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
@@ -1140,9 +1140,9 @@ const EVENTS = [
   { id:"jp-tokyo-sep", date:"2026-10-01", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Tokyo CPI preliminary (Sep)", impact:"medium", status:"released",
     actual:"Tokyo ku-area CPI prelim Sep: all-items +2.7% y/y; ex fresh food (core) +2.7% y/y; ex fresh food & energy +3.0% y/y (MIC/Statistics Bureau)", actualShort:"Tokyo CPI +2.7% · core +2.7% · ex FE +3.0%", previous:"n/a on prior calendar stub — confirm Aug Tokyo series day-of if needed", consensus:"n/a", vs:"Core back above 2% after soft stretch — BoJ-relevant Tokyo gauge",
     note:"MIC 2025-base Tokyo ku-area CPI mid-month prelim for Sep (released ~2 Oct JST / stamped 1 Oct 7:30pm ET on calendar). All-items index 102.5, +2.7% y/y; core (ex fresh food) +2.7%; ex fresh food & energy +3.0%.", source:"https://www.soumu.go.jp/menu_news/s-news/01toukei08_01000353.html" },
-  { id:"jp-cpi-sep", date:"2026-10-22", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug nationwide CPI +1.9% y/y; core (ex-fresh food) +1.7% y/y (Statistics Bureau / TradingView)", consensus:"core ex-fresh food ~2.1% y/y (TradingView ECONOMICS:JPCIR); headline forecast n/a on TV", vs:"",
-    note:"Japan CPI nationwide Sep — Thu 22 Oct 7:30pm ET. Confirm stat.go.jp day-of — never invent actuals.", source:"https://www.stat.go.jp/" },
+  { id:"jp-cpi-sep", date:"2026-10-22", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Sep)", impact:"high", status:"released",
+    actual:"Nationwide Sep (2025=100): headline CPI 102.2 / +2.1% y/y / +0.4% m/m sa; core ex-fresh food 102.3 / +2.1% y/y / +0.5% m/m sa; core-core ex-fresh+energy 102.8 / +2.4% y/y / +0.5% m/m sa (Statistics Bureau 23 Oct)", actualShort:"CPI +2.1% · core +2.1% · core-core +2.4%", previous:"Aug nationwide: headline +1.9% y/y; core ex-fresh food +1.7% y/y; core-core +1.9% y/y (Statistics Bureau)", consensus:"core ex-fresh food ~2.1% y/y (TradingView ECONOMICS:JPCIR); headline forecast n/a on TV", vs:"core in line vs ~2.1%; headline +2.1% (first >2% since Dec 2025); core-core hot +2.4% (from +1.9%)",
+    note:"Statistics Bureau Japan CPI nationwide Sep — released Fri 23 Oct 08:30 JST (=Thu 22 Oct 7:30pm ET). Headline +2.1% y/y (Aug 1.9%); core ex-fresh food +2.1% (Aug 1.7%); ex-fresh+energy +2.4% (Aug 1.9%). 2025=100 base.", source:"https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf" },
 
   { id:"ez-pmi-sep", date:"2026-10-01", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global/HCOB", title:"Eurozone manufacturing PMI final (Sep)", impact:"medium", status:"released",
     actual:"Eurozone manufacturing PMI final 52.9 (flash 52.7; Aug 50.7/52.7 context per S&P Global / Reuters) — highest in 52 months", actualShort:"EZ mfg PMI final 52.9", previous:"Aug final context ~50.7–52.7 series; Sep flash 52.7 (S&P Global)", consensus:"n/a (no Reuters/Bloomberg/WSJ poll URL cited on calendar — flash was 52.7)", vs:"Final revised up +0.2 vs flash 52.7; continued expansion / multi-year high",
@@ -1228,15 +1228,15 @@ const EVENTS = [
   { id:"uk-cpi-sep", date:"2026-10-21", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK CPI (Sep)", impact:"high", status:"released",
     actual:"CPI +3.5% y/y, +0.4% m/m; CPIH +3.6% y/y, +0.4% m/m; core CPI +2.8% y/y (from 2.6%); core CPIH +3.1% y/y (from 2.9%) (ONS 21 Oct)", actualShort:"CPI 3.5% · CPIH 3.6% · core 2.8%", previous:"Aug CPI +3.1% y/y / +0.5% m/m; core +2.6% y/y (ONS / TradingView)", consensus:"headline ~3.4% y/y / ~+0.3% m/m; core ~2.8% y/y (TradingView ECONOMICS:GBIRYY)", vs:"headline hot 3.5% vs ~3.4% cons; m/m +0.4% vs ~+0.3%; core 2.8% in line vs ~2.8%",
     note:"ONS Consumer price inflation UK: September 2026 — released Wed 21 Oct 07:00 UK (~2:00am ET). Transport/motor fuels largest upward contribution to the monthly change in annual rates; restaurants and hotels largest offsetting downward. Next: 18 Nov.", source:"https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/september2026" },
-  { id:"uk-retail-sep", date:"2026-10-23", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK retail sales (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug +0.5% m/m / +2.4% y/y (ONS / TradingView)", consensus:"~−0.2% m/m / ~+1.0% y/y (TradingView ECONOMICS:GBRSMM)", vs:"",
-    note:"ONS retail sales Sep — Fri 23 Oct ~2:00am ET. Consensus TradingView — never invent actuals.", source:"https://www.ons.gov.uk/" },
-  { id:"ez-pmi-flash-oct", date:"2026-10-23", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global", title:"Eurozone PMI flash mfg + services (Oct)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep final-ish priors on TV: mfg 52.9 / services 53.0 / composite 53.1 (S&P Global)", consensus:"mfg ~52.5 / services ~52.5 / composite ~52.7 (TradingView)", vs:"",
-    note:"S&P Global Eurozone PMI flash Oct — Fri 23 Oct ~4:00am ET. Consensus TradingView — never invent actuals.", source:"https://www.pmi.spglobal.com/public" },
-  { id:"us-pmi-flash-oct", date:"2026-10-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"S&P Global US PMI flash mfg + services (Oct)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep: mfg 55.9 / services 58.8 / composite 58.4 (S&P Global / TradingView)", consensus:"mfg ~55.5 / services ~57.9 (TradingView)", vs:"",
-    note:"S&P Global US PMI flash Oct — Fri 23 Oct 9:45am ET. Consensus TradingView — never invent actuals.", source:"https://www.pmi.spglobal.com/public" },
+  { id:"uk-retail-sep", date:"2026-10-23", time:"~2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK retail sales (Sep)", impact:"medium", status:"released",
+    actual:"Retail sales volumes −0.4% m/m / +0.8% y/y; Aug revised to +0.7% m/m (was +0.5%); Q3 volumes +0.7% q/q / +1.5% y/y; online sales values −0.4% m/m; total spend +0.3% m/m (ONS 23 Oct)", actualShort:"Retail −0.4% m/m · +0.8% y/y", previous:"Aug volumes revised +0.7% m/m (was +0.5%); Jul revised −0.4% (was −0.5%); prior print y/y context +2.4% Aug (ONS 23 Oct revisions)", consensus:"~−0.2% m/m / ~+1.0% y/y (TradingView ECONOMICS:GBRSMM)", vs:"softer −0.4% vs ~−0.2% m/m; y/y +0.8% soft vs ~+1.0%; Q3 still +0.7% q/q",
+    note:"ONS Retail sales GB Sep — Fri 23 Oct 2026 (~2:00am ET / 07:00 UK). Volumes −0.4% m/m after Aug +0.7% (rev); +0.8% vs Sep 2025. Mail order / online clothing and supermarket volumes soft on warm weather. Next release 20 Nov.", source:"https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/september2026" },
+  { id:"ez-pmi-flash-oct", date:"2026-10-23", time:"~4:00am", tz:"ET", country:"EU", inst:"S&P Global", title:"Eurozone PMI flash mfg + services (Oct)", impact:"high", status:"released",
+    actual:"Flash composite 51.9 (Sep 53.1); services 51.7 (53.0); manufacturing PMI 52.4 (52.9); mfg output 52.4 (53.6) — 4-mo low composite; France back in contraction (S&P Global 23 Oct)", actualShort:"Comp 51.9 · Svcs 51.7 · Mfg 52.4", previous:"Sep final: mfg 52.9 / services 53.0 / composite 53.1 (S&P Global)", consensus:"mfg ~52.5 / services ~52.5 / composite ~52.7 (TradingView); Econoday composite 52.6 / mfg 52.6 / svcs 52.5", vs:"soft miss: composite 51.9 vs ~52.6–52.7; services 51.7 vs ~52.5; mfg 52.4 vs ~52.5–52.6",
+    note:"S&P Global / HCOB Eurozone PMI flash Oct — Fri 23 Oct ~4:00am ET. Composite 51.9 (4-mo low); services 51.7; mfg PMI 52.4. Fourth month of expansion but slower; French private sector back into contraction. Finals: mfg 2 Nov / services+composite 4 Nov.", source:"https://www.pmi.spglobal.com/Public/Home/PressRelease/460d8e59c101498493559df807c62014" },
+  { id:"us-pmi-flash-oct", date:"2026-10-23", time:"9:45am", tz:"ET", country:"US", inst:"S&P Global", title:"S&P Global US PMI flash mfg + services (Oct)", impact:"medium", status:"released",
+    actual:"Flash composite 57.6 (Sep 58.4); services 57.9 (58.8); manufacturing PMI 56.0 (55.9, 53-mo high); mfg output 55.8 (56.2) (S&P Global 23 Oct)", actualShort:"Comp 57.6 · Svcs 57.9 · Mfg 56.0", previous:"Sep: mfg 55.9 / services 58.8 / composite 58.4 (S&P Global)", consensus:"mfg ~55.5 / services ~57.9–58.0 (TradingView; Econoday mfg 55.5 / svcs 58.0 / composite 57.6)", vs:"composite in line 57.6 vs ~57.6; mfg beat 56.0 vs ~55.5; services ~in line 57.9 vs ~58.0",
+    note:"S&P Global US PMI flash Oct — Fri 23 Oct 9:45am ET. Composite 57.6 (2-mo low but still strong); services 57.9; mfg PMI 56.0 (strongest since May 2022). Selling prices rose at sharpest rate since Aug 2022. Finals: mfg 2 Nov / services+composite 4 Nov.", source:"https://www.pmi.spglobal.com/Public/Home/PressRelease/07d16568e63346999890940d47639cd9" },
   { id:"au-cpi-q3", date:"2026-10-27", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia CPI (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Futu star=3 quarterly CPI 8:30pm ET (HKT ~8:30am Oct 28). Official: ABS.", source:"Futu financial calendar (live API 2026-09-28)" },
@@ -1997,7 +1997,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-21T20:50:28.052309+08:00";
+const INFLATION_UPDATED_AT = "2026-10-25T15:24:51.196510+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
@@ -2019,7 +2019,7 @@ const INFLATION = [
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"BRT" },
   { code:"ZA", name:"South Africa", last:4.5, prev:4.4, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"SAST",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"SAST" },
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"SAST" },
   { code:"IT", name:"Italy", last:4.2, prev:3.3, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
@@ -2034,7 +2034,7 @@ const INFLATION = [
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"ET" },
   { code:"UK", name:"United Kingdom", last:3.5, prev:3.1, g20:true,
     refPeriod:"Sep 2026", refDate:"2026-10-21", refTime:"7:00am", refTz:"UK",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"UK" },
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"UK" },
   { code:"MX", name:"Mexico", last:3.45, prev:3.26, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CT",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CT" },
@@ -2053,15 +2053,15 @@ const INFLATION = [
   { code:"KR", name:"South Korea", last:2.9, prev:3.1, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"KST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"KST" },
-  { code:"SG", name:"Singapore", last:2.3, prev:2.2, g20:false,
-    refPeriod:"Aug 2026", refDate:"", refTime:"", refTz:"SGT",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
+  { code:"SG", name:"Singapore", last:2.2, prev:2.3, g20:false,
+    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"SGT",
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"SGT" },
+  { code:"JP", name:"Japan", last:2.1, prev:1.9, g20:true,
+    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"JST",
+    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"JST" },
   { code:"SA", name:"Saudi Arabia", last:1.9, prev:1.8, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"AST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"AST" },
-  { code:"JP", name:"Japan", last:1.9, prev:1.9, g20:true,
-    refPeriod:"Aug 2026", refDate:"2026-08-21", refTime:"", refTz:"JST",
-    nextPeriod:"Oct 2026", nextDate:"", nextTime:"", nextTz:"JST" },
   { code:"CH", name:"Switzerland", last:1, prev:0.8, g20:false,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CETCH",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CETCH" },
