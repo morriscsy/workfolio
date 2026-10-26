@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T00:07:27.098237+08:00",
+  "updatedAt": "2026-10-26T08:50:13.470829+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-21T21:15:25.700767+08:00",
+      "lastRunAt": "2026-10-26T08:50:13.470829+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "2026-10-21 ~9:14am ET post-US: 0 past blank high/medium; uk-cpi-sep already released. Inflation TE live: order/values unchanged. Silent.",
-      "nextRunAt": "2026-10-22T08:40:00+08:00",
+      "lastSummary": "Quiet morning Actuals (no material fills); TODAY already Mon 26 Oct 2026; inflation TE unchanged; LamboKiwi offline",
+      "nextRunAt": "2026-10-27T08:40:00+08:00",
       "lastItems": []
     },
     {
