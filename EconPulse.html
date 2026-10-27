@@ -1244,14 +1244,14 @@ const EVENTS = [
     actual:"Final CSI 48.0 (prelim 46.3; Sep 48.1); Current Conditions 46.7 (prelim 44.7; Sep 50.9); Expectations 48.8 (prelim 47.3; Sep 46.3); 1y inflation exp 4.7% (Sep 4.6%); long-run 3.5% (Sep 3.4%) (UMich Surveys of Consumers)", actualShort:"UMich 48.0 · 1y 4.7% · LR 3.5%", previous:"Sep final CSI 48.1; Current 50.9; Expectations 46.3; 1y 4.6%; LR 3.4%. Oct prelim CSI 46.3 / Current 44.7 / Exp 47.3 (UMich)", consensus:"≈46.3 final (Reuters poll; matched Oct prelim)", vs:"beat vs ~46.3 street (final 48.0 revised up from prelim 46.3); −0.1pt vs Sep 48.1; Current soft, Expectations firmer",
     note:"UMich Surveys of Consumers final Oct 2026 — Fri 23 Oct 10:00am ET. Sentiment held near Sep (48.0 vs 48.1); Current Conditions −8.3% m/m on durables/interest rates; Expectations +5.4% m/m. Year-ahead inflation 4.7% / long-run 3.5% — both highest since May. Official table on sca.isr.umich.edu.", source:"https://www.sca.isr.umich.edu/" },
   { id:"au-cpi-q3", date:"2026-10-27", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia CPI (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug headline +4.0% y/y; trimmed mean +3.6% y/y; Aug m/m +0.4% original / +0.7% SA (ABS 30 Sep)", consensus:"n/a", vs:"",
-    note:"ABS monthly CPI Sep 2026 — Wed 28 Oct 11:30am AEDT (= Tue 27 Oct 8:30pm ET / HKT ~8:30am Wed 28). Sep print also refreshes quarterly tables. Prior Aug: headline 4.0% / TM 3.6%. Confirm abs.gov.au day-of — never invent actuals.", source:"https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia" },
+    actual:"n/a", actualShort:"", previous:"Aug headline +4.0% y/y; trimmed mean +3.6% y/y; Aug m/m +0.4% original / +0.7% SA (ABS 30 Sep)", consensus:"m/m ~0.7%; y/y ~4.2%; trimmed mean m/m ~0.3% (Forex Factory calendar)", vs:"",
+    note:"ABS monthly CPI Sep 2026 — Wed 28 Oct 11:30am AEDT (= Tue 27 Oct 8:30pm ET / HKT ~8:30am Wed 28). High — must-watch. Sep print also refreshes quarterly tables. Prior Aug: headline 4.0% / TM 3.6%. Street (FF): ~0.7% m/m / ~4.2% y/y / TM ~0.3% m/m. Confirm abs.gov.au day-of — never invent actuals.", source:"https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia" },
   { id:"durables-sep", date:"2026-10-27", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Durable goods orders (Sep)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Census durable goods orders Sep — Tue 27 Oct 8:30am ET. Medium; same morning as Case-Shiller/Conf Board/new homes on many calendars. Confirm census.gov day-of — never invent actuals.", source:"https://www.census.gov/economic-indicators/" },
+    actual:"n/a", actualShort:"", previous:"Aug durables ~0.0% (virtually unchanged); core capex (nondef ex-aircraft) orders +1.6% (Census CB26-149)", consensus:"headline ~+2.0% m/m; core durables ~+0.6% m/m (Forex Factory calendar)", vs:"",
+    note:"Census Advance Durable Goods Sep — Tue 27 Oct 8:30am ET. Medium. FF street ~+2.0% headline / ~+0.6% core. Same morning as FHFA/Case-Shiller + Conf Board/new homes on many calendars. Confirm census.gov day-of — never invent actuals.", source:"https://www.census.gov/economic-indicators/" },
   { id:"conf-board-oct", date:"2026-10-27", time:"10:00am", tz:"ET", country:"US", inst:"Conference Board", title:"Conference Board Consumer Confidence (Oct)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Conference Board Consumer Confidence Oct — Tue 27 Oct 10:00am ET. Medium. Confirm conference-board.org day-of — never invent actuals.", source:"https://www.conference-board.org/" },
+    actual:"n/a", actualShort:"", previous:"Sep index 81.9 (−6.7); Present 109.3; Expectations 63.6 (Conference Board)", consensus:"~81.2 (Forex Factory calendar)", vs:"",
+    note:"Conference Board Consumer Confidence Oct — Tue 27 Oct 10:00am ET (board confirms next release). Medium. Prior Sep 81.9; street ~81.2 (FF). Soft Expectations already deep below 80. Confirm conference-board.org day-of — never invent actuals.", source:"https://www.conference-board.org/topics/consumer-confidence/" },
   { id:"boc-oct", date:"2026-10-28", time:"9:45am", tz:"ET", country:"CA", inst:"BoC", title:"BoC rate decision + Monetary Policy Report", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"2.25% overnight rate target (held 2 Sep 2026; BoC)", consensus:"~+25bp to 2.50% (Reuters economist poll)", vs:"",
     note:"BoC overnight rate + Monetary Policy Report — Wed 28 Oct 9:45am ET; press conference typically ~10:30am. Prior hold 2.25% (2 Sep). Reuters poll leans hike to 2.50%. Same day as FOMC. Confirm bankofcanada.ca day-of — never invent actuals.", source:"https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/" },
@@ -1267,9 +1267,9 @@ const EVENTS = [
   { id:"eci-q3", date:"2026-10-30", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment Cost Index (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"BLS Employment Cost Index Q3 2026 — Fri 30 Oct 8:30am ET. Wage-cost Fed input. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/2026/10_sched_list.htm" },
-  { id:"rbnz-oct", date:"2026-10-27", time:"9:00pm", tz:"ET", country:"NZ", inst:"RBNZ", title:"RBNZ OCR decision", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"RBNZ OCR decision — Tue 27 Oct 9:00pm ET (NZ morning Wed 28). Medium. Official: RBNZ. Optional NZ desk.", source:"https://www.rbnz.govt.nz/" },
+  { id:"rbnz-oct", date:"2026-10-27", time:"9:00pm", tz:"ET", country:"NZ", inst:"RBNZ", title:"RBNZ OCR decision", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"OCR 2.75% (prior decision; Forex Factory / Danske week-ahead — rbnz.govt.nz unavailable at pre-open fetch)", consensus:"~3.00% (Forex Factory calendar; Danske Bank week-ahead lean)", vs:"",
+    note:"RBNZ OCR + rate statement — Tue 27 Oct 9:00pm ET (NZ morning Wed 28); presser typically ~10:00pm ET. Central-bank rate — must-watch after AU CPI. Street leans 3.00% vs prior 2.75% (FF/Danske). Confirm rbnz.govt.nz day-of — never invent actuals.", source:"https://www.rbnz.govt.nz/" },
   { id:"au-lfs-sep", date:"2026-10-14", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia unemployment / employment (Sep)", impact:"high", status:"released",
     actual:"emp −39.3k to 14,782,700; U-rate 4.7%; participation 66.8%; underemp 6.3%; emp-to-pop 63.6% (ABS sa)", actualShort:"Emp −39.3k · UE 4.7%", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS prior release; Aug levels revised in Sep tables)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"miss — jobs −39.3k vs +20k; U-rate 4.7% vs 4.6% hold",
     note:"ABS Labour Force Sep 2026 (sa), released 15/10/2026 11:30am AEDT (= Wed 14 Oct 8:30pm ET). Emp −39,300; FT +34.4k / PT −73.7k; U-rate +0.1ppt to 4.7%; participation −0.2ppt to 66.8%; underemp 6.3%; emp-to-pop 63.6%. Soft vs street; ABS notes Victoria weighting + rotation caution — prefer trend (U-rate held 4.6%). Next high: US PPI+retail+claims 8:30am ET Thu 15 Oct; FOMC Oct 27–28.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release" },
@@ -1609,9 +1609,20 @@ const METRICS = {
     { label:"Starts", unit:"k", previous:1275, sense:"higher-good" },
     { label:"Permits", unit:"k", previous:1394, sense:"higher-good" }
   ],
+  "conf-board-oct": [
+    { label:"Confidence", unit:"", previous:81.9, consensus:81.2, sense:"higher-good" }
+  ],
+  "au-cpi-q3": [
+    { label:"CPI y/y", unit:"%", previous:4.0, consensus:4.2, sense:"hot" },
+    { label:"CPI m/m", unit:"%", previous:0.4, consensus:0.7, sense:"hot" },
+    { label:"Trimmed mean m/m", unit:"%", previous:0.2, consensus:0.3, sense:"hot" }
+  ],
+  "rbnz-oct": [
+    { label:"OCR", unit:"%", previous:2.75, consensus:3.00, sense:"hot" }
+  ],
   "durables-sep": [
-    { label:"Durables m/m", unit:"%", previous:0.0, sense:"higher-good" },
-    { label:"Core capex orders", unit:"%", previous:1.6, sense:"higher-good" }
+    { label:"Durables m/m", unit:"%", previous:0.0, consensus:2.0, sense:"higher-good" },
+    { label:"Core durables m/m", unit:"%", previous:0.2, consensus:0.6, sense:"higher-good" }
   ],
   "uom-prelim-oct": [
     { label:"CSI prelim", unit:"", previous:48.1, sense:"higher-good" },
@@ -2022,7 +2033,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-27T08:49:55.658714+08:00";
+const INFLATION_UPDATED_AT = "2026-10-27T10:20:57.810291+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
