@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T08:50:37.855540+08:00",
+  "updatedAt": "2026-10-27T20:53:35.123642+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,11 +173,19 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-26T20:48:51+08:00",
+      "lastRunAt": "2026-10-27T20:53:35.123642+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening quiet Mon 26 Oct: 0 past high/medium blanks; no US morning prints today; Tue 27 durables/Conf Board/AU CPI still ahead; hub status only.",
-      "nextRunAt": "2026-10-27T20:45:00+08:00",
-      "lastItems": []
+      "lastSummary": "Evening US-morning Actuals: filled durables-sep (Census CB26-169 +1.8% / core +0.5%); conf-board-oct still ahead 10am ET; au-cpi-q3 / rbnz-oct due Wed 28. Inflation TE unchanged.",
+      "nextRunAt": "2026-10-28T20:45:00+08:00",
+      "lastItems": [
+        {
+          "id": "durables-sep",
+          "title": "Durable goods orders (Sep)",
+          "actualShort": "Durables +1.8% · core +0.5%",
+          "status": "released",
+          "when": "2026-10-27T20:52:00+08:00"
+        }
+      ]
     }
   ]
 }
