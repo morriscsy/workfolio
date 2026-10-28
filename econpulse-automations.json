@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T08:51:15.066573+08:00",
+  "updatedAt": "2026-10-28T20:54:08.428691+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,17 +153,24 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-28T08:51:15.066573+08:00",
+      "lastRunAt": "2026-10-28T10:13:17+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Wed 28: filled conf-board-oct CCI 91.7 · Exp 72.6 (big beat vs ~81.2); rbnz-oct left blank (OCR due 2pm NZDT / ~09:00 HKT, not yet out); later Wed BoC/FOMC/Budget blank; TODAY→Wed 28; Inflation TE AU 4.0→4.3 Sep",
+      "lastSummary": "Asia evening catch-up ~10:13pm ET Tue 27: 0 blanks as-of ET 10-27. au-cpi-q3 (+4.3% y/y) + rbnz-oct (OCR 2.75% hold) already on calendar from earlier print-watch. No AU labour due. Ahead Wed ET: UK Budget / BoC / FOMC / Powell. Inflation TE live unchanged (order + values). Stay silent.",
       "nextRunAt": "2026-10-29T08:40:00+08:00",
       "lastItems": [
         {
-          "id": "conf-board-oct",
-          "title": "Conference Board Consumer Confidence (Oct)",
-          "actualShort": "CCI 91.7 · Exp 72.6",
+          "id": "au-cpi-q3",
+          "title": "Australia CPI (Sep)",
+          "actualShort": "+4.3% y/y · TM +0.3% m/m",
           "status": "released",
-          "when": "2026-10-27 10:00am ET"
+          "when": "2026-10-27 8:30pm ET"
+        },
+        {
+          "id": "rbnz-oct",
+          "title": "RBNZ OCR decision",
+          "actualShort": "OCR held 2.75%",
+          "status": "released",
+          "when": "2026-10-27 9:00pm ET"
         }
       ]
     },
@@ -181,19 +188,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-27T20:53:35.123642+08:00",
+      "lastRunAt": "2026-10-28T20:53:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening US-morning Actuals: filled durables-sep (Census CB26-169 +1.8% / core +0.5%); conf-board-oct still ahead 10am ET; au-cpi-q3 / rbnz-oct due Wed 28. Inflation TE unchanged.",
-      "nextRunAt": "2026-10-28T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "durables-sep",
-          "title": "Durable goods orders (Sep)",
-          "actualShort": "Durables +1.8% · core +0.5%",
-          "status": "released",
-          "when": "2026-10-27T20:52:00+08:00"
-        }
-      ]
+      "lastSummary": "Evening US-morning Actuals quiet: 0 material fills. uk-budget-oct docs/OBR EFO not yet on gov.uk (early gas standing-charge press only); boc-oct 9:45am ET / fomc-oct+powell-oct afternoon still ahead. Inflation TE unchanged.",
+      "nextRunAt": "2026-10-29T20:45:00+08:00",
+      "lastItems": []
     }
   ]
 }
