@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T20:53:35.123642+08:00",
+  "updatedAt": "2026-10-28T08:51:15.066573+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-27T08:50:37.855540+08:00",
+      "lastRunAt": "2026-10-28T08:51:15.066573+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Quiet morning Actuals Tue 27 Oct ~08:48 HKT: 0 fills due by Asia/early window (AU CPI Wed 28 AEDT; RBNZ Wed 28 NZDT; durables/Conf Board US session); TODAY→Tue 27; inflation TE unchanged; escapeHtml entities restored",
-      "nextRunAt": "2026-10-28T08:40:00+08:00",
-      "lastItems": []
+      "lastSummary": "Morning Actuals Wed 28: filled conf-board-oct CCI 91.7 · Exp 72.6 (big beat vs ~81.2); rbnz-oct left blank (OCR due 2pm NZDT / ~09:00 HKT, not yet out); later Wed BoC/FOMC/Budget blank; TODAY→Wed 28; Inflation TE AU 4.0→4.3 Sep",
+      "nextRunAt": "2026-10-29T08:40:00+08:00",
+      "lastItems": [
+        {
+          "id": "conf-board-oct",
+          "title": "Conference Board Consumer Confidence (Oct)",
+          "actualShort": "CCI 91.7 · Exp 72.6",
+          "status": "released",
+          "when": "2026-10-27 10:00am ET"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
