@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Tue 27 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 28 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 27); // Tue 27 Oct 2026
+const TODAY = new Date(2026, 9, 28); // Wed 28 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1062,7 +1062,7 @@ const EVENTS = [
     note:"G20 FMCBG — Bangkok, Thu 15 Oct. Meeting confirmed held; no official Treasury outcome PR yet (schedule only: home.treasury.gov sb0398). Wire: Jiji via Nippon.com 19:22 JST — ended without joint statement; Bessent skipped. Speech-style fill only — no numbers invented.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
   { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"hold 3.75–4.00% (Reuters poll: vast majority expect no Oct change)", vs:"",
-    note:"FOMC Oct 27–28 — decision Wed 28 Oct 2:00pm ET. No SEP this meeting. Street/Reuters lean hold after Sep hike; watch statement dots path into Dec. Presser 2:30pm (powell-oct). Official: federalreserve.gov.", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
+    note:"FOMC Oct 27–28 — decision Wed 28 Oct 2:00pm ET. No SEP this meeting (next SEP with Dec 8–9). Street/Reuters lean hold after Sep hike; watch statement path into Dec. Presser 2:30pm (powell-oct / Chair Warsh). Official: federalreserve.gov.", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
   { id:"ecb-oct", date:"2026-10-29", time:"~8:15am", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
     note:"ECB Governing Council monetary policy — Frankfurt 28–29 Oct; decision Thu 29 Oct ~14:15 CET (~8:15am ET), press conference ~14:45 CET (~8:45am ET). Official: ecb.europa.eu.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
@@ -1083,9 +1083,9 @@ const EVENTS = [
   { id:"retailsales-sep", date:"2026-10-15", time:"8:30am", tz:"ET", country:"US", inst:"Census", title:"Advance retail sales (Sep)", impact:"high", status:"released",
     actual:"total $745.0B +0.8% m/m / +6.3% y/y; ex-auto +0.9% m/m / +7.2% y/y; ex-auto & gas +0.2% m/m (Census CB26-165; post Sep 28 annual revision)", actualShort:"Retail +0.8% · ex-auto +0.9%", previous:"Aug revised $739.3B / +1.3% m/m (was +1.2% / $773.9B pre-revision); Jul–Aug revised to +1.3% (Census)", consensus:"+0.3% MoM; ex-auto +0.5% (TradingView)", vs:"headline beat +0.8% vs +0.3%; ex-auto beat +0.9% vs +0.5%; control ex-auto&gas soft +0.2%",
     note:"Census Advance MARTS Sep — Thu 15 Oct 8:30am ET (CB26-165). Levels rebased after Sep 28 annual revision (Aug now $739.3B). Gasoline stations +6.4% m/m lifted headline; ex-auto & gas +0.2%. Next high: Import/Export prices Fri 16 Oct 8:30am ET; FOMC Oct 27–28.", source:"https://www.census.gov/retail/marts/www/marts_current.pdf" },
-  { id:"powell-oct", date:"2026-10-28", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Powell press conference (Oct FOMC)", impact:"high", status:"scheduled",
+  { id:"powell-oct", date:"2026-10-28", time:"2:30pm", tz:"ET", country:"US", inst:"Fed", title:"Chair Warsh press conference (Oct FOMC)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"Fed Chair press conference — Wed 28 Oct 2:30pm ET after FOMC decision. No SEP. Path language into Dec is the tape.", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
+    note:"Fed Chair Warsh press conference — Wed 28 Oct 2:30pm ET after FOMC decision (federalreserve.gov Oct calendar). No SEP. Path language into Dec is the tape. Confirm federalreserve.gov day-of — never invent actuals.", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
   { id:"gdp-adv-q3", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"GDP advance (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Q2 third estimate (see Sep 30 card)", consensus:"n/a", vs:"",
     note:"BEA GDP advance Q3 2026 — Thu 29 Oct 8:30am ET (same stamp as Personal Income/Outlays Sep). Confirm bea.gov day-of — never invent actuals.", source:"https://www.bea.gov/news/schedule" },
@@ -1254,10 +1254,10 @@ const EVENTS = [
     note:"Conference Board Consumer Confidence Oct — Tue 27 Oct 10:00am ET (overnight spillover into Wed morning HKT). Rose 7.5pts to 91.7 (Sep revised up to 84.2 from 81.9). Present Situation +8.6 to 120.4; Expectations +6.9 to 72.6 (partial reverse of three monthly declines; still below 80). Gas prices easing cited; write-ins still cite food/fuel costs. Street ~81.2 (FF). Next release Tue 24 Nov 10:00am ET.", source:"https://www.conference-board.org/topics/consumer-confidence/" },
   { id:"boc-oct", date:"2026-10-28", time:"9:45am", tz:"ET", country:"CA", inst:"BoC", title:"BoC rate decision + Monetary Policy Report", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"2.25% overnight rate target (held 2 Sep 2026; BoC)", consensus:"~+25bp to 2.50% (Reuters economist poll)", vs:"",
-    note:"BoC overnight rate + Monetary Policy Report — Wed 28 Oct 9:45am ET; press conference typically ~10:30am. Prior hold 2.25% (2 Sep). Reuters poll leans hike to 2.50%. Same day as FOMC. Confirm bankofcanada.ca day-of — never invent actuals.", source:"https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/" },
+    note:"BoC overnight rate + Monetary Policy Report — Wed 28 Oct 9:45am ET; press conference typically ~10:30am. Prior hold 2.25% (2 Sep; bankofcanada.ca). Reuters poll leans hike to 2.50%. Same day as FOMC. Confirm bankofcanada.ca day-of — never invent actuals.", source:"https://www.bankofcanada.ca/2026/10/interest-rate-announcement-and-monetary-policy-report-october-28-2026/" },
   { id:"uk-budget-oct", date:"2026-10-28", time:"8:30am", tz:"ET", country:"UK", inst:"HMT", title:"UK Autumn Budget (Chancellor)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"UK Autumn Budget statement in Parliament — Wed 28 Oct ~8:30am ET. High fiscal/gilt risk into BoE path. No BoE rate decision this window.", source:"https://www.gov.uk/government/organisations/hm-treasury" },
+    note:"UK Autumn Budget statement in Commons — Wed 28 Oct ~12:30 GMT (= 8:30am ET; UK on GMT after 25 Oct clock change), after PMQs. High fiscal/gilt risk into BoE path. HMT docs after speech; OBR forecasts same day. No BoE rate decision this window. Confirm parliament.uk / gov.uk day-of — never invent actuals.", source:"https://www.parliament.uk/business/news/2026/october-2026/budget-statement-wednesday-28-october/" },
   { id:"boj-oct", date:"2026-10-29", time:"~11:00pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ rate decision + Outlook Report", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Sep hold 1.25% policy rate (prior MPM; BoJ)", consensus:"n/a", vs:"",
     note:"BoJ MPM Oct 29–30; Outlook Report (Bank’s View) scheduled Fri 30 Oct JST — typically ~11:45–12:00 JST (= ~10:45–11:00pm ET Thu 29). Ueda presser after. Confirm boj.or.jp day-of — never invent actuals.", source:"https://www.boj.or.jp/en/mopo/mpmsche_minu/" },
@@ -2033,7 +2033,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-28T08:51:07.882147+08:00";
+const INFLATION_UPDATED_AT = "2026-10-28T10:13:51.539460+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
