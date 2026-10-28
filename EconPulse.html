@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Wed 28 Oct 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Thu 29 Oct 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 9, 28); // Wed 28 Oct 2026
+const TODAY = new Date(2026, 9, 29); // Thu 29 Oct 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1060,9 +1060,9 @@ const EVENTS = [
   { id:"g20", date:"2026-10-15", time:"", tz:"ET", country:"G20", inst:"Treasury", title:"G20 FMCBG — Bangkok", impact:"high", status:"released",
     actual:"G20 FMCBG Bangkok held 15 Oct (sidelines of IMF/World Bank Annual Meetings); ended without joint communique or chair's statement; US Treasury Sec. Bessent absent (domestic engagements); agenda inflation/oil, financial-market volatility, debt (Jiji 15 Oct; Nikkei)", actualShort:"G20 FMCBG held · no communique", previous:"Asheville 31 Aug–1 Sep (also no joint communique)", consensus:"n/a", vs:"",
     note:"G20 FMCBG — Bangkok, Thu 15 Oct. Meeting confirmed held; no official Treasury outcome PR yet (schedule only: home.treasury.gov sb0398). Wire: Jiji via Nippon.com 19:22 JST — ended without joint statement; Bessent skipped. Speech-style fill only — no numbers invented.", source:"https://home.treasury.gov/news/press-releases/sb0398" },
-  { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"hold 3.75–4.00% (Reuters poll: vast majority expect no Oct change)", vs:"",
-    note:"FOMC Oct 27–28 — decision Wed 28 Oct 2:00pm ET. No SEP this meeting (next SEP with Dec 8–9). Street/Reuters lean hold after Sep hike; watch statement path into Dec. Presser 2:30pm (powell-oct / Chair Warsh). Official: federalreserve.gov.", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
+  { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"released",
+    actual:"Hold FF target range 3.75–4.00% (10–2 vote); IORB 3.90%; ON RRP 3.75%; primary credit 4.0% (Fed statement + implementation note 28 Oct 2026 2:00pm EDT). Dissents: Cook, Hammack preferred +25bp.", actualShort:"Hold 3.75–4.00% · 10–2", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"hold 3.75–4.00% (Reuters poll: vast majority expect no Oct change)", vs:"in line / as expected (hold); 2 dissents for hike (Cook, Hammack)",
+    note:"FOMC maintained FF 3-3/4 to 4%. Vote 10–2 (Cook, Hammack preferred +25bp). Statement: activity expanding strong; inflation remains elevated; more info to determine stance for timely return to 2%. Ample reserves continued. No SEP (next Dec 8–9). Presser Chair Warsh 2:30pm ET. Official: federalreserve.gov monetary20261028a.htm + a1.htm.", source:"https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm" },
   { id:"ecb-oct", date:"2026-10-29", time:"~8:15am", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
     note:"ECB Governing Council monetary policy — Frankfurt 28–29 Oct; decision Thu 29 Oct ~14:15 CET (~8:15am ET), press conference ~14:45 CET (~8:45am ET). Official: ecb.europa.eu.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
@@ -1638,7 +1638,7 @@ const METRICS = {
     { label:"Policy rate", unit:"%", previous:1.25, sense:"rate" }
   ],
   "fomc-oct": [
-    { label:"FF upper", unit:"%", previous:4.00, sense:"rate" }
+    { label:"FF upper", unit:"%", actual:4.00, previous:4.00, sense:"rate" }
   ],
   "jp-cpi-sep": [
     { label:"CPI y/y", unit:"%", actual:2.1, previous:1.9, sense:"hot" },
@@ -1779,7 +1779,7 @@ function rateChart(metrics, compact) {
 }
 function escHtml(t) {
   return String(t == null ? "" : t)
-    .replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 function blankish(v) {
   if (v == null) return true;
