@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T08:44:20.226713+08:00",
+  "updatedAt": "2026-10-29T20:56:45.602627+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,11 +181,19 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-28T21:22:05.701533+08:00",
+      "lastRunAt": "2026-10-29T20:56:45.602627+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US quiet ~9:20am ET Wed 28: 0 fills. uk-budget Red Book/OBR EFO not yet on gov.uk; boc 9:45am Upcoming; FOMC/Warsh afternoon. Inflation TE unchanged.",
-      "nextRunAt": "2026-10-29T20:45:00+08:00",
-      "lastItems": []
+      "lastSummary": "Evening Actuals Thu 29: verified claims-oct29 (DOL USDL 26-1624-NAT: 194k initial / Cont 1.701M) already live via post-print; GDP Q3 +3.4% + Sep PCE verified BEA. ECB 9:15am ET / BoJ ~11pm ET still ahead. Inflation TE unchanged.",
+      "nextRunAt": "2026-10-30T20:45:00+08:00",
+      "lastItems": [
+        {
+          "id": "claims-oct29",
+          "title": "Initial jobless claims",
+          "actualShort": "Claims 194k · Cont 1.701M",
+          "status": "released",
+          "when": "2026-10-29 8:30am ET"
+        }
+      ]
     }
   ]
 }
