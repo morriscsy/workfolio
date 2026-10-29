@@ -1063,9 +1063,9 @@ const EVENTS = [
   { id:"fomc-oct", date:"2026-10-28", time:"2:00pm", tz:"ET", country:"US", inst:"Fed", title:"FOMC rate decision (Oct 27–28)", impact:"high", status:"released",
     actual:"Hold FF target range 3.75–4.00% (10–2 vote); IORB 3.90%; ON RRP 3.75%; primary credit 4.0% (Fed statement + implementation note 28 Oct 2026 2:00pm EDT). Dissents: Cook, Hammack preferred +25bp.", actualShort:"Hold 3.75–4.00% · 10–2", previous:"Sep 16: +25bp to 3.75–4.00%", consensus:"hold 3.75–4.00% (Reuters poll: vast majority expect no Oct change)", vs:"in line / as expected (hold); 2 dissents for hike (Cook, Hammack)",
     note:"FOMC maintained FF 3-3/4 to 4%. Vote 10–2 (Cook, Hammack preferred +25bp). Statement: activity expanding strong; inflation remains elevated; more info to determine stance for timely return to 2%. Ample reserves continued. No SEP (next Dec 8–9). Presser Chair Warsh 2:30pm ET. Official: federalreserve.gov monetary20261028a.htm + a1.htm.", source:"https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm" },
-  { id:"ecb-oct", date:"2026-10-29", time:"~8:15am", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50%", consensus:"n/a", vs:"",
-    note:"ECB Governing Council monetary policy — Frankfurt 28–29 Oct; decision Thu 29 Oct ~14:15 CET (~8:15am ET), press conference ~14:45 CET (~8:45am ET). Official: ecb.europa.eu.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
+  { id:"ecb-oct", date:"2026-10-29", time:"9:15am", tz:"ET", country:"EU", inst:"ECB", title:"ECB rate decision + press conference", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"10 Sep: +25bp to DF 2.50% / MRO 2.65% / MLF 2.90%", consensus:"hold DF 2.50% (Reuters poll Oct 5–8: 70 of 73)", vs:"",
+    note:"ECB Governing Council monetary policy — Frankfurt 28–29 Oct. Official publish: monetary policy decisions 14:15 CET (= 9:15am ET Thu 29; EU on CET after 25 Oct clocks; US still EDT) + press conference 14:45 CET (= 9:45am ET). Prior Sep hike DF 2.50%. Reuters poll (5–8 Oct): vast majority hold Oct, Dec hike lean. Confirm ecb.europa.eu day-of — never invent actuals.", source:"https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html" },
 
   /* Futu checklist fill — official dates preferred; consensus blank unless sourced */
   { id:"ism-mfg-sep", date:"2026-10-01", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Sep)", impact:"high", status:"released",
@@ -1087,11 +1087,11 @@ const EVENTS = [
     actual:"Press conference underway (scheduled 2:30pm ET 28 Oct 2026). Official Fed press-conference page + transcript PDF not posted yet at check (~2:30pm ET) — no remarks invented.", actualShort:"Underway · transcript pending", previous:"n/a", consensus:"n/a", vs:"speech / no numeric print",
     note:"Chair Warsh post-FOMC presser starts 2:30pm ET after hold FF 3.75–4.00% (10–2; Cook, Hammack preferred +25bp). Fed calendar lists Press Conference 28 Oct 2:30pm. Official remarks/transcript URL pattern (fomcpresconf20261028) returned 404 at release window — do not invent path language. Watch Live via federalreserve.gov Oct calendar. Next high: GDP advance Q3 + related Thu 29 Oct 8:30am ET; ECB Thu ~8:15am ET; Dec FOMC 8–9 (SEP).", source:"https://www.federalreserve.gov/newsevents/2026-october.htm" },
   { id:"gdp-adv-q3", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"GDP advance (Q3)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Q2 third estimate (see Sep 30 card)", consensus:"n/a", vs:"",
-    note:"BEA GDP advance Q3 2026 — Thu 29 Oct 8:30am ET (same stamp as Personal Income/Outlays Sep). Confirm bea.gov day-of — never invent actuals.", source:"https://www.bea.gov/news/schedule" },
+    actual:"n/a", actualShort:"", previous:"Q2 3rd estimate +2.2% saar (BEA 30 Sep)", consensus:"~3.2% saar (Reuters economist survey)", vs:"",
+    note:"BEA GDP (Advance Estimate), 3rd Quarter 2026 — Thu 29 Oct 8:30am ET (bea.gov schedule; same stamp as Personal Income and Outlays Sep). Prior: Q2 3rd +2.2% saar (BEA 30 Sep). Reuters survey ~3.2% saar (pre-release). Confirm bea.gov day-of — never invent actuals.", source:"https://www.bea.gov/news/schedule" },
   { id:"pce-sep", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"BEA", title:"PCE / personal income (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug PCE on Sep 30 card", consensus:"n/a", vs:"",
-    note:"BEA Personal Income and Outlays Sep 2026 (PCE inflation) — Thu 29 Oct 8:30am ET with GDP advance. Fed’s preferred inflation gauge into post-FOMC. Confirm bea.gov day-of — never invent actuals.", source:"https://www.bea.gov/news/schedule" },
+    actual:"n/a", actualShort:"", previous:"Aug: PCE +0.3% m/m / +3.4% y/y; core +0.2% / +3.0% (BEA 30 Sep)", consensus:"Core PCE ~+0.3% m/m (market calendars); headline PCE/income/spending also due", vs:"",
+    note:"BEA Personal Income and Outlays, September 2026 (PCE inflation) — Thu 29 Oct 8:30am ET with GDP advance (bea.gov). Fed’s preferred gauge day after FOMC hold 3.75–4.00%. Prior Aug: PCE +0.3% m/m / +3.4% y/y; core +0.2% / +3.0%. Confirm bea.gov day-of — never invent actuals.", source:"https://www.bea.gov/news/schedule" },
   { id:"claims-oct1", date:"2026-10-01", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
     actual:"Initial 197k (−1k) week ended Sep 26; prior week revised 197k→198k; 4-wk avg 200k (−2.5k). Continuing 1.701M (−11k) week ended Sep 19 (DOL)", actualShort:"Claims 197k · Cont 1.701M", previous:"Prior week initial revised to 198k (was 197k); continuing prior revised to 1.712M (DOL 1 Oct)", consensus:"200k (WSJ/Dow Jones survey, n=7; week ended Sep 26)", vs:"Softer/beat vs 200k street (−3k); lowest initial since mid-July territory; continuing also eased",
     note:"DOL UI Weekly Claims USDL 26-1543-NAT, Thu 1 Oct 8:30am ET. SA initial 197k week ended Sep 26; 4-wk avg 200k. Insured unemployment 1.701M / IUR 1.1% week ended Sep 19.", source:"https://oui.doleta.gov/press/2026/100126.pdf" },
@@ -1105,8 +1105,8 @@ const EVENTS = [
     actual:"Week ended Oct 17: SA initial 194k (−6k from prior revised 200k); 4-wk avg 197.75k (−1k); insured unemp week ended Oct 10: 1.728M (+25k; prior revised 1.710M→1.703M) (DOL USDL 26-1613-NAT)", actualShort:"Claims 194k · Cont 1.728M", previous:"Week ended Oct 10 revised: SA initial 200k (was 199k); 4-wk avg 198.75k; insured unemp 1.703M (was 1.710M) (DOL 22 Oct)", consensus:"~200k initial (TradingView ECONOMICS:USIJC; Reuters poll 200k)", vs:"softer/beat 194k vs ~200k; near multi-decade lows; cont claims +25k to 1.728M",
     note:"DOL UI weekly — Thu 22 Oct 8:30am ET (USDL 26-1613-NAT). Advance SA initial week ended Oct 17: 194k (−6k); prior week revised up 199k→200k; 4-wk avg 197,750. Insured unemployment week ended Oct 10: 1,728,000 (+25k); prior revised down 1,710k→1,703k. Sixth straight week ≤200k.", source:"https://www.dol.gov/ui/data.pdf" },
   { id:"claims-oct29", date:"2026-10-29", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"DOL UI weekly — week ending Oct 24 — Thu 29 Oct 8:30am ET, same window as GDP/PCE. Medium. Confirm dol.gov / oui.doleta.gov — never invent actuals.", source:"https://www.dol.gov/ui/data.pdf" },
+    actual:"n/a", actualShort:"", previous:"194k initial (week ended Oct 17; DOL 22 Oct)", consensus:"~198k (market calendar consensus)", vs:"",
+    note:"DOL UI Weekly Claims — week ending Oct 24 — Thu 29 Oct 8:30am ET (same window as GDP/PCE). Medium impact. Prior week 194k initial. Confirm dol.gov / oui.doleta.gov day-of — never invent actuals.", source:"https://www.dol.gov/ui/data.pdf" },
 
   { id:"cn-pmi-sep", date:"2026-09-29", time:"9:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China official PMI (Sep)", impact:"high", status:"released",
     actual:"mfg PMI 50.1 (+0.3; back above 50); non-mfg 50.2 (+1.2); composite PMI output 50.7 (+1.2). Production 51.7; new orders 50.5 (NBS / CFLP)", actualShort:"Mfg 50.1 · Non-mfg 50.2 · Comp 50.7", previous:"Aug mfg 49.8 / non-mfg 49.0 / composite 49.5 (NBS)", consensus:"mfg ~50.1 / non-mfg ~49.2 (ING; not a full street poll)", vs:"mfg in line ~50.1; non-mfg beat vs ~49.2; both back above 50",
@@ -1259,8 +1259,8 @@ const EVENTS = [
     actual:"Autumn Budget 2026 delivered (Chancellor John Healey, 28 Oct). Fiscal rules met: current-budget surplus headroom £15bn in 2029/30 (rising to £22bn 2030/31 per speech). OBR EFO Oct 2026: real GDP growth around 1¼% in 2026 and 1% in 2027; CPI ~3½% in 2027 then back to 2% by 2028; PSNB path falls to just under 2% of GDP by end of forecast; PSND peaks ~97% of GDP in 2028-29; fiscal mandate met by £15bn; PSNFL-falling target met by £24bn. Speech cites OBR GDP 1.2% / 1% / 1.6% / 1.8% / 1.7% / 1.6% (2026–31) and borrowing 4.2%→3.4%→2.9%→2.1%→1.8% of GDP. Headline measures: abolish household gas standing charges from next year (Ofgem); £100 energy payment for council-tax bands A–D this winter; VAT-off-electricity extended to July; temporary +3ppt bank surcharge. Red Book HC 726 + OBR EFO published 28 Oct on gov.uk.", actualShort:"Budget delivered · OBR GDP ~1¼%/1% · £15bn headroom", previous:"n/a (Autumn Budget event)", consensus:"n/a", vs:"",
     note:"UK Autumn Budget Wed 28 Oct ~12:30 GMT (=8:30am ET). Docs were not yet on gov.uk at evening-28 Actuals; now published. Primary: Budget 2026 speech (gov.uk) + Budget 2026 in full collection + OBR Economic and fiscal outlook October 2026 (assets.publishing.service.gov.uk). No invented consensus.", source:"https://www.gov.uk/government/speeches/budget-2026-speech" },
   { id:"boj-oct", date:"2026-10-29", time:"~11:00pm", tz:"ET", country:"JP", inst:"BoJ", title:"BoJ rate decision + Outlook Report", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep hold 1.25% policy rate (prior MPM; BoJ)", consensus:"n/a", vs:"",
-    note:"BoJ MPM Oct 29–30; Outlook Report (Bank’s View) scheduled Fri 30 Oct JST — typically ~11:45–12:00 JST (= ~10:45–11:00pm ET Thu 29). Ueda presser after. Confirm boj.or.jp day-of — never invent actuals.", source:"https://www.boj.or.jp/en/mopo/mpmsche_minu/" },
+    actual:"n/a", actualShort:"", previous:"Sep MPM: policy rate 1.25% (BoJ)", consensus:"hold 1.25% (street / Bloomberg survey lean)", vs:"",
+    note:"BoJ MPM Oct 29–30; Statement on Monetary Policy + Outlook (Bank’s View) scheduled Fri 30 Oct JST — time undecided on boj.or.jp (typically ~11:45–12:30 JST ≈ ~10:45–11:30pm ET Thu 29). Ueda presser after. Street lean hold; Outlook/Bank’s View is the main tape. Confirm boj.or.jp day-of — never invent actuals.", source:"https://www.boj.or.jp/en/about/calendar/" },
   { id:"ez-gdp-flash-q3", date:"2026-10-30", time:"~6:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone GDP flash (Q3)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
     note:"Eurostat GDP flash Q3 — Fri 30 Oct ~6:00am ET. Confirm ec.europa.eu/eurostat day-of — never invent actuals.", source:"https://ec.europa.eu/eurostat" },
@@ -1779,7 +1779,7 @@ function rateChart(metrics, compact) {
 }
 function escHtml(t) {
   return String(t == null ? "" : t)
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    .replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,""");
 }
 function blankish(v) {
   if (v == null) return true;
@@ -2033,7 +2033,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-10-29T08:44:11.272590+08:00";
+const INFLATION_UPDATED_AT = "2026-10-29T10:15:08.740186+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
