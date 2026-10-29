@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T20:56:45.602627+08:00",
+  "updatedAt": "2026-10-29T21:09:20.599951+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,19 +181,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-29T20:56:45.602627+08:00",
+      "lastRunAt": "2026-10-29T21:09:20.599951+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Thu 29: verified claims-oct29 (DOL USDL 26-1624-NAT: 194k initial / Cont 1.701M) already live via post-print; GDP Q3 +3.4% + Sep PCE verified BEA. ECB 9:15am ET / BoJ ~11pm ET still ahead. Inflation TE unchanged.",
+      "lastSummary": "Post-US ~9:05am ET Thu 29: Actuals quiet (GDP/PCE/claims already live). Left blank: ecb-oct 9:15am ET, boj-oct ~11pm ET. Inflation TE live — AU next Oct→Nov; order unchanged. Pages push.",
       "nextRunAt": "2026-10-30T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "claims-oct29",
-          "title": "Initial jobless claims",
-          "actualShort": "Claims 194k · Cont 1.701M",
-          "status": "released",
-          "when": "2026-10-29 8:30am ET"
-        }
-      ]
+      "lastItems": []
     }
   ]
 }
