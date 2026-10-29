@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T20:54:08.428691+08:00",
+  "updatedAt": "2026-10-29T08:44:20.226713+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,24 +153,17 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-10-28T10:13:17+08:00",
+      "lastRunAt": "2026-10-29T08:44:20.226713+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia evening catch-up ~10:13pm ET Tue 27: 0 blanks as-of ET 10-27. au-cpi-q3 (+4.3% y/y) + rbnz-oct (OCR 2.75% hold) already on calendar from earlier print-watch. No AU labour due. Ahead Wed ET: UK Budget / BoC / FOMC / Powell. Inflation TE live unchanged (order + values). Stay silent.",
-      "nextRunAt": "2026-10-29T08:40:00+08:00",
+      "lastSummary": "Morning Actuals: filled uk-budget-oct (Budget Red Book + OBR EFO now on gov.uk; OBR GDP ~1¼%/1%, £15bn headroom). Left blank ahead: boj-oct / ecb-oct / gdp-adv-q3 / pce-sep / claims-oct29. TODAY→Thu 29 Oct. Inflation TE unchanged.",
+      "nextRunAt": "2026-10-30T08:40:00+08:00",
       "lastItems": [
         {
-          "id": "au-cpi-q3",
-          "title": "Australia CPI (Sep)",
-          "actualShort": "+4.3% y/y · TM +0.3% m/m",
+          "id": "uk-budget-oct",
+          "title": "UK Autumn Budget (Chancellor)",
+          "actualShort": "Budget delivered · OBR GDP ~1¼%/1% · £15bn headroom",
           "status": "released",
-          "when": "2026-10-27 8:30pm ET"
-        },
-        {
-          "id": "rbnz-oct",
-          "title": "RBNZ OCR decision",
-          "actualShort": "OCR held 2.75%",
-          "status": "released",
-          "when": "2026-10-27 9:00pm ET"
+          "when": "2026-10-28 8:30am ET"
         }
       ]
     },
@@ -188,9 +181,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-28T20:53:00+08:00",
+      "lastRunAt": "2026-10-28T21:22:05.701533+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening US-morning Actuals quiet: 0 material fills. uk-budget-oct docs/OBR EFO not yet on gov.uk (early gas standing-charge press only); boc-oct 9:45am ET / fomc-oct+powell-oct afternoon still ahead. Inflation TE unchanged.",
+      "lastSummary": "Post-US quiet ~9:20am ET Wed 28: 0 fills. uk-budget Red Book/OBR EFO not yet on gov.uk; boc 9:45am Upcoming; FOMC/Warsh afternoon. Inflation TE unchanged.",
       "nextRunAt": "2026-10-29T20:45:00+08:00",
       "lastItems": []
     }
