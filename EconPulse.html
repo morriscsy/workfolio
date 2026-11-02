@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 10, 2); // Mon 2 Nov 2026 pre-open week-ahead
+const TODAY = new Date(2026, 10, 2); // Mon 2 Nov 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1274,9 +1274,9 @@ const EVENTS = [
     actual:"emp −39.3k to 14,782,700; U-rate 4.7%; participation 66.8%; underemp 6.3%; emp-to-pop 63.6% (ABS sa)", actualShort:"Emp −39.3k · UE 4.7%", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS prior release; Aug levels revised in Sep tables)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"miss — jobs −39.3k vs +20k; U-rate 4.7% vs 4.6% hold",
     note:"ABS Labour Force Sep 2026 (sa), released 15/10/2026 11:30am AEDT (= Wed 14 Oct 8:30pm ET). Emp −39,300; FT +34.4k / PT −73.7k; U-rate +0.1ppt to 4.7%; participation −0.2ppt to 66.8%; underemp 6.3%; emp-to-pop 63.6%. Soft vs street; ABS notes Victoria weighting + rotation caution — prefer trend (U-rate held 4.6%). Next high: US PPI+retail+claims 8:30am ET Thu 15 Oct; FOMC Oct 27–28.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release" },
 
-  { id:"ism-mfg-oct", date:"2026-11-02", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Oct)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep Manufacturing PMI 54.5 (ISM)", consensus:"54.7 (TD Economics / Briefing.com cons)", vs:"",
-    note:"ISM Manufacturing PMI Report Oct 2026 — Mon 2 Nov 10:00am ET. Must-watch today: factory expansion streak vs street ~54.7. Confirm ismworld.org day-of — never invent actuals. S&P Global final mfg PMI also 9:45am ET (lower impact).", source:"https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/" },
+  { id:"ism-mfg-oct", date:"2026-11-02", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Oct)", impact:"high", status:"released",
+    actual:"Manufacturing PMI 55.5 (+1.0 vs Sep 54.5). New Orders 55.5; Production 59.0; Employment 52.4; Supplier Deliveries 59.1; Inventories 51.4; Customers' Inventories 41.6; Prices 75.2; Backlog 54.6; New Export Orders 51.2; Imports 52.9. 10th consecutive month of manufacturing expansion; overall economy 24th month (ISM)", actualShort:"PMI 55.5 · Prod 59.0 · Prices 75.2", previous:"Sep Manufacturing PMI 54.5 (ISM)", consensus:"54.7 (TD Economics / Briefing.com cons)", vs:"beat vs 54.7 (+0.8); +1.0 vs Sep; Production highest since Nov 2021; Prices still hot but −2.7 from Sep 77.9; Inventories returned to expansion",
+    note:"ISM Manufacturing PMI Report Oct 2026 — Mon 2 Nov 10:00am ET. Official ismworld.org October PMI page. All five PMI inputs in expansion. Sentiment comments still skewed negative (pricing/tariffs/lead times). Next: RBA + SMP tonight 10:30pm ET; JOLTS Tue 10:00am ET; ISM Services Wed 10:00am ET.", source:"https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october/" },
 
   { id:"rba-nov", date:"2026-11-02", time:"10:30pm", tz:"ET", country:"AU", inst:"RBA", title:"RBA cash rate decision + SMP", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"4.60% cash rate target (eff. 30 Sep 2026; RBA)", consensus:"+25bp to 4.85% (major-bank lean / market)", vs:"",
