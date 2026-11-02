@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T08:51:53.237094+08:00",
+  "updatedAt": "2026-11-02T20:49:44.041186+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -202,10 +202,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-10-29T21:09:20.599951+08:00",
+      "lastRunAt": "2026-11-02T20:49:44.041186+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US ~9:05am ET Thu 29: Actuals quiet (GDP/PCE/claims already live). Left blank: ecb-oct 9:15am ET, boj-oct ~11pm ET. Inflation TE live — AU next Oct→Nov; order unchanged. Pages push.",
-      "nextRunAt": "2026-10-30T20:45:00+08:00",
+      "lastSummary": "Evening US-morning Actuals quiet Mon 2 Nov ~20:48 HKT (~7:48am ET): 0 material fills. ism-mfg-oct still ahead 10:00am ET (ISM site calendar; no Oct Manufacturing PMI yet); rba-nov decision/SMP due 3 Nov 2:30pm AEDT (=2 Nov ~10:30pm ET) — RBA coming-up confirms not released. Gap-backfill already verified boj-oct/ez-gdp-flash-q3/eci-q3/cn-pmi-oct. Inflation TE skipped. Stay silent.",
+      "nextRunAt": "2026-11-03T20:45:00+08:00",
       "lastItems": []
     }
   ]
