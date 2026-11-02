@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 10, 2); // Mon 2 Nov 2026
+const TODAY = new Date(2026, 10, 2); // Mon 2 Nov 2026 pre-open week-ahead
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1130,9 +1130,9 @@ const EVENTS = [
   { id:"hk-cpi-sep", date:"2026-10-22", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong CPI (Sep)", impact:"medium", status:"released",
     actual:"Composite CPI +1.9% y/y (Aug +1.7%); underlying (ex govt one-off relief) +2.1% y/y (Aug +1.9%); CPI(A)/(B)/(C) +1.4%/+2.0%/+2.3% y/y; 3-mo sa avg m/m Composite +0.2% (C&SD 22 Oct)", actualShort:"Comp CPI +1.9% · underlying +2.1%", previous:"Aug Composite CPI +1.7% y/y; underlying +1.9% y/y (C&SD)", consensus:"n/a", vs:"headline +1.9% (from +1.7%); underlying +2.1% (from +1.9%) — transport/package holidays main upward drivers",
     note:"HK C&SD Consumer Price Indices Sep — Thu 22 Oct 2026. Overall +1.9% y/y; underlying inflation 2.1%. Faster inbound/outbound transport fares and package holiday charges. Electricity/gas/water +12.9% y/y largest component rise.", source:"https://www.info.gov.hk/gia/general/202610/22/P2026102200426.htm" },
-  { id:"hk-gdp-q3", date:"2026-10-30", time:"~4:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong GDP advance (Q3)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"n/a", consensus:"n/a", vs:"",
-    note:"HK C&SD GDP advance Q3 — Fri 30 Oct ~4:30am ET. High for HK desk. Confirm censtatd.gov.hk day-of — never invent actuals.", source:"https://www.censtatd.gov.hk/" },
+  { id:"hk-gdp-q3", date:"2026-11-03", time:"~3:30am", tz:"ET", country:"HK", inst:"C&SD", title:"Hong Kong GDP advance (Q3)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Q2 2026 advance: −0.6% q/q / +4.3% y/y (C&SD Jul 31)", consensus:"n/a", vs:"",
+    note:"HK C&SD advance GDP Q3 2026 — Tue 3 Nov (C&SD 2026 regular release schedule). Typical publish ~16:30 HKT (~3:30am ET). Prior calendar slot Fri 30 Oct was approximate/wrong date. Confirm censtatd.gov.hk day-of — never invent actuals.", source:"https://www.censtatd.gov.hk/FileManager/EN/Common/Schedule_of_Regular_Press_Releases_on_Statistical_Data_in_2026.pdf" },
 
   { id:"jp-cpi-aug", date:"2026-09-18", time:"7:30pm", tz:"ET", country:"JP", inst:"Statistics Bureau", title:"Japan CPI nationwide (Aug)", impact:"high", status:"released",
     actual:"headline +1.9% y/y; ex-fresh food +1.7% y/y; ex-fresh food & energy +1.9% y/y", actualShort:"CPI 1.9% · core 1.7%", previous:"Jul ex-fresh food +1.8% y/y (MIC)", consensus:"ex-fresh food hold ~1.8% (Bloomberg street)", vs:"soft vs hold-at-1.8%",
@@ -1273,6 +1273,55 @@ const EVENTS = [
   { id:"au-lfs-sep", date:"2026-10-14", time:"8:30pm", tz:"ET", country:"AU", inst:"ABS", title:"Australia unemployment / employment (Sep)", impact:"high", status:"released",
     actual:"emp −39.3k to 14,782,700; U-rate 4.7%; participation 66.8%; underemp 6.3%; emp-to-pop 63.6% (ABS sa)", actualShort:"Emp −39.3k · UE 4.7%", previous:"Aug emp +39.5k; U-rate 4.6%; participation 67.1% (ABS prior release; Aug levels revised in Sep tables)", consensus:"emp +20k; U-rate hold 4.6% (TradingView; Capital Brief/Westpac align)", vs:"miss — jobs −39.3k vs +20k; U-rate 4.7% vs 4.6% hold",
     note:"ABS Labour Force Sep 2026 (sa), released 15/10/2026 11:30am AEDT (= Wed 14 Oct 8:30pm ET). Emp −39,300; FT +34.4k / PT −73.7k; U-rate +0.1ppt to 4.7%; participation −0.2ppt to 66.8%; underemp 6.3%; emp-to-pop 63.6%. Soft vs street; ABS notes Victoria weighting + rotation caution — prefer trend (U-rate held 4.6%). Next high: US PPI+retail+claims 8:30am ET Thu 15 Oct; FOMC Oct 27–28.", source:"https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release" },
+
+  { id:"ism-mfg-oct", date:"2026-11-02", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Manufacturing PMI (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep Manufacturing PMI 54.5 (ISM)", consensus:"54.7 (TD Economics / Briefing.com cons)", vs:"",
+    note:"ISM Manufacturing PMI Report Oct 2026 — Mon 2 Nov 10:00am ET. Must-watch today: factory expansion streak vs street ~54.7. Confirm ismworld.org day-of — never invent actuals. S&P Global final mfg PMI also 9:45am ET (lower impact).", source:"https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/" },
+
+  { id:"rba-nov", date:"2026-11-02", time:"10:30pm", tz:"ET", country:"AU", inst:"RBA", title:"RBA cash rate decision + SMP", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"4.60% cash rate target (eff. 30 Sep 2026; RBA)", consensus:"+25bp to 4.85% (major-bank lean / market)", vs:"",
+    note:"RBA Monetary Policy Board — decision + Statement on Monetary Policy Tue 3 Nov 2:30pm AEDT (= Mon 2 Nov 10:30pm ET). Governor presser ~3:30pm AEDT. SMP meeting with updated forecasts. Confirm rba.gov.au day-of.", source:"https://www.rba.gov.au/coming-up/" },
+
+  { id:"jolts-sep", date:"2026-11-03", time:"10:00am", tz:"ET", country:"US", inst:"BLS", title:"JOLTS (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug openings 7.1M / 4.3% rate (BLS USDL-26-1547)", consensus:"~7.1M openings (Briefing.com cons)", vs:"",
+    note:"BLS JOLTS Sep 2026 — Tue 3 Nov 10:00am ET (BLS Nov schedule). Labor-demand read into Fri NFP. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/2026/11_sched.htm" },
+
+  { id:"ez-hicp-flash-oct", date:"2026-11-04", time:"5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP flash (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep EA HICP +3.8% y/y (Eurostat final; flash was 3.8%)", consensus:"~3.9% y/y (TD Economics)", vs:"",
+    note:"Eurostat flash HICP Oct 2026 — Wed 4 Nov 11:00 CET / 5:00am ET. Official next-flash note on Sep final release. Confirm eurostat euro-indicators day-of.", source:"https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-16102026-ap" },
+
+  { id:"adp-oct", date:"2026-11-04", time:"8:15am", tz:"ET", country:"US", inst:"ADP", title:"ADP employment change (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep +90k private (ADP)", consensus:"~75k (TD Economics / Briefing.com cons)", vs:"",
+    note:"ADP National Employment Report Oct — Wed 4 Nov 8:15am ET. Soft guide into Fri BLS NFP. Confirm ADP PR day-of — never invent actuals.", source:"https://mediacenter.adp.com/" },
+
+  { id:"trade-sep", date:"2026-11-04", time:"8:30am", tz:"ET", country:"US", inst:"Census/BEA", title:"International trade balance (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Aug deficit −$105.6B (Census/BEA prior)", consensus:"~−$104.9B (TD Economics)", vs:"",
+    note:"US International Trade in Goods and Services Sep — Wed 4 Nov 8:30am ET. Confirm census.gov / bea.gov day-of.", source:"https://www.census.gov/foreign-trade/index.html" },
+
+  { id:"ism-svc-oct", date:"2026-11-04", time:"10:00am", tz:"ET", country:"US", inst:"ISM", title:"ISM Services PMI (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep Services PMI 54.9 (ISM)", consensus:"54.8 (TD Economics / Briefing.com cons)", vs:"",
+    note:"ISM Services PMI Report Oct 2026 — Wed 4 Nov 10:00am ET. Dominant US activity gauge this week alongside Mon mfg. Confirm ismworld.org day-of.", source:"https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/" },
+
+  { id:"boe-nov", date:"2026-11-05", time:"7:00am", tz:"ET", country:"UK", inst:"BoE", title:"BoE Bank Rate + MPC minutes", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Bank Rate 3.75% (held; BoE)", consensus:"+25bp to 4.00% (TD Economics; market lean)", vs:"",
+    note:"BoE MPC — Thu 5 Nov noon UK / 7:00am ET (BoE: next due 5 Nov 2026). Prior hold 3.75%. Confirm bankofengland.co.uk day-of — never invent vote/actual.", source:"https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate" },
+
+  { id:"claims-nov5", date:"2026-11-05", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Week ended Oct 24: initial 194k; cont 1,701k (DOL 29 Oct)", consensus:"~197k initial (Briefing.com cons)", vs:"",
+    note:"DOL UI Weekly Claims — week ending Oct 31 — Thu 5 Nov 8:30am ET (same window as Productivity prelim). Confirm dol.gov/ui/data.pdf day-of.", source:"https://www.dol.gov/ui/data.pdf" },
+
+  { id:"productivity-q3", date:"2026-11-05", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Productivity & costs prelim (Q3)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Q2 context on BLS prior; unit labor costs +1.2% q/q last cited print (TD)", consensus:"ULC ~+1.4% q/q; productivity ~+3.1% (Briefing.com cons)", vs:"",
+    note:"BLS Productivity and Costs (P) Q3 2026 — Thu 5 Nov 8:30am ET (BLS Nov schedule). Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/2026/11_sched.htm" },
+
+  { id:"nfp-oct", date:"2026-11-06", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep NFP +29k; U-3 4.2%; AHE +0.1% m/m / +3.0% y/y (BLS)", consensus:"~65k payrolls; U-3 hold 4.2%; AHE +0.3% m/m (TD / Briefing.com cons)", vs:"",
+    note:"BLS Employment Situation Oct — Fri 6 Nov 8:30am ET (BLS Nov schedule). Week headline after ADP/JOLTS/claims. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/2026/11_sched.htm" },
+
+  { id:"ca-lfs-oct", date:"2026-11-06", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada employment / unemployment (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep net change −68.3k; U-rate 6.5% (StatCan / TD prior)", consensus:"emp ~+16k; U-rate hold 6.5% (TD Economics)", vs:"",
+    note:"Statistics Canada Labour Force Survey Oct — Fri 6 Nov 8:30am ET. Confirm statcan.gc.ca day-of.", source:"https://www.statcan.gc.ca/" },
+
 ];
 
 
