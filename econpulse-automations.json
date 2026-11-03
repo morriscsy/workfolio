@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T20:49:44.041186+08:00",
+  "updatedAt": "2026-11-03T08:44:22.843803+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,40 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-02T08:51:53.237094+08:00",
+      "lastRunAt": "2026-11-03T08:44:22.843803+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Mon 2 Nov: filled boj-oct hold 1.25% 8–1 + Outlook; ez-gdp-flash-q3 EA +0.4% q/q; eci-q3 +0.8% q/q; cn-pmi-oct mfg 49.3/non-mfg 49.7 — left blank hk-gdp-q3 (C&SD due Tue 3 Nov)",
-      "nextRunAt": "2026-11-03T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "boj-oct",
-          "title": "BoJ rate decision + Outlook Report",
-          "actualShort": "Hold 1.25% · 8–1 · Outlook core CPI 2.5/2.6/2.0",
-          "status": "released",
-          "when": "2026-10-29"
-        },
-        {
-          "id": "ez-gdp-flash-q3",
-          "title": "Eurozone GDP flash (Q3)",
-          "actualShort": "EA +0.4% q/q · +1.3% y/y",
-          "status": "released",
-          "when": "2026-10-30"
-        },
-        {
-          "id": "eci-q3",
-          "title": "Employment Cost Index (Q3)",
-          "actualShort": "ECI +0.8% q/q · +3.4% y/y",
-          "status": "released",
-          "when": "2026-10-30"
-        },
-        {
-          "id": "cn-pmi-oct",
-          "title": "China official PMI (Oct)",
-          "actualShort": "Mfg 49.3 · Non-mfg 49.7 · Comp 49.7",
-          "status": "released",
-          "when": "2026-10-30"
-        }
-      ]
+      "lastSummary": "Morning Actuals Tue 3 Nov: quiet (0 fills). Left blank rba-nov (~1:30pm HKT) / hk-gdp-q3 (C&SD ~16:30 HKT) / jolts-sep (10am ET). TODAY→Tue 3 Nov.",
+      "nextRunAt": "2026-11-04T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
