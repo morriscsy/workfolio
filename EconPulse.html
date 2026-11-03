@@ -1282,9 +1282,13 @@ const EVENTS = [
     actual:"+25bp to 4.85% cash rate target (majority 6–3); effective 4 Nov 2026", actualShort:"+25bp · 4.85%", previous:"4.60% cash rate target (eff. 30 Sep 2026; RBA)", consensus:"+25bp to 4.85% (major-bank lean / market)", vs:"hike as expected (+25bp); majority not unanimous (6 hike / 3 hold)",
     note:"RBA Monetary Policy Board MR 2026-30, 3 Nov 2026 2:30pm AEDT (= Mon 2 Nov 10:30pm ET). Majority +25bp to 4.85% (eff. 4 Nov): 6–3 vs hold at 4.60%. Inflation outlook revised materially higher (fuel/ME conflict, AI-related tech goods, tighter capacity); not expected back to top of 2–3% band until late 2027. Board judged further tightening warranted. SMP published alongside. Governor presser ~3:30pm AEDT (~11:30pm ET). Next cash-rate update 8 Dec 2026.", source:"https://www.rba.gov.au/media-releases/2026/mr-26-30.html" },
 
+  { id:"ch-cpi-oct", date:"2026-11-03", time:"2:30am", tz:"ET", country:"CH", inst:"FSO", title:"Switzerland CPI (Oct)", impact:"high", status:"released",
+    actual:"CPI +0.2% m/m to 101.7 (Dec 2025=100); +1.5% y/y (FSO)", actualShort:"CPI +0.2% m/m · +1.5% y/y", previous:"Sep CPI prior on street calendars ~+1.0% y/y / 0.0% m/m — confirm FSO Sep series if needed", consensus:"street calendars ~0.0% m/m / ~1.2–1.3% y/y (XTB/Borsa Italiana) — not a named Reuters/Bloomberg poll URL", vs:"hotter y/y vs ~1.2–1.3% street; m/m +0.2% vs ~0.0%",
+    note:"FSO Swiss CPI Oct — published 3 Nov 2026 08:30 CET (~2:30am ET). Index 101.7; +0.2% m/m (heating oil/petrol/diesel, footwear, hospital outpatient); − medical GP services, intl package holidays, hotels. y/y +1.5%.", source:"https://statistik.admin.ch/en/asset/36894291" },
+
   { id:"jolts-sep", date:"2026-11-03", time:"10:00am", tz:"ET", country:"US", inst:"BLS", title:"JOLTS (Sep)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Aug openings 7.1M / 4.3% rate (BLS USDL-26-1547)", consensus:"~7.1M openings (Briefing.com cons)", vs:"",
-    note:"BLS JOLTS Sep 2026 — Tue 3 Nov 10:00am ET (BLS Nov schedule). Labor-demand read into Fri NFP. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/2026/11_sched.htm" },
+    actual:"n/a", actualShort:"", previous:"Aug (BLS USDL-26-1547): openings 7.1M / 4.3% rate; hires 5.2M; total separations 5.1M; quits 3.1M; layoffs/discharges 1.6M", consensus:"7.160M (CME Econoday); WSJ survey ~7.1M", vs:"",
+    note:"BLS JOLTS Sep due Tue 3 Nov 10:00am ET; labor-demand into Fri NFP; confirm bls.gov day-of. Prior: official Aug USDL-26-1547. Consensus: CME Econoday 7.160M openings; WSJ median survey ~7.1M (MarketScreener week-ahead). Never invent actuals.", source:"https://www.bls.gov/news.release/jolts.nr0.htm" },
 
   { id:"ez-hicp-flash-oct", date:"2026-11-04", time:"5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone HICP flash (Oct)", impact:"high", status:"scheduled",
     actual:"n/a", actualShort:"", previous:"Sep EA HICP +3.8% y/y (Eurostat final; flash was 3.8%)", consensus:"~3.9% y/y (TD Economics)", vs:"",
