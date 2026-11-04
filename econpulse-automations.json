@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T20:48:30.153425+08:00",
+  "updatedAt": "2026-11-04T08:44:42.654878+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-03T08:44:22.843803+08:00",
+      "lastRunAt": "2026-11-04T08:44:42.654878+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Tue 3 Nov: quiet (0 fills). Left blank rba-nov (~1:30pm HKT) / hk-gdp-q3 (C&SD ~16:30 HKT) / jolts-sep (10am ET). TODAY→Tue 3 Nov.",
-      "nextRunAt": "2026-11-04T08:40:00+08:00",
+      "lastSummary": "Morning Actuals Wed 4 Nov: quiet (0 fills). Left blank ez-hicp-flash-oct (5:00am ET) / adp-oct (8:15am ET) / trade-sep (8:30am ET) / ism-svc-oct (10:00am ET). Overnight already filled (jolts-sep / rba-nov / ch-cpi-oct / hk-gdp-q3). TODAY→Wed 4 Nov. Inflation TE unchanged.",
+      "nextRunAt": "2026-11-05T08:40:00+08:00",
       "lastItems": []
     },
     {
