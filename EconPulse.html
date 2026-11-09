@@ -1326,6 +1326,31 @@ const EVENTS = [
     actual:"Employment little changed (−4,700; 0.0%) at 21.1 million; employment rate −0.1pt to 60.5%. Unemployment rate +0.2pt to 6.7% (more people searching, +33k). Youth U-rate +0.7pt to 13.7%. Wholesale & retail trade −29k; construction +16k; educational services +15k. Average hourly wages +2.2% y/y to $37.89 (StatCan LFS Oct)", actualShort:"Emp −4.7k · U-rate 6.7% · emp-rate 60.5%", previous:"Sep −68,000 (−0.3%); U-rate 6.5% (StatCan)", consensus:"emp ~+16k; U-rate hold 6.5% (TD Economics)", vs:"miss vs emp ~+16k / U-rate hold 6.5% (print −4.7k; U-rate 6.7%)",
     note:"Statistics Canada Labour Force Survey Oct — Fri 6 Nov 8:30am ET (The Daily dq261106a). Employment little changed after Sep −68k; U-rate rose a second month to 6.7%. Private-sector employees −53k; public-sector +50k. Next: 4 Dec (Nov LFS).", source:"https://www150.statcan.gc.ca/n1/daily-quotidien/261106/dq261106a-eng.htm" },
 
+
+  { id:"cn-cpi-oct", date:"2026-11-08", time:"8:30pm", tz:"ET", country:"CN", inst:"NBS", title:"China CPI + PPI (Oct)", impact:"high", status:"released",
+    actual:"CPI +0.7% y/y, 0.0% m/m; core ex food & energy +0.8% y/y; PPI +5.7% y/y, +0.7% m/m; industrial input prices +7.9% y/y / +1.1% m/m (NBS / Reuters / CGTN)", actualShort:"CPI 0.7% · PPI 5.7%", previous:"Sep CPI +0.9% y/y / +0.2% m/m; core +1.0% y/y; PPI +5.0% y/y / +1.2% m/m (NBS)", consensus:"CPI ~0.8% y/y; PPI ~5.3% y/y (Reuters poll)", vs:"CPI soft vs ~0.8% (print 0.7%); PPI hot vs ~5.3% (print 5.7%, fastest since Jun 2022)",
+    note:"NBS CPI+PPI Oct — Mon 9 Nov 2026 09:30 CST (= Sun 8 Nov 8:30pm ET). Headline CPI cooled 0.9%→0.7% y/y and was flat m/m; food −2.9% y/y, non-food +1.5%; gasoline +22.4% y/y. Core eased to 0.8% from 1.0%. PPI accelerated 5.0%→5.7% y/y on energy/commodities (Reuters: fastest since Jun 2022). Soft consumer demand vs hot factory-gate split. Next high: US CPI (cpi-oct) 8:30am ET Tue 10 Nov.", source:"https://www.stats.gov.cn/sj/zxfb/202611/t20261109_1965795.html" },
+
+  { id:"cpi-oct", date:"2026-11-10", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"CPI (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep +0.6% m/m / 3.7% y/y; core +0.3% m/m / 2.6% y/y (BLS)", consensus:"headline +0.3% m/m (TD Economics; street one-decimal); FactSet ~+0.24%; core +0.2% m/m (TD / FactSet / Optencis). BLS will not publish most 12-month % changes for Oct 2026", vs:"",
+    note:"BLS CPI Oct — Tue 10 Nov 8:30am ET (official CPI release schedule; Real Earnings same window). Because most October 2025 CPI indexes were not published after the 2025 shutdown, BLS will not publish 12-month percent changes for October 2026 where the October 2025 base is missing (official CPI shutdown FAQ). Watch m/m headline vs ~+0.3% and core vs +0.2%. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/news_release/cpi.htm" },
+
+  { id:"uk-gdp-q3", date:"2026-11-12", time:"2:00am", tz:"ET", country:"UK", inst:"ONS", title:"UK GDP first quarterly estimate (Q3) + monthly (Sep)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Q2 +0.5% q/q (ONS quarterly national accounts; first estimate had been +0.4%); Aug monthly GDP +0.1% (ONS)", consensus:"Q3 prelim ~+0.7% q/q (Optencis / Yardeni); Sep monthly GDP ~0.0% (Optencis / FXGT)", vs:"",
+    note:"ONS GDP first quarterly estimate Q3 2026 (Jul–Sep) plus monthly GDP September — Thu 12 Nov 7:00am UK / 2:00am ET (ONS release calendar, confirmed). First look at Q3 growth after BoE’s +25bp hike last week. Confirm ons.gov.uk day-of — never invent actuals.", source:"https://www.ons.gov.uk/releases/gdpfirstquarterlyestimateukjulytoseptember2026" },
+
+  { id:"claims-nov12", date:"2026-11-12", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Week ended Oct 31: initial 189k; 4-wk avg 194.75k; cont 1,718k week ended Oct 24 (DOL 5 Nov)", consensus:"~195k initial (TD Economics); ~194k also cited (Optencis)", vs:"",
+    note:"DOL UI Weekly Claims — week ending Nov 7 — Thu 12 Nov 8:30am ET (standard Thursday claims window; US Veterans Day is Wed 11 Nov, so the weekly release stays Thursday). Confirm dol.gov/ui/data.pdf day-of.", source:"https://www.dol.gov/ui/data.pdf" },
+
+  { id:"ez-gdp-emp-q3", date:"2026-11-13", time:"5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone GDP + employment flash (Q3, t+45)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Preliminary flash Q3: EA +0.4% q/q / +1.3% y/y; EU +0.5% q/q / +1.5% y/y (Eurostat 30 Oct)", consensus:"EA ~+0.4% q/q / ~+1.3% y/y (Investing.com / TD Economics; in line with Oct 30 preliminary flash)", vs:"",
+    note:"Eurostat t+45 GDP and employment flash for Q3 2026 — Fri 13 Nov 11:00 CET / 5:00am ET (Eurostat QNA release calendar; next-estimate note on the 30 Oct preliminary flash). Updates the Oct 30 preliminary flash and adds employment. Confirm eurostat euro-indicators day-of.", source:"https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-30102026-ap" },
+
+  { id:"ppi-oct", date:"2026-11-13", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Oct)", impact:"high", status:"scheduled",
+    actual:"n/a", actualShort:"", previous:"Sep final demand +1.3% m/m / +6.3% y/y; FD less foods/energy/trade +0.5% m/m / +5.0% y/y (BLS); ex-food/energy +0.7% m/m (TD last)", consensus:"headline +0.4% m/m; ex-food/energy +0.3% m/m (TD Economics / Optencis)", vs:"",
+    note:"BLS PPI final demand Oct — Fri 13 Nov 8:30am ET (official PPI release schedule). Follows Tuesday CPI; September was the largest m/m final-demand rise since Mar 2022. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/news_release/ppi.htm" },
+
 ];
 
 
@@ -2086,7 +2111,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-11-09T08:46:33.984282+08:00";
+const INFLATION_UPDATED_AT = "2026-11-09T20:13:06+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
@@ -2154,8 +2179,8 @@ const INFLATION = [
   { code:"CH", name:"Switzerland", last:1.5, prev:1, g20:false,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"CETCH",
     nextPeriod:"Dec 2026", nextDate:"", nextTime:"", nextTz:"CETCH" },
-  { code:"CN", name:"China", last:0.9, prev:0.8, g20:true,
-    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"CST",
+  { code:"CN", name:"China", last:0.7, prev:0.9, g20:true,
+    refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"CST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CST" }
 ];
 let infSortKey = "last";
