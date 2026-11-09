@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T08:46:55.114013+08:00",
+  "updatedAt": "2026-11-09T20:49:14.420222+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -237,19 +237,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-03T20:48:30.153425+08:00",
+      "lastRunAt": "2026-11-09T20:49:14.420222+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Tue 3 Nov ~20:50 HKT: filled hk-gdp-q3 (C&SD advance +1.9% SA q/q · +5.2% y/y; beat ~+3.6% Reuters). Left blank jolts-sep (BLS still Aug USDL-26-1547; due 10:00am ET/~23:00 HKT). US 8:30am ET window still ahead. Inflation TE pass as-scripted.",
-      "nextRunAt": "2026-11-04T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "hk-gdp-q3",
-          "title": "Hong Kong GDP advance (Q3)",
-          "actualShort": "+1.9% q/q · +5.2% y/y",
-          "status": "released",
-          "when": "2026-11-03T16:30:00+08:00"
-        }
-      ]
+      "lastSummary": "Evening Actuals Mon 9 Nov ~20:47 HKT: quiet (0 material calendar fills; 0 past high/medium blanks). Monday tape empty — no events dated 9 Nov. US 8:30am ET window has no prints today; next exact watch Tue 10 Nov 8:30am ET US CPI (cpi-oct).",
+      "nextRunAt": "2026-11-10T20:45:00+08:00",
+      "lastItems": []
     }
   ]
 }
