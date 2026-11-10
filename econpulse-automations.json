@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T08:46:55.874912+08:00",
+  "updatedAt": "2026-11-10T11:23:37.406766+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-10T08:46:55.874912+08:00",
+      "lastRunAt": "2026-11-10T11:23:37.406766+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Tue 10 Nov: quiet (0 material calendar fills; 0 past high/medium blanks). Left blank cpi-oct (US CPI Oct, 8:30am ET / ~21:30 HKT). TODAY→Tue 10 Nov. Inflation TE unchanged. Next exact watch: Tue 10 Nov 8:30am ET US CPI (cpi-oct).",
+      "lastSummary": "Asia-evening Actuals Mon 9 Nov ET / Tue 10 Nov HKT: filled cn-trade-oct (China Oct trade surplus ~¥713B · exp +28.7% / imp +34.7%; GACC via 新华财经). Inflation TE live: order unchanged; MX and CN next Nov→Dec. Next exact watch: Tue 10 Nov 8:30am ET US CPI (cpi-oct). AU LFS Oct due Thu 19 Nov 11:30 AEDT — not this evening.",
       "nextRunAt": "2026-11-11T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "cn-trade-oct",
+          "title": "China trade balance (Oct)",
+          "actualShort": "surplus ~¥713B · exp +28.7%",
+          "status": "released",
+          "when": "2026-11-10T10:40:00+08:00"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
