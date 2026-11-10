@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T11:23:37.406766+08:00",
+  "updatedAt": "2026-11-10T20:52:44.415787+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,10 +181,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-09T20:49:14.420222+08:00",
+      "lastRunAt": "2026-11-10T20:52:44.415787+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Mon 9 Nov ~20:47 HKT: quiet (0 material calendar fills; 0 past high/medium blanks). Monday tape empty — no events dated 9 Nov. US 8:30am ET window has no prints today; next exact watch Tue 10 Nov 8:30am ET US CPI (cpi-oct).",
-      "nextRunAt": "2026-11-10T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Tue 10 Nov ~20:52 HKT: quiet (0 material calendar fills). Left blank cpi-oct — BLS October CPI still embargoed until 8:30am ET / 9:30pm HKT (official pages still September USDL-26-1574). 0 remaining past high/medium blanks. Next exact watch: US CPI Oct 8:30am ET / 9:30pm HKT.",
+      "nextRunAt": "2026-11-11T20:45:00+08:00",
       "lastItems": []
     }
   ]
