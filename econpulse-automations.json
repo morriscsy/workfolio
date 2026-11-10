@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T20:49:14.420222+08:00",
+  "updatedAt": "2026-11-10T08:46:55.874912+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,75 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-09T08:46:55.114013+08:00",
+      "lastRunAt": "2026-11-10T08:46:55.874912+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Mon 9 Nov: backfill 9 prints after Nov 4–6 gap (Nov 6 routines failed). ez-hicp-flash-oct HICP +4.0% y/y / +0.4% m/m / core +2.5%; adp-oct +86k (Sep rev +86k); trade-sep deficit $105.0B; ism-svc-oct 54.5; boe-nov +25bp to 4.00% (8–1); claims-nov5 189k / Cont 1.718M; productivity-q3 +3.6% saar / ULC −0.7%; nfp-oct +165k / U-3 4.1% / AHE +0.4%; ca-lfs-oct −4.7k / U-rate 6.7%. TODAY→Mon 9 Nov. Inflation TE: EU 3.8→4.0 (Oct); TR/CH next Nov→Dec.",
-      "nextRunAt": "2026-11-10T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "ez-hicp-flash-oct",
-          "title": "Eurozone HICP flash (Oct)",
-          "actualShort": "HICP +4.0% y/y · +0.4% m/m · core +2.5%",
-          "status": "released",
-          "when": "2026-11-04T05:00:00-05:00"
-        },
-        {
-          "id": "adp-oct",
-          "title": "ADP employment change (Oct)",
-          "actualShort": "+86k private · Sep rev +86k · pay +3.2% base",
-          "status": "released",
-          "when": "2026-11-04T08:15:00-05:00"
-        },
-        {
-          "id": "trade-sep",
-          "title": "International trade balance (Sep)",
-          "actualShort": "Deficit $105.0B · exp $321.5B · imp $426.6B",
-          "status": "released",
-          "when": "2026-11-04T08:30:00-05:00"
-        },
-        {
-          "id": "ism-svc-oct",
-          "title": "ISM Services PMI (Oct)",
-          "actualShort": "Services PMI 54.5 · BA 53.8 · Emp 51.4",
-          "status": "released",
-          "when": "2026-11-04T10:00:00-05:00"
-        },
-        {
-          "id": "boe-nov",
-          "title": "BoE Bank Rate + MPC minutes",
-          "actualShort": "+25bp to 4.00% · vote 8–1 (Mann +50bp)",
-          "status": "released",
-          "when": "2026-11-05T07:00:00-05:00"
-        },
-        {
-          "id": "claims-nov5",
-          "title": "Initial jobless claims",
-          "actualShort": "Claims 189k · Cont 1.718M",
-          "status": "released",
-          "when": "2026-11-05T08:30:00-05:00"
-        },
-        {
-          "id": "productivity-q3",
-          "title": "Productivity & costs prelim (Q3)",
-          "actualShort": "Prod +3.6% saar · ULC −0.7% · Q2 rev +2.1%",
-          "status": "released",
-          "when": "2026-11-05T08:30:00-05:00"
-        },
-        {
-          "id": "nfp-oct",
-          "title": "Employment situation / NFP (Oct)",
-          "actualShort": "NFP +165k · U-3 4.1% · AHE +0.4% / +3.1%",
-          "status": "released",
-          "when": "2026-11-06T08:30:00-05:00"
-        },
-        {
-          "id": "ca-lfs-oct",
-          "title": "Canada employment / unemployment (Oct)",
-          "actualShort": "Emp −4.7k · U-rate 6.7% · emp-rate 60.5%",
-          "status": "released",
-          "when": "2026-11-06T08:30:00-05:00"
-        }
-      ]
+      "lastSummary": "Morning Actuals Tue 10 Nov: quiet (0 material calendar fills; 0 past high/medium blanks). Left blank cpi-oct (US CPI Oct, 8:30am ET / ~21:30 HKT). TODAY→Tue 10 Nov. Inflation TE unchanged. Next exact watch: Tue 10 Nov 8:30am ET US CPI (cpi-oct).",
+      "nextRunAt": "2026-11-11T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
