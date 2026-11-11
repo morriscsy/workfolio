@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T22:12:28.600177+08:00",
+  "updatedAt": "2026-11-11T08:50:35.412860+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,19 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-10T11:23:37.406766+08:00",
+      "lastRunAt": "2026-11-11T08:50:35.412860+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Mon 9 Nov ET / Tue 10 Nov HKT: filled cn-trade-oct (China Oct trade surplus ~¥713B · exp +28.7% / imp +34.7%; GACC via 新华财经). Inflation TE live: order unchanged; MX and CN next Nov→Dec. Next exact watch: Tue 10 Nov 8:30am ET US CPI (cpi-oct). AU LFS Oct due Thu 19 Nov 11:30 AEDT — not this evening.",
-      "nextRunAt": "2026-11-11T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "cn-trade-oct",
-          "title": "China trade balance (Oct)",
-          "actualShort": "surplus ~¥713B · exp +28.7%",
-          "status": "released",
-          "when": "2026-11-10T10:40:00+08:00"
-        }
-      ]
+      "lastSummary": "Quiet morning: 0 material calendar fills (lastItems=[]); 0 remaining past high/medium blanks; TODAY bumped to Wed 11 Nov; Inflation TE US next Nov→Dec (last 3.7 / prev 3.4 / refPeriod Sep 2026 unchanged — Oct y/y still unpublished after BLS USDL-26-1685); next exact watch Thu 12 Nov 2:00am ET / 15:00 HKT UK GDP Q3 (uk-gdp-q3).",
+      "nextRunAt": "2026-11-12T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
