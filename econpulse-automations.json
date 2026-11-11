@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T10:55:32.652872+08:00",
+  "updatedAt": "2026-11-11T20:48:28.655287+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,10 +173,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-10T22:12:28.600177+08:00",
+      "lastRunAt": "2026-11-11T20:48:28.655287+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Tue 10 Nov ~22:11 HKT / ~9:11am ET: quiet (0 past high/medium blanks). cpi-oct already filled (print-watch T-0: headline +0.4% m/m SA vs +0.3% cons, core +0.3% vs +0.2%; BLS USDL-26-1685). Inflation TE live: order unchanged; no last/prev/period updates.",
-      "nextRunAt": "2026-11-11T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Wed 11 Nov ~20:46 HKT / ~7:46am ET: quiet (0 material calendar fills; 0 past high/medium blanks). Veterans Day — no Nov 11 high-impact official prints on calendar (BLS holiday). Next exact watch: Thu 12 Nov 2:00am ET / 15:00 HKT UK GDP Q3, then 8:30am ET claims. Inflation TE live: order unchanged; no last/prev/period updates.",
+      "nextRunAt": "2026-11-12T20:45:00+08:00",
       "lastItems": []
     }
   ]
