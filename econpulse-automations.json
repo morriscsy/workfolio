@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:45:20.978502+08:00",
+  "updatedAt": "2026-11-12T10:54:37.384484+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,9 +153,9 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-12T08:45:20.978502+08:00",
+      "lastRunAt": "2026-11-12T10:52:50.672000+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Thu 12 Nov ~08:44 HKT: quiet (0 material calendar fills; lastItems=[]). Left blank uk-gdp-q3 (2:00am ET / 15:00 HKT, not yet released) and claims-nov12 (8:30am ET / 21:30 HKT, not yet released). No Asia CPI/labor or early UK/EZ PMI/CPI due by ~08:40 HKT; overnight US spillover (cpi-oct) already filled. TODAY bumped to Thu 12 Nov. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Next exact watch: Thu 12 Nov 2:00am ET / 15:00 HKT UK GDP Q3 (uk-gdp-q3), then 8:30am ET claims.",
+      "lastSummary": "Asia-evening Actuals Wed 11 Nov ~9:52pm ET / Thu 12 Nov ~10:52am HKT: quiet (0 material calendar fills; 0 past high/medium blanks as-of 2026-11-11). Left blank uk-gdp-q3 (Thu 12 Nov 2:00am ET / 3:00pm HKT, not yet released) and claims-nov12 (8:30am ET / 9:30pm HKT, not yet released). No Japan/China/AU/HK high-impact official prints due this window (AU labour Oct is Thu 19 Nov 11:30am AEDT; China NBS activity next Mon 16 Nov; Japan nationwide CPI Fri 20 Nov). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Next exact watch: Thu 12 Nov 2:00am ET / 3:00pm HKT UK GDP Q3 (uk-gdp-q3), then 8:30am ET claims.",
       "nextRunAt": "2026-11-13T08:40:00+08:00",
       "lastItems": []
     },
