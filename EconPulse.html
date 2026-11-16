@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Thu 12 Nov 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 16 Nov 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 10, 12); // Thu 12 Nov 2026
+const TODAY = new Date(2026, 10, 16); // Mon 16 Nov 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1343,17 +1343,17 @@ const EVENTS = [
     actual:"Q3 real GDP +0.7% q/q / +1.9% y/y; Sep monthly GDP +0.2% (Aug revised to 0.0% from +0.1%; Jul unrevised +0.4%) (ONS)", actualShort:"Q3 +0.7% · Sep +0.2%", previous:"Q2 +0.5% q/q (ONS quarterly national accounts; first estimate had been +0.4%); Aug monthly GDP +0.1% (ONS)", consensus:"Q3 prelim ~+0.7% q/q (Optencis / Yardeni); Sep monthly GDP ~0.0% (Optencis / FXGT)", vs:"Q3 in line at +0.7% vs ~+0.7% cons; Sep monthly +0.2% vs ~0.0% (firmer); Aug revised down to 0.0% from +0.1%",
     note:"ONS GDP first quarterly estimate Q3 2026 (Jul–Sep) plus monthly GDP September — Thu 12 Nov 7:00am UK / 2:00am ET. Real GDP +0.7% q/q after +0.5% in Q2, and +1.9% y/y. Output: services +0.9% (business-facing +1.0%, consumer-facing +0.5%); production +0.1%; construction −0.7%. Expenditure +0.7%, led by household consumption +0.6% and GFCF +1.7% (business investment +0.4%); government consumption +0.6%; exports +1.6%, imports +1.8%. Real GDP per head +0.7% q/q / +1.7% y/y. Nominal GDP +1.4% q/q / +4.3% y/y; implied deflator +2.3% y/y. Monthly: Sep +0.2% (services +0.2%, production +0.3%, construction +0.8%); Aug revised to 0.0% from +0.1%; Jul unrevised +0.4%. Next ONS monthly GDP (Oct): Fri 11 Dec 2026. Next quarterly national accounts (Q3): Tue 22 Dec 2026. Next high: US initial claims (claims-nov12) Thu 12 Nov 8:30am ET.", source:"https://www.ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpfirstquarterlyestimateuk/julytoseptember2026" },
 
-  { id:"claims-nov12", date:"2026-11-12", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Week ended Oct 31: initial 189k; 4-wk avg 194.75k; cont 1,718k week ended Oct 24 (DOL 5 Nov)", consensus:"~195k initial (TD Economics); ~194k also cited (Optencis)", vs:"",
-    note:"DOL UI Weekly Claims — week ending Nov 7 — Thu 12 Nov 8:30am ET (standard Thursday claims window; US Veterans Day is Wed 11 Nov, so the weekly release stays Thursday). Confirm dol.gov/ui/data.pdf day-of.", source:"https://www.dol.gov/ui/data.pdf" },
+  { id:"claims-nov12", date:"2026-11-12", time:"8:30am", tz:"ET", country:"US", inst:"DOL", title:"Initial jobless claims", impact:"high", status:"released",
+    actual:"Initial claims 200k (+9k vs prior week revised 191k); 4-wk avg 195.25k (unchanged vs revised). Insured unemployment (week ended Oct 31) 1,697k (−20k vs revised 1,717k); IUR 1.1% unchanged (DOL USDL 26-1694-NAT)", actualShort:"Claims 200k · Cont 1.697M", previous:"Prior week initial revised to 191k (was published 189k); 4-wk avg revised to 195.25k (was 194.75k); cont 1,717k revised (was 1,718k) (DOL 12 Nov)", consensus:"~195k initial (Reuters poll; also TD Economics); ~194k also cited (Optencis)", vs:"miss / hotter 200k vs Reuters 195k (+5k); +9k vs revised prior 191k; cont 1.697M (−20k vs revised 1.717M)",
+    note:"DOL UI Weekly Claims — week ending Nov 7 — Thu 12 Nov 8:30am ET (USDL 26-1694-NAT). Initial 200k; prior week revised +2k to 191k. 4-wk avg 195,250 unchanged after a +500 revision. Continued claims week ended Oct 31: 1,697k (−20k). Reuters poll 195k (Reuters/US News 12 Nov).", source:"https://www.dol.gov/ui/data.pdf" },
 
-  { id:"ez-gdp-emp-q3", date:"2026-11-13", time:"5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone GDP + employment flash (Q3, t+45)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Preliminary flash Q3: EA +0.4% q/q / +1.3% y/y; EU +0.5% q/q / +1.5% y/y (Eurostat 30 Oct)", consensus:"EA ~+0.4% q/q / ~+1.3% y/y (Investing.com / TD Economics; in line with Oct 30 preliminary flash)", vs:"",
-    note:"Eurostat t+45 GDP and employment flash for Q3 2026 — Fri 13 Nov 11:00 CET / 5:00am ET (Eurostat QNA release calendar; next-estimate note on the 30 Oct preliminary flash). Updates the Oct 30 preliminary flash and adds employment. Confirm eurostat euro-indicators day-of.", source:"https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-30102026-ap" },
+  { id:"ez-gdp-emp-q3", date:"2026-11-13", time:"5:00am", tz:"ET", country:"EU", inst:"Eurostat", title:"Eurozone GDP + employment flash (Q3, t+45)", impact:"high", status:"released",
+    actual:"Euro area GDP +0.4% q/q SA / +1.3% y/y (Q3 2026 t+45 flash, unrevised vs 30 Oct preliminary); EU +0.5% q/q / +1.5% y/y. Employment stable 0.0% q/q in both EA and EU / +0.4% y/y (after Q2 emp +0.1% q/q). Among available MS: Ireland +5.5%; EE/ES/NL +0.6%; DE +0.2%; IT 0.0%; FR −0.1%; LT −1.0% (Eurostat)", actualShort:"EA +0.4% q/q · emp 0.0%", previous:"Preliminary flash Q3: EA +0.4% q/q / +1.3% y/y; EU +0.5% q/q / +1.5% y/y (Eurostat 30 Oct). Q2: EA +0.6% / EU +0.7% q/q; emp +0.1% q/q both (Eurostat)", consensus:"EA ~+0.4% q/q / ~+1.3% y/y (Investing.com / TD Economics; in line with Oct 30 preliminary flash)", vs:"in line / confirmed: EA +0.4% q/q and +1.3% y/y unrevised vs preliminary flash and vs ~+0.4% / ~+1.3% consensus; emp stable 0.0% q/q",
+    note:"Eurostat t+45 GDP and employment flash for Q3 2026 — Fri 13 Nov 11:00 CET / 5:00am ET (euro-indicators 2-13112026-ap). EA/EU GDP unrevised vs the 30 Oct preliminary flash. Employment flash: 0.0% q/q, +0.4% y/y in both areas. Coverage 97% of EA/EU GDP; emp 95% EA / 92% EU. Next regular estimates 7 Dec 2026 and 19 Jan 2027.", source:"https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/2-13112026-ap" },
 
-  { id:"ppi-oct", date:"2026-11-13", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Oct)", impact:"high", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Sep final demand +1.3% m/m / +6.3% y/y; FD less foods/energy/trade +0.5% m/m / +5.0% y/y (BLS); ex-food/energy +0.7% m/m (TD last)", consensus:"headline +0.4% m/m; ex-food/energy +0.3% m/m (TD Economics / Optencis)", vs:"",
-    note:"BLS PPI final demand Oct — Fri 13 Nov 8:30am ET (official PPI release schedule). Follows Tuesday CPI; September was the largest m/m final-demand rise since Mar 2022. Confirm bls.gov day-of — never invent actuals.", source:"https://www.bls.gov/schedule/news_release/ppi.htm" },
+  { id:"ppi-oct", date:"2026-11-13", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"PPI (Oct)", impact:"high", status:"released",
+    actual:"final demand +0.3% m/m, +6.5% y/y; FD less foods/energy/trade +0.5% m/m / +4.9% y/y; goods +0.5%, services +0.2% (BLS)", actualShort:"PPI +0.3% · 6.5%", previous:"Sep revised to +1.4% m/m / +6.3% y/y (was +1.3% m/m); FD less foods/energy/trade was +0.5% m/m / +5.0% y/y; goods Sep revised to +2.5% (was +2.6%) (BLS)", consensus:"headline +0.4% m/m; ex-food/energy +0.3% m/m (TD Economics / Optencis)", vs:"headline cooler +0.3% vs +0.4%; Sep revised to +1.4% from +1.3%; FD less F/E/trade +0.5% (same as Sep); y/y 6.5% largest since Nov 2022",
+    note:"BLS PPI final demand Oct — Fri 13 Nov 8:30am ET (USDL 26-1687). Headline +0.3% after a revised +1.4% in September; y/y +6.5%, largest 12-month rise since Nov 2022 (+7.4%). Goods +0.5% (foods +1.3%; energy −0.1%; core goods +0.5%); services +0.2% (truck freight +3.9%). FD less foods/energy/trade +0.5% / +4.9% y/y. June–September figures revised for late reports.", source:"https://www.bls.gov/news.release/ppi.nr0.htm" },
 
 ];
 
@@ -2115,29 +2115,29 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-11-11T20:47:49.377906+08:00";
+const INFLATION_UPDATED_AT = "2026-11-16T08:27:17.514678+08:00";
 const INFLATION = [
-  { code:"AR", name:"Argentina", last:33.4, prev:33.5, g20:true,
-    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"ART",
-    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"ART" },
+  { code:"AR", name:"Argentina", last:33.1, prev:33.4, g20:true,
+    refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"ART",
+    nextPeriod:"Dec 2026", nextDate:"", nextTime:"", nextTz:"ART" },
   { code:"TR", name:"Turkey", last:29.77, prev:29.73, g20:true,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"TRT",
     nextPeriod:"Dec 2026", nextDate:"", nextTime:"", nextTz:"TRT" },
   { code:"RU", name:"Russia", last:6.3, prev:6.3, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"MSK",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"MSK" },
-  { code:"IN", name:"India", last:5.54, prev:4.83, g20:true,
-    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"IST",
-    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"IST" },
+  { code:"IN", name:"India", last:6.09, prev:5.54, g20:true,
+    refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"IST",
+    nextPeriod:"Dec 2026", nextDate:"", nextTime:"", nextTz:"IST" },
   { code:"IT", name:"Italy", last:5.4, prev:4.2, g20:true,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
   { code:"ES", name:"Spain", last:4.9, prev:4.9, g20:false,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"CEST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"CEST" },
-  { code:"BR", name:"Brazil", last:4.58, prev:4.22, g20:true,
-    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"BRT",
-    nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"BRT" },
+  { code:"BR", name:"Brazil", last:4.63, prev:4.58, g20:true,
+    refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"BRT",
+    nextPeriod:"Dec 2026", nextDate:"", nextTime:"", nextTz:"BRT" },
   { code:"ZA", name:"South Africa", last:4.5, prev:4.4, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"SAST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"SAST" },
@@ -2177,8 +2177,8 @@ const INFLATION = [
   { code:"JP", name:"Japan", last:2.1, prev:1.9, g20:true,
     refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"JST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"JST" },
-  { code:"SA", name:"Saudi Arabia", last:1.9, prev:1.8, g20:true,
-    refPeriod:"Sep 2026", refDate:"", refTime:"", refTz:"AST",
+  { code:"SA", name:"Saudi Arabia", last:1.7, prev:1.9, g20:true,
+    refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"AST",
     nextPeriod:"Nov 2026", nextDate:"", nextTime:"", nextTz:"AST" },
   { code:"CH", name:"Switzerland", last:1.5, prev:1, g20:false,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"CETCH",
