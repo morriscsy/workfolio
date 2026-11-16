@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T08:27:44.140570+08:00",
+  "updatedAt": "2026-11-16T20:55:44.750509+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -195,10 +195,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-11T22:12:01+08:00",
+      "lastRunAt": "2026-11-16T20:55:44.750509+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Wed 11 Nov ~9:12am ET / ~10:12pm HKT: quiet (0 material calendar fills; 0 past high/medium blanks). Veterans Day — BLS holiday, no Nov 11 high-impact official US prints (0 events dated 2026-11-11). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Next exact watch: Thu 12 Nov 2:00am ET / 15:00 HKT UK GDP Q3 (uk-gdp-q3), then 8:30am ET claims.",
-      "nextRunAt": "2026-11-12T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Mon 16 Nov ~20:54 HKT / ~7:54am ET: quiet (0 material calendar fills). Only checklist blank is ca-cpi-oct (Canada CPI Oct), due 8:30am ET / 9:30pm HKT — not yet released, left scheduled. No US morning official prints due by ~20:45 HKT (BLS/Census/BEA/DOL/ISM quiet this window). Inflation TE live: order unchanged; SA next Nov 2026→Dec 2026. Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-17T20:45:00+08:00",
       "lastItems": []
     }
   ]
