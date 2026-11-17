@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T10:54:13.974541+08:00",
+  "updatedAt": "2026-11-17T20:50:06.417434+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,10 +173,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-16T22:07:00.389032+08:00",
+      "lastRunAt": "2026-11-17T20:50:06.417434+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Mon 16 Nov ~9:05am ET / ~10:05pm HKT: quiet (0 past high/medium blanks). ca-cpi-oct already filled at T-0 from official StatCan (headline +3.1% y/y). Inflation TE live: order unchanged; CA prev 3.0→3.1, ref Sep 2026→Oct 2026 (last stays 3.1; next still Nov 2026). Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-17T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Tue 17 Nov ~20:48 HKT / ~7:48am ET: quiet — 0 material calendar fills. Past high/medium blanks on the checklist (retailsales-oct, ip-oct) are not yet released: Census Advance retail sales Oct due 8:30am ET / 9:30pm HKT; Fed IP Oct due 9:15am ET / 10:15pm HKT (do not fill early). No US morning official prints due by ~20:45 HKT. uk-labour-nov already filled this afternoon (ONS). Inflation TE live: order unchanged; IT last 5.4→5.5; CA next Nov 2026→Dec 2026. Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-18T20:45:00+08:00",
       "lastItems": []
     }
   ]
