@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T08:33:08.855619+08:00",
+  "updatedAt": "2026-11-17T10:54:13.974541+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-17T08:33:08.855619+08:00",
+      "lastRunAt": "2026-11-17T10:50:29+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Tue 17 Nov morning ~08:40 HKT: quiet (0 material calendar fills). Left scheduled: uk-labour-nov (2:00am ET / 3:00pm HKT, ONS not yet published), retailsales-oct (8:30am ET / 9:30pm HKT), ip-oct (9:15am ET / 10:15pm HKT). No Asia CPI/labor or early UK/EZ PMI/CPI due by ~08:40 HKT. Overnight spillover (ca-cpi-oct) already filled. Inflation TE live: order unchanged, no value/period updates. TODAY→Tue 17 Nov. Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-17T08:40:00+08:00",
+      "lastSummary": "Asia-evening Actuals Mon 16 Nov ~9:50pm ET / Tue 17 Nov ~10:50am HKT: quiet (0 material calendar fills; 0 past high/medium blanks as-of 2026-11-16). Left blank uk-labour-nov (Tue 17 Nov 2:00am ET / 3:00pm HKT, not yet released) and retailsales-oct (8:30am ET / 9:30pm HKT, not yet released). No Japan/China/AU/HK high-impact official prints due this window (AU labour Oct is Thu 19 Nov 11:30am AEDT; Japan nationwide CPI Fri 20 Nov). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Next exact watch: Tue 17 Nov 2:00am ET / 3:00pm HKT UK labour market, then 8:30am ET retail sales. Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-18T08:40:00+08:00",
       "lastItems": []
     },
     {
