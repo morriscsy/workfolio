@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T20:50:06.417434+08:00",
+  "updatedAt": "2026-11-18T08:31:56.493432+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-17T10:50:29+08:00",
+      "lastRunAt": "2026-11-18T08:31:56.493432+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Mon 16 Nov ~9:50pm ET / Tue 17 Nov ~10:50am HKT: quiet (0 material calendar fills; 0 past high/medium blanks as-of 2026-11-16). Left blank uk-labour-nov (Tue 17 Nov 2:00am ET / 3:00pm HKT, not yet released) and retailsales-oct (8:30am ET / 9:30pm HKT, not yet released). No Japan/China/AU/HK high-impact official prints due this window (AU labour Oct is Thu 19 Nov 11:30am AEDT; Japan nationwide CPI Fri 20 Nov). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Next exact watch: Tue 17 Nov 2:00am ET / 3:00pm HKT UK labour market, then 8:30am ET retail sales. Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Wed 18 Nov morning ~08:30 HKT: filled overnight US spillover ip-oct from official Fed G.17 17 Nov — IP −0.4% m/m, mfg +0.3%, mining −0.8%, utilities −4.3%, CU 76.4%; total IP 103.4 / +2.1% y/y; Sep level 104.0→103.8 (% unrevised +0.7); Aug IP revised −0.1% (was +0.1%). Consensus n/a. TODAY→Wed 18 Nov. Left scheduled (not yet due): uk-cpi-oct (2:00am ET / 3:00pm HKT), starts-oct (8:30am ET / 9:30pm HKT), fomc-min-nov (2:00pm ET), au-lfs-oct (7:30pm ET / Thu 8:30am HKT). No Asia CPI/labor or early UK/EZ PMI/CPI official prints due by ~08:40 HKT. Inflation TE live: order unchanged; no last/prev/period updates. Desktop Hub skipped (LamboKiwi offline).",
       "nextRunAt": "2026-11-18T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "ip-oct",
+          "title": "Industrial production (Oct)",
+          "actualShort": "IP −0.4% · CU 76.4%",
+          "status": "released",
+          "when": "Tue 17 Nov 9:15am ET / 10:15pm HKT"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
@@ -173,9 +181,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-17T20:50:06.417434+08:00",
+      "lastRunAt": "2026-11-17T22:11:48+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Tue 17 Nov ~20:48 HKT / ~7:48am ET: quiet — 0 material calendar fills. Past high/medium blanks on the checklist (retailsales-oct, ip-oct) are not yet released: Census Advance retail sales Oct due 8:30am ET / 9:30pm HKT; Fed IP Oct due 9:15am ET / 10:15pm HKT (do not fill early). No US morning official prints due by ~20:45 HKT. uk-labour-nov already filled this afternoon (ONS). Inflation TE live: order unchanged; IT last 5.4→5.5; CA next Nov 2026→Dec 2026. Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Post-US Actuals Tue 17 Nov ~9:11am ET / ~10:11pm HKT: quiet — 0 new calendar fills. retailsales-oct already filled (Census CB26-181). ip-oct left scheduled (Fed G.17 current release still Oct 16 / September IP; Nov 17 9:15am ET October print not yet issued). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Desktop Hub skipped (LamboKiwi offline).",
       "nextRunAt": "2026-11-18T20:45:00+08:00",
       "lastItems": []
     }
