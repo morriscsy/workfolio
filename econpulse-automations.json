@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T08:31:56.493432+08:00",
+  "updatedAt": "2026-11-18T10:52:13.917957+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,19 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-18T08:31:56.493432+08:00",
+      "lastRunAt": "2026-11-18T10:49:01+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Wed 18 Nov morning ~08:30 HKT: filled overnight US spillover ip-oct from official Fed G.17 17 Nov — IP −0.4% m/m, mfg +0.3%, mining −0.8%, utilities −4.3%, CU 76.4%; total IP 103.4 / +2.1% y/y; Sep level 104.0→103.8 (% unrevised +0.7); Aug IP revised −0.1% (was +0.1%). Consensus n/a. TODAY→Wed 18 Nov. Left scheduled (not yet due): uk-cpi-oct (2:00am ET / 3:00pm HKT), starts-oct (8:30am ET / 9:30pm HKT), fomc-min-nov (2:00pm ET), au-lfs-oct (7:30pm ET / Thu 8:30am HKT). No Asia CPI/labor or early UK/EZ PMI/CPI official prints due by ~08:40 HKT. Inflation TE live: order unchanged; no last/prev/period updates. Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-18T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "ip-oct",
-          "title": "Industrial production (Oct)",
-          "actualShort": "IP −0.4% · CU 76.4%",
-          "status": "released",
-          "when": "Tue 17 Nov 9:15am ET / 10:15pm HKT"
-        }
-      ]
+      "lastSummary": "Asia-evening Actuals Tue 17 Nov ~9:49pm ET / Wed 18 Nov ~10:49am HKT: quiet — 0 past high/medium blanks. ip-oct already filled this morning (Fed G.17). Left scheduled: uk-cpi-oct (2:00am ET / 3:00pm HKT), starts-oct (8:30am ET), fomc-min-nov (2:00pm ET), au-lfs-oct (7:30pm ET / Thu 8:30am HKT; ABS confirmed 19 Nov 11:30am AEDT). No JP/CN/AU/HK official prints due this window (JP CPI Oct is Thu 19 Nov 6:30pm ET). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-19T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
