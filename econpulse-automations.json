@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T10:55:20.999466+08:00",
+  "updatedAt": "2026-11-19T20:49:57.612849+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,17 +173,11 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-18T22:16:23.669170+08:00",
+      "lastRunAt": "2026-11-19T20:49:57.612849+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Wed 18 Nov ~9:05am ET / ~10:05pm HKT: filled starts-oct (Census–HUD CB26-187: starts 1,309k SAAR +9.9%* m/m; permits 1,295k −7.4%; completions 1,272k +6.5%*; Sep starts revised 1,221k→1,191k, permits 1,400k→1,398k; consensus n/a). Left scheduled: fomc-min-nov (2:00pm ET / Thu 3:00am HKT), au-lfs-oct (7:30pm ET / Thu 8:30am HKT). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite reverted). Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-19T20:45:00+08:00",
-      "lastItems": [
-        {
-          "id": "starts-oct",
-          "title": "Housing starts / building permits (Oct)",
-          "actualShort": "Starts 1,309k · Permits 1,295k"
-        }
-      ]
+      "lastSummary": "Evening Actuals Thu 19 Nov ~20:45 HKT: quiet — no official Actuals due yet (claims-nov19 still 8:30am ET / 9:30pm HKT; jp-cpi-oct 6:30pm ET / Fri 7:30am HKT; cn-lpr-nov 8:00pm ET / Fri 9:00am HKT). Inflation TE live: order unchanged; G20 next-period ZA/EU/UK Nov 2026→Dec 2026; no last/prev/ref updates. Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-20T20:45:00+08:00",
+      "lastItems": []
     }
   ]
 }
