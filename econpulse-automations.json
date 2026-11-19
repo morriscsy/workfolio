@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T08:33:10.348386+08:00",
+  "updatedAt": "2026-11-19T10:55:20.999466+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,19 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-19T08:33:10.348386+08:00",
+      "lastRunAt": "2026-11-19T10:52:48+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Thu 19 Nov ~08:32 HKT: filled fomc-min-nov from official Fed minutes (18 Nov 2:00pm EST) — hold FF 3.75–4.00% (10–2; Cook, Hammack preferred +25bp). Almost all participants judged further tightening likely, broadly consistent with the September SEP; a couple said more than 25bp could warrant consideration at Dec 8–9 if incoming inflation data were unfavorable. au-lfs-oct already filled at official 8:30am HKT T-0 (ABS emp −43.5k / UE 4.9%). Inflation TE live: order unchanged, no value/period updates. TODAY→Thu 19 Nov. Left scheduled: claims-nov19 (8:30am ET / 9:30pm HKT), jp-cpi-oct (6:30pm ET / Fri 7:30am HKT). Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-19T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "fomc-min-nov",
-          "title": "FOMC minutes (Oct 27–28)",
-          "actualShort": "Minutes published (hold 3.75–4.00%, 10–2)",
-          "status": "released",
-          "when": "Wed 18 Nov 2:00pm ET / Thu 19 Nov 3:00am HKT"
-        }
-      ]
+      "lastSummary": "Asia-evening Actuals Wed 18 Nov ~9:53pm ET / Thu 19 Nov ~10:53am HKT: quiet — 0 past high/medium blanks. au-lfs-oct already filled at official 8:30am HKT T-0 (ABS emp −43.5k / UE 4.9%); fomc-min-nov already filled this morning (Fed minutes hold 3.75–4.00%, 10–2). Left scheduled: claims-nov19 (Thu 19 Nov 8:30am ET / 9:30pm HKT), jp-cpi-oct (Thu 19 Nov 6:30pm ET / Fri 20 Nov 7:30am HKT), uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT). No JP/CN/AU/HK official prints due this window (JP CPI nationwide Oct is Thu 19 Nov 6:30pm ET / Fri 7:30am HKT). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub not copied (no calendar HTML change).",
+      "nextRunAt": "2026-11-20T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
