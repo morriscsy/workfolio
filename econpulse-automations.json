@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T08:34:50.280957+08:00",
+  "updatedAt": "2026-11-20T11:01:09.589065+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,10 +153,10 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-20T08:34:50.280957+08:00",
+      "lastRunAt": "2026-11-20T10:54:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Fri 20 Nov ~08:40 HKT: quiet — 0 new fills. jp-cpi-oct already filled at official 7:30am HKT T-0 (Statistics Bureau / MIC 2025-base nationwide Oct: headline +2.3% y/y / +0.5% m/m sa; core ex-fresh food +2.2% / +0.3% sa; core-core +2.2% / +0.2% sa; consensus n/a). Left scheduled: cn-lpr-nov (Thu 19 Nov 8:00pm ET / Fri 20 Nov 9:00am HKT / 09:00 Beijing) and uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT) — do not fill early. Inflation TE live: JP last 2.1→2.3, prev 1.9→2.1, ref Sep 2026→Oct 2026, next Nov 2026→Dec 2026; order JP #20→#19, SG #19→#20. Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-20T08:40:00+08:00",
+      "lastSummary": "Asia-evening Actuals Thu 19 Nov ~9:54pm ET / Fri 20 Nov ~10:54am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-19; time-based scan also empty). cn-lpr-nov and jp-cpi-oct already filled. Left scheduled: uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT) — do not fill early. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). TODAY bumped Thu 19 Nov → Fri 20 Nov. Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-23T08:40:00+08:00",
       "lastItems": []
     },
     {
