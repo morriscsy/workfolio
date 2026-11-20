@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T20:48:20.361218+08:00",
+  "updatedAt": "2026-11-20T22:12:21.487205+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,11 +173,19 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-20T20:48:20.361218+08:00",
+      "lastRunAt": "2026-11-20T22:09:13+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Fri 20 Nov ~7:47am ET / ~8:47pm HKT: quiet — 0 new fills. US morning window not yet open. Left scheduled (do not fill early): ca-retail-sep (Fri 20 Nov 8:30am ET / 9:30pm HKT; StatCan Retail trade September 2026 still lockup on official calendar) and umich-nov-final (Fri 20 Nov 10:00am ET / 11:00pm HKT; official SCA page still shows Preliminary Results for November 2026). No earlier high/medium blanks. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Evening Actuals Fri 20 Nov ~9:09am ET / ~10:09pm HKT: filled ca-retail-sep from official StatCan The Daily — Retail trade, September 2026 (https://www150.statcan.gc.ca/n1/daily-quotidien/261120/dq261120a-eng.htm). SA current dollars: sales +0.8% to 5.3 billion; core (ex motor vehicle/parts and gasoline stations & fuel vendors) +0.1%; volumes +0.1%; e-commerce −0.2% to .7 billion (7.5% of total; Aug 7.6%). Led by gasoline stations and fuel vendors (+6.9%; volumes +1.6%); motor vehicle and parts dealers +0.2%. Q3 sales +1.2%; Q3 volumes +1.0%. Official Sep +0.8% vs unofficial StatCan advance +0.7% (23 Oct, 58.5% response). Unofficial October advance −1.5% (58.1% response; will be revised). Next retail-trade release 18 Dec 2026. Consensus n/a (no Reuters/Bloomberg poll cited). Left scheduled (do not fill early): umich-nov-final (Fri 20 Nov 10:00am ET / 11:00pm HKT). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only rewrite applied with the Actuals HTML commit; not material). TODAY already Fri 20 Nov. Desktop Hub skipped (LamboKiwi offline). Print-watch unchanged (paused; no new high-impact exact-time weekday-HKT slots; do not watch medium umich-nov-final; no weekend HKT T-5/T-0; do not resume all-day polling).",
       "nextRunAt": "2026-11-23T20:45:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "ca-retail-sep",
+          "title": "Canada retail sales (Sep)",
+          "actualShort": "sales +0.8% to $75.3B",
+          "status": "released",
+          "when": "2026-11-20T21:30:00+08:00"
+        }
+      ]
     }
   ]
 }
