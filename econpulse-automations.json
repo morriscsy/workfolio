@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T11:01:09.589065+08:00",
+  "updatedAt": "2026-11-20T20:48:20.361218+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,10 +173,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-19T22:08:08+08:00",
+      "lastRunAt": "2026-11-20T20:48:20.361218+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Thu 19 Nov ~9:08am ET / ~10:08pm HKT: quiet — 0 new fills. claims-nov19 already filled at official 8:30am ET T-0 (DOL USDL 26-1722-NAT: SA initial 203k, 4-wk avg 197,750, continued 1,763k, IUR 1.1%; consensus n/a). Checklist blanks still ahead: jp-cpi-oct (Thu 19 Nov 6:30pm ET / Fri 20 Nov 7:30am HKT) and cn-lpr-nov (Thu 19 Nov 8:00pm ET / Fri 20 Nov 9:00am HKT) — leave scheduled, do not fill early. uk-retail-oct is Fri 20 Nov 2:00am ET / 3:00pm HKT. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-20T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Fri 20 Nov ~7:47am ET / ~8:47pm HKT: quiet — 0 new fills. US morning window not yet open. Left scheduled (do not fill early): ca-retail-sep (Fri 20 Nov 8:30am ET / 9:30pm HKT; StatCan Retail trade September 2026 still lockup on official calendar) and umich-nov-final (Fri 20 Nov 10:00am ET / 11:00pm HKT; official SCA page still shows Preliminary Results for November 2026). No earlier high/medium blanks. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-23T20:45:00+08:00",
       "lastItems": []
     }
   ]
