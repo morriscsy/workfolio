@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T20:49:57.612849+08:00",
+  "updatedAt": "2026-11-20T08:34:50.280957+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,9 +153,9 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-19T10:52:48+08:00",
+      "lastRunAt": "2026-11-20T08:34:50.280957+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Wed 18 Nov ~9:53pm ET / Thu 19 Nov ~10:53am HKT: quiet — 0 past high/medium blanks. au-lfs-oct already filled at official 8:30am HKT T-0 (ABS emp −43.5k / UE 4.9%); fomc-min-nov already filled this morning (Fed minutes hold 3.75–4.00%, 10–2). Left scheduled: claims-nov19 (Thu 19 Nov 8:30am ET / 9:30pm HKT), jp-cpi-oct (Thu 19 Nov 6:30pm ET / Fri 20 Nov 7:30am HKT), uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT). No JP/CN/AU/HK official prints due this window (JP CPI nationwide Oct is Thu 19 Nov 6:30pm ET / Fri 7:30am HKT). Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub not copied (no calendar HTML change).",
+      "lastSummary": "Morning Actuals Fri 20 Nov ~08:40 HKT: quiet — 0 new fills. jp-cpi-oct already filled at official 7:30am HKT T-0 (Statistics Bureau / MIC 2025-base nationwide Oct: headline +2.3% y/y / +0.5% m/m sa; core ex-fresh food +2.2% / +0.3% sa; core-core +2.2% / +0.2% sa; consensus n/a). Left scheduled: cn-lpr-nov (Thu 19 Nov 8:00pm ET / Fri 20 Nov 9:00am HKT / 09:00 Beijing) and uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT) — do not fill early. Inflation TE live: JP last 2.1→2.3, prev 1.9→2.1, ref Sep 2026→Oct 2026, next Nov 2026→Dec 2026; order JP #20→#19, SG #19→#20. Desktop Hub skipped (LamboKiwi offline).",
       "nextRunAt": "2026-11-20T08:40:00+08:00",
       "lastItems": []
     },
@@ -173,9 +173,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-19T20:49:57.612849+08:00",
+      "lastRunAt": "2026-11-19T22:08:08+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Thu 19 Nov ~20:45 HKT: quiet — no official Actuals due yet (claims-nov19 still 8:30am ET / 9:30pm HKT; jp-cpi-oct 6:30pm ET / Fri 7:30am HKT; cn-lpr-nov 8:00pm ET / Fri 9:00am HKT). Inflation TE live: order unchanged; G20 next-period ZA/EU/UK Nov 2026→Dec 2026; no last/prev/ref updates. Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Post-US Actuals Thu 19 Nov ~9:08am ET / ~10:08pm HKT: quiet — 0 new fills. claims-nov19 already filled at official 8:30am ET T-0 (DOL USDL 26-1722-NAT: SA initial 203k, 4-wk avg 197,750, continued 1,763k, IUR 1.1%; consensus n/a). Checklist blanks still ahead: jp-cpi-oct (Thu 19 Nov 6:30pm ET / Fri 20 Nov 7:30am HKT) and cn-lpr-nov (Thu 19 Nov 8:00pm ET / Fri 20 Nov 9:00am HKT) — leave scheduled, do not fill early. uk-retail-oct is Fri 20 Nov 2:00am ET / 3:00pm HKT. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). Desktop Hub skipped (LamboKiwi offline).",
       "nextRunAt": "2026-11-20T20:45:00+08:00",
       "lastItems": []
     }
