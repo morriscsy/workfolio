@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T20:52:12.403929+08:00",
+  "updatedAt": "2026-11-23T22:14:58.717798+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,9 +181,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-23T20:49:25+08:00",
+      "lastRunAt": "2026-11-23T22:11:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals Mon 23 Nov ~7:49am ET / ~8:49pm HKT: quiet (0 material calendar fills). Left scheduled (do not fill early): us-pmi-flash-nov (Mon 23 Nov 9:45am ET / 10:45pm HKT); jp-pmi-flash-nov (Mon 23 Nov 7:30pm ET / Tue 24 Nov 8:30am HKT). Inflation TE scrape failed (parsed 0 mapped rows; TE 403); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Mon 23 Nov. AU/EZ/UK flash PMIs and umich-nov-final already filled earlier today. Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Post-US Actuals catch-up Mon 23 Nov ~9:11am ET / ~10:11pm HKT: quiet (0 material calendar fills). Past blanks still scheduled (do not fill early): us-pmi-flash-nov (Mon 23 Nov 9:45am ET / 10:45pm HKT); jp-pmi-flash-nov (Mon 23 Nov 7:30pm ET / Tue 24 Nov 8:30am HKT). 8:30am ET window empty (confirmed). Inflation TE scrape failed again (parsed 0 mapped rows; TE Next.js CSR / guest API 410); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Mon 23 Nov. AU/EZ/UK flash PMIs and umich-nov-final already filled. Desktop Hub skipped (LamboKiwi offline). Print-watch unchanged (already T-5/T-0 for au-cpi-oct Tue + gdp-sec-q3/pce-oct/claims-nov25 Wed).",
       "nextRunAt": "2026-11-24T20:45:00+08:00",
       "lastItems": []
     }
