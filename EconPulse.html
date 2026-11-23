@@ -865,7 +865,7 @@
   <div class="brand">
     <div class="eyebrow"><i class="mark"></i>Market news</div>
     <h1>EconPulse Calendar</h1>
-    <p>High-impact prints · clock = ET · title starts with HKT · as of Fri 20 Nov 2026 · US · China · Japan only · public macro</p>
+    <p>High-impact prints · clock = ET · title starts with HKT · as of Mon 23 Nov 2026 · US · China · Japan only · public macro</p>
     <a class="hub-link" href="EconPulse-Automations.html">Automations</a>
     <nav class="radio-row" id="radioRow" aria-label="EconPulse radio">
       <span class="rk">Radio</span>
@@ -944,7 +944,7 @@
 <div id="toasts"></div>
 <script>
 
-const TODAY = new Date(2026, 10, 20); // Fri 20 Nov 2026
+const TODAY = new Date(2026, 10, 23); // Mon 23 Nov 2026
 const EVENTS = [
   { id:"nfp-aug", date:"2026-09-04", time:"8:30am", tz:"ET", country:"US", inst:"BLS", title:"Employment situation / NFP (Aug)", impact:"high", status:"released",
     actual:"+162k payrolls, U-3 4.1%", actualShort:"NFP +162k · 4.1%", previous:"Jul +21k (rev from −23k); U-3 4.1%", consensus:"~56k (TE)", vs:"big beat vs ~56k",
@@ -1400,9 +1400,9 @@ const EVENTS = [
   { id:"ca-retail-sep", date:"2026-11-20", time:"8:30am", tz:"ET", country:"CA", inst:"StatCan", title:"Canada retail sales (Sep)", impact:"medium", status:"released",
     actual:"sales +0.8% m/m to $75.3B; core (ex motor vehicle/parts and gasoline stations & fuel vendors) +0.1%; volumes +0.1%; e-commerce −0.2% to $5.7B (7.5% of total) (StatCan Daily 20 Nov)", actualShort:"sales +0.8% to $75.3B", previous:"Aug +1.2% m/m to $74.6B; core (ex motor vehicle/parts and gasoline stations & fuel vendors) +1.1%; volumes +1.2%; e-commerce +1.1% to $5.6B (7.6% of total) (StatCan Daily 23 Oct)", consensus:"n/a", vs:"",
     note:"StatCan The Daily — Retail trade, September 2026, released Fri 20 Nov 8:30am ET / 9:30pm HKT (https://www150.statcan.gc.ca/n1/daily-quotidien/261120/dq261120a-eng.htm). Seasonally adjusted current dollars unless noted: retail sales +0.8% to $75.3 billion in September, up in five of nine subsectors, led by gasoline stations and fuel vendors (+6.9%; volumes +1.6%). Motor vehicle and parts dealers +0.2%. Core retail sales (ex gasoline stations and fuel vendors and motor vehicle and parts dealers) +0.1%. Volumes +0.1%. Q3 sales +1.2%; Q3 volumes +1.0%. E-commerce −0.2% to $5.7 billion, 7.5% of total (August 7.6%). Official September print compares with StatCan’s unofficial advance of +0.7% published with the August Daily (23 Oct, 58.5% response). StatCan unofficial advance for October suggests sales −1.5% (58.1% response; will be revised). Next retail-trade release: October 2026 on 18 Dec 2026. Consensus n/a (no Reuters/Bloomberg poll cited). Later today (medium, scheduled): UMich consumer sentiment final November (umich-nov-final) 10:00am ET / 11:00pm HKT — do not fill early.", source:"https://www150.statcan.gc.ca/n1/daily-quotidien/261120/dq261120a-eng.htm" },
-  { id:"umich-nov-final", date:"2026-11-20", time:"10:00am", tz:"ET", country:"US", inst:"UMich", title:"UMich consumer sentiment final (Nov)", impact:"medium", status:"scheduled",
-    actual:"n/a", actualShort:"", previous:"Nov prelim CSI 51.0 (Oct final 48.0); Current 51.0 (Oct 46.7); Expectations 50.9 (Oct 48.8); 1y infl. exp. 4.3% (Oct 4.7%); long-run 3.4% (Oct 3.5%) (UMich Surveys of Consumers)", consensus:"n/a", vs:"",
-    note:"UMich Surveys of Consumers final November 2026 — official release calendar Fri 20 Nov 10:00am ET / 11:00pm HKT. Prelim (6 Nov; interviews Oct 20–Nov 2): CSI 51.0, +6.3% m/m from Oct final 48.0; year-ahead inflation expectations 4.3% (from 4.7%); long-run 3.4% (from 3.5%). Confirm sca.isr.umich.edu day-of — never invent actuals. Consensus n/a (no Reuters/Bloomberg poll cited).", source:"https://www.sca.isr.umich.edu/" },
+  { id:"umich-nov-final", date:"2026-11-20", time:"10:00am", tz:"ET", country:"US", inst:"UMich", title:"UMich consumer sentiment final (Nov)", impact:"medium", status:"released",
+    actual:"Final CSI 51.5 (prelim 51.0; Oct 48.0); Current Conditions 49.4 (prelim 51.0; Oct 46.7); Expectations 52.9 (prelim 50.9; Oct 48.8); 1y inflation exp 3.7% (prelim 4.3%; Oct 4.7%); long-run 3.3% (prelim 3.4%; Oct 3.5%) (UMich Surveys of Consumers)", actualShort:"UMich 51.5 · 1y 3.7% · LR 3.3%", previous:"Oct final CSI 48.0; Current 46.7; Expectations 48.8; 1y 4.7%; LR 3.5%. Nov prelim CSI 51.0 / Current 51.0 / Exp 50.9; 1y 4.3%; LR 3.4% (UMich)", consensus:"n/a", vs:"",
+    note:"UMich Surveys of Consumers final November 2026 — released Fri 20 Nov 10:00am ET / 11:00pm HKT (https://www.sca.isr.umich.edu/). Official table: Index of Consumer Sentiment 51.5 (Oct 48.0, Nov 2025 51.0; +7.3% m/m, +1.0% y/y); Current Economic Conditions 49.4 (Oct 46.7, Nov 2025 51.1; +5.8% m/m, −3.3% y/y); Index of Consumer Expectations 52.9 (Oct 48.8, Nov 2025 51.0; +8.4% m/m, +3.7% y/y). Versus the 6 Nov preliminary: CSI 51.0→51.5, Current 51.0→49.4, Expectations 50.9→52.9. Director Hsu: median year-ahead inflation expectations plunged from 4.7% in October to 3.7% (prelim was 4.3%); long-run inflation expectations ticked down from 3.5% to 3.3% (prelim 3.4%). Interviews completed Oct 20–Nov 16. ISR news release (20 Nov) says sentiment rose about 7% to its highest reading since August, while remaining 9% below February (prior to the Iran conflict). Consensus n/a (no Reuters/Bloomberg poll cited).", source:"https://www.sca.isr.umich.edu/" },
 
 ];
 
@@ -2164,7 +2164,7 @@ const IANA = {
   TRT:"Europe/Istanbul", ART:"America/Argentina/Buenos_Aires", MSK:"Europe/Moscow",
   WIB:"Asia/Jakarta", AST:"Asia/Riyadh", CETCH:"Europe/Zurich", CT:"America/Mexico_City"
 };
-const INFLATION_UPDATED_AT = "2026-11-20T22:11:21.064664+08:00";
+const INFLATION_UPDATED_AT = "2026-11-23T08:28:43.532185+08:00";
 const INFLATION = [
   { code:"AR", name:"Argentina", last:33.1, prev:33.4, g20:true,
     refPeriod:"Oct 2026", refDate:"", refTime:"", refTz:"ART",

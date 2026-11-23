@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T22:12:21.487205+08:00",
+  "updatedAt": "2026-11-23T08:29:52.248181+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-20T10:54:00+08:00",
+      "lastRunAt": "2026-11-23T08:27:18+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Thu 19 Nov ~9:54pm ET / Fri 20 Nov ~10:54am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-19; time-based scan also empty). cn-lpr-nov and jp-cpi-oct already filled. Left scheduled: uk-retail-oct (Fri 20 Nov 2:00am ET / 3:00pm HKT) — do not fill early. Inflation TE live: order unchanged; no last/prev/period updates (timestamp-only HTML rewrite not applied). TODAY bumped Thu 19 Nov → Fri 20 Nov. Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-23T08:40:00+08:00",
-      "lastItems": []
+      "lastSummary": "Morning Actuals Mon 23 Nov ~08:30 HKT: filled umich-nov-final from official UMich Surveys of Consumers final November 2026 (https://www.sca.isr.umich.edu/), released Fri 20 Nov 10:00am ET / 11:00pm HKT. Final CSI 51.5 (prelim 51.0; Oct 48.0); Current Conditions 49.4 (prelim 51.0; Oct 46.7); Expectations 52.9 (prelim 50.9; Oct 48.8); 1y inflation exp 3.7% (prelim 4.3%; Oct 4.7%); long-run 3.3% (prelim 3.4%; Oct 3.5%). Consensus n/a (no Reuters/Bloomberg poll cited). TODAY Fri 20 Nov → Mon 23 Nov. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). No other past blank high/medium events. Japan Labour Thanksgiving Day (markets closed). Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-24T08:40:00+08:00",
+      "lastItems": [
+        {
+          "id": "umich-nov-final",
+          "title": "UMich consumer sentiment final (Nov)",
+          "actualShort": "UMich 51.5 · 1y 3.7% · LR 3.3%",
+          "status": "released",
+          "when": "2026-11-20T23:00:00+08:00"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
