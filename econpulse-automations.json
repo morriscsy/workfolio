@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T22:14:58.717798+08:00",
+  "updatedAt": "2026-11-24T08:34:42.255679+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,17 +153,24 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-23T08:27:18+08:00",
+      "lastRunAt": "2026-11-24T08:28:13+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Mon 23 Nov ~08:30 HKT: filled umich-nov-final from official UMich Surveys of Consumers final November 2026 (https://www.sca.isr.umich.edu/), released Fri 20 Nov 10:00am ET / 11:00pm HKT. Final CSI 51.5 (prelim 51.0; Oct 48.0); Current Conditions 49.4 (prelim 51.0; Oct 46.7); Expectations 52.9 (prelim 50.9; Oct 48.8); 1y inflation exp 3.7% (prelim 4.3%; Oct 4.7%); long-run 3.3% (prelim 3.4%; Oct 3.5%). Consensus n/a (no Reuters/Bloomberg poll cited). TODAY Fri 20 Nov → Mon 23 Nov. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). No other past blank high/medium events. Japan Labour Thanksgiving Day (markets closed). Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-24T08:40:00+08:00",
+      "lastSummary": "Morning Actuals Tue 24 Nov ~08:40 HKT: filled us-pmi-flash-nov from official S&P Global Flash US PMI November (https://www.pmi.spglobal.com/Public/Home/PressRelease/18abd879261e464fbcc1bc22d4ea64eb), embargo 0945 EST 23 Nov / 9:45am ET / 10:45pm HKT: composite 54.6 (Oct 55.9), 4-month low; services 54.7 (Oct 56.1), 4-month low; manufacturing PMI 54.5 (Oct 54.9), 3-month low; mfg output 53.7 (Oct 54.5), 3-month low. Filled jp-pmi-flash-nov from official S&P Global Flash Japan PMI November (https://www.pmi.spglobal.com/Public/Home/PressRelease/2bea86ecd0e444dcb93d75de0cf3f796), embargo 0930 JST / 0030 UTC 24 Nov = Mon 7:30pm ET / Tue 8:30am HKT: composite 51.5 (Oct 52.1), softest since May / 6-month low; services 50.5 (Oct 51.7); manufacturing PMI 53.7 (Oct 53.3); mfg output 53.8 (Oct 53.0). Consensus n/a (no Reuters/Bloomberg poll cited). au-cpi-oct left scheduled (official ABS due Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT). TODAY Mon 23 Nov → Tue 24 Nov. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). Desktop Hub skipped (LamboKiwi offline).",
+      "nextRunAt": "2026-11-25T08:40:00+08:00",
       "lastItems": [
         {
-          "id": "umich-nov-final",
-          "title": "UMich consumer sentiment final (Nov)",
-          "actualShort": "UMich 51.5 · 1y 3.7% · LR 3.3%",
+          "id": "us-pmi-flash-nov",
+          "title": "S&P Global US PMI flash mfg + services (Nov)",
+          "actualShort": "Comp 54.6 · Svcs 54.7 · Mfg 54.5",
           "status": "released",
-          "when": "2026-11-20T23:00:00+08:00"
+          "when": "2026-11-23T22:45:00+08:00"
+        },
+        {
+          "id": "jp-pmi-flash-nov",
+          "title": "Japan flash PMI mfg + services (Nov)",
+          "actualShort": "Comp 51.5 · Svcs 50.5 · Mfg 53.7",
+          "status": "released",
+          "when": "2026-11-24T08:30:00+08:00"
         }
       ]
     },
