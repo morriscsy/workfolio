@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T08:34:42.255679+08:00",
+  "updatedAt": "2026-11-24T10:59:28.416102+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,26 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-24T08:28:13+08:00",
+      "lastRunAt": "2026-11-24T10:55:30+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Tue 24 Nov ~08:40 HKT: filled us-pmi-flash-nov from official S&P Global Flash US PMI November (https://www.pmi.spglobal.com/Public/Home/PressRelease/18abd879261e464fbcc1bc22d4ea64eb), embargo 0945 EST 23 Nov / 9:45am ET / 10:45pm HKT: composite 54.6 (Oct 55.9), 4-month low; services 54.7 (Oct 56.1), 4-month low; manufacturing PMI 54.5 (Oct 54.9), 3-month low; mfg output 53.7 (Oct 54.5), 3-month low. Filled jp-pmi-flash-nov from official S&P Global Flash Japan PMI November (https://www.pmi.spglobal.com/Public/Home/PressRelease/2bea86ecd0e444dcb93d75de0cf3f796), embargo 0930 JST / 0030 UTC 24 Nov = Mon 7:30pm ET / Tue 8:30am HKT: composite 51.5 (Oct 52.1), softest since May / 6-month low; services 50.5 (Oct 51.7); manufacturing PMI 53.7 (Oct 53.3); mfg output 53.8 (Oct 53.0). Consensus n/a (no Reuters/Bloomberg poll cited). au-cpi-oct left scheduled (official ABS due Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT). TODAY Mon 23 Nov → Tue 24 Nov. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). Desktop Hub skipped (LamboKiwi offline).",
+      "lastSummary": "Asia-evening Actuals Mon 23 Nov ~9:55pm ET / Tue 24 Nov ~10:55am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-23; time-based as-of 2026-11-24 only listed au-cpi-oct, which is not yet due). us-pmi-flash-nov and jp-pmi-flash-nov already filled (live Pages be87e88). Left scheduled: au-cpi-oct (Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT) — do not fill early; then gdp-sec-q3, pce-oct, claims-nov25 (Wed 25 Nov 8:30am ET / 9:30pm HKT). No JP/CN/AU/HK official prints due this window (AU CPI Oct is Tue 24 Nov 7:30pm ET / Wed 8:30am HKT). Inflation TE scrape failed (parsed 0 mapped rows; TE Next.js CSR shell, no country table); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Tue 24 Nov. Print-watch unchanged (T-5/T-0 for au-cpi-oct Tue + gdp-sec-q3/pce-oct/claims-nov25 Wed). Desktop Hub not copied (no calendar HTML change).",
       "nextRunAt": "2026-11-25T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "us-pmi-flash-nov",
-          "title": "S&P Global US PMI flash mfg + services (Nov)",
-          "actualShort": "Comp 54.6 · Svcs 54.7 · Mfg 54.5",
-          "status": "released",
-          "when": "2026-11-23T22:45:00+08:00"
-        },
-        {
-          "id": "jp-pmi-flash-nov",
-          "title": "Japan flash PMI mfg + services (Nov)",
-          "actualShort": "Comp 51.5 · Svcs 50.5 · Mfg 53.7",
-          "status": "released",
-          "when": "2026-11-24T08:30:00+08:00"
-        }
-      ]
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
