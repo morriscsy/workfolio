@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T20:54:53.783403+08:00",
+  "updatedAt": "2026-11-24T22:07:23.739590+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,9 +173,9 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-24T20:52:29+08:00",
+      "lastRunAt": "2026-11-24T22:05:13+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals refresh Tue 24 Nov ~7:53am ET / ~20:53 HKT: quiet (0 material calendar fills). US 8:30am ET window still ahead. Left scheduled, do not fill early: conf-board-nov (Tue 24 Nov 10:00am ET / 11:00pm HKT; official Conference Board still October Index 91.7 / Present Situation 120.4 / Expectations 72.6); au-cpi-oct (Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT; official ABS latest still September, next release 25/11/2026 October CPI). No earlier high/medium blanks as-of 2026-11-23. us-pmi-flash-nov and jp-pmi-flash-nov already filled. TODAY already Tue 24 Nov.",
+      "lastSummary": "Post-US Actuals catch-up Tue 24 Nov ~9:05am ET / ~10:05pm HKT: quiet (0 material calendar fills). Past blanks still scheduled (do not fill early): conf-board-nov (Tue 24 Nov 10:00am ET / 11:00pm HKT); au-cpi-oct (Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT). 8:30am ET window empty (confirmed; BLS Nov 24 blank; next BEA/DOL is Wed 25 Nov 8:30am ET: gdp-sec-q3, pce-oct, claims-nov25). Inflation TE scrape failed (parsed 0 mapped rows; TE Next.js CSR shell, no country table); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Tue 24 Nov. Print-watch unchanged (T-5/T-0 for au-cpi-oct Tue + gdp-sec-q3/pce-oct/claims-nov25 Wed). Desktop Hub not copied (no calendar HTML change).",
       "nextRunAt": "2026-11-25T20:45:00+08:00",
       "lastItems": []
     }
