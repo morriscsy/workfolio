@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T11:01:56.105179+08:00",
+  "updatedAt": "2026-11-25T20:53:16.610845+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,10 +173,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-24T22:05:13+08:00",
+      "lastRunAt": "2026-11-25T20:51:39+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals catch-up Tue 24 Nov ~9:05am ET / ~10:05pm HKT: quiet (0 material calendar fills). Past blanks still scheduled (do not fill early): conf-board-nov (Tue 24 Nov 10:00am ET / 11:00pm HKT); au-cpi-oct (Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT). 8:30am ET window empty (confirmed; BLS Nov 24 blank; next BEA/DOL is Wed 25 Nov 8:30am ET: gdp-sec-q3, pce-oct, claims-nov25). Inflation TE scrape failed (parsed 0 mapped rows; TE Next.js CSR shell, no country table); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Tue 24 Nov. Print-watch unchanged (T-5/T-0 for au-cpi-oct Tue + gdp-sec-q3/pce-oct/claims-nov25 Wed). Desktop Hub not copied (no calendar HTML change).",
-      "nextRunAt": "2026-11-25T20:45:00+08:00",
+      "lastSummary": "Evening Actuals refresh Wed 25 Nov ~7:51am ET / ~20:51 HKT: quiet (0 material calendar fills). US 8:30am ET window still ahead. Left scheduled, do not fill early: gdp-sec-q3, pce-oct, claims-nov25, durables-oct (Wed 25 Nov 8:30am ET / 9:30pm HKT); nhs-oct 10:00am ET / 11:00pm HKT; beige-book-nov 2:00pm ET / Thu 3:00am HKT. No earlier high/medium blanks as-of 2026-11-24. conf-board-nov already filled (Conference Board Index 103.3 / Present Situation 132.8 / Expectations 83.6; Oct now 91.9). au-cpi-oct already filled at official T-0 (ABS headline +4.9% y/y / +0.5% m/m / TM +3.8%). TODAY already Wed 25 Nov.",
+      "nextRunAt": "2026-11-26T20:45:00+08:00",
       "lastItems": []
     }
   ]
