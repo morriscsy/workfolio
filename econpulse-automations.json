@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T22:07:23.739590+08:00",
+  "updatedAt": "2026-11-25T08:38:42.913605+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-24T10:55:30+08:00",
+      "lastRunAt": "2026-11-25T08:40:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Mon 23 Nov ~9:55pm ET / Tue 24 Nov ~10:55am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-23; time-based as-of 2026-11-24 only listed au-cpi-oct, which is not yet due). us-pmi-flash-nov and jp-pmi-flash-nov already filled (live Pages be87e88). Left scheduled: au-cpi-oct (Tue 24 Nov 7:30pm ET / Wed 25 Nov 8:30am HKT) — do not fill early; then gdp-sec-q3, pce-oct, claims-nov25 (Wed 25 Nov 8:30am ET / 9:30pm HKT). No JP/CN/AU/HK official prints due this window (AU CPI Oct is Tue 24 Nov 7:30pm ET / Wed 8:30am HKT). Inflation TE scrape failed (parsed 0 mapped rows; TE Next.js CSR shell, no country table); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Tue 24 Nov. Print-watch unchanged (T-5/T-0 for au-cpi-oct Tue + gdp-sec-q3/pce-oct/claims-nov25 Wed). Desktop Hub not copied (no calendar HTML change).",
-      "nextRunAt": "2026-11-25T08:40:00+08:00",
-      "lastItems": []
+      "lastSummary": "Morning Actuals Wed 25 Nov ~08:40 HKT: filled conf-board-nov from official Conference Board (24 Nov 10:00am ET / 11:00pm HKT): Index 103.3 (+11.4); Present Situation 132.8 (+13.7); Expectations 83.6 (+9.9); Oct now cited at 91.9 (published 91.7); 12-mo infl. exp. avg 5.7%; survey period Nov 1–17; consensus n/a. au-cpi-oct already filled at T-0 (ABS headline +4.9% y/y / +0.5% m/m / TM +3.8%). Left scheduled (do not fill early): gdp-sec-q3, pce-oct, claims-nov25, durables-oct (Wed 25 Nov 8:30am ET / 9:30pm HKT); nhs-oct 10:00am ET / 11:00pm HKT; beige-book-nov 2:00pm ET / Thu 3:00am HKT. Inflation TE scrape failed (parsed 0 mapped rows; TE Next.js CSR shell); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY Tue 24 Nov → Wed 25 Nov. Desktop Hub not copied (LamboKiwi offline).",
+      "nextRunAt": "2026-11-26T08:40:00+08:00",
+      "lastItems": [
+        {
+          "id": "conf-board-nov",
+          "title": "Conference Board Consumer Confidence (Nov)",
+          "actualShort": "CCI 103.3 · Exp 83.6",
+          "status": "released",
+          "when": "10:00am ET / 11:00pm HKT Tue 24 Nov"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
