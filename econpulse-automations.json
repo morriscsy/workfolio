@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T08:31:09.107093+08:00",
+  "updatedAt": "2026-11-26T11:03:47.381602+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,26 +153,11 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-26T08:31:09.107093+08:00",
+      "lastRunAt": "2026-11-26T11:03:47.381602+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Thu 26 Nov: filled overnight US spillover nhs-oct (Census–HUD CB26-188: 701k SAAR, +14.2% vs Sep revised 614k, beat Reuters 650k) and beige-book-nov (official Fed national summary: 8 of 12 Districts slight-to-moderate growth; prices moderate; wages up moderately). No Asia CPI/labor or early UK/EZ PMI/CPI due by ~08:40 HKT; no calendar events dated 26 Nov or later. TODAY→Thu 26 Nov. Inflation TE scrape failed (0 rows); left prior live tab unchanged (stamp Mon 23 Nov 08:28 HKT); did not apply stale FALLBACK_2026_09_24. Desktop Hub skipped (LamboKiwi offline).",
-      "nextRunAt": "2026-11-26T08:40:00+08:00",
-      "lastItems": [
-        {
-          "id": "nhs-oct",
-          "title": "New home sales (Oct)",
-          "actualShort": "NHS 701k SAAR · +14.2%",
-          "status": "released",
-          "when": "10:00am ET Wed 25 Nov / 11:00pm HKT"
-        },
-        {
-          "id": "beige-book-nov",
-          "title": "Fed Beige Book",
-          "actualShort": "Slight-to-moderate growth · prices moderate",
-          "status": "released",
-          "when": "2:00pm ET Wed 25 Nov / 3:00am HKT Thu 26 Nov"
-        }
-      ]
+      "lastSummary": "Asia-evening Actuals Wed 25 Nov ~9:58pm ET / Thu 26 Nov ~10:58am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-25 and 2026-11-26). nhs-oct and beige-book-nov already filled and live on Pages at 290ceef. No calendar events dated 26 Nov or later. No JP/CN/HK high/medium tracked prints due this window (NBS none today; HK C&SD none today; Japan 14:00 JST is population movement / coincident-index revision, not CPI/labor). ABS 11:30am AEDT / 8:30am HKT released Private New Capex Sep (total +12.2% sa to $59,474m; equipment +23.1%; buildings +1.7%) and Regional Labour Force Oct (sub-national) — not added (neither series is on the public-macro calendar; national AU LFS already filled). Official MIC Tokyo mid-month CPI Nov is due Fri 27 Nov 08:30 JST / 6:30pm ET Thu / 7:30am HKT Fri (medium; Oct Tokyo prelim was not on the calendar) — not added this fire. Inflation TE scrape failed (parsed 0 mapped rows; TE 403 / CSR shell); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026; stamp Mon 23 Nov 08:28 HKT). TODAY already Thu 26 Nov (US Thanksgiving). Print-watch unchanged (remains paused; no new high-impact exact ET times). Desktop Hub not copied (LamboKiwi offline).",
+      "nextRunAt": "2026-11-27T08:40:00+08:00",
+      "lastItems": []
     },
     {
       "id": "econpulse-actuals-evening-refresh",
