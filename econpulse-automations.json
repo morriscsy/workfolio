@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T11:03:47.381602+08:00",
+  "updatedAt": "2026-11-26T20:50:37.561362+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -173,10 +173,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-25T22:07:58+08:00",
+      "lastRunAt": "2026-11-26T20:50:37.561362+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Wed 25 Nov ~9:08am ET / ~10:08pm HKT: quiet — 0 material calendar fills. Date-based checklist listed beige-book-nov and nhs-oct as blank, but both are still scheduled later today (nhs-oct 10:00am ET / 11:00pm HKT; beige-book-nov 2:00pm ET / Thu 3:00am HKT) — do not fill early. 8:30am ET window already filled from official sources (gdp-sec-q3, pce-oct, claims-nov25, durables-oct; live on Pages d995536). Inflation TE scrape failed (parsed 0 mapped rows; TE 403 / CSR shell); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Wed 25 Nov. Print-watch unchanged (no new high-impact exact ET times; remains paused after this morning's T-0). Desktop Hub not copied (LamboKiwi offline).",
-      "nextRunAt": "2026-11-26T20:45:00+08:00",
+      "lastSummary": "Evening Actuals Thu 26 Nov ~7:48am ET / ~20:48 HKT: quiet — 0 material calendar fills. US Thanksgiving (no US high-impact official prints due this window; BLS holiday; BEA none; Fed statistical releases postponed to Fri 27 Nov; weekly claims already printed Wed 25 Nov). Date-based checklist listed jp-tokyo-nov as a past blank, but it remains scheduled later today (6:30pm ET / Fri 27 Nov 7:30am HKT) — do not fill early. Official Oct mid-month priors: all-items +2.8% y/y / core +2.6% / core-core +2.6%; QUICK core consensus +3.0% y/y. bok-nov already filled and live on Pages at 13ac880. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026; stamp Mon 23 Nov 08:28 HKT). TODAY already Thu 26 Nov. Print-watch unchanged (remains paused; no upcoming high-impact exact-time weekday-HKT T-5/T-0). Desktop Hub not copied (LamboKiwi offline).",
+      "nextRunAt": "2026-11-27T20:45:00+08:00",
       "lastItems": []
     }
   ]
