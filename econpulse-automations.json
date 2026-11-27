@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T22:11:42.462208+08:00",
+  "updatedAt": "2026-11-27T08:38:42.003503+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,11 +153,19 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-26T11:03:47.381602+08:00",
+      "lastRunAt": "2026-11-27T08:38:42.003503+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Asia-evening Actuals Wed 25 Nov ~9:58pm ET / Thu 26 Nov ~10:58am HKT: quiet — 0 past high/medium blanks (refresh_actuals.py --as-of 2026-11-25 and 2026-11-26). nhs-oct and beige-book-nov already filled and live on Pages at 290ceef. No calendar events dated 26 Nov or later. No JP/CN/HK high/medium tracked prints due this window (NBS none today; HK C&SD none today; Japan 14:00 JST is population movement / coincident-index revision, not CPI/labor). ABS 11:30am AEDT / 8:30am HKT released Private New Capex Sep (total +12.2% sa to $59,474m; equipment +23.1%; buildings +1.7%) and Regional Labour Force Oct (sub-national) — not added (neither series is on the public-macro calendar; national AU LFS already filled). Official MIC Tokyo mid-month CPI Nov is due Fri 27 Nov 08:30 JST / 6:30pm ET Thu / 7:30am HKT Fri (medium; Oct Tokyo prelim was not on the calendar) — not added this fire. Inflation TE scrape failed (parsed 0 mapped rows; TE 403 / CSR shell); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026; stamp Mon 23 Nov 08:28 HKT). TODAY already Thu 26 Nov (US Thanksgiving). Print-watch unchanged (remains paused; no new high-impact exact ET times). Desktop Hub not copied (LamboKiwi offline).",
+      "lastSummary": "Morning Actuals Fri 27 Nov ~08:40 HKT: filled jp-tokyo-nov from official Statistics Bureau Tokyo ku-area mid-month prelim November 2026 (published 27 Nov). All-items 103.8 / +2.8% y/y / +0.3% m/m sa; core ex-fresh food 103.9 / +2.9% y/y / +0.5% m/m sa (QUICK +3.0%, slight miss); core-core ex-fresh+energy 103.6 / +2.5% y/y / +0.1% m/m sa. Official commentary: headline y/y widened 0.1pt (Oct 2.7%→2.8%); core widened 0.3pt (2.6%→2.9%); energy +9.5% y/y (from +2.2%) lifted headline 0.34pt (electricity +9.5%, city gas +13.7%). Remaining past blanks: 0. Inflation TE scrape failed (0 mapped rows); FALLBACK_2026_09_24 not applied — last live tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY→Fri 27 Nov. Desktop Hub skipped (LamboKiwi offline). Print-watch unchanged (remains paused). Kill switch LIFTED.",
       "nextRunAt": "2026-11-27T08:40:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "jp-tokyo-nov",
+          "title": "Tokyo CPI preliminary (Nov)",
+          "actualShort": "Tokyo CPI +2.8% · core +2.9% · ex FE +2.5%",
+          "status": "released",
+          "when": "6:30pm ET Thu 26 Nov / 7:30am HKT Fri 27 Nov"
+        }
+      ]
     },
     {
       "id": "econpulse-actuals-evening-refresh",
