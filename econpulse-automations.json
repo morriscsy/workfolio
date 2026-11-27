@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T11:08:55.788584+08:00",
+  "updatedAt": "2026-11-27T20:52:14.908503+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,10 +181,10 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-26T22:07:00+08:00",
+      "lastRunAt": "2026-11-27T20:48:00+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Post-US Actuals Thu 26 Nov ~9:07am ET / ~10:07pm HKT: quiet — 0 material calendar fills. US Thanksgiving (no US high-impact official prints in the morning window; BLS holiday; BEA none; Fed statistical releases postponed to Fri 27 Nov; weekly claims already printed Wed 25 Nov). Date-based checklist listed jp-tokyo-nov as a past blank, but it remains scheduled later today (6:30pm ET / Fri 27 Nov 7:30am HKT) — do not fill early. Official Oct mid-month priors: all-items +2.8% y/y / core +2.6% / core-core +2.6%; QUICK core consensus +3.0% y/y. bok-nov already filled and live on Pages at 13ac880. Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026; stamp Mon 23 Nov 08:28 HKT). TODAY already Thu 26 Nov. Print-watch unchanged (remains paused; no upcoming high-impact exact-time weekday-HKT T-5/T-0; jp-tokyo-nov is medium). Desktop Hub not copied (no calendar HTML change).",
-      "nextRunAt": "2026-11-27T20:45:00+08:00",
+      "lastSummary": "Evening Actuals refresh Fri 27 Nov ~7:48am ET / ~20:48 HKT: quiet — 0 material calendar fills. US 8:30am ET window still ahead (Black Friday early close 1:00pm ET / Sat 2:00am HKT). Left scheduled, do not fill early: aei-oct (Census Advance Economic Indicators October, Fri 27 Nov 8:30am ET / 9:30pm HKT). Official Sep prior (CB26-177, 28 Oct): goods deficit $134.9bn; wholesale inventories +0.6% to $1,011.5bn; retail inventories +0.3% to $885.3bn; consensus n/a. Date-based checklist listed aei-oct as a past blank, but it remains scheduled later today. fr-cpi-flash-nov and es-cpi-flash-nov already filled and live on Pages at 03da9f3 (INSEE provisional CPI +2.9% y/y / HICP +3.2%; INE flash CPI +4.1% y/y / core +2.6%). No earlier high/medium blanks. TODAY already Fri 27 Nov. Print-watch unchanged (remains paused; no upcoming high-impact exact-time weekday-HKT T-5/T-0; aei-oct is medium). Desktop Hub not copied (no calendar HTML change; LamboKiwi offline). Kill switch LIFTED.",
+      "nextRunAt": "2026-11-30T20:45:00+08:00",
       "lastItems": []
     }
   ]
