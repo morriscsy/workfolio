@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T20:52:14.908503+08:00",
+  "updatedAt": "2026-11-27T22:22:39.742431+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -181,11 +181,18 @@
       ],
       "scheduleLabel": "Weekdays ~20:45 HKT",
       "cron": "45 20 * * 1-5",
-      "lastRunAt": "2026-11-27T20:48:00+08:00",
+      "lastRunAt": "2026-11-27T22:22:39.742431+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Evening Actuals refresh Fri 27 Nov ~7:48am ET / ~20:48 HKT: quiet — 0 material calendar fills. US 8:30am ET window still ahead (Black Friday early close 1:00pm ET / Sat 2:00am HKT). Left scheduled, do not fill early: aei-oct (Census Advance Economic Indicators October, Fri 27 Nov 8:30am ET / 9:30pm HKT). Official Sep prior (CB26-177, 28 Oct): goods deficit $134.9bn; wholesale inventories +0.6% to $1,011.5bn; retail inventories +0.3% to $885.3bn; consensus n/a. Date-based checklist listed aei-oct as a past blank, but it remains scheduled later today. fr-cpi-flash-nov and es-cpi-flash-nov already filled and live on Pages at 03da9f3 (INSEE provisional CPI +2.9% y/y / HICP +3.2%; INE flash CPI +4.1% y/y / core +2.6%). No earlier high/medium blanks. TODAY already Fri 27 Nov. Print-watch unchanged (remains paused; no upcoming high-impact exact-time weekday-HKT T-5/T-0; aei-oct is medium). Desktop Hub not copied (no calendar HTML change; LamboKiwi offline). Kill switch LIFTED.",
+      "lastSummary": "Post-US Actuals Fri 27 Nov ~9:20am ET / ~10:20pm HKT: filled aei-oct (medium) from official Census Advance Economic Indicators Report, October 2026 (CB26-195, 8:30am ET / 9:30pm HKT). Goods trade deficit $149.5bn, up $14.4bn from revised September $135.1bn (CB26-177 had $134.9bn); exports $215.8bn; imports $365.3bn. Wholesale inventories $1,023.4bn +0.9% m/m (±0.4%) / +8.5% y/y; retail inventories $893.2bn +0.8% m/m (±0.2%) / +5.1% y/y. September wholesale and retail inventories revised to $1,014.3bn (Aug–Sep +0.8%) and $886.2bn (Aug–Sep +0.7%). Consensus n/a (no Reuters/Bloomberg poll cited). Inflation TE scrape failed (parsed 0 mapped rows); FALLBACK_2026_09_24 not applied — last live inflation tab retained (JP 2.3 / UK 3.6, Oct 2026; stamp Fri 27 Nov 08:37 HKT). TODAY already Fri 27 Nov. Print-watch unchanged (remains paused; aei-oct is medium; no upcoming high-impact exact-time weekday-HKT T-5/T-0). Desktop Hub skipped (LamboKiwi offline). Kill switch LIFTED.",
       "nextRunAt": "2026-11-30T20:45:00+08:00",
-      "lastItems": []
+      "lastItems": [
+        {
+          "id": "aei-oct",
+          "title": "Advance goods exports, imports and inventories (Oct)",
+          "actualShort": "Goods def $149.5bn · whsl +0.9% · ret +0.8%",
+          "status": "released"
+        }
+      ]
     }
   ]
 }
