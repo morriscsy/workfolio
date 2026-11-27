@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T08:38:42.003503+08:00",
+  "updatedAt": "2026-11-27T11:08:55.788584+08:00",
   "timezone": "Asia/Shanghai",
   "calendarUrl": "https://morriscsy.github.io/workfolio/EconPulse.html",
   "batches": [
@@ -153,17 +153,17 @@
       ],
       "scheduleLabel": "Weekdays ~08:40 HKT",
       "cron": "40 8 * * 1-5",
-      "lastRunAt": "2026-11-27T08:38:42.003503+08:00",
+      "lastRunAt": "2026-11-27T10:53:04+08:00",
       "lastStatus": "succeeded",
-      "lastSummary": "Morning Actuals Fri 27 Nov ~08:40 HKT: filled jp-tokyo-nov from official Statistics Bureau Tokyo ku-area mid-month prelim November 2026 (published 27 Nov). All-items 103.8 / +2.8% y/y / +0.3% m/m sa; core ex-fresh food 103.9 / +2.9% y/y / +0.5% m/m sa (QUICK +3.0%, slight miss); core-core ex-fresh+energy 103.6 / +2.5% y/y / +0.1% m/m sa. Official commentary: headline y/y widened 0.1pt (Oct 2.7%→2.8%); core widened 0.3pt (2.6%→2.9%); energy +9.5% y/y (from +2.2%) lifted headline 0.34pt (electricity +9.5%, city gas +13.7%). Remaining past blanks: 0. Inflation TE scrape failed (0 mapped rows); FALLBACK_2026_09_24 not applied — last live tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY→Fri 27 Nov. Desktop Hub skipped (LamboKiwi offline). Print-watch unchanged (remains paused). Kill switch LIFTED.",
-      "nextRunAt": "2026-11-27T08:40:00+08:00",
+      "lastSummary": "Asia-evening Actuals Thu 26 Nov ~9:53pm ET / Fri 27 Nov ~10:53am HKT: added and filled cn-ind-profits-oct (medium) from official NBS 27 Nov 09:30 Beijing (8:30pm ET Thu / 9:30am HKT Fri). Jan–Oct profits +16.0% y/y to 67,373.6亿元 (¥6.737tn); Oct alone +20.1% y/y. Prior official Jan–Sep +15.5% y/y to 60,337.4亿元 (NBS 27 Oct) — that Sep print was not previously on the calendar and was not added as a separate event. Revenue +6.7%; margin 5.69% (+0.45pt); mining +38.8%; manufacturing +17.5%; utilities −14.8%; electronics +100.9%; auto −26.0%. Consensus n/a. Official: https://www.stats.gov.cn/sj/zxfb/202611/t20261127_1965949.html. jp-tokyo-nov already filled this morning (live 26489d1). No other past high/medium blanks. No JP/AU/HK high/medium tracked prints due this window (ABS 27 Nov is mortality / Jobs in Australia / Personal Income — not added; HK merchandise trade Oct released Thu 26 Nov 16:30 HKT — not added). Inflation TE scrape failed (0 mapped rows); FALLBACK_2026_09_24 not applied — last live tab retained (JP 2.3 / UK 3.6, Oct 2026). TODAY already Fri 27 Nov. Print-watch unchanged (remains paused; no upcoming high-impact exact-time weekday-HKT T-5/T-0; this fill is medium). Desktop Hub not copied (LamboKiwi offline). Kill switch LIFTED.",
+      "nextRunAt": "2026-11-30T08:40:00+08:00",
       "lastItems": [
         {
-          "id": "jp-tokyo-nov",
-          "title": "Tokyo CPI preliminary (Nov)",
-          "actualShort": "Tokyo CPI +2.8% · core +2.9% · ex FE +2.5%",
+          "id": "cn-ind-profits-oct",
+          "title": "China industrial profits (Jan–Oct / Oct)",
+          "actualShort": "YTD +16.0% · Oct +20.1%",
           "status": "released",
-          "when": "6:30pm ET Thu 26 Nov / 7:30am HKT Fri 27 Nov"
+          "when": "8:30pm ET Thu 26 Nov / 9:30am HKT Fri 27 Nov"
         }
       ]
     },
